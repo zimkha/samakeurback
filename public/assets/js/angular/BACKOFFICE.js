@@ -1333,25 +1333,25 @@ app.config(function($routeProvider) {
         .when("/etat-vente", {
             templateUrl : "page/etat-vente",
         })
-        .when("/etat-commande-livraison", {
-            templateUrl : "page/etat-commande-livraison",
-        }) .when("/etat-depenses", {
-            templateUrl : "page/etat-depense",
+        .when("/list-a-confirme", {
+            templateUrl : "page/list-a-confirme",
+        }) .when("/list-plan", {
+            templateUrl : "page/list-plan",
         })
-        .when("/fichiers", {
-            templateUrl : "page/fichiers",
+        .when("/list-demande-encour", {
+            templateUrl : "page/list-demande-encour",
         })
-        .when("/list-caisse", {
-            templateUrl : "page/list-caisse",
+        .when("/list-demande", {
+            templateUrl : "page/list-demande",
         })
-        .when("/detail-caisse/:itemId", {
-            templateUrl : "page/detail-caisse",
+        .when("/detail-client/:itemId", {
+            templateUrl : "page/detail-client",
         })
-        .when("/stat-caisse", {
-            templateUrl : "page/stat-caisse",
+        .when("/detail-demande", {
+            templateUrl : "page/detail-demande",
         })
-        .when("/list-typeclient", {
-            templateUrl : "page/list-typeclient",
+        .when("/detail-plan", {
+            templateUrl : "page/detail-plan",
         })
         .when("/list-zonelivraison", {
             templateUrl : "page/list-zonelivraison",
@@ -1359,6 +1359,7 @@ app.config(function($routeProvider) {
         .when("/list-client", {
             templateUrl : "page/list-client",
         })
+<<<<<<< HEAD
         .when("/listdetail-client/:itemId", {
             templateUrl : "page/listdetail-client",
         })
@@ -1482,6 +1483,9 @@ app.config(function($routeProvider) {
         .when("/etat_stock_fournisseur", {
             templateUrl : "page/etat_stock_fournisseur",
         })
+=======
+        
+>>>>>>> 966d2a702cf4ea682af68e1ccbc6ce830cc59ff0
 
 });
 
@@ -1506,6 +1510,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
         {
             "plans"                        : "id,superficie,longeur,largeur,niveauplan{id,piece,chambre,salon,cuisine}",
 
+<<<<<<< HEAD
             "planprojets"                   : "id,plan_id,projet_id,etat_active,message,etat,plan{id}",
 
             "niveauplans"                   : "id",
@@ -1521,6 +1526,30 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
             "users"                         : "id,name,email,active,password,image,roles{id,name,guard_name,permissions{id,name,display_name,guard_name}},last_login,last_login_ip,created_at_fr",
 
             "roles"                         : "id,name,guard_name,permissions{id,name,display_name,guard_name}",
+=======
+            
+
+            'permissions'                            : [
+                                                            'id,name,display_name,guard_name',
+                                                              ""
+                                                        ],
+
+            "roles"                                  : [
+                                                        "id,name,guard_name,permissions{id,name,display_name,guard_name}",
+                                                         ""
+                                                    ],
+
+            "users"                                  : [
+                                                            "id,name,email,active,password,image,roles{id,name,guard_name,permissions{id,name,display_name,guard_name}}",
+                                                            ",last_login,last_login_ip,created_at_fr,ventes{id},recouvrements{id},clotures{id},versements{id},bon_commandes{id},bon_livraisons{id},facture_proformas{id},retours{id},entree_stocks{id},sortie_stocks{id}"
+                                                        ],
+
+            "dashboards"                             : [
+                                                        "clients,assurances,ventes,fournisseurs"
+                                                    ],
+
+            
+>>>>>>> 966d2a702cf4ea682af68e1ccbc6ce830cc59ff0
 
         };
 
