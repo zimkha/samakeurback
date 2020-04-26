@@ -1,7 +1,7 @@
 
 <div class="">
     <div class="float-right pt-0">
-        <button class="btn btn-primary"  data-toggle="modal" data-target="#modalPlan" title="ajouter un nouveau plan"><i class="fa fa-plus"></i></button>
+        <button class="btn btn-primary"  ng-click="showModalAdd('demande')" title="ajouter une demande"><i class="fa fa-plus"></i></button>
     </div>
     <h1 class="h3 mb-4 text-gray-800">Liste des projets</h1>
 

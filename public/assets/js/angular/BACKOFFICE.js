@@ -1,6 +1,6 @@
 var app=angular.module('BackEnd',[ 'ngRoute' , 'ngSanitize' , 'ngLoadScript', 'ui.bootstrap' , 'angular.filter']);
 
-var BASE_URL='//'+location.host+'/samakeurback/public/';
+var BASE_URL='//'+location.host+'/Projets/samakeurback/public/';
 var imgupload = BASE_URL + '/assets/images/upload.jpg';
 var msg_erreur = 'Veuillez contacter le support technique';
 
@@ -104,7 +104,7 @@ app.factory('Init',function ($http, $q)
                 });
                 return deferred.promise;
             },
-            getNotifs:function ()
+           /* getNotifs:function ()
             {
                 var deferred=$q.defer();
                 $http({
@@ -119,7 +119,7 @@ app.factory('Init',function ($http, $q)
                     deferred.reject(msg_erreur);
                 });
                 return deferred.promise;
-            },
+            },*/
             getEtatStock : function()
             {
                 var deferred=$q.defer();
@@ -360,714 +360,714 @@ app.factory('Init',function ($http, $q)
                 return deferred.promise;
             },
 
-            // getStatElement:function (element,id) {
-            //     $(function() {
-            //         $.ajax({
-            //             url: BASE_URL + '/' + element + '/statistiques/' + id,
-            //             method: "GET",
-            //             success : function (data) {
-            //                 console.log(data, 'je suis la');
-            //                 var mois = [];
-            //                 var montant = [];
-            //                 for (var i in data )
-            //                 {
-            //                     if (data[i].montant !=null)
-            //                     {
-            //                         console.log( data[i].mois);
-            //                         mois.push('' + data[i].mois);
-            //                         montant.push(data[i].montant);
-            //                     }
-            //                 }
-            //                 var chardata = {
-            //                     labels: mois,
-            //                     datasets : [
-            //                         {
-            //                             label: 'Statistiques Pour: ' + element,
-            //                             backgroundColor: [
-            //                                 'rgba(255, 99, 132, 0.2)',
-            //                                 'rgba(54, 162, 235, 0.2)',
-            //                                 'rgba(255, 206, 86, 0.2)',
-            //                                 'rgba(75, 192, 192, 0.2)',
-            //                                 'rgba(153, 102, 255, 0.2)',
-            //                                 'rgba(255, 159, 64, 0.2)',
-            //                                 'rgba(153, 102, 255, 0.2)',
-            //                                 'rgba(153, 152, 255, 0.2)',
-            //                                 'rgba(255, 139, 64, 0.2)',
-            //                                 'rgba(153, 152, 255, 0.75)',
-            //                                 'rgba(255, 159, 44, 0.75)',
-            //                                 'rgba(54, 162, 235, 0.2)',],
-            //                             borderColor: [
-            //                                 'rgba(255, 99, 132, 1)',
-            //                                 'rgba(54, 162, 235, 1)',
-            //                                 'rgba(255, 206, 86, 1)',
-            //                                 'rgba(75, 192, 192, 1)',
-            //                                 'rgba(153, 102, 255, 1)',
-            //                                 'rgba(255, 159, 64, 1)',
-            //                                 'rgba(255, 99, 13, 1)',
-            //                                 'rgba(54, 100, 25, 1)',
-            //                                 'rgba(255, 26, 86, 1)',
-            //                             ],
-            //                             borderWidth: 4,
-            //                             barPercentage: 1.,
-            //                             categoryPercentage:1.,
-            //                             barThickness: 6,
-            //                             hoverBackgroundColor: 'rgba(200,200,200,1)',
-            //                             hoverBorderColor: 'rgba(200,200,200,1)',
-            //                             borderSkipped: 'left',
+            getStatElement:function (element,id) {
+                $(function() {
+                    $.ajax({
+                        url: BASE_URL + '/' + element + '/statistiques/' + id,
+                        method: "GET",
+                        success : function (data) {
+                            console.log(data, 'je suis la');
+                            var mois = [];
+                            var montant = [];
+                            for (var i in data )
+                            {
+                                if (data[i].montant !=null)
+                                {
+                                    console.log( data[i].mois);
+                                    mois.push('' + data[i].mois);
+                                    montant.push(data[i].montant);
+                                }
+                            }
+                            var chardata = {
+                                labels: mois,
+                                datasets : [
+                                    {
+                                        label: 'Statistiques Pour: ' + element,
+                                        backgroundColor: [
+                                            'rgba(255, 99, 132, 0.2)',
+                                            'rgba(54, 162, 235, 0.2)',
+                                            'rgba(255, 206, 86, 0.2)',
+                                            'rgba(75, 192, 192, 0.2)',
+                                            'rgba(153, 102, 255, 0.2)',
+                                            'rgba(255, 159, 64, 0.2)',
+                                            'rgba(153, 102, 255, 0.2)',
+                                            'rgba(153, 152, 255, 0.2)',
+                                            'rgba(255, 139, 64, 0.2)',
+                                            'rgba(153, 152, 255, 0.75)',
+                                            'rgba(255, 159, 44, 0.75)',
+                                            'rgba(54, 162, 235, 0.2)',],
+                                        borderColor: [
+                                            'rgba(255, 99, 132, 1)',
+                                            'rgba(54, 162, 235, 1)',
+                                            'rgba(255, 206, 86, 1)',
+                                            'rgba(75, 192, 192, 1)',
+                                            'rgba(153, 102, 255, 1)',
+                                            'rgba(255, 159, 64, 1)',
+                                            'rgba(255, 99, 13, 1)',
+                                            'rgba(54, 100, 25, 1)',
+                                            'rgba(255, 26, 86, 1)',
+                                        ],
+                                        borderWidth: 4,
+                                        barPercentage: 1.,
+                                        categoryPercentage:1.,
+                                        barThickness: 6,
+                                        hoverBackgroundColor: 'rgba(200,200,200,1)',
+                                        hoverBorderColor: 'rgba(200,200,200,1)',
+                                        borderSkipped: 'left',
 
-            //                             data: montant
-            //                         }
-            //                     ]
-            //                 };
-            //                 //var ctx  = $('#stats'+element);
-            //                 this.chart = new Chart('stats'+element, {
-            //                     type: 'bar',
-            //                     data : chardata,
-            //                     options: {
-            //                         legend: {
-            //                             display: true,
-            //                             labels: {
-            //                                 fontColor: 'rgb(255, 50, 100)',
-            //                                 fontFamily: 'Helvetica Neue',
-            //                                 padding: 10,
-            //                             }
-            //                         },
-            //                         tooltips: {
-            //                             callbacks: {
-            //                                 label: function(tooltipItem, data) {
-            //                                     var label = 'Montant';
+                                        data: montant
+                                    }
+                                ]
+                            };
+                            //var ctx  = $('#stats'+element);
+                            this.chart = new Chart('stats'+element, {
+                                type: 'bar',
+                                data : chardata,
+                                options: {
+                                    legend: {
+                                        display: true,
+                                        labels: {
+                                            fontColor: 'rgb(255, 50, 100)',
+                                            fontFamily: 'Helvetica Neue',
+                                            padding: 10,
+                                        }
+                                    },
+                                    tooltips: {
+                                        callbacks: {
+                                            label: function(tooltipItem, data) {
+                                                var label = 'Montant';
 
-            //                                     if (label) {
-            //                                         label += ': ';
-            //                                     }
-            //                                     label += Math.round(tooltipItem.yLabel * 100) / 100;
-            //                                     return label;
-            //                                 },
-            //                                 labelColor: function(tooltipItem, chart) {
-            //                                     return {
-            //                                         borderColor: 'rgb(255, 0, 0)',
-            //                                         backgroundColor: 'rgb(255, 0, 0)'
-            //                                     };
-            //                                 },
-            //                                 labelTextColor: function(tooltipItem, chart) {
-            //                                     return '#ffffff';
-            //                                 }
-            //                             }
-            //                         }
+                                                if (label) {
+                                                    label += ': ';
+                                                }
+                                                label += Math.round(tooltipItem.yLabel * 100) / 100;
+                                                return label;
+                                            },
+                                            labelColor: function(tooltipItem, chart) {
+                                                return {
+                                                    borderColor: 'rgb(255, 0, 0)',
+                                                    backgroundColor: 'rgb(255, 0, 0)'
+                                                };
+                                            },
+                                            labelTextColor: function(tooltipItem, chart) {
+                                                return '#ffffff';
+                                            }
+                                        }
+                                    }
 
-            //                     }
-            //                 });
-            //             }, error: function (data) {
-            //                 console.log(data)
-            //             }
+                                }
+                            });
+                        }, error: function (data) {
+                            console.log(data)
+                        }
 
-            //         });
-            //     });
+                    });
+                });
 
-            // },
+            },
 
-            // getStatCaisse:function () {
-            //     $.ajax({
-            //         url: BASE_URL + 'caisse/mensuelle',
-            //         method: "GET",
-            //         success: function (data) {
-            //             console.log(data);
-            //             var caisse = [];
-            //             var somme = [];
+            getStatCaisse:function () {
+                $.ajax({
+                    url: BASE_URL + 'caisse/mensuelle',
+                    method: "GET",
+                    success: function (data) {
+                        console.log(data);
+                        var caisse = [];
+                        var somme = [];
 
-            //             for (var i in data) {
-            //                 if (data[i].somme != null) {
-            //                     caisse.push('' + data[i].caisse);
-            //                     somme.push(data[i].somme);
-            //                 }
-            //             }
-            //             var chardata = {
-            //                 labels: caisse,
-            //                 datasets: [
-            //                     {
-            //                         label: 'Statistiques générales des caisses du mois en cours ',
-            //                         backgroundColor: ['#f7464a', '#46bfbd', '#fdb45c', '#985f0d'],
-            //                         borderColor: 'rgba(200,200,200,0.75)',
-            //                         borderWidth: 4,
-            //                         barPercentage: 1.,
-            //                         categoryPercentage:1.,
-            //                         barThickness: 6,
-            //                         hoverBackgroundColor: 'rgba(200,200,200,1)',
-            //                         hoverBorderColor: 'rgba(200,200,200,1)',
-            //                         data: somme
-            //                     }
-            //                 ]
-            //             };
-            //             var canvas = document.getElementById("caisseMensuelle");
-            //             var ctx = canvas.getContext("2d");
-            //             this.chart = new Chart(ctx, {
-            //                 type: 'bar',
-            //                 data: chardata,
-            //                 options: {
-            //                     legend: {
-            //                         display: true,
-            //                         labels: {
-            //                             fontColor: 'rgb(255, 50, 100)',
-            //                             fontFamily: 'Helvetica Neue',
-            //                             padding: 10,
-            //                         }
-            //                     },
-            //                     tooltips: {
-            //                         callbacks: {
-            //                             label: function(tooltipItem, data) {
-            //                                 var label = 'Montant';
+                        for (var i in data) {
+                            if (data[i].somme != null) {
+                                caisse.push('' + data[i].caisse);
+                                somme.push(data[i].somme);
+                            }
+                        }
+                        var chardata = {
+                            labels: caisse,
+                            datasets: [
+                                {
+                                    label: 'Statistiques générales des caisses du mois en cours ',
+                                    backgroundColor: ['#f7464a', '#46bfbd', '#fdb45c', '#985f0d'],
+                                    borderColor: 'rgba(200,200,200,0.75)',
+                                    borderWidth: 4,
+                                    barPercentage: 1.,
+                                    categoryPercentage:1.,
+                                    barThickness: 6,
+                                    hoverBackgroundColor: 'rgba(200,200,200,1)',
+                                    hoverBorderColor: 'rgba(200,200,200,1)',
+                                    data: somme
+                                }
+                            ]
+                        };
+                        var canvas = document.getElementById("caisseMensuelle");
+                        var ctx = canvas.getContext("2d");
+                        this.chart = new Chart(ctx, {
+                            type: 'bar',
+                            data: chardata,
+                            options: {
+                                legend: {
+                                    display: true,
+                                    labels: {
+                                        fontColor: 'rgb(255, 50, 100)',
+                                        fontFamily: 'Helvetica Neue',
+                                        padding: 10,
+                                    }
+                                },
+                                tooltips: {
+                                    callbacks: {
+                                        label: function(tooltipItem, data) {
+                                            var label = 'Montant';
 
-            //                                 if (label) {
-            //                                     label += ': ';
-            //                                 }
-            //                                 label += Math.round(tooltipItem.yLabel * 100) / 100;
-            //                                 return label;
-            //                             },
-            //                             labelColor: function(tooltipItem, chart) {
-            //                                 return {
-            //                                     borderColor: 'rgb(255, 0, 0)',
-            //                                     backgroundColor: 'rgb(255, 0, 0)'
-            //                                 };
-            //                             },
-            //                             labelTextColor: function(tooltipItem, chart) {
-            //                                 return '#ffffff';
-            //                             }
-            //                         }
-            //                     }
+                                            if (label) {
+                                                label += ': ';
+                                            }
+                                            label += Math.round(tooltipItem.yLabel * 100) / 100;
+                                            return label;
+                                        },
+                                        labelColor: function(tooltipItem, chart) {
+                                            return {
+                                                borderColor: 'rgb(255, 0, 0)',
+                                                backgroundColor: 'rgb(255, 0, 0)'
+                                            };
+                                        },
+                                        labelTextColor: function(tooltipItem, chart) {
+                                            return '#ffffff';
+                                        }
+                                    }
+                                }
 
-            //                 }
-            //             });
-            //         }, error: function (data) {
-            //             console.log(data)
-            //         }
-            //     });
+                            }
+                        });
+                    }, error: function (data) {
+                        console.log(data)
+                    }
+                });
 
-            // },
+            },
 
-            // getStatFournisseur:function () {
-            //     $.ajax({
-            //         url: BASE_URL + 'fournisseur/mensuelle',
-            //         method: "GET",
-            //         success: function (data) {
-            //             console.log(data);
-            //             var fournisseur = [];
-            //             var somme = [];
+            getStatFournisseur:function () {
+                $.ajax({
+                    url: BASE_URL + 'fournisseur/mensuelle',
+                    method: "GET",
+                    success: function (data) {
+                        console.log(data);
+                        var fournisseur = [];
+                        var somme = [];
 
-            //             for (var i in data) {
-            //                 if (data[i].somme != null) {
-            //                     fournisseur.push('' + data[i].fournisseur);
-            //                     somme.push(data[i].somme);
-            //                 }
-            //             }
-            //             var chardata = {
-            //                 labels: fournisseur,
-            //                 datasets: [
-            //                     {
-            //                         label: 'Commandes par fournisseur du mois en cours ',
-            //                         backgroundColor: [
-            //                             'rgba(255, 99, 132, 0.2)',
-            //                             'rgba(54, 162, 235, 0.2)',
-            //                             'rgba(255, 206, 86, 0.2)',
-            //                             'rgba(75, 192, 192, 0.2)',
-            //                             'rgba(153, 102, 255, 0.2)',
-            //                             'rgba(255, 159, 64, 0.2)'],
-            //                         borderColor: [
-            //                             'rgba(255, 99, 132, 1)',
-            //                             'rgba(54, 162, 235, 1)',
-            //                             'rgba(255, 206, 86, 1)',
-            //                             'rgba(75, 192, 192, 1)',
-            //                             'rgba(153, 102, 255, 1)',
-            //                             'rgba(255, 159, 64, 1)'
-            //                         ],
-            //                         borderWidth: 1,
-            //                         hoverBackgroundColor: 'rgba(200,200,200,1)',
-            //                         hoverBorderColor: 'rgba(200,200,200,1)',
-            //                         data: somme
-            //                     }
-            //                 ]
-            //             };
-            //             var canvas = document.getElementById("fournisseurMensuelle");
-            //             var ctx = canvas.getContext("2d");
-            //             this.chart = new Chart(ctx, {
-            //                 type: 'bar',
-            //                 data: chardata,
-            //                 options: {
-            //                     legend: {
-            //                         display: true,
-            //                         labels: {
-            //                             fontColor: 'rgb(255, 99, 132)',
-            //                             fontFamily: 'Helvetica Neue',
-            //                             padding: 10,
-            //                         }
-            //                     },
-            //                     tooltips: {
-            //                         callbacks: {
-            //                             label: function(tooltipItem, data) {
-            //                                 var label = 'Montant';
+                        for (var i in data) {
+                            if (data[i].somme != null) {
+                                fournisseur.push('' + data[i].fournisseur);
+                                somme.push(data[i].somme);
+                            }
+                        }
+                        var chardata = {
+                            labels: fournisseur,
+                            datasets: [
+                                {
+                                    label: 'Commandes par fournisseur du mois en cours ',
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'],
+                                    borderColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1,
+                                    hoverBackgroundColor: 'rgba(200,200,200,1)',
+                                    hoverBorderColor: 'rgba(200,200,200,1)',
+                                    data: somme
+                                }
+                            ]
+                        };
+                        var canvas = document.getElementById("fournisseurMensuelle");
+                        var ctx = canvas.getContext("2d");
+                        this.chart = new Chart(ctx, {
+                            type: 'bar',
+                            data: chardata,
+                            options: {
+                                legend: {
+                                    display: true,
+                                    labels: {
+                                        fontColor: 'rgb(255, 99, 132)',
+                                        fontFamily: 'Helvetica Neue',
+                                        padding: 10,
+                                    }
+                                },
+                                tooltips: {
+                                    callbacks: {
+                                        label: function(tooltipItem, data) {
+                                            var label = 'Montant';
 
-            //                                 if (label) {
-            //                                     label += ': ';
-            //                                 }
-            //                                 label += Math.round(tooltipItem.yLabel * 100) / 100;
-            //                                 return label;
-            //                             },
-            //                             labelColor: function(tooltipItem, chart) {
-            //                                 return {
-            //                                     borderColor: 'rgb(255, 0, 0)',
-            //                                     backgroundColor: 'rgb(255, 0, 0)'
-            //                                 };
-            //                             },
-            //                             labelTextColor: function(tooltipItem, chart) {
-            //                                 return '#ffffff';
-            //                             }
-            //                         }
-            //                     }
+                                            if (label) {
+                                                label += ': ';
+                                            }
+                                            label += Math.round(tooltipItem.yLabel * 100) / 100;
+                                            return label;
+                                        },
+                                        labelColor: function(tooltipItem, chart) {
+                                            return {
+                                                borderColor: 'rgb(255, 0, 0)',
+                                                backgroundColor: 'rgb(255, 0, 0)'
+                                            };
+                                        },
+                                        labelTextColor: function(tooltipItem, chart) {
+                                            return '#ffffff';
+                                        }
+                                    }
+                                }
 
-            //                 }
-            //             });
-            //         }, error: function (data) {
-            //             console.log(data)
-            //         }
-            //     });
+                            }
+                        });
+                    }, error: function (data) {
+                        console.log(data)
+                    }
+                });
 
-            // },
+            },
 
-            // getStatAssurance:function () {
-            //     $.ajax({
-            //         url: BASE_URL + 'assurance/mensuelle',
-            //         method: "GET",
-            //         success: function (data) {
-            //             console.log(data);
-            //             var assurance = [];
-            //             var somme = [];
+            getStatAssurance:function () {
+                $.ajax({
+                    url: BASE_URL + 'assurance/mensuelle',
+                    method: "GET",
+                    success: function (data) {
+                        console.log(data);
+                        var assurance = [];
+                        var somme = [];
 
-            //             for (var i in data) {
-            //                 if (data[i].somme != null) {
-            //                     assurance.push('' + data[i].assurance);
-            //                     somme.push(data[i].somme);
-            //                 }
-            //             }
-            //             var chardata = {
-            //                 labels: assurance,
-            //                 datasets: [
-            //                     {
-            //                         label: 'Top assurances du mois ',
-            //                         backgroundColor: [
-            //                             'rgba(153, 102, 255, 0.2)',
-            //                             'rgba(255, 99, 132, 0.2)',
-            //                             'rgba(54, 162, 235, 0.2)',
-            //                             'rgba(255, 206, 86, 0.2)',
-            //                             'rgba(75, 192, 192, 0.2)',
-            //                             'rgba(255, 159, 64, 0.2)'],
-            //                         borderColor: [
-            //                             'rgba(255, 99, 132, 1)',
-            //                             'rgba(54, 162, 235, 1)',
-            //                             'rgba(255, 206, 86, 1)',
-            //                             'rgba(75, 192, 192, 1)',
-            //                             'rgba(153, 102, 255, 1)',
-            //                             'rgba(255, 159, 64, 1)'
-            //                         ],
-            //                         borderWidth: 1,
-            //                         hoverBackgroundColor: 'rgba(200,200,200,1)',
-            //                         hoverBorderColor: 'rgba(200,200,200,1)',
-            //                         data: somme
-            //                     }
-            //                 ]
-            //             };
-            //             var canvas = document.getElementById("assuranceMensuelle");
-            //             var ctx = canvas.getContext("2d");
-            //             this.chart = new Chart(ctx, {
-            //                 type: 'bar',
-            //                 data: chardata,
-            //                 options: {
-            //                     legend: {
-            //                         display: true,
-            //                         labels: {
-            //                             fontColor: 'blue',
-            //                             fontFamily: 'Helvetica Neue',
-            //                             padding: 10,
-            //                         }
-            //                     },
-            //                     tooltips: {
-            //                         callbacks: {
-            //                             label: function(tooltipItem, data) {
-            //                                 var label = 'Montant';
+                        for (var i in data) {
+                            if (data[i].somme != null) {
+                                assurance.push('' + data[i].assurance);
+                                somme.push(data[i].somme);
+                            }
+                        }
+                        var chardata = {
+                            labels: assurance,
+                            datasets: [
+                                {
+                                    label: 'Top assurances du mois ',
+                                    backgroundColor: [
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'],
+                                    borderColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1,
+                                    hoverBackgroundColor: 'rgba(200,200,200,1)',
+                                    hoverBorderColor: 'rgba(200,200,200,1)',
+                                    data: somme
+                                }
+                            ]
+                        };
+                        var canvas = document.getElementById("assuranceMensuelle");
+                        var ctx = canvas.getContext("2d");
+                        this.chart = new Chart(ctx, {
+                            type: 'bar',
+                            data: chardata,
+                            options: {
+                                legend: {
+                                    display: true,
+                                    labels: {
+                                        fontColor: 'blue',
+                                        fontFamily: 'Helvetica Neue',
+                                        padding: 10,
+                                    }
+                                },
+                                tooltips: {
+                                    callbacks: {
+                                        label: function(tooltipItem, data) {
+                                            var label = 'Montant';
 
-            //                                 if (label) {
-            //                                     label += ': ';
-            //                                 }
-            //                                 label += Math.round(tooltipItem.yLabel * 100) / 100;
-            //                                 return label;
-            //                             },
-            //                             labelColor: function(tooltipItem, chart) {
-            //                                 return {
-            //                                     borderColor: 'rgb(255, 0, 0)',
-            //                                     backgroundColor: 'rgb(255, 0, 0)'
-            //                                 };
-            //                             },
-            //                             labelTextColor: function(tooltipItem, chart) {
-            //                                 return '#ffffff';
-            //                             }
-            //                         }
-            //                     }
+                                            if (label) {
+                                                label += ': ';
+                                            }
+                                            label += Math.round(tooltipItem.yLabel * 100) / 100;
+                                            return label;
+                                        },
+                                        labelColor: function(tooltipItem, chart) {
+                                            return {
+                                                borderColor: 'rgb(255, 0, 0)',
+                                                backgroundColor: 'rgb(255, 0, 0)'
+                                            };
+                                        },
+                                        labelTextColor: function(tooltipItem, chart) {
+                                            return '#ffffff';
+                                        }
+                                    }
+                                }
 
-            //                 }
-            //             });
-            //         }, error: function (data) {
-            //             console.log(data)
-            //         }
-            //     });
+                            }
+                        });
+                    }, error: function (data) {
+                        console.log(data)
+                    }
+                });
 
-            // },
+            },
 
-            // getStatClient:function () {
-            //     $.ajax({
-            //         url: BASE_URL + 'client/mensuelle',
-            //         method: "GET",
-            //         success: function (data) {
-            //             console.log(data);
-            //             var client = [];
-            //             var somme = [];
+            getStatClient:function () {
+                $.ajax({
+                    url: BASE_URL + 'client/mensuelle',
+                    method: "GET",
+                    success: function (data) {
+                        console.log(data);
+                        var client = [];
+                        var somme = [];
 
-            //             for (var i in data) {
-            //                 if (data[i].somme != null) {
-            //                     client.push('' + data[i].client);
-            //                     somme.push(data[i].somme);
-            //                 }
-            //             }
-            //             var chardata = {
-            //                 labels: client,
-            //                 datasets: [
-            //                     {
-            //                         label: 'Top clients du mois ',
-            //                         backgroundColor: [
-            //                             'rgba(153, 102, 255, 0.2)',
-            //                             'rgba(255, 206, 86, 0.2)',
-            //                             'rgba(75, 192, 192, 0.2)',
-            //                             'rgba(255, 99, 132, 0.2)',
-            //                             'rgba(54, 162, 235, 0.2)',
-            //                             'rgba(255, 159, 64, 0.2)'],
-            //                         borderColor: [
-            //                             'rgba(255, 99, 132, 1)',
-            //                             'rgba(54, 162, 235, 1)',
-            //                             'rgba(255, 206, 86, 1)',
-            //                             'rgba(75, 192, 192, 1)',
-            //                             'rgba(153, 102, 255, 1)',
-            //                             'rgba(255, 159, 64, 1)'
-            //                         ],
-            //                         borderWidth: 1,
-            //                         hoverBackgroundColor: 'rgba(200,200,200,1)',
-            //                         hoverBorderColor: 'rgba(200,200,200,1)',
-            //                         data: somme
-            //                     }
-            //                 ]
-            //             };
-            //             var canvas = document.getElementById("clientMensuelle");
-            //             var ctx = canvas.getContext("2d");
-            //             this.chart = new Chart(ctx, {
-            //                 type: 'bar',
-            //                 data: chardata,
-            //                 options: {
-            //                     legend: {
-            //                         display: true,
-            //                         labels: {
-            //                             fontColor: 'blue',
-            //                             fontFamily: 'Helvetica Neue',
-            //                             padding: 10,
-            //                         }
-            //                     },
-            //                     tooltips: {
-            //                         callbacks: {
-            //                             label: function(tooltipItem, data) {
-            //                                 var label = 'Montant';
+                        for (var i in data) {
+                            if (data[i].somme != null) {
+                                client.push('' + data[i].client);
+                                somme.push(data[i].somme);
+                            }
+                        }
+                        var chardata = {
+                            labels: client,
+                            datasets: [
+                                {
+                                    label: 'Top clients du mois ',
+                                    backgroundColor: [
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'],
+                                    borderColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1,
+                                    hoverBackgroundColor: 'rgba(200,200,200,1)',
+                                    hoverBorderColor: 'rgba(200,200,200,1)',
+                                    data: somme
+                                }
+                            ]
+                        };
+                        var canvas = document.getElementById("clientMensuelle");
+                        var ctx = canvas.getContext("2d");
+                        this.chart = new Chart(ctx, {
+                            type: 'bar',
+                            data: chardata,
+                            options: {
+                                legend: {
+                                    display: true,
+                                    labels: {
+                                        fontColor: 'blue',
+                                        fontFamily: 'Helvetica Neue',
+                                        padding: 10,
+                                    }
+                                },
+                                tooltips: {
+                                    callbacks: {
+                                        label: function(tooltipItem, data) {
+                                            var label = 'Montant';
 
-            //                                 if (label) {
-            //                                     label += ': ';
-            //                                 }
-            //                                 label += Math.round(tooltipItem.yLabel * 100) / 100;
-            //                                 return label;
-            //                             },
-            //                             labelColor: function(tooltipItem, chart) {
-            //                                 return {
-            //                                     borderColor: 'rgb(255, 0, 0)',
-            //                                     backgroundColor: 'rgb(255, 0, 0)'
-            //                                 };
-            //                             },
-            //                             labelTextColor: function(tooltipItem, chart) {
-            //                                 return '#ffffff';
-            //                             }
-            //                         }
-            //                     }
+                                            if (label) {
+                                                label += ': ';
+                                            }
+                                            label += Math.round(tooltipItem.yLabel * 100) / 100;
+                                            return label;
+                                        },
+                                        labelColor: function(tooltipItem, chart) {
+                                            return {
+                                                borderColor: 'rgb(255, 0, 0)',
+                                                backgroundColor: 'rgb(255, 0, 0)'
+                                            };
+                                        },
+                                        labelTextColor: function(tooltipItem, chart) {
+                                            return '#ffffff';
+                                        }
+                                    }
+                                }
 
-            //                 }
-            //             });
-            //         }, error: function (data) {
-            //             console.log(data)
-            //         }
-            //     });
+                            }
+                        });
+                    }, error: function (data) {
+                        console.log(data)
+                    }
+                });
 
-            // },
+            },
 
-            // getStatsVenteWeek:function()
-            // {
-            //     $.ajax({
-            //         url: BASE_URL  + 'ventes/statistique/week',
-            //         method: "GET",
-            //         success: function (data) {
-            //             console.log(data, 'donnees de la semaine');
-            //             var jour = [];
-            //             var montant = [];
-
-
-            //             for (var i in data) {
-            //                 if (data[i].montant != null) {
-            //                     jour.push('' + data[i].day);
-            //                     montant.push(data[i].montant);
-
-            //                 }
-            //             }
-            //             var chardata = {
-            //                 labels: jour,
-            //                 datasets: [
-            //                     {
-            //                         label: 'Statistiques sur le nombre des ventes par Semaine ',
-            //                         backgroundColor: [
-            //                             'rgba(255, 99, 132, 0.2)',
-            //                             'rgba(54, 162, 235, 0.2)',
-            //                             'rgba(255, 206, 86, 0.2)',
-            //                             'rgba(75, 192, 192, 0.2)',
-            //                             'rgba(153, 102, 255, 0.2)',
-            //                             'rgba(255, 159, 64, 0.2)'],
-            //                         borderColor: [
-            //                             'rgba(255, 99, 132, 1)',
-            //                             'rgba(54, 162, 235, 1)',
-            //                             'rgba(255, 206, 86, 1)',
-            //                             'rgba(75, 192, 192, 1)',
-            //                             'rgba(153, 102, 255, 1)',
-            //                             'rgba(255, 159, 64, 1)'
-            //                         ],
-            //                         borderWidth: 1,
-            //                         hoverBackgroundColor: 'rgba(200,200,200,1)',
-            //                         hoverBorderColor: 'rgba(200,200,200,1)',
-            //                         data: montant
-            //                     }
-            //                 ]
-            //             };
-            //             var ctx1 = $("#venteWeek");
-            //             var barGraph1 = new Chart(ctx1, {
-            //                 type: 'bar',
-            //                 data: chardata,
-            //                 options: {
-            //                     legend: {
-            //                         display: true,
-            //                         labels: {
-            //                             fontColor: 'rgb(255, 99, 132)',
-            //                             fontFamily: 'Helvetica Neue',
-            //                             padding: 10,
-            //                         }
-            //                     },
-            //                     tooltips: {
-            //                         callbacks: {
-            //                             label: function(tooltipItem, data) {
-            //                                 var label = 'Montant';
-
-            //                                 if (label) {
-            //                                     label += ': ';
-            //                                 }
-            //                                 label += Math.round(tooltipItem.yLabel * 100) / 100;
-            //                                 return label;
-            //                             },
-            //                             labelColor: function(tooltipItem, chart) {
-            //                                 return {
-            //                                     borderColor: 'rgb(255, 0, 0)',
-            //                                     backgroundColor: 'rgb(255, 0, 0)'
-            //                                 };
-            //                             },
-            //                             labelTextColor: function(tooltipItem, chart) {
-            //                                 return '#ffffff';
-            //                             }
-            //                         }
-            //                     }
-
-            //                 }
-            //             });
-            //         }, error: function (data) {
-            //             console.log(data)
-            //         }
-            //     });
-            // },
-            // nbrFournisseur: function()
-            // {
-            //     $.ajax({
-            //         url: BASE_URL+ 'getFournisseur/nbr',
-            //         method: "GET",
-            //         success: function(data)
-            //         {
-            //             console.log("bbbdjdjdjjd",data)
-            //             $('#nbrFournisseur').text(parseInt(data));
-            //         }, error: function (data ) {
-            //             console.log(data)
-            //         }
-            //     });
-            // },
-            // nbrAssurance: function()
-            // {
-            //     $.ajax({
-            //         url: BASE_URL+ 'getAssurance/nbr',
-            //         method: "GET",
-            //         success: function(data)
-            //         {
-            //             $('#nbrAssurance').text(parseInt(data) );
-            //         }, error: function (data ) {
-            //             console.log(data)
-            //         }
-            //     });
-            // },
-            // nbrEntreprise: function()
-            // {
-            //     $.ajax({
-            //         url: BASE_URL+ 'entreprise/nbr',
-            //         method: "GET",
-            //         success: function(data)
-            //         {
-            //             $('#nbrEntreprise').text(parseInt(data) );
-            //         }, error: function (data ) {
-            //             console.log(data)
-            //         }
-            //     });
-            // },
-            // nbrParticulier: function()
-            // {
-            //     $.ajax({
-            //         url: BASE_URL+ 'particulier/nbr',
-            //         method: "GET",
-            //         success: function(data)
-            //         {
-            //             $('#nbrParticulier').text(parseInt(data));
-            //         }, error: function (data ) {
-            //             console.log(data)
-            //         }
-            //     });
-            // },
-            // journalCaisseDate:function(data)
-            // {
-            //     $.ajax(
-            //         {
-            //             url: BASE_URL +'/journal-caisse',
-            //             type: 'POST',
-            //             contentType:false,
-            //             processData:false,
-
-            //             data:data,
-            //             headers: {
-            //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-            //             },
-            //             beforeSend: function()
-            //             {
-            //                 $('#modal_journalcaisse').blockUI_start();
-            //             },success:function(response)
-            //             {
-            //                 $('#modal_journalcaisse').blockUI_stop();
-            //                 factory.data=response;
-            //               //deferred.resolve(factory.data);
-            //             },
-            //             error:function (error)
-            //             {
-            //                 $('#modal_journalcaisse').blockUI_stop();
-            //                 console.log('erreur serveur', error);
-            //                 deferred.reject(msg_erreur);
-            //             }
-            //         }
-            //     )
-            // },
-            // getNombreVenteStatsWeek:function()
-            // {
-            //     $.ajax({
-            //         url: BASE_URL  + 'ventes-nombre/statistique/week',
-            //         method: "GET",
-            //         success: function (data) {
-            //             console.log(data, 'donnees de la semaine');
-            //             var jour = [];
-            //             var montant = [];
+            getStatsVenteWeek:function()
+            {
+                $.ajax({
+                    url: BASE_URL  + 'ventes/statistique/week',
+                    method: "GET",
+                    success: function (data) {
+                        console.log(data, 'donnees de la semaine');
+                        var jour = [];
+                        var montant = [];
 
 
-            //             for (var i in data) {
-            //                 if (data[i].montant != null) {
-            //                     jour.push('' + data[i].day);
-            //                     montant.push(data[i].montant);
+                        for (var i in data) {
+                            if (data[i].montant != null) {
+                                jour.push('' + data[i].day);
+                                montant.push(data[i].montant);
 
-            //                 }
-            //             }
-            //             var chardata = {
-            //                 labels: jour,
-            //                 datasets: [
-            //                     {
-            //                         label: 'Nombre des ventes par Semaine ',
-            //                         backgroundColor: [
-            //                             'rgba(255, 99, 132, 0.2)',
-            //                             'rgba(54, 162, 235, 0.2)',
-            //                             'rgba(255, 206, 86, 0.2)',
-            //                             'rgba(75, 192, 192, 0.2)',
-            //                             'rgba(153, 102, 255, 0.2)',
-            //                             'rgba(255, 159, 64, 0.2)'],
-            //                         borderColor: [
-            //                             'rgba(255, 99, 132, 1)',
-            //                             'rgba(54, 162, 235, 1)',
-            //                             'rgba(255, 206, 86, 1)',
-            //                             'rgba(75, 192, 192, 1)',
-            //                             'rgba(153, 102, 255, 1)',
-            //                             'rgba(255, 159, 64, 1)'
-            //                         ],
-            //                         borderWidth: 1,
-            //                         hoverBackgroundColor: 'rgba(200,200,200,1)',
-            //                         hoverBorderColor: 'rgba(200,200,200,1)',
-            //                         data: montant
-            //                     }
-            //                 ]
-            //             };
-            //             var ctx1 = $("#venteNbrWeek");
-            //             var barGraph1 = new Chart(ctx1, {
-            //                 type: 'bar',
-            //                 data: chardata,
-            //                 options: {
-            //                     legend: {
-            //                         display: true,
-            //                         labels: {
-            //                             fontColor: 'rgb(255, 99, 132)',
-            //                             fontFamily: 'Helvetica Neue',
-            //                             padding: 10,
-            //                         }
-            //                     },
-            //                     tooltips: {
-            //                         callbacks: {
-            //                             label: function(tooltipItem, data) {
-            //                                 var label = 'Nombre';
+                            }
+                        }
+                        var chardata = {
+                            labels: jour,
+                            datasets: [
+                                {
+                                    label: 'Statistiques sur le nombre des ventes par Semaine ',
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'],
+                                    borderColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1,
+                                    hoverBackgroundColor: 'rgba(200,200,200,1)',
+                                    hoverBorderColor: 'rgba(200,200,200,1)',
+                                    data: montant
+                                }
+                            ]
+                        };
+                        var ctx1 = $("#venteWeek");
+                        var barGraph1 = new Chart(ctx1, {
+                            type: 'bar',
+                            data: chardata,
+                            options: {
+                                legend: {
+                                    display: true,
+                                    labels: {
+                                        fontColor: 'rgb(255, 99, 132)',
+                                        fontFamily: 'Helvetica Neue',
+                                        padding: 10,
+                                    }
+                                },
+                                tooltips: {
+                                    callbacks: {
+                                        label: function(tooltipItem, data) {
+                                            var label = 'Montant';
 
-            //                                 if (label) {
-            //                                     label += ': ';
-            //                                 }
-            //                                 label += Math.round(tooltipItem.yLabel * 100) / 100;
-            //                                 return label;
-            //                             },
-            //                             labelColor: function(tooltipItem, chart) {
-            //                                 return {
-            //                                     borderColor: 'rgb(255, 0, 0)',
-            //                                     backgroundColor: 'rgb(255, 0, 0)'
-            //                                 };
-            //                             },
-            //                             labelTextColor: function(tooltipItem, chart) {
-            //                                 return '#ffffff';
-            //                             }
-            //                         }
-            //                     }
+                                            if (label) {
+                                                label += ': ';
+                                            }
+                                            label += Math.round(tooltipItem.yLabel * 100) / 100;
+                                            return label;
+                                        },
+                                        labelColor: function(tooltipItem, chart) {
+                                            return {
+                                                borderColor: 'rgb(255, 0, 0)',
+                                                backgroundColor: 'rgb(255, 0, 0)'
+                                            };
+                                        },
+                                        labelTextColor: function(tooltipItem, chart) {
+                                            return '#ffffff';
+                                        }
+                                    }
+                                }
 
-            //                 }
-            //             });
-            //         }, error: function (data) {
-            //             console.log(data)
-            //         }
-            //     });
-            // },
+                            }
+                        });
+                    }, error: function (data) {
+                        console.log(data)
+                    }
+                });
+            },
+            nbrFournisseur: function()
+            {
+                $.ajax({
+                    url: BASE_URL+ 'getFournisseur/nbr',
+                    method: "GET",
+                    success: function(data)
+                    {
+                        console.log("bbbdjdjdjjd",data)
+                        $('#nbrFournisseur').text(parseInt(data));
+                    }, error: function (data ) {
+                        console.log(data)
+                    }
+                });
+            },
+            nbrAssurance: function()
+            {
+                $.ajax({
+                    url: BASE_URL+ 'getAssurance/nbr',
+                    method: "GET",
+                    success: function(data)
+                    {
+                        $('#nbrAssurance').text(parseInt(data) );
+                    }, error: function (data ) {
+                        console.log(data)
+                    }
+                });
+            },
+            nbrEntreprise: function()
+            {
+                $.ajax({
+                    url: BASE_URL+ 'entreprise/nbr',
+                    method: "GET",
+                    success: function(data)
+                    {
+                        $('#nbrEntreprise').text(parseInt(data) );
+                    }, error: function (data ) {
+                        console.log(data)
+                    }
+                });
+            },
+            nbrParticulier: function()
+            {
+                $.ajax({
+                    url: BASE_URL+ 'particulier/nbr',
+                    method: "GET",
+                    success: function(data)
+                    {
+                        $('#nbrParticulier').text(parseInt(data));
+                    }, error: function (data ) {
+                        console.log(data)
+                    }
+                });
+            },
+            journalCaisseDate:function(data)
+            {
+                $.ajax(
+                    {
+                        url: BASE_URL +'/journal-caisse',
+                        type: 'POST',
+                        contentType:false,
+                        processData:false,
+
+                        data:data,
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                        },
+                        beforeSend: function()
+                        {
+                            $('#modal_journalcaisse').blockUI_start();
+                        },success:function(response)
+                        {
+                            $('#modal_journalcaisse').blockUI_stop();
+                            factory.data=response;
+                          //deferred.resolve(factory.data);
+                        },
+                        error:function (error)
+                        {
+                            $('#modal_journalcaisse').blockUI_stop();
+                            console.log('erreur serveur', error);
+                            deferred.reject(msg_erreur);
+                        }
+                    }
+                )
+            },
+            getNombreVenteStatsWeek:function()
+            {
+                $.ajax({
+                    url: BASE_URL  + 'ventes-nombre/statistique/week',
+                    method: "GET",
+                    success: function (data) {
+                        console.log(data, 'donnees de la semaine');
+                        var jour = [];
+                        var montant = [];
+
+
+                        for (var i in data) {
+                            if (data[i].montant != null) {
+                                jour.push('' + data[i].day);
+                                montant.push(data[i].montant);
+
+                            }
+                        }
+                        var chardata = {
+                            labels: jour,
+                            datasets: [
+                                {
+                                    label: 'Nombre des ventes par Semaine ',
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'],
+                                    borderColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1,
+                                    hoverBackgroundColor: 'rgba(200,200,200,1)',
+                                    hoverBorderColor: 'rgba(200,200,200,1)',
+                                    data: montant
+                                }
+                            ]
+                        };
+                        var ctx1 = $("#venteNbrWeek");
+                        var barGraph1 = new Chart(ctx1, {
+                            type: 'bar',
+                            data: chardata,
+                            options: {
+                                legend: {
+                                    display: true,
+                                    labels: {
+                                        fontColor: 'rgb(255, 99, 132)',
+                                        fontFamily: 'Helvetica Neue',
+                                        padding: 10,
+                                    }
+                                },
+                                tooltips: {
+                                    callbacks: {
+                                        label: function(tooltipItem, data) {
+                                            var label = 'Nombre';
+
+                                            if (label) {
+                                                label += ': ';
+                                            }
+                                            label += Math.round(tooltipItem.yLabel * 100) / 100;
+                                            return label;
+                                        },
+                                        labelColor: function(tooltipItem, chart) {
+                                            return {
+                                                borderColor: 'rgb(255, 0, 0)',
+                                                backgroundColor: 'rgb(255, 0, 0)'
+                                            };
+                                        },
+                                        labelTextColor: function(tooltipItem, chart) {
+                                            return '#ffffff';
+                                        }
+                                    }
+                                }
+
+                            }
+                        });
+                    }, error: function (data) {
+                        console.log(data)
+                    }
+                });
+            },
             ajaxGet: function()
             {
                 $.ajax({
@@ -1085,216 +1085,216 @@ app.factory('Init',function ($http, $q)
                     }
                   });
             },
-            // getSommeDaye:function()
-            // {
-            //   $.ajax({
-            //     url: BASE_URL+ 'vente/getSommeDay',
-            //     method: "GET",
-            //     success: function(data)
-            //     {
-            //        $('#mnt_day').text(parseInt(data) + ' FCFA');
-            //     }, error: function (data ) {
-            //         console.log(data)
-            //     }
-            //   });
-            // },
-            // getSommeMonth:function()
-            // {
-            //     $.ajax({
-            //         url: BASE_URL+ 'vente/getSommeMonth',
-            //         method: "GET",
-            //         success: function(data)
-            //         {
-            //             $('#mnt_mont').text(data + ' FCFA');
-            //         }, error: function (data) {
-            //             console.log(data)
-            //         }
-            //       });
-            // },
-            // getSommeYear:function()
-            // {
-            //     $.ajax({
-            //         url: BASE_URL+ 'vente/getSommeYear',
-            //         method: "GET",
-            //         success: function(data)
-            //         {
-            //             $('#mnt_anne').text(data + ' FCFA');
-            //         }, error: function (data) {
-            //             console.log(data)
-            //         }
-            //       });
-            // },
-            // getStatVente:function () {
-            //     $.ajax({
-            //         url: BASE_URL+ 'vente/statistiques',
-            //         method: "GET",
-            //         success: function (data) {
-            //             console.log(data);
-            //             var mois = [];
-            //             var mois2 = [];
-            //             var montant = [];
-            //             var nombre = [];
+            getSommeDaye:function()
+            {
+              $.ajax({
+                url: BASE_URL+ 'vente/getSommeDay',
+                method: "GET",
+                success: function(data)
+                {
+                   $('#mnt_day').text(parseInt(data) + ' FCFA');
+                }, error: function (data ) {
+                    console.log(data)
+                }
+              });
+            },
+            getSommeMonth:function()
+            {
+                $.ajax({
+                    url: BASE_URL+ 'vente/getSommeMonth',
+                    method: "GET",
+                    success: function(data)
+                    {
+                        $('#mnt_mont').text(data + ' FCFA');
+                    }, error: function (data) {
+                        console.log(data)
+                    }
+                  });
+            },
+            getSommeYear:function()
+            {
+                $.ajax({
+                    url: BASE_URL+ 'vente/getSommeYear',
+                    method: "GET",
+                    success: function(data)
+                    {
+                        $('#mnt_anne').text(data + ' FCFA');
+                    }, error: function (data) {
+                        console.log(data)
+                    }
+                  });
+            },
+            getStatVente:function () {
+                $.ajax({
+                    url: BASE_URL+ 'vente/statistiques',
+                    method: "GET",
+                    success: function (data) {
+                        console.log(data);
+                        var mois = [];
+                        var mois2 = [];
+                        var montant = [];
+                        var nombre = [];
 
-            //             for (var i in data) {
-            //                 if (data[i].montant != null) {
-            //                     mois.push('' + data[i].mois);
-            //                     mois2.push('' + data[i].mois);
-            //                     montant.push(data[i].montant);
-            //                     nombre.push(data[i].nombre);
-            //                 }
-            //             }
-            //             var chardata = {
-            //                 labels: mois,
-            //                 datasets: [
-            //                     {
-            //                         label: 'Montant des ventes par mois ',
-            //                         backgroundColor: [
-            //                             'rgba(255, 99, 132, 0.2)',
-            //                             'rgba(255, 99, 132, 0.2)',
-            //                             'rgba(54, 162, 235, 0.2)',
-            //                             'rgba(255, 206, 86, 0.2)',
-            //                             'rgba(75, 192, 192, 0.2)',
-            //                             'rgba(153, 102, 255, 0.2)',
-            //                             'rgba(255, 159, 64, 0.2)',
-            //                             'rgba(153, 102, 255, 0.2)',
-            //                             'rgba(153, 152, 255, 0.2)',
-            //                             'rgba(255, 139, 64, 0.2)',
-            //                             'rgba(153, 152, 255, 0.75)',
-            //                             'rgba(255, 159, 44, 0.75)',
-            //                             'rgba(54, 162, 235, 0.2)',],
-            //                         borderColor: [
-            //                             'rgba(255, 99, 132, 1)',
-            //                             'rgba(54, 162, 235, 1)',
-            //                             'rgba(255, 206, 86, 1)',
-            //                             'rgba(75, 192, 192, 1)',
-            //                             'rgba(153, 102, 255, 1)',
-            //                             'rgba(255, 159, 64, 1)',
-            //                             'rgba(255, 99, 13, 1)',
-            //                             'rgba(54, 100, 25, 1)',
-            //                             'rgba(255, 26, 86, 1)',
-            //                         ],
-            //                         hoverBackgroundColor: 'rgba(200,200,200,1)',
-            //                         hoverBorderColor: 'rgba(200,200,200,1)',
-            //                         data: montant
-            //                     }
-            //                 ]
-            //             };
-            //             var canvas1 = document.getElementById("montantVenteMensuelle");
-            //             var ctx1 = canvas1.getContext("2d");
-            //             this.chart = new Chart(ctx1, {
-            //                 type: 'bar',
-            //                 data: chardata,
-            //                 options: {
-            //                     legend: {
-            //                         display: true,
-            //                         labels: {
-            //                             fontColor: 'rgb(255, 50, 100)',
-            //                             fontFamily: 'Helvetica Neue',
-            //                             padding: 10,
-            //                         }
-            //                     },
-            //                     tooltips: {
-            //                         callbacks: {
-            //                             label: function(tooltipItem, data) {
-            //                                 var label = 'Montant';
+                        for (var i in data) {
+                            if (data[i].montant != null) {
+                                mois.push('' + data[i].mois);
+                                mois2.push('' + data[i].mois);
+                                montant.push(data[i].montant);
+                                nombre.push(data[i].nombre);
+                            }
+                        }
+                        var chardata = {
+                            labels: mois,
+                            datasets: [
+                                {
+                                    label: 'Montant des ventes par mois ',
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(153, 152, 255, 0.2)',
+                                        'rgba(255, 139, 64, 0.2)',
+                                        'rgba(153, 152, 255, 0.75)',
+                                        'rgba(255, 159, 44, 0.75)',
+                                        'rgba(54, 162, 235, 0.2)',],
+                                    borderColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)',
+                                        'rgba(255, 99, 13, 1)',
+                                        'rgba(54, 100, 25, 1)',
+                                        'rgba(255, 26, 86, 1)',
+                                    ],
+                                    hoverBackgroundColor: 'rgba(200,200,200,1)',
+                                    hoverBorderColor: 'rgba(200,200,200,1)',
+                                    data: montant
+                                }
+                            ]
+                        };
+                        var canvas1 = document.getElementById("montantVenteMensuelle");
+                        var ctx1 = canvas1.getContext("2d");
+                        this.chart = new Chart(ctx1, {
+                            type: 'bar',
+                            data: chardata,
+                            options: {
+                                legend: {
+                                    display: true,
+                                    labels: {
+                                        fontColor: 'rgb(255, 50, 100)',
+                                        fontFamily: 'Helvetica Neue',
+                                        padding: 10,
+                                    }
+                                },
+                                tooltips: {
+                                    callbacks: {
+                                        label: function(tooltipItem, data) {
+                                            var label = 'Montant';
 
-            //                                 if (label) {
-            //                                     label += ': ';
-            //                                 }
-            //                                 label += Math.round(tooltipItem.yLabel * 100) / 100;
-            //                                 return label;
-            //                             },
-            //                             labelColor: function(tooltipItem, chart) {
-            //                                 return {
-            //                                     borderColor: 'rgb(255, 0, 0)',
-            //                                     backgroundColor: 'rgb(255, 0, 0)'
-            //                                 };
-            //                             },
-            //                             labelTextColor: function(tooltipItem, chart) {
-            //                                 return '#ffffff';
-            //                             }
-            //                         }
-            //                     }
+                                            if (label) {
+                                                label += ': ';
+                                            }
+                                            label += Math.round(tooltipItem.yLabel * 100) / 100;
+                                            return label;
+                                        },
+                                        labelColor: function(tooltipItem, chart) {
+                                            return {
+                                                borderColor: 'rgb(255, 0, 0)',
+                                                backgroundColor: 'rgb(255, 0, 0)'
+                                            };
+                                        },
+                                        labelTextColor: function(tooltipItem, chart) {
+                                            return '#ffffff';
+                                        }
+                                    }
+                                }
 
-            //                 }
-            //             });
+                            }
+                        });
 
-            //             var chardata1 = {
-            //                 labels: mois2,
-            //                 datasets: [
-            //                     {
-            //                         label: 'Nombre des ventes par mois ',
-            //                         backgroundColor: [
-            //                             'rgba(255, 99, 132, 0.2)',
-            //                             'rgba(54, 162, 235, 0.2)',
-            //                             'rgba(255, 206, 86, 0.2)',
-            //                             'rgba(75, 192, 192, 0.2)',
-            //                             'rgba(153, 102, 255, 0.2)',
-            //                             'rgba(255, 159, 64, 0.2)',
-            //                             'rgba(153, 102, 255, 0.2)',
-            //                             'rgba(153, 152, 255, 0.2)',
-            //                             'rgba(255, 139, 64, 0.2)',
-            //                             'rgba(153, 152, 255, 0.2)',
-            //                             'rgba(255, 159, 44, 0.2)'],
-            //                         borderColor: [
-            //                             'rgba(255, 99, 132, 1)',
-            //                             'rgba(54, 162, 235, 1)',
-            //                             'rgba(255, 206, 86, 1)',
-            //                             'rgba(75, 192, 192, 1)',
-            //                             'rgba(153, 102, 255, 1)',
-            //                             'rgba(255, 159, 64, 1)'
-            //                         ],
-            //                         hoverBackgroundColor: 'rgba(250,250,200,1)',
-            //                         hoverBorderColor:     'rgba(200,200,200,1)',
-            //                         data: nombre
-            //                     }
-            //                 ]
-            //             };
-            //             var canvas2 = document.getElementById("nombreVenteMensuelle");
-            //             var ctx2 = canvas2.getContext("2d");
-            //             this.chart = new Chart(ctx2, {
-            //                 type: 'bar',
-            //                 data: chardata1,
-            //                 options: {
-            //                     legend: {
-            //                         display: true,
-            //                         labels: {
-            //                             fontColor: 'rgb(255, 50, 100)',
-            //                             fontFamily: 'Helvetica Neue',
-            //                             padding: 10,
-            //                         }
-            //                     },
-            //                     tooltips: {
-            //                         callbacks: {
-            //                             label: function(tooltipItem, data) {
-            //                                 var label = 'Nombre';
+                        var chardata1 = {
+                            labels: mois2,
+                            datasets: [
+                                {
+                                    label: 'Nombre des ventes par mois ',
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(153, 152, 255, 0.2)',
+                                        'rgba(255, 139, 64, 0.2)',
+                                        'rgba(153, 152, 255, 0.2)',
+                                        'rgba(255, 159, 44, 0.2)'],
+                                    borderColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    hoverBackgroundColor: 'rgba(250,250,200,1)',
+                                    hoverBorderColor:     'rgba(200,200,200,1)',
+                                    data: nombre
+                                }
+                            ]
+                        };
+                        var canvas2 = document.getElementById("nombreVenteMensuelle");
+                        var ctx2 = canvas2.getContext("2d");
+                        this.chart = new Chart(ctx2, {
+                            type: 'bar',
+                            data: chardata1,
+                            options: {
+                                legend: {
+                                    display: true,
+                                    labels: {
+                                        fontColor: 'rgb(255, 50, 100)',
+                                        fontFamily: 'Helvetica Neue',
+                                        padding: 10,
+                                    }
+                                },
+                                tooltips: {
+                                    callbacks: {
+                                        label: function(tooltipItem, data) {
+                                            var label = 'Nombre';
 
-            //                                 if (label) {
-            //                                     label += ': ';
-            //                                 }
-            //                                 label += Math.round(tooltipItem.yLabel * 100) / 100;
-            //                                 return label;
-            //                             },
-            //                             labelColor: function(tooltipItem, chart) {
-            //                                 return {
-            //                                     borderColor: 'rgb(255, 0, 0)',
-            //                                     backgroundColor: 'rgb(255, 0, 0)'
-            //                                 };
-            //                             },
-            //                             labelTextColor: function(tooltipItem, chart) {
-            //                                 return '#ffffff';
-            //                             }
-            //                         }
-            //                     }
+                                            if (label) {
+                                                label += ': ';
+                                            }
+                                            label += Math.round(tooltipItem.yLabel * 100) / 100;
+                                            return label;
+                                        },
+                                        labelColor: function(tooltipItem, chart) {
+                                            return {
+                                                borderColor: 'rgb(255, 0, 0)',
+                                                backgroundColor: 'rgb(255, 0, 0)'
+                                            };
+                                        },
+                                        labelTextColor: function(tooltipItem, chart) {
+                                            return '#ffffff';
+                                        }
+                                    }
+                                }
 
-            //                 }
-            //             });
-            //         }, error: function (data) {
-            //             console.log(data)
-            //         }
-            //     });
+                            }
+                        });
+                    }, error: function (data) {
+                        console.log(data)
+                    }
+                });
 
-            // },
+            },
         };
     return factory;
 });
@@ -1305,6 +1305,30 @@ app.config(function($routeProvider) {
     $routeProvider
         .when("/", {
             templateUrl : "page/dashboard",
+        })
+        .when("/list-client", {
+            templateUrl : "page/list-client",
+        })
+        .when("/detail-client/:itemId", {
+            templateUrl : "page/detail-client",
+        })
+        .when("/list-a-confirme", {
+            templateUrl : "page/list-a-confirme",
+        })
+        .when("/list-demande", {
+            templateUrl : "page/list-demande",
+        })
+        .when("/detail-demande/:itemId", {
+            templateUrl : "page/detail-demande",
+        })
+        .when("/list-demande-encour", {
+            templateUrl : "page/list-demande-encour",
+        })
+        .when("/list-plan", {
+            templateUrl : "page/list-plan",
+        })
+        .when("/detail-plan/:itemId", {
+            templateUrl : "page/detail-plan",
         })
         .when("/etat-vente", {
             templateUrl : "page/etat-vente",
@@ -1452,9 +1476,6 @@ app.config(function($routeProvider) {
         .when("/import-commande", {
             templateUrl : "page/excel-boncommande",
         })
-        .when("/suggestions", {
-            templateUrl : "page/suggestions",
-        })
         .when("/etat-stock", {
             templateUrl : "page/etat_stock",
         })
@@ -1483,174 +1504,23 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
 
     var listofrequests_assoc =
         {
-            "clients"                                : [
-                                                           "id,affiles{id,nomcomplet},pourcentage,assurance_id,souscripteur,nomcomplet,assurance{id,nomcomplet}",
-                                                          ",ca_vente,email,telephone,adresse,matricule,code_client,zone_livraison_id,zone_livraison{id,designation,tarif}, type_client_id,type_client{id,nom},ventes{id,numero_ticket,motif,nom_medecin,telephone,numero_ordonnance,date_prescris,pourcentage_remise,pourcentage_payeur,etat_vente,type_vente,created_at,updated_at},created_at,updated_at"
-            ],
+            "plans"                        : "id,superficie,longeur,largeur,niveauplan{id,piece,chambre,salon,cuisine}",
 
-            "typeclients"                            : [ "id,nom",
-                                                            ",clients{id,nomcomplet,email,telephone,adresse,matricule,zone_livraison_id}"
-                                                        ],
+            "planprojets"                   : "id,plan_id,projet_id,etat_active,message,etat,plan{id}",
 
-            "zonelivraisons"                         : [
-                                                    "id,designation,tarif",
-                                                    ",clients{id,nomcomplet,adresse}"
-                                                ],
+            "niveauplans"                   : "id",
 
+            "niveauprojets"                 : "id",
 
-            "assurances"                             : [
-                                                "id,matricule,nomcomplet,telephone,email,",
-                                                ",ventes{id},ca_vente"
-                                                            ],
+            "projets"                       : "id",
 
-            "medicaments"                            : [
-                "id,noart,nombre_detail,occurrence_detail,medicament_id,medicament{id,designation},medicaments{id,designation,current_quantity,prix_public,nombre_detail,occurrence_detail},code,cip,cip2,cip3,cip4,designation,prix_cession,prix_public,with_tva,categorie_id,suggestion,categorie{id,nom,taux}",
-                ",qte_rayon,qte_reserve,qte_seuil_max,qte_seuil_min,qte_stock,current_quantity,famille_medicament_id,famille_medicament{id,libelle},type_medicament_id,type_medicament{id,libelle},type_cip_medicaments{id,medicament_id,type_cip_id,type_cip{id,nom},cip}"
-                                                      ],
+            "typeremarques"                 : "id",
 
-            "famillemedicaments"                     :[ "id,libelle",
-                                                            ",medicaments{id,noart,code,cip,cip2,cip3,cip4,designation,prix_cession,qte_rayon,qte_reserve,qte_seuil_max,qte_seuil_min}"
-                                                        ],
+            "remarques"                     : "id",
 
-            "categories"                             :[ "id,nom",
-                                                            ",taux,medicaments{id,designation,cip,cip2,cip3,cip4}"
-                                                        ],
+            "users"                         : "id,name,email,active,password,image,roles{id,name,guard_name,permissions{id,name,display_name,guard_name}},last_login,last_login_ip,created_at_fr",
 
-            "typemedicaments"                        : [
-                                                            "id,libelle",
-                                                            ",medicaments{id,designation}"
-                                                        ],
-
-            "fournisseurs"                           : [
-                                                          "id,nb_commande,nom,adresse,telephone,email,commande_livre,total_retour,nb_retour",
-                                                          ",bon_commandes{id,code_bc,pourcentage_remise},facture_proformas{id,code_facture,ligne_factures{id,medicament_id,qte}}",
-                                                       ],
-
-            "factureproformas"                       : [
-                                                            "id,code_facture,nb_medicament,user{id,name},fournisseur_id,nb_medicament,fournisseur{id,nom,adresse,telephone,email},created_at_fr,ligne_factures{id,medicament_id,prix_unitaire,medicament{id,designation,prix_cession,with_tva},qte}"
-                                                        ],
-
-            "boncommandes"                           : [
-                                                        "id,code_bc,etat_code,user{id,name},nb_medicament,etat,pourcentage_remise,total_ht,total_ttc,tva,fournisseur_id,etat_livraison,etat_livraison_couleur,fournisseur{id,nom,adresse},ligne_commandes{id,qte_commande,prix_achat,tva,remise,medicament{id,designation}},bon_livraisons{id,code_livraison,nb_medicament,nb_bonus,created_at_fr,lignelivraisons{id}},created_at,created_at_fr,updated_at"
-                                                    ],
-
-            "bonlivraisons"                          :[
-                                                            "id,total_ht,total_ttc,date_bl_fournisseur,numero_bl_fournisseur,user{id,name},code_livraison,nb_medicament,nb_bonus,bon_commande_id,created_at_fr,updated_at_fr,bon_commande{id,code_bc,etat_code,nb_medicament,etat,pourcentage_remise,fournisseur_id,etat_livraison,etat_livraison_couleur,fournisseur{id,nom,adresse},ligne_commandes{id,qte_commande,prix_achat,tva,remise,medicament{id,designation}},bon_livraisons{id,code_livraison,created_at_fr,lignelivraisons{id}},created_at,updated_at},lignelivraisons{id,qte_livre,qte_bonus,prix_public,prix_cession,ligne_commande{id,medicament{id,noart,code,designation,with_tva}}},created_at"
-                                                        ],
-
-            "clotures"                               : [
-                                                            "id,somme_init,somme_verse,created_at_fr,date_cloture,date_cloture_fr,cloturemonaies{id,nombre, monaie_id,monaie{id,valeur}},user_id,user{id,image,name},caisse_id,caisse{id,code_caisse,user_ip,adresse_mac}"
-                                                        ],
-            "versements"                             : [
-                                                        "id,montant_verser,mode_paiement_id,mode_paiement{id,libelle_mode},commetaires,created_at,updated_at,created_at_fr,updated_at_fr,user_id,user{id,image,name},caisse_id,caisse{code_caisse}"
-                                                          ],
-
-            "paiements"                              : [
-                                                "id,montant_verse,mode_paiement_id,mode_paiement{},bon_commande_id,bon_commande{id,code_bc,pourcentage_remise,fournisseur_id,fournisseur{id,nomcomplet, adresse},ligne_commandes{id,qte_commande,prix_achat,tva, remise}created_at, updated_at }"],
-
-            "modepaiements"                          : [ "id,libelle_mode",
-                                                        ",ventes{id,numero_ticket}, paiements{id, montant_verse}"
-                                                    ],
-
-            "detailsinventaires"                     : [
-                                                    "id,medicament_id,qte_app,qte_inventorie,medicament{id,noart,code,designation,prix_cession},inventaire_id,inventaire{id,created_at},qte_app,qte_inventorie,created_at,updated_at"
-                                                ],
-
-            "inventaires"                            : [
-                                                        "id,code_inventaire,created_at,created_at_fr,updated_at,user_id,user{id,name,image},details_inventaires{id,medicament_id,qte_app,qte_inventorie,medicament{designation,current_quantity}}"
-                                                    ],
-
-            "regularisations"                        : [
-                                                "id,created_at, updated_at"
-                                            ],
-
-            "detailregularisations"                  : [
-                                                            "id,motif,remise,qte_relle,ecart,commentaire,medicament_id,ligne_livraison_id,ligne_livraison{id, qte_livre, qte_bonus,qte_restant} , medicament{id,noart,code, designation, prix_cession, qte_rayon, qte_reserve, qte_seuil_max, qte_seuil_min},  created_at, updated_at, deleted_at"
-                                                        ],
-
-            "ventes"                                 : [
-                                                            "id,affile_id,affile{id,nomcomplet},caisse_id,restant,user{id,name},caisse{id},created_at_fr,recouvrement_id,numero_ticket,motif,nom_medecin,telephone,numero_ordonnance,date_prescris,matricule_patient,pourcentage_remise,remise_valeur,pourcentage_payeur,etat_vente,somme_encaisse,decaisse,type_vente,mode_paiement_id,assurance_id,client_id,assurance{id,nomcomplet,matricule,email,telephone},client{id,souscripteur,nomcomplet,email,telephone,adresse,matricule,zone_livraison_id},details_ventes{id,qte_vendu,prix_unitaire,remise,vente_id,ligne_livraison_id,ligne_livraison{id,qte_livre,qte_bonus,prix_cession,prix_public,ligne_commande{id,medicament{id,noart,code,designation,with_tva}}}},mode_paiement{id,libelle_mode},remise,created_at,updated_at,total_ht,total_ttc",
-                ""
-                                                        ],
-
-            "detailventes"                           : [
-                                                        "id,qte_vendu,au_detail, prix_unitaire, remise,vente_id, ligne_livraison_id, vente{id,numero_ticket,motif,nom_medecin,telephone,numero_ordonnance,date_prescris,pourcentage_remise,remise_valeur,pourcentage_payeur,etat_vente, mode_paiement_id}, mode_paiment{id, libelle_mode}, ligne_livraison{id,qte_livre, qte_bonus, prix_vente,ligne_commande{id,medicament{id,noart,code, designation,with_tva}}}"
-                                                    ],
-
-
-            "recouvrements"                          : [
-                                                    "id,code_recouvrement,user{id,image,name},montant_verse,mode_paiement_id,assurance_id,client_id,created_at,updated_at,client{id,nomcomplet,email,telephone,adresse,matricule,zone_livraison_id},assurance{id,matricule,nomcomplet,telephone,email},mode_paiement {id,libelle_mode},caisse{id, user_ip,adresse_mac},ventes_recouvre{id, vente_id,vente{id, numero_ticket, total_ttc},somme_recouvre}"
-                                                ],
-
-            "caisses"                                : [
-                                                         "id,nb_vente,nb_cloture,nb_versement,code_caisse,total_vente",
-                                                         ",id,nb_vente,nb_cloture,nb_versement,code_caisse,total_vente,user_ip,adresse_mac,ventes{id,numero_ticket,nom_medecin,telephone,numero_ordonnance,date_prescris,pourcentage_remise,pourcentage_payeur,etat_vente},recouvrements{id},clotures{id},versements{id}",
-
-                                                           ],
-
-            "monaies"                                : [
-                                                        "id,valeur,nom_monaie"
-                                                    ],
-
-            "cloturemonaies"                         : [
-                                                 "id,nombre,monaie_id,cloture_id,monaie{id,valeur},cloture{id,created_at,somme_init,somme_final}"
-                                                             ],
-
-            "sortiestocks"                           : [
-                                                    "id,ligne_livraison_id,ligne_livraison{id,ligne_commande{medicament_id,medicament{id,designation,type_medicament{id,libelle}}}},user_id,ligne_regularisation_id,quantity,motif_id,motif{id,designation},created_at_fr,user{name}",""
-                                                ],
-
-            "entreestocks"                           : [
-                                                        "id,ligne_livraison_id,ligne_livraison{id,ligne_commande{medicament_id,medicament{id,designation,type_medicament{id,libelle}}}},user_id,ligne_regularisation_id,quantity,motif_id,motif{id,designation},created_at_fr,user{name}", ""],
-
-            "retours"                                : [
-                                                            "id,status,motif_id,motif{id,designation},bon_livraison_id,montant_retour,date,date_fr,bon_livraison{id,numero_bl_fournisseur,bon_commande{id,fournisseur{id,nom}}},nb_medicament,created_at_fr,ligne_retours{id,medicament_id,medicament{id,designation,with_tva,prix_cession,prix_public,type_medicament{id,libelle}},quantity}, user_id, user{id,name}",
-                                                              ""
-                                                        ],
-
-            'permissions'                            : [
-                                                            'id,name,display_name,guard_name',
-                                                              ""
-                                                        ],
-
-            "roles"                                  : [
-                                                        "id,name,guard_name,permissions{id,name,display_name,guard_name}",
-                                                         ""
-                                                    ],
-
-            "users"                                  : [
-                                                            "id,name,email,active,password,image,roles{id,name,guard_name,permissions{id,name,display_name,guard_name}}",
-                                                            ",last_login,last_login_ip,created_at_fr,ventes{id},recouvrements{id},clotures{id},versements{id},bon_commandes{id},bon_livraisons{id},facture_proformas{id},retours{id},entree_stocks{id},sortie_stocks{id}"
-                                                        ],
-
-            "dashboards"                             : [
-                                                        "clients,assurances,ventes,fournisseurs"
-                                                    ],
-
-            "affiles"                             : [
-                                                        "id,nomcomplet",
-                                                    ],
-
-            "typemotifs"                             : [
-                                                        "id,designation,motifs{id, designation}"
-                                                    ],
-
-            "motifs"                                 : [
-                                                        "id,designation",
-                                                        ",retours{id,date,bon_livraison_id,status,date_fr,bon_livraison{id,numero_bl_fournisseur,date_bl_fournisseur}},entre_stocks{id,quantity,created_at},sortie_stocks{id,quantity,created_at},type_motif_id,type_motif{id,designation}"
-                                                    ],
-
-            "depenses"                               : [
-                                                        "id,montant_decaisse,motif_decaisse,user_id,caisse_id,caisse{id,code_caisse},created_at,updated_at,user{id,name}"
-                                                    ],
-
-            "type_cips"                              : [
-                                                            "id,nom"
-                                                        ],
-
-            "type_cip_medicaments"                   : [
-                                                            "id,medicament_id,type_cip_id,cip"
-                                                        ],
+            "roles"                         : "id,name,guard_name,permissions{id,name,display_name,guard_name}",
 
         };
 
@@ -1715,6 +1585,14 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
     $scope.imgupload_location = imgupload;
 
     // Pharmacie
+    $scope.plans = [];
+    $scope.planprojets = [];
+    $scope.niveauplans = [];
+    $scope.niveauprojets = [];
+    $scope.projets = [];
+    $scope.typeremarques = [];
+    $scope.remarques = [];
+    $scope.users = [];
     $scope.typemedicaments = [];
     $scope.typemotifs = [];
     $scope.motifs = [];
@@ -1837,25 +1715,25 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
         entryLimit: 10,
         totalItems: 0
     };
-// $scope.get_Somme_daye = function ()
-// {
-//     $.ajax({
-//         url: BASE_URL+ 'vente/getSommeDay',
-//         method: "GET",
-//         success: function(data)
-//         {
-//             console.log(data);
-//         }, error: function (data) {
-//             console.log(data)
-//         }
-//       });
-// };
-//   $scope.getCaisse = function (data)
-//   {
-//       var dta1 = data.date_donne
-//       console.log(dta1);
-//       Init.journalCaisseDate(dta1);
-//   };
+$scope.get_Somme_daye = function ()
+{
+    $.ajax({
+        url: BASE_URL+ 'vente/getSommeDay',
+        method: "GET",
+        success: function(data)
+        {
+            console.log(data);
+        }, error: function (data) {
+            console.log(data)
+        }
+      });
+};
+  $scope.getCaisse = function (data)
+  {
+      var dta1 = data.date_donne
+      console.log(dta1);
+      Init.journalCaisseDate(dta1);
+  };
     $scope.filtreChambreByTypeChambre = function(e, type_chambre_id)
     {
         $scope.occupationByTypeChambre = type_chambre_id;
@@ -2013,9 +1891,33 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
             {
                 $scope.typeclients = data;
             }
-            else if (type.indexOf("fournisseurs")!==-1)
+            else if (type.indexOf("plans")!==-1)
             {
-                $scope.fournisseurs = data;
+                $scope.plans = data;
+            }
+            else if (type.indexOf("planprojets")!==-1)
+            {
+                $scope.planprojets = data;
+            }
+            else if (type.indexOf("niveauplans")!==-1)
+            {
+                $scope.niveauplans = data;
+            }
+            else if (type.indexOf("niveauprojets")!==-1)
+            {
+                $scope.niveauprojets = data;
+            }
+            else if (type.indexOf("projets")!==-1)
+            {
+                $scope.projets = data;
+            }
+            else if (type.indexOf("typeremarques")!==-1)
+            {
+                $scope.typeremarques = data;
+            }
+            else if (type.indexOf("remarques")!==-1)
+            {
+                $scope.remarques = data;
             }
             else if (type.indexOf("modepaiements")!==-1)
             {
@@ -3333,164 +3235,6 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
 
     };
 
-    /*$scope.deleteFromProforma = function (selectedItem = null) {
-        //  console.log('Je suis dans delete');
-        $.each($scope.lignes_proforma, function (keyItem, oneItem) {
-            if (oneItem.id == selectedItem.id) {
-                $scope.lignes_proforma.splice(keyItem, 1);
-                return false;
-            }
-        });
-
-        console.log('Nos lignes de facture', $scope.lignes_proforma);
-
-    };*/
-
-
-    /*$scope.modifierQteLivre = function (selectedItem = null, model) {
-
-        $.each($scope.lignes_livraison, function (keyItem, oneItem) {
-            if (oneItem.id == selectedItem.id) {
-                oneItem.qte_livre = model;
-                return false;
-            }
-        });
-        console.log($scope.lignes_livraison);
-
-    };
-
-    $scope.modifierTva = function (selectedItem = null, model) {
-
-        $.each($scope.lignes_livraison, function (keyItem, oneItem) {
-            if (oneItem.id == selectedItem.id) {
-                oneItem.tva = model;
-                return false;
-            }
-        });
-        console.log($scope.lignes_livraison);
-
-    };
-
-    $scope.modifierPrixVente = function (selectedItem = null, model) {
-
-        $.each($scope.lignes_livraison, function (keyItem, oneItem) {
-            if (oneItem.id == selectedItem.id) {
-                oneItem.prix_vente = model;
-                return false;
-            }
-        });
-        console.log($scope.lignes_livraison);
-
-    };
-
-    $scope.modifierQteBonus = function (selectedItem = null, model) {
-
-        $.each($scope.lignes_livraison, function (keyItem, oneItem) {
-            if (oneItem.id == selectedItem.id) {
-                oneItem.qte_bonus = model;
-                return false;
-            }
-        });
-        console.log($scope.lignes_livraison);
-
-    };*/
-
-    /*$scope.modifierQteFacture = function (selectedItem = null, model) {
-
-        $.each($scope.lignes_proforma, function (keyItem, oneItem) {
-            if (oneItem.id == selectedItem.id) {
-                oneItem.qte = model;
-                return false;
-            }
-        });
-        console.log($scope.lignes_proforma);
-
-    };
-
-    $scope.modifierTvaFacture = function (selectedItem = null, model) {
-
-        $.each($scope.lignes_proforma, function (keyItem, oneItem) {
-            if (oneItem.id == selectedItem.id) {
-                oneItem.tva = model;
-                return false;
-            }
-        });
-        console.log($scope.lignes_proforma);
-
-    };
-
-    $scope.modifierRemiseFacture = function (selectedItem = null, model) {
-
-        $.each($scope.lignes_proforma, function (keyItem, oneItem) {
-            if (oneItem.id == selectedItem.id) {
-                oneItem.remise = model;
-                return false;
-            }
-        });
-        console.log($scope.lignes_proforma);
-
-    };
-
-    $scope.modifierPrixFacture = function (selectedItem = null, model) {
-
-        $.each($scope.lignes_proforma, function (keyItem, oneItem) {
-            if (oneItem.id == selectedItem.id) {
-                oneItem.prix_achat = model;
-                return false;
-            }
-        });
-        console.log($scope.lignes_proforma);
-
-    };
-
-    $scope.modifierQte = function (selectedItem = null, model) {
-
-        $.each($scope.panier, function (keyItem, oneItem) {
-            if (oneItem.id == selectedItem.id) {
-                oneItem.qte_commande = model;
-                return false;
-            }
-        });
-        console.log($scope.panier);
-
-    };
-
-    $scope.modifierPrix = function (selectedItem = null, model) {
-        // console.log('Je suis dans modifier nombre');
-        $.each($scope.panier, function (keyItem, oneItem) {
-            if (oneItem.id == selectedItem.id) {
-                oneItem.prix_achat = model;
-                return false;
-            }
-        });
-        console.log($scope.panier);
-
-    };*/
-
-    /*$scope.modifierPrixUnit = function (selectedItem = null, model) {
-        // console.log('Je suis dans modifier nombre');
-        $.each($scope.lignes_vente, function (keyItem, oneItem) {
-            if (oneItem.id == selectedItem.id) {
-                oneItem.prix_unitaire = model;
-                return false;
-            }
-        });
-        console.log($scope.lignes_vente);
-
-    };
-
-    $scope.modifierVendue = function (selectedItem = null, model) {
-        // console.log('Je suis dans modifier nombre');
-        $.each($scope.lignes_vente, function (keyItem, oneItem) {
-            if (oneItem.id == selectedItem.id) {
-                oneItem.qte_vendue = model;
-                return false;
-            }
-        });
-        console.log($scope.lignes_vente);
-
-    };
-*/
     $scope.seeChange = function()
     {
         console.log('categoriereservation_reservation', $scope.categoriereservation_reservation);
@@ -3664,628 +3408,105 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
 
 
         // Pour donner la posssiblité à un utilisateur connecté de modifier son profil
-        // $scope.pageChanged("medicament");
-        // $scope.getelements("users");
-        // $scope.getelements("categories");
-        // //$scope.getelements("typemedicaments");
-        // $scope.getelements("famillemedicaments");
-        // //$scope.getelements("caisses");
-        // $scope.getelements("modepaiements");
+      /*  $scope.pageChanged("medicament");
+        $scope.getelements("users");
+        $scope.getelements("categories");
+        //$scope.getelements("typemedicaments");
+        $scope.getelements("famillemedicaments");
+        //$scope.getelements("caisses");
+        $scope.getelements("modepaiements");
         $scope.liste_notif = [];
-
-        setTimeout(function () {
-
-            // Init.getNotifs().then(function (data)
-            // {
-            //     $scope.notifications = data;
-            //     console.log('NOTIFS', $scope.notifications);
-            // },function (msg)
-            // {
-            //     toastr.error(msg);
-            // });
-
-        },500);
+*/
 
         // blockUI_start_all("#content");
         $scope.linknav =$location.path();
        // $scope.getelements("fournisseurs");
 
      console.log("angular",(angular.lowercase(current.templateUrl)))
-     if(angular.lowercase(current.templateUrl).indexOf('etat_stock_fournisseur')!==-1)
-    {
-        console.log("je suis la et toi", $scope.linknav);
-        $scope.getelements("fournisseurs");
+     if(angular.lowercase(current.templateUrl).indexOf('list-plans')!==-1)
+        {
+        $scope.getelements("plans");
         //$scope.pageUpload = true;
-    }
-     else if(angular.lowercase(current.templateUrl).indexOf('list-caisse')!==-1)
+        }
+     else if(angular.lowercase(current.templateUrl).indexOf('list-a-confirme')!==-1)
+        {
+         $scope.getelements('clients');
+         }
+     else if(angular.lowercase(current.templateUrl).indexOf('list-demande')!==-1)
+        {
+         $scope.getelements('users');
+         }
+     else if(angular.lowercase(current.templateUrl).indexOf('list-demande-encour')!==-1)
+        {
+         $scope.getelements('users');
+         }
+
+     else if(angular.lowercase(current.templateUrl).indexOf('list-client')!==-1)
      {
-         $scope.getelements('caisses', null, false,false);
-     }
-     else   if(angular.lowercase(current.templateUrl).indexOf('dashboard')!==-1)
+
+        $scope.clientview = null;
+        if(current.params.itemId)
         {
+            var idElmtclient = current.params.itemId;
+            setTimeout(function ()
+            {
+                Init.getStatElement('client', idElmtclient);
+            },1000);
 
-            $(function() {
-                setTimeout(function ()
-                {
-                    // Init.getStatVente();
-                    // Init.getStatsVenteWeek();
-                    // Init.getStatCaisse();
-                    // Init.getStatFournisseur();
-                    // Init.getStatAssurance();
-                    // Init.getStatClient();
-                    // Init.getSommeDaye();
-                    // Init.getSommeMonth();
-                    // Init.getSommeYear();
-                    // Init.nbrFournisseur();
-                    // Init.nbrEntreprise();
-                    // Init.nbrParticulier();
-                    // Init.nbrAssurance();
-                    //Init.ajaxGet();
+            var req = "clients";
+            $scope.clientview = {};
+            rewriteReq = req + "(id:" + current.params.itemId + ")";
+            Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
+            {
+                $scope.clientview = data[0];
+                $scope.getelements("typeclients");
 
-                },1000);
+
+            },function (msg)
+            {
+                toastr.error(msg);
             });
-
-            $scope.pageDashboard = true;
-            // $scope.getelements('modepaiements', null, false, true);
-            // $scope.getelements('fournisseurs', null, false, true);
-            // $scope.getelements('clients');
-            // $scope.getelements('dashboards', 'month');
-
         }
-        else if(angular.lowercase(current.templateUrl).indexOf('fichiers')!==-1)
-        {
-            $scope.alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-            $scope.getelements("categories");
-           // $scope.getelements("typemedicaments");
-            $scope.getelements("famillemedicaments");
-            //$scope.pageChanged("medicament");
-
-            $scope.pageUpload = true;
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('etat_stock')!==-1)
-        {
-            $scope.alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-            $scope.getelements("categories");
-          //  $scope.getelements("typemedicaments");
-            $scope.getelements("famillemedicaments");
-            //$scope.pageChanged("medicament");
-
-            $scope.pageUpload = true;
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('etat-stock')!==-1)
-        {
-            $scope.alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-
-            //$scope.pageChanged("medicament");
-
-            $scope.pageUpload = true;
-        }
-
-
-        else if(angular.lowercase(current.templateUrl).indexOf('etat-vente')!==-1)
-        {
-            $scope.getelements("modepaiements");
-            $scope.getelements("clients");
-            $scope.getelements("familleproduits");
-            $scope.getelements("categories");
-
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('list-typeclient')!==-1)
+        else
         {
             $scope.getelements("typeclients");
+            $scope.pageChanged('client');
         }
-        else if(angular.lowercase(current.templateUrl).indexOf('list-zonelivraison')!==-1)
+    }
+    else if(angular.lowercase(current.templateUrl).indexOf('list-profil')!==-1)
+    {
+        $scope.getelements('permissions');
+        $scope.getelements('roles');
+        //$scope.pageChanged('role');
+    }
+    else if(angular.lowercase(current.templateUrl).indexOf('user')!==-1)
+    {
+        $scope.userview = null;
+        if(current.params.itemId)
         {
-            $scope.getelements("zonelivraisons");
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('list-typemedicament')!==-1)
-        {
-            $scope.getelements("typemedicaments");
-
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('list-motif')!==-1)
-        {
-            $scope.getelements("typemotifs");
-            $scope.getelements("motifs");
-
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('list-typemotif')!==-1)
-        {
-            $scope.getelements("typemotifs");
-
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('list-famillemedicament')!==-1)
-        {
-            $scope.getelements("famillemedicaments");
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('list-categorie')!==-1)
-        {
-
-            $scope.getelements("categories");
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('medicament')!==-1)
-        {
-            $scope.medicamentview = null;
-            var itemId = current.params.itemId;
-            if(itemId)
+            var req = "users";
+            $scope.userview = {};
+            rewriteReq = req + "(id:" + current.params.itemId + ")";
+            Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
             {
-                var idElmtmedicament = current.params.itemId;
-                    setTimeout(function ()
-                    {
-                        Init.getStatElement('medicament', idElmtmedicament);
-                    },1000);
+                $scope.userview = data[0];
+                changeStatusForm('detailuser',true);
 
+                console.log($scope.userview );
+                console.log('userId', current.params.itemId);
 
-                var req = "medicaments";
-                $scope.medicamentview = {};
-                rewriteReq = req + "(id:" + itemId + ")";
-                var addAttrToReq = "nb_vente,mnt_vente,pourcent_vente,nb_commander,nb_livre";
-                Init.getElement(rewriteReq, listofrequests_assoc[req] + addAttrToReq).then(function (data)
-                {
-                    $scope.medicamentview = data[0];
-
-                //    $scope.getelements("typemedicaments");
-                    $scope.getelements("modepaiements");
-                    $scope.getelements("famillemedicaments");
-                    $scope.getelements("categories");
-                    $scope.pageChanged('boncommande');
-                    $scope.pageChanged('inventaire');
-                    $scope.pageChanged('vente');
-                    $scope.pageChanged('entreestock');
-                    $scope.pageChanged('sortiestock');
-                    $scope.pageChanged('fournisseur');
-                    $scope.pageChanged('bonlivraison');
-                    $scope.pageChanged('vente');
-
-                    console.log($scope.medicamentview);
-                    console.log('medicamentId', itemId);
-                },function (msg)
-                {
-                    toastr.error(msg);
-                });
-            }
-            else
+                $scope.pageChanged('users');
+            },function (msg)
             {
-                $scope.alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-                //$scope.getelements("typemedicaments");
-                $scope.getelements("famillemedicaments");
-                $scope.getelements("categories");
-                //$scope.pageChanged('medicament');
-            }
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('list-assurance')!==-1)
-        {
-            $scope.pageCurrent = "assurance";
-            $scope.pageChanged("assurance");
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('list-fournisseur')!==-1)
-        {
-            $scope.pageCurrent = "fournisseur";
-            $scope.pageChanged("fournisseur");
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('list-recouvrement')!==-1)
-        {
-            $scope.pageCurrent = "recouvrement";
-            $scope.a_recouvrer = true;
-            $scope.getelements("modepaiements");
-           // $scope.getelements("caisses");
-            $scope.getelements("clients");
-            $scope.getelements("assurances");
-            $scope.pageChanged("vente");
-            $scope.pageChanged("recouvrement");
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('list-vente')!==-1)
-        {
-
-            $scope.getelements('caisses',null, false, true);
-            $scope.getelements('clients', null, false, true);
-            $scope.getelements('assurances');
-            $scope.getelements("modepaiements");
-
-           // $scope.getelements("typemedicaments");
-          //  $scope.pageChanged("medicament");
-            $scope.pageChanged("vente");
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('list-livraison')!==-1)
-        {
-            $scope.getelements("fournisseurs");
-            //$scope.getelements("typemedicaments");
-            $scope.pageChanged("medicament");
-            $scope.pageChanged("bonlivraison");
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('list-salle')!==-1)
-        {
-            $scope.pageCurrent = "salle";
-            $scope.getelements("zones");
-            $scope.getelements("salles");
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('list-cloture')!==-1)
-        {
-            $scope.getelements('caisses');
-            $scope.getelements('monaies');
-            $scope.getelements('fournisseurs');
-            $scope.pageChanged('cloture');
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('list-versement')!==-1)
-        {
-            $scope.getelements('caisses');
-            $scope.getelements('monaies');
-            $scope.pageChanged('versement');
-            $scope.getelements('modepaiements');
-            console.log($scope.modepaiements);
-
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('list-decaisse')!==-1)
-        {
-            $scope.getelements('caisses');
-            $scope.pageChanged('depense');
-
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('list-entree_sortie_stock')!==-1)
-        {
-            $scope.getelements('motifs');
-          //  $scope.pageChanged('medicament');
-            $scope.pageChanged('entreestock');
-            $scope.pageChanged('sortiestock');
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('list-retour')!==-1)
-        {
-            $scope.pageCurrent = "retour";
-            $scope.getelements('fournisseurs');
-            $scope.getelements('bonlivraisons');
-            $scope.getelements('motifs');
-            //$scope.pageChanged('medicament');
-            $scope.pageChanged('retour');
-        }
-
-        else if(angular.lowercase(current.templateUrl).indexOf('list-inventaire')!==-1)
-        {
-            //$scope.pageChanged('medicament');
-            $scope.pageChanged('inventaire');
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('stat-caisse')!==-1)
-        {
-            $(function() {
-                setTimeout(function ()
-                {
-                    Init.getStatCaisse();
-                },1000);
+                toastr.error(msg);
             });
         }
-        else if(angular.lowercase(current.templateUrl).indexOf('stat-vente')!==-1)
+        else
         {
-            $(function() {
-                setTimeout(function ()
-                {
-                    Init.getStatVente();
-                    Init.getStatsVenteWeek();
-                    Init.getNombreVenteStatsWeek();
-                },1000);
-            });
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('caisse')!==-1)
-        {
-
-            $scope.caisseview = null;
-            if(current.params.itemId)
-            {
-                var idElmtcaisse = current.params.itemId;
-                setTimeout(function ()
-                {
-                    Init.getStatElement('caisse', idElmtcaisse);
-                },1000);
-
-                var req = "caisses";
-                $scope.caisseview = {};
-                rewriteReq = req + "(id:" + current.params.itemId + ")";
-                Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
-                {
-                    $scope.caisseview = data[0];
-
-                    $scope.pageChanged("versement");
-                    $scope.pageChanged("cloture");
-                    $scope.pageChanged("vente");
-                    $scope.pageChanged("recouvrement");
-                    $scope.getelements('fournisseurs');
-                    $scope.getelements('monaies');
-                    $scope.getelements('modepaiements');
-
-
-                },function (msg)
-                {
-                    console.log('error', msg)
-                });
-            }
-            else
-            {
-                $scope.getelements('monaies');
-              //  $scope.getelements("caisses");
-            }
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('fournisseur')!==-1)
-        {
-            if(current.params.itemId)
-            {
-
-                var idElmtfournisseur = current.params.itemId;
-                setTimeout(function ()
-                {
-                    Init.getStatElement('fournisseur', idElmtfournisseur);
-                },1000);
-
-                var req = "fournisseurs";
-                $scope.fournisseurview = {};
-                rewriteReq = req + "(id:" + current.params.itemId + ")";
-                Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
-                {
-                    $scope.fournisseurview = data[0];
-
-                    $scope.getelements("fournisseurs");
-                    //$scope.pageChanged("medicament");
-
-                    $scope.pageChanged("boncommande");
-                    $scope.pageChanged("bonlivraison");
-                    $scope.pageChanged("retour");
-                    $scope.pageChanged("factureproforma");
-
-                },function (msg)
-                {
-                    console.log('error', msg)
-                });
-            }
-            else
-            {
-                $scope.pageChanged("fournisseur");
-            }
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('retour')!==-1)
-        {
-            if(current.params.itemId)
-            {
-
-                var req = "retours";
-                $scope.retourview = {};
-                rewriteReq = req + "(id:" + current.params.itemId + ")";
-                Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
-                {
-                    $scope.retourview = data[0];
-
-                    $scope.getelements('bonlivraisons');
-                    $scope.getelements('motifs');
-                    //$scope.pageChanged('medicament');
-
-                },function (msg)
-                {
-                    console.log('error', msg)
-                });
-            }
-            else
-            {
-                $scope.pageChanged("retour");
-            }
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('assurance')!==-1)
-        {
-            $scope.assuranceview = null;
-            if(current.params.itemId)
-            {
-                var idElmtassurance = current.params.itemId;
-                setTimeout(function ()
-                {
-                    Init.getStatElement('assurance', idElmtassurance);
-                },1000);
-
-
-                var req = "assurances";
-                $scope.assuranceview = {};
-                rewriteReq = req + "(id:" + current.params.itemId + ")";
-                Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
-                {
-                    $scope.assuranceview = data[0];
-                    $scope.pageChanged("vente");
-                    $scope.pageChanged("recouvrement");
-                    $scope.getelements('fournisseurs');
-                    //$scope.pageChanged("medicament");
-
-                },function (msg)
-                {
-                    console.log('error', msg)
-                });
-            }
-            else
-            {
-                $scope.pageChanged("assurance");
-            }
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('recouvrement')!==-1)
-        {
-
-            $scope.recouvrementview = null;
-            if(current.params.itemId)
-            {
-                var req = "recouvrements";
-                $scope.recouvrementview = {};
-                rewriteReq = req + "(id:" + current.params.itemId + ")";
-                Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
-                {
-                    $scope.recouvrementview = data[0];
-
-                    $scope.getelements("clients");
-                 //   $scope.getelements("caisses");
-                    $scope.getelements("assurances");
-                    $scope.getelements("modepaiements");
-
-                    //$scope.pageChanged("medicament");
-                    $scope.pageChanged('vente');
-
-                },function (msg)
-                {
-                    toastr.error(msg);
-                });
-            }
-            else
-            {
-                $scope.getelements("clients");
-               // $scope.getelements("caisses");
-                $scope.getelements("assurances");
-                $scope.getelements("modepaiements");
-                $scope.pageChanged('recouvrement');
-                $scope.pageChanged('vente');
-            }
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('client')!==-1)
-        {
-
-            $scope.clientview = null;
-            if(current.params.itemId)
-            {
-                var idElmtclient = current.params.itemId;
-                setTimeout(function ()
-                {
-                    Init.getStatElement('client', idElmtclient);
-                },1000);
-
-                var req = "clients";
-                $scope.clientview = {};
-                rewriteReq = req + "(id:" + current.params.itemId + ")";
-                Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
-                {
-                    $scope.clientview = data[0];
-                    $scope.getelements("typeclients");
-                    $scope.getelements("zonelivraisons");
-
-
-                    $scope.pageChanged('vente');
-                    $scope.pageChanged('recouvrement');
-
-                },function (msg)
-                {
-                    toastr.error(msg);
-                });
-            }
-            else
-            {
-                $scope.getelements("typeclients");
-                $scope.getelements("zonelivraisons");
-                $scope.pageChanged('client');
-            }
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('proforma')!==-1)
-        {
-            $scope.factureproformaview = null;
-            var itemId = current.params.itemId;
-            if(itemId)
-            {
-                var req = "factureproformas";
-                $scope.factureproformaview = {};
-                rewriteReq = req + "(id:" + itemId + ")";
-                Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
-                {
-                    $scope.factureproformaview = data[0];
-
-                    $scope.getelements("fournisseurs");
-                 //   $scope.getelements("typemedicaments");
-                    $scope.pageChanged('boncommande');
-                    //$scope.pageChanged("medicament");
-                    console.log($scope.factureproformaview);
-                    console.log('factureProformaId', itemId);
-                },function (msg)
-                {
-                    toastr.error(msg);
-                });
-            }
-            else
-            {
-                $scope.getelements("fournisseurs");
-               // $scope.getelements("typemedicaments");
-                //$scope.pageChanged('medicament');
-                $scope.pageChanged('factureproforma');
-            }
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('boncommande')!==-1)
-        {
-            $scope.boncommandeview = null;
-            var itemId = current.params.itemId;
-            if(itemId)
-            {
-                var req = "boncommandes";
-                $scope.boncommandeview = {};
-                rewriteReq = req + "(id:" + itemId + ")";
-                Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
-                {
-                    $scope.boncommandeview = data[0];
-
-                    $scope.getelements("fournisseurs");
-                    //$scope.getelements("typemedicaments");
-                    $scope.pageChanged('bonlivraison');
-                    //$scope.pageChanged("medicament");
-                    console.log($scope.boncommandeview);
-                    console.log('boncommandeId', itemId);
-                },function (msg)
-                {
-                    toastr.error(msg);
-                });
-            }
-            else
-            {
-                $scope.getelements("fournisseurs");
-               // $scope.getelements("typemedicaments");
-                //$scope.pageChanged("medicament");
-                $scope.pageChanged("boncommande");
-            }
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('list-paiement')!==-1)
-        {
-            $scope.pageChanged('paiement');
-            $scope.getelements("abonnements");
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('list-profil')!==-1)
-        {
-            $scope.getelements('permissions');
             $scope.getelements('roles');
-            //$scope.pageChanged('role');
+            $scope.pageChanged('user');
         }
-        else if(angular.lowercase(current.templateUrl).indexOf('utilisateur')!==-1)
-        {
-            $scope.userview = null;
-            if(current.params.itemId)
-            {
-                var req = "users";
-                $scope.userview = {};
-                rewriteReq = req + "(id:" + current.params.itemId + ")";
-                Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
-                {
-                    $scope.userview = data[0];
-                    changeStatusForm('detailuser',true);
-
-                    console.log($scope.userview );
-                    console.log('userId', current.params.itemId);
-
-                    $scope.pageChanged('retour');
-                    $scope.pageChanged('entreestock');
-                    $scope.pageChanged('sortiestock');
-                    $scope.pageChanged('vente');
-                    $scope.pageChanged('recouvrement');
-                    $scope.pageChanged('cloture');
-                    $scope.pageChanged('versement');
-                    $scope.pageChanged('inventaire');
-                    $scope.getelements('modepaiements');
-
-                    $scope.pageChanged('boncommande');
-                    $scope.pageChanged('bonlivraison');
-                    $scope.pageChanged('factureproforma');
-
-                },function (msg)
-                {
-                    toastr.error(msg);
-                });
-            }
-            else
-            {
-                $scope.getelements('roles');
-                $scope.pageChanged('user');
-            }
-        }
+    }
     });
 
 

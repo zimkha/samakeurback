@@ -58,7 +58,7 @@
                                 <td>$320,800</td>
                                 <td class="text-center">
                                     <a href="#!/detail-client/1" class="btn btn-sm btn-primary btn-circle">
-                                        <i class="fas fa-info-circle"></i>
+                                        <i class="fas fa-info"></i>
                                     </a>
                                     <button class="btn btn-sm btn-circle btn-danger">
                                         <span class="fa fa-trash"></span>
@@ -74,7 +74,7 @@
                                 <td>$170,750</td>
                                 <td class="text-center">
                                     <a href="#!/detail-client/1" class="btn btn-sm btn-primary btn-circle">
-                                        <i class="fas fa-info-circle"></i>
+                                        <i class="fas fa-info"></i>
                                     </a>
                                     <button class="btn btn-sm btn-circle btn-danger">
                                         <span class="fa fa-trash"></span>
@@ -90,7 +90,7 @@
                                 <td>$86,000</td>
                                 <td class="text-center">
                                     <a href="#!/detail-client/1" class="btn btn-sm btn-primary btn-circle">
-                                        <i class="fas fa-info-circle"></i>
+                                        <i class="fas fa-info"></i>
                                     </a>
                                     <button class="btn btn-sm btn-circle btn-danger">
                                         <span class="fa fa-trash"></span>
@@ -107,7 +107,7 @@
                                 <td>$95,400</td>
                                 <td class="text-center">
                                     <a href="#!/detail-client/1" class="btn btn-sm btn-primary btn-circle">
-                                        <i class="fas fa-info-circle"></i>
+                                        <i class="fas fa-info"></i>
                                     </a>
                                     <button class="btn btn-sm btn-circle btn-danger">
                                         <span class="fa fa-trash"></span>
@@ -123,7 +123,7 @@
                                 <td>$114,500</td>
                                 <td class="text-center">
                                     <a href="#!/detail-client/1" class="btn btn-sm btn-primary btn-circle">
-                                        <i class="fas fa-info-circle"></i>
+                                        <i class="fas fa-info"></i>
                                     </a>
                                     <button class="btn btn-sm btn-circle btn-danger">
                                         <span class="fa fa-trash"></span>
@@ -139,7 +139,7 @@
                                 <td>$145,000</td>
                                 <td class="text-center">
                                     <a href="#!/detail-client/1" class="btn btn-sm btn-primary btn-circle">
-                                        <i class="fas fa-info-circle"></i>
+                                        <i class="fas fa-info"></i>
                                     </a>
                                     <button class="btn btn-sm btn-circle btn-danger">
                                         <span class="fa fa-trash"></span>
