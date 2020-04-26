@@ -1309,25 +1309,25 @@ app.config(function($routeProvider) {
         .when("/etat-vente", {
             templateUrl : "page/etat-vente",
         })
-        .when("/etat-commande-livraison", {
-            templateUrl : "page/etat-commande-livraison",
-        }) .when("/etat-depenses", {
-            templateUrl : "page/etat-depense",
+        .when("/list-a-confirme", {
+            templateUrl : "page/list-a-confirme",
+        }) .when("/list-plan", {
+            templateUrl : "page/list-plan",
         })
-        .when("/fichiers", {
-            templateUrl : "page/fichiers",
+        .when("/list-demande-encour", {
+            templateUrl : "page/list-demande-encour",
         })
-        .when("/list-caisse", {
-            templateUrl : "page/list-caisse",
+        .when("/list-demande", {
+            templateUrl : "page/list-demande",
         })
-        .when("/detail-caisse/:itemId", {
-            templateUrl : "page/detail-caisse",
+        .when("/detail-client/:itemId", {
+            templateUrl : "page/detail-client",
         })
-        .when("/stat-caisse", {
-            templateUrl : "page/stat-caisse",
+        .when("/detail-demande", {
+            templateUrl : "page/detail-demande",
         })
-        .when("/list-typeclient", {
-            templateUrl : "page/list-typeclient",
+        .when("/detail-plan", {
+            templateUrl : "page/detail-plan",
         })
         .when("/list-zonelivraison", {
             templateUrl : "page/list-zonelivraison",
@@ -1335,132 +1335,7 @@ app.config(function($routeProvider) {
         .when("/list-client", {
             templateUrl : "page/list-client",
         })
-        .when("/listdetail-client/:itemId", {
-            templateUrl : "page/listdetail-client",
-        })
-        .when("/detail-medicament/:itemId", {
-            templateUrl : "page/detail-medicament",
-        })
-        .when("/detail-recouvrement/:itemId", {
-            templateUrl : "page/detail-recouvrement",
-        })
-        .when("/list-assurance", {
-            templateUrl : "page/list-assurance",
-        })
-        .when("/listdetail-assurance/:itemId", {
-            templateUrl : "page/listdetail-assurance",
-        })
-        .when("/listdetail-recapassurance/:itemId", {
-            templateUrl : "page/listdetail-recapassurance",
-        })
-        .when("/list-typemedicament", {
-            templateUrl : "page/list-typemedicament",
-        })
-        .when("/list-motif", {
-            templateUrl : "page/list-motif",
-        })
-        .when("/list-typemotif", {
-            templateUrl : "page/list-typemotif",
-        })
-        .when("/list-famillemedicament", {
-            templateUrl : "page/list-famillemedicament",
-        })
-        .when("/list-categoriemedicament", {
-            templateUrl : "page/list-categorie",
-        })
-        .when("/list-medicament", {
-            templateUrl : "page/list-medicament",
-        })
-        .when("/list-preference", {
-            templateUrl : "page/list-preference",
-        })
-        .when("/list-cloture", {
-            templateUrl : "page/list-cloture",
-        })
-        .when("/list-versement", {
-            templateUrl : "page/list-versement",
-        })
-        .when("/list-decaisse", {
-            templateUrl : "page/list-decaissement",
-        })
-        .when("/list-proforma", {
-            templateUrl : "page/list-proforma",
-        })
-        .when("/listdetail-factureproforma/:itemId", {
-            templateUrl : "page/listdetail-factureproforma",
-        })
-        .when("/list-facture-proformat", {
-            templateUrl : "page/list-facture-proformat",
-        })
-        .when("/listdetail-facture-proformat", {
-            templateUrl : "page/listdetail-facture-proformat",
-        })
-        .when("/list-regulation", {
-            templateUrl : "page/list-regulation",
-        })
-        .when("/list-inventaire", {
-            templateUrl : "page/list-inventaire",
-        })
-        .when("/list-entree_sortie_stock", {
-            templateUrl : "page/list-entree_sortie_stock",
-        })
-        .when("/list-retour", {
-            templateUrl : "page/list-retour",
-        })
-        .when("/list-vente", {
-            templateUrl : "page/list-vente",
-        })
-        .when("/stat-vente", {
-            templateUrl : "page/stat-vente",
-        })
-        .when("/list-recouvrement", {
-            templateUrl : "page/list-recouvrement",
-        })
-        .when("/list-boncommande", {
-            templateUrl : "page/list-boncommande",
-        })
-        .when("/listdetail-boncommande/:itemId", {
-            templateUrl : "page/listdetail-boncommande",
-        })
-        .when("/list-livraison", {
-            templateUrl : "page/list-livraison",
-        })
-        .when("/list-utilisateur", {
-            templateUrl : "page/list-utilisateur",
-        })
-        .when("/list-profil", {
-            templateUrl : "page/list-profil",
-        })
-        .when("/statut-commande", {
-            templateUrl : "page/statut-commande",
-        })
-        .when("/list-fournisseur", {
-            templateUrl : "page/list-fournisseur",
-        })
-        .when("/detail-fournisseur/:itemId", {
-            templateUrl : "page/detail-fournisseur",
-        })
-        .when("/detail-utilisateur/:itemId", {
-            templateUrl : "page/detail-utilisateur",
-        })
-        .when("/detail-retour/:itemId", {
-            templateUrl : "page/detail-retour",
-        })
-        .when("/import-regularisation", {
-            templateUrl : "page/excel-importregularisation",
-        })
-        .when("/import-commande", {
-            templateUrl : "page/excel-boncommande",
-        })
-        .when("/suggestions", {
-            templateUrl : "page/suggestions",
-        })
-        .when("/etat-stock", {
-            templateUrl : "page/etat_stock",
-        })
-        .when("/etat_stock_fournisseur", {
-            templateUrl : "page/etat_stock_fournisseur",
-        })
+        
 
 });
 
@@ -1488,125 +1363,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
                                                           ",ca_vente,email,telephone,adresse,matricule,code_client,zone_livraison_id,zone_livraison{id,designation,tarif}, type_client_id,type_client{id,nom},ventes{id,numero_ticket,motif,nom_medecin,telephone,numero_ordonnance,date_prescris,pourcentage_remise,pourcentage_payeur,etat_vente,type_vente,created_at,updated_at},created_at,updated_at"
             ],
 
-            "typeclients"                            : [ "id,nom",
-                                                            ",clients{id,nomcomplet,email,telephone,adresse,matricule,zone_livraison_id}"
-                                                        ],
-
-            "zonelivraisons"                         : [
-                                                    "id,designation,tarif",
-                                                    ",clients{id,nomcomplet,adresse}"
-                                                ],
-
-
-            "assurances"                             : [
-                                                "id,matricule,nomcomplet,telephone,email,",
-                                                ",ventes{id},ca_vente"
-                                                            ],
-
-            "medicaments"                            : [
-                "id,noart,nombre_detail,occurrence_detail,medicament_id,medicament{id,designation},medicaments{id,designation,current_quantity,prix_public,nombre_detail,occurrence_detail},code,cip,cip2,cip3,cip4,designation,prix_cession,prix_public,with_tva,categorie_id,suggestion,categorie{id,nom,taux}",
-                ",qte_rayon,qte_reserve,qte_seuil_max,qte_seuil_min,qte_stock,current_quantity,famille_medicament_id,famille_medicament{id,libelle},type_medicament_id,type_medicament{id,libelle},type_cip_medicaments{id,medicament_id,type_cip_id,type_cip{id,nom},cip}"
-                                                      ],
-
-            "famillemedicaments"                     :[ "id,libelle",
-                                                            ",medicaments{id,noart,code,cip,cip2,cip3,cip4,designation,prix_cession,qte_rayon,qte_reserve,qte_seuil_max,qte_seuil_min}"
-                                                        ],
-
-            "categories"                             :[ "id,nom",
-                                                            ",taux,medicaments{id,designation,cip,cip2,cip3,cip4}"
-                                                        ],
-
-            "typemedicaments"                        : [
-                                                            "id,libelle",
-                                                            ",medicaments{id,designation}"
-                                                        ],
-
-            "fournisseurs"                           : [
-                                                          "id,nb_commande,nom,adresse,telephone,email,commande_livre,total_retour,nb_retour",
-                                                          ",bon_commandes{id,code_bc,pourcentage_remise},facture_proformas{id,code_facture,ligne_factures{id,medicament_id,qte}}",
-                                                       ],
-
-            "factureproformas"                       : [
-                                                            "id,code_facture,nb_medicament,user{id,name},fournisseur_id,nb_medicament,fournisseur{id,nom,adresse,telephone,email},created_at_fr,ligne_factures{id,medicament_id,prix_unitaire,medicament{id,designation,prix_cession,with_tva},qte}"
-                                                        ],
-
-            "boncommandes"                           : [
-                                                        "id,code_bc,etat_code,user{id,name},nb_medicament,etat,pourcentage_remise,total_ht,total_ttc,tva,fournisseur_id,etat_livraison,etat_livraison_couleur,fournisseur{id,nom,adresse},ligne_commandes{id,qte_commande,prix_achat,tva,remise,medicament{id,designation}},bon_livraisons{id,code_livraison,nb_medicament,nb_bonus,created_at_fr,lignelivraisons{id}},created_at,created_at_fr,updated_at"
-                                                    ],
-
-            "bonlivraisons"                          :[
-                                                            "id,total_ht,total_ttc,date_bl_fournisseur,numero_bl_fournisseur,user{id,name},code_livraison,nb_medicament,nb_bonus,bon_commande_id,created_at_fr,updated_at_fr,bon_commande{id,code_bc,etat_code,nb_medicament,etat,pourcentage_remise,fournisseur_id,etat_livraison,etat_livraison_couleur,fournisseur{id,nom,adresse},ligne_commandes{id,qte_commande,prix_achat,tva,remise,medicament{id,designation}},bon_livraisons{id,code_livraison,created_at_fr,lignelivraisons{id}},created_at,updated_at},lignelivraisons{id,qte_livre,qte_bonus,prix_public,prix_cession,ligne_commande{id,medicament{id,noart,code,designation,with_tva}}},created_at"
-                                                        ],
-
-            "clotures"                               : [
-                                                            "id,somme_init,somme_verse,created_at_fr,date_cloture,date_cloture_fr,cloturemonaies{id,nombre, monaie_id,monaie{id,valeur}},user_id,user{id,image,name},caisse_id,caisse{id,code_caisse,user_ip,adresse_mac}"
-                                                        ],
-            "versements"                             : [
-                                                        "id,montant_verser,mode_paiement_id,mode_paiement{id,libelle_mode},commetaires,created_at,updated_at,created_at_fr,updated_at_fr,user_id,user{id,image,name},caisse_id,caisse{code_caisse}"
-                                                          ],
-
-            "paiements"                              : [
-                                                "id,montant_verse,mode_paiement_id,mode_paiement{},bon_commande_id,bon_commande{id,code_bc,pourcentage_remise,fournisseur_id,fournisseur{id,nomcomplet, adresse},ligne_commandes{id,qte_commande,prix_achat,tva, remise}created_at, updated_at }"],
-
-            "modepaiements"                          : [ "id,libelle_mode",
-                                                        ",ventes{id,numero_ticket}, paiements{id, montant_verse}"
-                                                    ],
-
-            "detailsinventaires"                     : [
-                                                    "id,medicament_id,qte_app,qte_inventorie,medicament{id,noart,code,designation,prix_cession},inventaire_id,inventaire{id,created_at},qte_app,qte_inventorie,created_at,updated_at"
-                                                ],
-
-            "inventaires"                            : [
-                                                        "id,code_inventaire,created_at,created_at_fr,updated_at,user_id,user{id,name,image},details_inventaires{id,medicament_id,qte_app,qte_inventorie,medicament{designation,current_quantity}}"
-                                                    ],
-
-            "regularisations"                        : [
-                                                "id,created_at, updated_at"
-                                            ],
-
-            "detailregularisations"                  : [
-                                                            "id,motif,remise,qte_relle,ecart,commentaire,medicament_id,ligne_livraison_id,ligne_livraison{id, qte_livre, qte_bonus,qte_restant} , medicament{id,noart,code, designation, prix_cession, qte_rayon, qte_reserve, qte_seuil_max, qte_seuil_min},  created_at, updated_at, deleted_at"
-                                                        ],
-
-            "ventes"                                 : [
-                                                            "id,affile_id,affile{id,nomcomplet},caisse_id,restant,user{id,name},caisse{id},created_at_fr,recouvrement_id,numero_ticket,motif,nom_medecin,telephone,numero_ordonnance,date_prescris,matricule_patient,pourcentage_remise,remise_valeur,pourcentage_payeur,etat_vente,somme_encaisse,decaisse,type_vente,mode_paiement_id,assurance_id,client_id,assurance{id,nomcomplet,matricule,email,telephone},client{id,souscripteur,nomcomplet,email,telephone,adresse,matricule,zone_livraison_id},details_ventes{id,qte_vendu,prix_unitaire,remise,vente_id,ligne_livraison_id,ligne_livraison{id,qte_livre,qte_bonus,prix_cession,prix_public,ligne_commande{id,medicament{id,noart,code,designation,with_tva}}}},mode_paiement{id,libelle_mode},remise,created_at,updated_at,total_ht,total_ttc",
-                ""
-                                                        ],
-
-            "detailventes"                           : [
-                                                        "id,qte_vendu,au_detail, prix_unitaire, remise,vente_id, ligne_livraison_id, vente{id,numero_ticket,motif,nom_medecin,telephone,numero_ordonnance,date_prescris,pourcentage_remise,remise_valeur,pourcentage_payeur,etat_vente, mode_paiement_id}, mode_paiment{id, libelle_mode}, ligne_livraison{id,qte_livre, qte_bonus, prix_vente,ligne_commande{id,medicament{id,noart,code, designation,with_tva}}}"
-                                                    ],
-
-
-            "recouvrements"                          : [
-                                                    "id,code_recouvrement,user{id,image,name},montant_verse,mode_paiement_id,assurance_id,client_id,created_at,updated_at,client{id,nomcomplet,email,telephone,adresse,matricule,zone_livraison_id},assurance{id,matricule,nomcomplet,telephone,email},mode_paiement {id,libelle_mode},caisse{id, user_ip,adresse_mac},ventes_recouvre{id, vente_id,vente{id, numero_ticket, total_ttc},somme_recouvre}"
-                                                ],
-
-            "caisses"                                : [
-                                                         "id,nb_vente,nb_cloture,nb_versement,code_caisse,total_vente",
-                                                         ",id,nb_vente,nb_cloture,nb_versement,code_caisse,total_vente,user_ip,adresse_mac,ventes{id,numero_ticket,nom_medecin,telephone,numero_ordonnance,date_prescris,pourcentage_remise,pourcentage_payeur,etat_vente},recouvrements{id},clotures{id},versements{id}",
-
-                                                           ],
-
-            "monaies"                                : [
-                                                        "id,valeur,nom_monaie"
-                                                    ],
-
-            "cloturemonaies"                         : [
-                                                 "id,nombre,monaie_id,cloture_id,monaie{id,valeur},cloture{id,created_at,somme_init,somme_final}"
-                                                             ],
-
-            "sortiestocks"                           : [
-                                                    "id,ligne_livraison_id,ligne_livraison{id,ligne_commande{medicament_id,medicament{id,designation,type_medicament{id,libelle}}}},user_id,ligne_regularisation_id,quantity,motif_id,motif{id,designation},created_at_fr,user{name}",""
-                                                ],
-
-            "entreestocks"                           : [
-                                                        "id,ligne_livraison_id,ligne_livraison{id,ligne_commande{medicament_id,medicament{id,designation,type_medicament{id,libelle}}}},user_id,ligne_regularisation_id,quantity,motif_id,motif{id,designation},created_at_fr,user{name}", ""],
-
-            "retours"                                : [
-                                                            "id,status,motif_id,motif{id,designation},bon_livraison_id,montant_retour,date,date_fr,bon_livraison{id,numero_bl_fournisseur,bon_commande{id,fournisseur{id,nom}}},nb_medicament,created_at_fr,ligne_retours{id,medicament_id,medicament{id,designation,with_tva,prix_cession,prix_public,type_medicament{id,libelle}},quantity}, user_id, user{id,name}",
-                                                              ""
-                                                        ],
+            
 
             'permissions'                            : [
                                                             'id,name,display_name,guard_name',
@@ -1627,30 +1384,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
                                                         "clients,assurances,ventes,fournisseurs"
                                                     ],
 
-            "affiles"                             : [
-                                                        "id,nomcomplet",
-                                                    ],
-
-            "typemotifs"                             : [
-                                                        "id,designation,motifs{id, designation}"
-                                                    ],
-
-            "motifs"                                 : [
-                                                        "id,designation",
-                                                        ",retours{id,date,bon_livraison_id,status,date_fr,bon_livraison{id,numero_bl_fournisseur,date_bl_fournisseur}},entre_stocks{id,quantity,created_at},sortie_stocks{id,quantity,created_at},type_motif_id,type_motif{id,designation}"
-                                                    ],
-
-            "depenses"                               : [
-                                                        "id,montant_decaisse,motif_decaisse,user_id,caisse_id,caisse{id,code_caisse},created_at,updated_at,user{id,name}"
-                                                    ],
-
-            "type_cips"                              : [
-                                                            "id,nom"
-                                                        ],
-
-            "type_cip_medicaments"                   : [
-                                                            "id,medicament_id,type_cip_id,cip"
-                                                        ],
+            
 
         };
 
