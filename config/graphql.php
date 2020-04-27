@@ -101,7 +101,7 @@ return [
                  \App\GraphQL\Query\PlanQuery::class,
                  \App\GraphQL\Query\PlanPaginatedQuery::class,
                  \App\GraphQL\Query\ProjetQuery::class,
-                 \App\GraphQL\Query\ProjetPaginatedQuery::class,
+                 \App\GraphQL\Query\PlanPaginatedQuery::class,
                  \App\GraphQL\Query\RoleQuery::class,
                  \App\GraphQL\Query\NiveauPlanQuery::class,
                  \App\GraphQL\Query\NiveauProjetQuery::class,
@@ -109,7 +109,6 @@ return [
                  \App\GraphQL\Query\UserPaginatedQuery::class,
                  \App\GraphQL\Query\PermissionQuery::class,
                  \App\GraphQL\Query\PlanProjetQuery::class,
-
             ],
             'mutation' => [
                 // 'example_mutation'  => ExampleMutation::class,
@@ -143,7 +142,6 @@ return [
         \App\GraphQL\Type\UserType::class,
         \App\GraphQL\Type\UserPaginatedType::class,
         \App\GraphQL\Type\PlanProjetType::class,
-      
     ],
 
     // The types will be loaded on demand. Default is to load all types on each request

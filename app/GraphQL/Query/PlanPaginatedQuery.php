@@ -2,9 +2,7 @@
 
 namespace App\GraphQL\Query;
 
-use App\Outil;
-use \Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
+
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;

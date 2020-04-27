@@ -20,7 +20,7 @@ class PlanType extends GraphQLType
             'superficie'             => ['type' => Type::int()],
             'longeur'                => ['type' => Type::int()],
             'largeur'                => ['type' => Type::int()],
-            'niveaus'                => ['type' => Type::listOf(GraphQL::type('Niveauplan'))],
+            'niveauplans'            => ['type' => Type::listOf(GraphQL::type('Niveauplan'))],
             'planprojets'            => ['type' => Type::listOf(GraphQL::type('Planprojet'))],
 
             'created_at'             => [ 'type' => Type::string()],
