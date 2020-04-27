@@ -4,11 +4,7 @@ const sync = require('browser-sync').create();
 var port = 7003;
 
 var replace = require('gulp-replace');
-<<<<<<< HEAD
 var linkProject = 'samakeurback/public/';
-=======
-var linkProject = 'Projets/samakeurback/public/';
->>>>>>> 966d2a702cf4ea682af68e1ccbc6ce830cc59ff0
 
 
 // Compile SCSS files and minify CSS files

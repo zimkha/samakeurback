@@ -21,7 +21,7 @@
                 <footer class="fixed-footer bg-white fixed-bottom">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; SAMAKEUR AVRIL 2020</span>
+                            <span>Copyright &copy; SAMAKEUR 2020</span>
                         </div>
                     </div>
                 </footer>
