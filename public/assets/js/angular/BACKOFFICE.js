@@ -1353,140 +1353,7 @@ app.config(function($routeProvider) {
         .when("/detail-plan", {
             templateUrl : "page/detail-plan",
         })
-        .when("/list-zonelivraison", {
-            templateUrl : "page/list-zonelivraison",
-        })
-        .when("/list-client", {
-            templateUrl : "page/list-client",
-        })
-<<<<<<< HEAD
-        .when("/listdetail-client/:itemId", {
-            templateUrl : "page/listdetail-client",
-        })
-        .when("/detail-medicament/:itemId", {
-            templateUrl : "page/detail-medicament",
-        })
-        .when("/detail-recouvrement/:itemId", {
-            templateUrl : "page/detail-recouvrement",
-        })
-        .when("/list-assurance", {
-            templateUrl : "page/list-assurance",
-        })
-        .when("/listdetail-assurance/:itemId", {
-            templateUrl : "page/listdetail-assurance",
-        })
-        .when("/listdetail-recapassurance/:itemId", {
-            templateUrl : "page/listdetail-recapassurance",
-        })
-        .when("/list-typemedicament", {
-            templateUrl : "page/list-typemedicament",
-        })
-        .when("/list-motif", {
-            templateUrl : "page/list-motif",
-        })
-        .when("/list-typemotif", {
-            templateUrl : "page/list-typemotif",
-        })
-        .when("/list-famillemedicament", {
-            templateUrl : "page/list-famillemedicament",
-        })
-        .when("/list-categoriemedicament", {
-            templateUrl : "page/list-categorie",
-        })
-        .when("/list-medicament", {
-            templateUrl : "page/list-medicament",
-        })
-        .when("/list-preference", {
-            templateUrl : "page/list-preference",
-        })
-        .when("/list-cloture", {
-            templateUrl : "page/list-cloture",
-        })
-        .when("/list-versement", {
-            templateUrl : "page/list-versement",
-        })
-        .when("/list-decaisse", {
-            templateUrl : "page/list-decaissement",
-        })
-        .when("/list-proforma", {
-            templateUrl : "page/list-proforma",
-        })
-        .when("/listdetail-factureproforma/:itemId", {
-            templateUrl : "page/listdetail-factureproforma",
-        })
-        .when("/list-facture-proformat", {
-            templateUrl : "page/list-facture-proformat",
-        })
-        .when("/listdetail-facture-proformat", {
-            templateUrl : "page/listdetail-facture-proformat",
-        })
-        .when("/list-regulation", {
-            templateUrl : "page/list-regulation",
-        })
-        .when("/list-inventaire", {
-            templateUrl : "page/list-inventaire",
-        })
-        .when("/list-entree_sortie_stock", {
-            templateUrl : "page/list-entree_sortie_stock",
-        })
-        .when("/list-retour", {
-            templateUrl : "page/list-retour",
-        })
-        .when("/list-vente", {
-            templateUrl : "page/list-vente",
-        })
-        .when("/stat-vente", {
-            templateUrl : "page/stat-vente",
-        })
-        .when("/list-recouvrement", {
-            templateUrl : "page/list-recouvrement",
-        })
-        .when("/list-boncommande", {
-            templateUrl : "page/list-boncommande",
-        })
-        .when("/listdetail-boncommande/:itemId", {
-            templateUrl : "page/listdetail-boncommande",
-        })
-        .when("/list-livraison", {
-            templateUrl : "page/list-livraison",
-        })
-        .when("/list-utilisateur", {
-            templateUrl : "page/list-utilisateur",
-        })
-        .when("/list-profil", {
-            templateUrl : "page/list-profil",
-        })
-        .when("/statut-commande", {
-            templateUrl : "page/statut-commande",
-        })
-        .when("/list-fournisseur", {
-            templateUrl : "page/list-fournisseur",
-        })
-        .when("/detail-fournisseur/:itemId", {
-            templateUrl : "page/detail-fournisseur",
-        })
-        .when("/detail-utilisateur/:itemId", {
-            templateUrl : "page/detail-utilisateur",
-        })
-        .when("/detail-retour/:itemId", {
-            templateUrl : "page/detail-retour",
-        })
-        .when("/import-regularisation", {
-            templateUrl : "page/excel-importregularisation",
-        })
-        .when("/import-commande", {
-            templateUrl : "page/excel-boncommande",
-        })
-        .when("/etat-stock", {
-            templateUrl : "page/etat_stock",
-        })
-        .when("/etat_stock_fournisseur", {
-            templateUrl : "page/etat_stock_fournisseur",
-        })
-=======
         
->>>>>>> 966d2a702cf4ea682af68e1ccbc6ce830cc59ff0
-
 });
 
 
@@ -1508,25 +1375,37 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
 
     var listofrequests_assoc =
         {
-            "plans"                        : "id,superficie,longeur,largeur,niveauplan{id,piece,chambre,salon,cuisine}",
+            "plans"                        : [
+                "id,superficie,longeur,largeur,niveauplan{id,piece,chambre,salon,cuisine}",""
+            ],
 
-<<<<<<< HEAD
-            "planprojets"                   : "id,plan_id,projet_id,etat_active,message,etat,plan{id}",
+            "planprojets"                   : [
+                "id,plan_id,projet_id,etat_active,message,etat,plan{id}",""
+            ],
 
-            "niveauplans"                   : "id",
+            "niveauplans"                   : [
+                "id",""
+            ],
 
-            "niveauprojets"                 : "id",
+            "niveauprojets"                 :  [
+                "id",""
+            ],
 
-            "projets"                       : "id",
+            "projets"                       :  [
+                "id",""
+            ],
 
-            "typeremarques"                 : "id",
+            "typeremarques"                 : [
+                "id",""
+            ],
 
-            "remarques"                     : "id",
+            "remarques"                     : [
+                "id",""
+            ],
 
             "users"                         : "id,name,email,active,password,image,roles{id,name,guard_name,permissions{id,name,display_name,guard_name}},last_login,last_login_ip,created_at_fr",
 
             "roles"                         : "id,name,guard_name,permissions{id,name,display_name,guard_name}",
-=======
             
 
             'permissions'                            : [
@@ -1549,7 +1428,6 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
                                                     ],
 
             
->>>>>>> 966d2a702cf4ea682af68e1ccbc6ce830cc59ff0
 
         };
 
