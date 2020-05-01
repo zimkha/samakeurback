@@ -3,9 +3,10 @@ namespace App\GraphQL\Query;
 
 use App\Outil;
 use App\User;
-use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
+use Rebing\GraphQL\Support\Facades\GraphQL;
+
 
 class UserQuery extends Query
 {

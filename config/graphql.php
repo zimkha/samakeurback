@@ -135,7 +135,7 @@ return [
         \App\GraphQL\Type\RoleType::class,
         \App\GraphQL\Type\PermissionType::class,
         \App\GraphQL\Type\PlanType::class,
-        \App\GraphQL\Type\PlanPaginatedType::class,
+       \App\GraphQL\Type\PlanPaginatedType::class,
         \App\GraphQL\Type\ProjetType::class,
         \App\GraphQL\Type\ProjetPaginatedType::class,
         \App\GraphQL\Type\Metadata::class,

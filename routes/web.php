@@ -39,3 +39,11 @@ Route::delete('/remarque/{id}', 'RemarqueController@delete');
 Route::get('/plan-pdf/{id}', 'PlanController@getpdf');
 Route::get('/projet-pdf/{id}', 'ProjetController@getpdf');
 Route::get('/plan-pdfs/{id}', 'PlanController@getAllFiles');
+
+
+// les routes de teste
+
+Route::get('/test/{id}', 'PlanController@test');
+Route::get('/debug-sentry', function () {
+    throw new Exception('My first Sentry error!');
+});

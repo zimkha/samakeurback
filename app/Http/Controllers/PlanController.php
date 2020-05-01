@@ -6,9 +6,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Plan;
 use App\Outil;
+use App\NiveauPlan;
 class PlanController extends Controller
 {
     protected $queryName = "plans";
+    public function test($id)
+    {
+        $attribut = "salon";
+        $nb = Plan::nb_attribut($id, $attribut);
+        return $nb;
+    }
     public function save(Request $request)
     {
         try {
@@ -37,28 +44,107 @@ class PlanController extends Controller
                 if (empty($request->data)) {
                    $errors = "Veuillez preciser au moins le RDC pour ce plan";
                 }
+                if (empty($request->unite_mesure)) {
+                    $errors = "Veuillez preciser l'unité de mesur du terrain";
+
+                }
+                if (isset($request->superficie) && isset($request->longeur) && isset($request->largeur))
+                 {
+                    $sup = $request->longeur  * $request->largeur;
+                    if ( $sup != $request->superficie) {
+                        $errors = "Veuillez preciser des valeurs correctes au niveau des longeurs et largeurs";
+                    }
+                 }
+                 if (isset($request->superficie) && $request->superficie <= 0) {
+                    $errors = "Veuillez preciser une bonne valeur pour la superficie";
+
+                 }
+                 if (isset($request->longeur) && $request->longeur <= 0) {
+                    $errors = "Veuillez preciser une bonne valeur pour la longeur";
+
+                 }
+                 if (empty($request->fichier)) {
+                    $errors = "Un fichier du plan est manquant";
+                 }
+                 if (isset($request->largeur) && $request->largeur <= 0) {
+                    $errors = "Veuillez preciser une bonne valeur pour la largeur";
+
+                 }
                 if (isset($errors))
                 {
                     throw new \Exception($errors);
                 }
             
-                $data       = json_decode($request->data, true);
-                $tableau    = array(); 
+                //$data       = json_decode($request->data, true);
+                $data = $request->data;
+                $tableau    = array();
+                $n = 0; 
                 foreach ($data as $datum) {
+                    $n = $n + 1;
                     $niveau = new NiveauPlan();
+                   
                     if (empty($datum['piece']))
                     {
                         $errors = "Veuillez renseigner au moins le nombre de pièces pour ce niveau";
                     } 
+                    if (isset($datum['piece']) && $datum['piece'] <= 0) {
+                        $errors = "Veuillez verifier le nombre de pieces  à la ligne n°".$n;
+                    }
+                    if (isset($datum['chambre']) && $datum['chambre'] <= 0) {
+                        $errors = "Veuillez verifier le nombre de chambre à la ligne n°".$n;
+                    }
+                    if (isset($datum['salon']) && $datum['salon'] <= 0) {
+                        $errors = "Veuillez verifier le nombre de salon  à la ligne n°".$n;
+                    }
+                    if (isset($datum['bureau']) && $datum['bureau'] <= 0) {
+                        $errors = "Veuillez verifier le nombre de bureau  à la ligne n°".$n;
+                    }
+                    if (isset($datum['toillette']) && $datum['toillette'] <= 0) {
+                        $errors = "Veuillez verifier le nombre de toillettes  à la ligne n°".$n;
+                    }
                     $niveau->piece          = $datum['piece'];
                     $niveau->chambre        = $datum['chambre'];
                     $niveau->salon          = $datum['salon'];
                     $niveau->cuisine        = $datum['cuisine'];
-                    $niveau->garage         = $datum['garage'];
-                    $niveau->toillette      = $datum['toillette'];   
+                    $niveau->bureau         = $datum['bureau'];
+                    $niveau->toillette      = $datum['toillette']; 
+                    $niveau->niveau         = $datum['niveau']; 
+
+                    $total_pieces = $niveau->chambre + $niveau->salon + $niveau->cuisine + $niveau->bureau + $niveau->toillette;
+                  
+                    if ($total_pieces != (int) $datum['piece']) {
+                        $errors = "Veuillez verifier si le total des pieces est repecter  à la ligne n°".$n;
+                    }
+                    if (isset($errors)) {
+                        throw new \Exception($errors);
+                    }
                     array_push($tableau, $niveau);   
                 }
                 if (!isset($errors)) {
+                    $item->superficie       = $request->superficie;
+                    $item->longeur          = $request->longeur;
+                    $item->largeur          = $request->largeur;
+                    $item->unite_mesure_id  = $request->unite_mesure;
+                    //dd($request->file('fichier'));
+                    if (!isset($errors) && $request->hasFile('fichier') )
+                    {
+                     
+                        $fichier = $_FILES['fichier']['name'];
+                        $fichier_tmp = $_FILES['fichier']['tmp_name'];
+                        $k = rand(100, 9999);
+                        $ext = explode('.',$fichier);
+                        $rename = config('view.uploads')['plans']."/plans_".$k.".".end($ext);
+                       // move_uploaded_file($fichier_tmp,$rename);
+                        $path = $request->fichier->storeAs('uploads/plans', $rename);
+                        $item->fichier = $rename;
+                    }
+                    if (!isset($request->piscine)) {
+                        $item->piscine = 0;
+                    }
+                    else
+                    {
+                        $item->piscine= 1;
+                    }
                     $item->save();
                     foreach($tableau as $var)
                     {

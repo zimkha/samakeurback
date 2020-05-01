@@ -2,12 +2,11 @@
 
 namespace App\GraphQL\Query;
 
-
-use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
-
-
+use Rebing\GraphQL\Support\Facades\GraphQL;
+use Illuminate\Support\Arr;
+use App\Plan;
 class PlanPaginatedQuery extends Query
 {
     protected $attributes = [
@@ -66,11 +65,10 @@ class PlanPaginatedQuery extends Query
           $query = $query->where('piscine', $args['piscine']);
        }
        
-       $count = array_get($args, 'count', 10);
-       $page  = array_get($args, 'page', 1);
+       $count = Arr::get($args, 'count', 10);
+       $page  = Arr::get($args, 'page', 1);
 
        return $query->orderBy('created_at', 'desc')->paginate($count, ['*'], 'page', $page);
        
     }
 }
-

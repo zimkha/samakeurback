@@ -7,6 +7,7 @@ use App\User;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
 use Rebing\GraphQL\Support\Facades\GraphQL;
+use Illuminate\Support\Arr;
 
 
 class UserPaginatedQuery extends Query
@@ -36,7 +37,7 @@ class UserPaginatedQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = User::with('roles')->where('email', '!=', 'guindytechnology@gmail.com');
+        $query = User::with('roles');
 
         if(isset($args['id']))
         {
@@ -65,8 +66,8 @@ class UserPaginatedQuery extends Query
         }
 
 
-        $count = array_get($args, 'count', 20);
-        $page  = array_get($args, 'page', 1);
+        $count = Arr::get($args, 'count', 10);
+        $page  = Arr::get($args, 'page', 1);
 
 
         return $query->orderBy('id', 'desc')->paginate($count, ['*'], 'page', $page);

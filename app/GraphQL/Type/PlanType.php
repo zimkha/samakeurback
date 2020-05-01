@@ -5,7 +5,8 @@ namespace App\GraphQL\Type;
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Type as GraphQLType;
-
+use App\Plan;
+use App\NiveauPlan;
 class PlanType extends GraphQLType
 {
     protected $attributes = [
@@ -20,8 +21,17 @@ class PlanType extends GraphQLType
             'superficie'             => ['type' => Type::int()],
             'longeur'                => ['type' => Type::int()],
             'largeur'                => ['type' => Type::int()],
-            'niveauplans'            => ['type' => Type::listOf(GraphQL::type('Niveauplan'))],
+            'piscine'                => ['type' => Type::int()],
+            'niveau_plans'            => ['type' => Type::listOf(GraphQL::type('Niveauplan'))],
             'planprojets'            => ['type' => Type::listOf(GraphQL::type('Planprojet'))],
+
+            // Resolve 
+            'nb_pieces'                => ['type' => Type::int()],
+            'nb_chambre'                => ['type' => Type::int()],
+            'nb_toillette'                => ['type' => Type::int()],
+            'nb_salon'                => ['type' => Type::int()],
+            'nb_cuisine'                => ['type' => Type::int()],
+            'nb_etage'                => ['type' => Type::int()],
 
             'created_at'             => [ 'type' => Type::string()],
             'created_at_fr'          => [ 'type' => Type::string()],
@@ -30,6 +40,92 @@ class PlanType extends GraphQLType
             'deleted_at'             => [ 'type' => Type::string()],
            
         ];
+    }
+
+    public function resolveNbPiecesField($root, $args)
+    {
+        if (!isset($root['id']))
+        {
+            $plan_id = $root->id;
+        }
+        else
+        {
+            $plan_id = $root['id'];
+        }
+        $attribut = "piece";
+        $nbr =  Plan::nb_attribut($plan_id, $attribut);
+        return $nbr;
+    }
+    public function resolveNbChambreField($root, $args)
+    {
+        if (!isset($root['id']))
+        {
+            $plan_id = $root->id;
+        }
+        else
+        {
+            $plan_id = $root['id'];
+        }
+        $attribut = "chambre";
+        $nbr =  Plan::nb_attribut($plan_id, $attribut);
+        return $nbr; 
+    }
+
+    public function resolveNbSalonField($root, $args)
+    {
+        if (!isset($root['id']))
+        {
+            $plan_id = $root->id;
+        }
+        else
+        {
+            $plan_id = $root['id'];
+        }
+        $attribut = "salon";
+        $nbr =  Plan::nb_attribut($plan_id, $attribut);
+        return $nbr; 
+    }
+
+    public function resolveNbCuisineField($root, $args)
+    {
+        if (!isset($root['id']))
+        {
+            $plan_id = $root->id;
+        }
+        else
+        {
+            $plan_id = $root['id'];
+        }
+        $attribut = "cuisine";
+        $nbr =  Plan::nb_attribut($plan_id, $attribut);
+        return $nbr; 
+    }
+    public function resolveNbToilletteField($root, $args)
+    {
+        if (!isset($root['id']))
+        {
+            $plan_id = $root->id;
+        }
+        else
+        {
+            $plan_id = $root['id'];
+        }
+        $attribut = "toillette";
+        $nbr =  Plan::nb_attribut($plan_id, $attribut);
+        return $nbr; 
+    }
+    public function resolveNbEtageField($root, $args)
+    {
+        if (!isset($root['id']))
+        {
+            $plan_id = $root->id;
+        }
+        else
+        {
+            $plan_id = $root['id'];
+        }
+        return  NiveauPlan::where('plan_id', $plan_id)->count();
+        
     }
     protected function resolveCreatedAtField($root, $args)
     {

@@ -4,9 +4,10 @@ namespace App\GraphQL\Query;
 
 use App\Outil;
 use App\Projet;
-use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
+use Rebing\GraphQL\Support\Facades\GraphQL;
+use Illuminate\Support\Arr;
 
 
 class ProjetPaginatedQuery extends Query
@@ -65,8 +66,8 @@ class ProjetPaginatedQuery extends Query
           $query = $query->where('etat', $args['etat']);
        }
       
-       $count = array_get($args, 'count', 10);
-       $page  = array_get($args, 'page', 1);
+       $count = Arr::get($args, 'count', 10);
+       $page  = Arr::get($args, 'page', 1);
 
        return $query->orderBy('created_at', 'desc')->paginate($count, ['*'], 'page', $page);
     }
