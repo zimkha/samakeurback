@@ -29,7 +29,7 @@ class Outil extends Model
     }
 
     public static $queries = array(
-        "plans"                         => "id,superficie,longeur,largeur,unitte_mesure_id,niveauplan{id,piece,chambre,salon,cuisine,bureau,toillette}",
+        "plans"                         => "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,niveau_plans{id,piece,bureau,toillette,chambre,salon,cuisine}",
 
         "planprojets"                   => "id,plan_id,projet_id,etat_active,message,etat,plan{id}",
 

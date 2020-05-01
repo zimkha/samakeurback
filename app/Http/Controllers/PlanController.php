@@ -128,15 +128,19 @@ class PlanController extends Controller
                     //dd($request->file('fichier'));
                     if (!isset($errors) && $request->hasFile('fichier') )
                     {
-                     
-                        $fichier = $_FILES['fichier']['name'];
-                        $fichier_tmp = $_FILES['fichier']['tmp_name'];
-                        $k = rand(100, 9999);
-                        $ext = explode('.',$fichier);
-                        $rename = config('view.uploads')['plans']."/plans_".$k.".".end($ext);
-                       // move_uploaded_file($fichier_tmp,$rename);
-                        $path = $request->fichier->storeAs('uploads/plans', $rename);
-                        $item->fichier = $rename;
+                         if ($item->fichier == null)
+                         {
+                            $fichier = $_FILES['fichier']['name'];
+                            $fichier_tmp = $_FILES['fichier']['tmp_name'];
+                            $k = rand(100, 9999);
+                            $ext = explode('.',$fichier);
+                            $rename = config('view.uploads')['plans']."/plans_".$k.".".end($ext);
+                            move_uploaded_file($fichier_tmp,$rename);
+                            //$path = $request->fichier->storeAs('uploads/plans', $rename);
+                            $item->fichier = $rename;
+                         }
+                       
+                       
                     }
                     if (!isset($request->piscine)) {
                         $item->piscine = 0;

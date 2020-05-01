@@ -84,7 +84,7 @@ class PlanQuery extends Query
             'longeur'                => $item->longeur,
             'largeur'                => $item->largeur,
             'piscine'                => $item->piscine,
-            'niveaus'                => $item->niveaus,
+            'niveau_plans'           => $item->niveau_plans,
             'planprojets'            => $item->planprojets,
             'created_at'             => $item->created_at,
         ];
