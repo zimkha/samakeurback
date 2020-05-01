@@ -35,10 +35,11 @@ Route::delete('/user/{id}', 'UserController@delete');
 Route::delete('/plan/{id}', 'PlanController@delete');
 Route::delete('/remarque/{id}', 'RemarqueController@delete');
 
-// les action de recuperations
+// les action de recuperations de modification
 Route::get('/plan-pdf/{id}', 'PlanController@getpdf');
 Route::get('/projet-pdf/{id}', 'ProjetController@getpdf');
 Route::get('/plan-pdfs/{id}', 'PlanController@getAllFiles');
+Route::get('/status/{id}/{model}', 'ValidationController@status');
 
 
 // les routes de teste
