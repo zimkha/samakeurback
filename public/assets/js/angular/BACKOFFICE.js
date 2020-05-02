@@ -403,14 +403,14 @@ app.config(function($routeProvider) {
         .when("/list-a-confirme", {
             templateUrl : "page/list-a-confirme",
         })
-        .when("/list-demande", {
-            templateUrl : "page/list-demande",
+        .when("/list-projet", {
+            templateUrl : "page/list-projet",
         })
-        .when("/detail-demande/:itemId", {
-            templateUrl : "page/detail-demande",
+        .when("/detail-projet/:itemId", {
+            templateUrl : "page/detail-projet",
         })
-        .when("/list-demande-encour", {
-            templateUrl : "page/list-demande-encour",
+        .when("/list-projet-encour", {
+            templateUrl : "page/list-projet-encour",
         })
         .when("/list-plan", {
             templateUrl : "page/list-plan",
@@ -790,6 +790,7 @@ $scope.get_Somme_daye = function ()
         else if ( currentpage.indexOf('client')!==-1 )
         {
             rewriteelement = 'userspaginated(page:'+ $scope.paginationuser.currentPage +',count:'+ $scope.paginationuser.entryLimit
+           
                 + ($('#searchtexte_client').val() ? (',' + $('#searchoption_client').val() + ':"' + $('#searchtexte_client').val() + '"') : "" )
                 + ($('#typeclient_listclient').val() ? ',type_client_id:' + $('#typeclient_listclient').val() : "" )
                 + ($('#zone_listclient').val() ? ',zone_livraison_id:' + $('#zone_listclient').val() : "" )
@@ -817,27 +818,23 @@ $scope.get_Somme_daye = function ()
         else if ( currentpage.indexOf('projet')!==-1 )
         {
             rewriteelement = 'projetspaginated(page:'+ $scope.paginationprojet.currentPage +',count:'+ $scope.paginationprojet.entryLimit
-                + ($('#searchtexte_client').val() ? (',' + $('#searchoption_client').val() + ':"' + $('#searchtexte_client').val() + '"') : "" )
-                + ($('#typeclient_listclient').val() ? ',type_client_id:' + $('#typeclient_listclient').val() : "" )
-                + ($('#zone_listclient').val() ? ',zone_livraison_id:' + $('#zone_listclient').val() : "" )
+            + ($scope.projetview ? ',projet_id:' + $scope.projetview.id : "" )
+            + ($('#projet_user').val() ? ',user_id:' + $('#projet_user').val() : "" )
+            
                 +')';
-            // blockUI_start_all('#section_listeclients');
             Init.getElementPaginated(rewriteelement, listofrequests_assoc["projet"]).then(function (data)
             {
-                // blockUI_stop_all('#section_listeclients');
-                console.log(data);
-                // pagination controls
                 $scope.paginationprojet = {
                     currentPage: data.metadata.current_page,
                     maxSize: 10,
                     entryLimit: $scope.paginationprojet.entryLimit,
                     totalItems: data.metadata.total
                 };
-                // $scope.noOfPages_produit = data.metadata.last_page;
+               
                 $scope.projets = data.data;
             },function (msg)
             {
-                // blockUI_stop_all('#section_listeclients');
+               
                 toastr.error(msg);
             });
         }
@@ -1010,6 +1007,7 @@ $scope.get_Somme_daye = function ()
         $scope.currenttemplateurl = current.templateUrl;
         /******* Réintialisation de certaines valeurs *******/
         $scope.planview = null;
+        $scope.projetview = null;
 
 
         $scope.pageUpload = false;
@@ -1070,11 +1068,11 @@ $scope.get_Somme_daye = function ()
          {
              $scope.getelements('clients');
          }
-         else if(angular.lowercase(current.templateUrl).indexOf('list-demande')!==-1)
+         else if(angular.lowercase(current.templateUrl).indexOf('list-projet')!==-1)
          {
-             $scope.pageChanged('projet');
+             $scope.pageChanged('projets');
          }
-         else if(angular.lowercase(current.templateUrl).indexOf('list-demande-encour')!==-1)
+         else if(angular.lowercase(current.templateUrl).indexOf('list-projet-encour')!==-1)
          {
             $scope.pageChanged('projet');
         }

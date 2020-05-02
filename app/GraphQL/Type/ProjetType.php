@@ -10,7 +10,6 @@ class ProjetType extends GraphQLType
 {
     protected $attributes = [
         'name' => 'Projet',
-        'description' => 'Plan de projet'
     ];
 
     public function fields(): array
