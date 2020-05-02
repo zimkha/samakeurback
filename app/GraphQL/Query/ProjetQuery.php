@@ -30,6 +30,9 @@ class ProjetQuery extends Query
             'fichier'                => ['type'  => Type::string()],
             'active'                 => ['type'  => Type::boolean()],
             'etat'                   => ['type'  => Type::int()],
+            'superficie'             => ['type' => Type::int()],
+            'longeur'                => ['type' => Type::int()],
+            'largeur'                => ['type' => Type::int()],
           
             'created_at'             => ['type'  => Type::string()],
             'created_at_fr'          => ['type'  => Type::string()],
@@ -70,12 +73,15 @@ class ProjetQuery extends Query
            [
             'id'                     => $item->id,
             'user_id'                => $item->user_id,
+            'superficie'             => $item->superficie,
+            'longeur'                => $item->longeur,
+            'largeur'                => $item->largeur,
             'user'                   => $item->user,
             'active'                 => $item->active,
             'text_projet'            => $item->text_projet,
             'fichier'                => $item->fichier,
             'etat'                   => $item->etat,
-            'niveaus'                => $item->niveaus,
+            'niveau_projets'         => $item->niveau_projets,
             'planprojets'            => $item->planprojets,
             'created_at'             => $item->created_at,
         ];

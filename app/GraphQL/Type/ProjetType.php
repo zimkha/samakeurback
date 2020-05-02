@@ -18,12 +18,15 @@ class ProjetType extends GraphQLType
         return [
             'id'                     => ['type'  => Type::id()],
             'user_id'                => ['type'  => Type::int()],
+            'superficie'             => ['type' => Type::int()],
+            'longeur'                => ['type' => Type::int()],
+            'largeur'                => ['type' => Type::int()],
             'text_projet'            => ['type'  => Type::string()],
             'fichier'                => ['type'  => Type::string()],
             'active'                 => ['type'  => Type::boolean()],
             'etat'                   => ['type'  => Type::int()],
             'user'                   => ['type' => GraphQL::type('User')],
-            'niveau_projets'                => ['type' => Type::listOf(GraphQL::type('Niveauplan')), 'description' => ''],
+            'niveau_projets'         => ['type' => Type::listOf(GraphQL::type('Niveauplan')), 'description' => ''],
             'remarques'              => ['type' => Type::listOf(GraphQL::type('Remarque')), 'description' => ''],
             'plan_projets'           => ['type' => Type::listOf(GraphQL::type('Planprojet')), 'description' => ''],
 

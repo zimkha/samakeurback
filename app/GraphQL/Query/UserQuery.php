@@ -36,7 +36,7 @@ class UserQuery extends Query
 
     public function resolve($root, $args)
     {
-        $query = User::with('roles')->where('email', '!=', 'guindytechnology@gmail.com');
+        $query = User::with('roles')->where('is_client', '!=', false);
         if(isset($args['id']))
         {
             $query = $query->where('id', $args['id']);

@@ -9,6 +9,7 @@ class ExcelController extends Controller
 {
     public function projet($id,$model)
     {
+        ini_set('max_execution_time', -1);
         if (!isset($id)) {
             throw new Exception("Error Processing Request", 1);
         }

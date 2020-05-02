@@ -451,7 +451,10 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
 
             "niveauprojets"                 :  ["id",""],
 
-            "projets"                       :  ["id",""],
+            "projets"                       :  [
+                "id,superficie,longeur,largeur", 
+                ",niveau_projets{id,piece,bureau,toillette,chambre,salon,cuisine}"
+            ],
 
             "clients"                       :  ["id",""],
 
@@ -553,6 +556,12 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
         totalItems: 0
     };
     $scope.paginationdepense = {
+        currentPage: 1,
+        maxSize: 10,
+        entryLimit: 10,
+        totalItems: 0
+    };
+    $scope.paginationprojet = {
         currentPage: 1,
         maxSize: 10,
         entryLimit: 10,
@@ -805,6 +814,33 @@ $scope.get_Somme_daye = function ()
                 toastr.error(msg);
             });
         }
+        else if ( currentpage.indexOf('projet')!==-1 )
+        {
+            rewriteelement = 'projetspaginated(page:'+ $scope.paginationprojet.currentPage +',count:'+ $scope.paginationprojet.entryLimit
+                + ($('#searchtexte_client').val() ? (',' + $('#searchoption_client').val() + ':"' + $('#searchtexte_client').val() + '"') : "" )
+                + ($('#typeclient_listclient').val() ? ',type_client_id:' + $('#typeclient_listclient').val() : "" )
+                + ($('#zone_listclient').val() ? ',zone_livraison_id:' + $('#zone_listclient').val() : "" )
+                +')';
+            // blockUI_start_all('#section_listeclients');
+            Init.getElementPaginated(rewriteelement, listofrequests_assoc["projet"]).then(function (data)
+            {
+                // blockUI_stop_all('#section_listeclients');
+                console.log(data);
+                // pagination controls
+                $scope.paginationprojet = {
+                    currentPage: data.metadata.current_page,
+                    maxSize: 10,
+                    entryLimit: $scope.paginationprojet.entryLimit,
+                    totalItems: data.metadata.total
+                };
+                // $scope.noOfPages_produit = data.metadata.last_page;
+                $scope.projets = data.data;
+            },function (msg)
+            {
+                // blockUI_stop_all('#section_listeclients');
+                toastr.error(msg);
+            });
+        }
         else if (currentpage.indexOf('role') !== -1)
         {
             rewriteelement = (currentpage + 's') + 'paginated(page:' + $scope.paginationrole.currentPage + ',count:' + $scope.paginationrole.entryLimit
@@ -1036,12 +1072,12 @@ $scope.get_Somme_daye = function ()
          }
          else if(angular.lowercase(current.templateUrl).indexOf('list-demande')!==-1)
          {
-             $scope.getelements('users');
+             $scope.pageChanged('projet');
          }
          else if(angular.lowercase(current.templateUrl).indexOf('list-demande-encour')!==-1)
          {
-             $scope.getelements('users');
-         }
+            $scope.pageChanged('projet');
+        }
 
          else if(angular.lowercase(current.templateUrl).indexOf('list-client')!==-1)
          {

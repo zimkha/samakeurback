@@ -31,6 +31,9 @@ class ProjetPaginatedQuery extends Query
             'fichier'                => ['type'  => Type::string()],
             'active'                 => ['type'  => Type::boolean()],
             'etat'                   => ['type'  => Type::int()],
+            'superficie'             => ['type' => Type::int()],
+            'longeur'                => ['type' => Type::int()],
+            'largeur'                => ['type' => Type::int()],
           
             'created_at'             => ['type'  => Type::string()],
             'created_at_fr'          => ['type'  => Type::string()],

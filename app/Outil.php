@@ -37,7 +37,7 @@ class Outil extends Model
 
         "niveauprojets"                 => "id",
 
-        "projets"                       => "id",
+        "projets"                       => "id,superficie,longeur,largeur,niveau_projets{id,piece,bureau,toillette,chambre,salon,cuisine}",
         
         "typeremarques"                 => "id",
 
@@ -154,6 +154,33 @@ class Outil extends Model
         return config('database.default')=="mysql" ? "like" : "ilike";
     }
 
- 
+    public static function validation($request,Array $array)
+    {
+        $errors = null;
+        foreach($array as $item)
+        {
+            if ($request->$item == null ) {
+               $errors = "veuillez renseigner le champs {$item}";
+            }
+        }
+        if ($errors != null) {
+            throw new \Exception($errors);
+        }
+        return $errors;
+    }
+    public static function validat(Array $array)
+    {
+        $errors = null;
+       foreach ($array as  $value) {
+         
+           foreach ($value as $key => $item) {
+               if (isset($key)) {
+                   dd('c pas vide');
+               }
+               else
+                 dd('c vide');
+           }
+       }
+    }
 
 }

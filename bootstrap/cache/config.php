@@ -184,7 +184,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\framework/cache/data',
+        'path' => 'C:\\laragon\\www\\samakeurback\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -341,6 +341,73 @@
       ),
     ),
   ),
+  'excel' => 
+  array (
+    'exports' => 
+    array (
+      'chunk_size' => 1000,
+      'pre_calculate_formulas' => false,
+      'csv' => 
+      array (
+        'delimiter' => ',',
+        'enclosure' => '"',
+        'line_ending' => '
+',
+        'use_bom' => false,
+        'include_separator_line' => false,
+        'excel_compatibility' => false,
+      ),
+    ),
+    'imports' => 
+    array (
+      'read_only' => true,
+      'heading_row' => 
+      array (
+        'formatter' => 'slug',
+      ),
+      'csv' => 
+      array (
+        'delimiter' => ',',
+        'enclosure' => '"',
+        'escape_character' => '\\',
+        'contiguous' => false,
+        'input_encoding' => 'UTF-8',
+      ),
+    ),
+    'extension_detector' => 
+    array (
+      'xlsx' => 'Xlsx',
+      'xlsm' => 'Xlsx',
+      'xltx' => 'Xlsx',
+      'xltm' => 'Xlsx',
+      'xls' => 'Xls',
+      'xlt' => 'Xls',
+      'ods' => 'Ods',
+      'ots' => 'Ods',
+      'slk' => 'Slk',
+      'xml' => 'Xml',
+      'gnumeric' => 'Gnumeric',
+      'htm' => 'Html',
+      'html' => 'Html',
+      'csv' => 'Csv',
+      'tsv' => 'Csv',
+      'pdf' => 'Dompdf',
+    ),
+    'value_binder' => 
+    array (
+      'default' => 'Maatwebsite\\Excel\\DefaultValueBinder',
+    ),
+    'transactions' => 
+    array (
+      'handler' => 'db',
+    ),
+    'temporary_files' => 
+    array (
+      'local_path' => 'C:\\Users\\Usr\\AppData\\Local\\Temp',
+      'remote_disk' => NULL,
+      'remote_prefix' => NULL,
+    ),
+  ),
   'filesystems' => 
   array (
     'default' => 'local',
@@ -350,12 +417,12 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\app',
+        'root' => 'C:\\laragon\\www\\samakeurback\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\app/public',
+        'root' => 'C:\\laragon\\www\\samakeurback\\storage\\app/public',
         'url' => 'http://localhost/samakeurback/public//storage',
         'visibility' => 'public',
       ),
@@ -371,7 +438,7 @@
     ),
     'links' => 
     array (
-      'C:\\xampp\\htdocs\\samakeurback\\public\\storage' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\app/public',
+      'C:\\laragon\\www\\samakeurback\\public\\storage' => 'C:\\laragon\\www\\samakeurback\\storage\\app/public',
     ),
   ),
   'graphql' => 
@@ -398,13 +465,14 @@
           3 => 'App\\GraphQL\\Query\\PlanPaginatedQuery',
           4 => 'App\\GraphQL\\Query\\ProjetQuery',
           5 => 'App\\GraphQL\\Query\\PlanPaginatedQuery',
-          6 => 'App\\GraphQL\\Query\\RoleQuery',
-          7 => 'App\\GraphQL\\Query\\NiveauPlanQuery',
-          8 => 'App\\GraphQL\\Query\\NiveauProjetQuery',
-          9 => 'App\\GraphQL\\Query\\UserQuery',
-          10 => 'App\\GraphQL\\Query\\UserPaginatedQuery',
-          11 => 'App\\GraphQL\\Query\\PermissionQuery',
-          12 => 'App\\GraphQL\\Query\\PlanProjetQuery',
+          6 => 'App\\GraphQL\\Query\\ProjetPaginatedQuery',
+          7 => 'App\\GraphQL\\Query\\RoleQuery',
+          8 => 'App\\GraphQL\\Query\\NiveauPlanQuery',
+          9 => 'App\\GraphQL\\Query\\NiveauProjetQuery',
+          10 => 'App\\GraphQL\\Query\\UserQuery',
+          11 => 'App\\GraphQL\\Query\\UserPaginatedQuery',
+          12 => 'App\\GraphQL\\Query\\PermissionQuery',
+          13 => 'App\\GraphQL\\Query\\PlanProjetQuery',
         ),
         'mutation' => 
         array (
@@ -504,13 +572,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\logs/laravel.log',
+        'path' => 'C:\\laragon\\www\\samakeurback\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\logs/laravel.log',
+        'path' => 'C:\\laragon\\www\\samakeurback\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -560,7 +628,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\logs/laravel.log',
+        'path' => 'C:\\laragon\\www\\samakeurback\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -616,7 +684,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\xampp\\htdocs\\samakeurback\\resources\\views/vendor/mail',
+        0 => 'C:\\laragon\\www\\samakeurback\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -753,7 +821,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\framework/sessions',
+    'files' => 'C:\\laragon\\www\\samakeurback\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -773,7 +841,7 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\samakeurback\\resources\\views',
+      0 => 'C:\\laragon\\www\\samakeurback\\resources\\views',
     ),
     'uploads' => 
     array (
@@ -781,7 +849,7 @@
       'plans' => 'uploads/plans',
       'projets' => 'uploads/projets',
     ),
-    'compiled' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\framework\\views',
+    'compiled' => 'C:\\laragon\\www\\samakeurback\\storage\\framework\\views',
   ),
   'flare' => 
   array (
@@ -812,73 +880,6 @@
     'remote_sites_path' => '',
     'local_sites_path' => '',
     'housekeeping_endpoint_prefix' => '_ignition',
-  ),
-  'excel' => 
-  array (
-    'exports' => 
-    array (
-      'chunk_size' => 1000,
-      'pre_calculate_formulas' => false,
-      'csv' => 
-      array (
-        'delimiter' => ',',
-        'enclosure' => '"',
-        'line_ending' => '
-',
-        'use_bom' => false,
-        'include_separator_line' => false,
-        'excel_compatibility' => false,
-      ),
-    ),
-    'imports' => 
-    array (
-      'read_only' => true,
-      'heading_row' => 
-      array (
-        'formatter' => 'slug',
-      ),
-      'csv' => 
-      array (
-        'delimiter' => ',',
-        'enclosure' => '"',
-        'escape_character' => '\\',
-        'contiguous' => false,
-        'input_encoding' => 'UTF-8',
-      ),
-    ),
-    'extension_detector' => 
-    array (
-      'xlsx' => 'Xlsx',
-      'xlsm' => 'Xlsx',
-      'xltx' => 'Xlsx',
-      'xltm' => 'Xlsx',
-      'xls' => 'Xls',
-      'xlt' => 'Xls',
-      'ods' => 'Ods',
-      'ots' => 'Ods',
-      'slk' => 'Slk',
-      'xml' => 'Xml',
-      'gnumeric' => 'Gnumeric',
-      'htm' => 'Html',
-      'html' => 'Html',
-      'csv' => 'Csv',
-      'tsv' => 'Csv',
-      'pdf' => 'Dompdf',
-    ),
-    'value_binder' => 
-    array (
-      'default' => 'Maatwebsite\\Excel\\DefaultValueBinder',
-    ),
-    'transactions' => 
-    array (
-      'handler' => 'db',
-    ),
-    'temporary_files' => 
-    array (
-      'local_path' => 'C:\\Users\\Usr\\AppData\\Local\\Temp',
-      'remote_disk' => NULL,
-      'remote_prefix' => NULL,
-    ),
   ),
   'trustedproxy' => 
   array (
