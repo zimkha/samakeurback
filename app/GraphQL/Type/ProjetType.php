@@ -5,7 +5,8 @@ namespace App\GraphQL\Type;
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Type as GraphQLType;
-
+use App\Projet;
+use App\NiveauProjet;
 class ProjetType extends GraphQLType
 {
     protected $attributes = [
@@ -28,6 +29,14 @@ class ProjetType extends GraphQLType
             'niveau_projets'         => ['type' => Type::listOf(GraphQL::type('Niveauplan')), 'description' => ''],
             'remarques'              => ['type' => Type::listOf(GraphQL::type('Remarque')), 'description' => ''],
             'plan_projets'           => ['type' => Type::listOf(GraphQL::type('Planprojet')), 'description' => ''],
+             
+            'nb_pieces'              => ['type' => Type::int()],
+            'nb_chambre'             => ['type' => Type::int()],
+            'nb_toillette'           => ['type' => Type::int()],
+            'nb_salon'               => ['type' => Type::int()],
+            'nb_cuisine'             => ['type' => Type::int()],
+            'nb_etage'               => ['type' => Type::int()],
+
             'created_at'             => ['type'  => Type::string()],
             'created_at_fr'          => ['type'  => Type::string()],
             'updated_at'             => ['type'  => Type::string()],
@@ -35,6 +44,91 @@ class ProjetType extends GraphQLType
             'deleted_at'             => ['type'  => Type::string()],
            
         ];
+    }
+    public function resolveNbPiecesField($root, $args)
+    {
+        if (!isset($root['id']))
+        {
+            $projet_id = $root->id;
+        
+}        else
+        {
+            $projet_id = $root['id'];
+        }
+        $attribut = "piece";
+        $nbr =  Projet::nb_attribut($projet_id, $attribut);
+        return $nbr;
+    }
+    public function resolveNbChambreField($root, $args)
+    {
+         if (!isset($root['id']))
+        {
+            $projet_id = $root->id;
+        }
+        else
+        {
+            $projet_id = $root['id'];
+        }
+        $attribut = "chambre";
+        $nbr =  Projet::nb_attribut($projet_id, $attribut);
+        return $nbr; 
+    }
+
+    public function resolveNbSalonField($root, $args)
+    {
+         if (!isset($root['id']))
+        {
+            $projet_id = $root->id;
+        }
+        else
+        {
+            $projet_id = $root['id'];
+        }
+        $attribut = "salon";
+        $nbr =  Projet::nb_attribut($projet_id, $attribut);
+        return $nbr; 
+    }
+
+    public function resolveNbCuisineField($root, $args)
+    {
+        if (!isset($root['id']))
+        {
+            $projet_id = $root->id;
+        }
+        else
+        {
+            $projet_id = $root['id'];
+        }
+        $attribut = "cuisine";
+        $nbr =  Projet::nb_attribut($projet_id, $attribut);
+        return $nbr; 
+    }
+    public function resolveNbToilletteField($root, $args)
+    {
+         if (!isset($root['id']))
+        {
+            $projet_id = $root->id;
+        }
+        else
+        {
+            $projet_id = $root['id'];
+        }
+        $attribut = "toillette";
+        $nbr =  Projet::nb_attribut($projet_id, $attribut);
+        return $nbr; 
+    }
+    public function resolveNbEtageField($root, $args)
+    {
+        if (!isset($root['id']))
+        {
+            $projet_id = $root->id;
+        }
+        else
+        {
+            $projet_id = $root['id'];
+        }
+        return  NiveauProjet::where('projet_id', $projet_id)->count();
+        
     }
     protected function resolveCreatedAtField($root, $args)
     {

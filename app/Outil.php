@@ -37,7 +37,7 @@ class Outil extends Model
 
         "niveauprojets"                 => "id",
 
-        "projets"                       => "id,superficie,longeur,largeur,niveau_projets{id,piece,bureau,toillette,chambre,salon,cuisine}",
+        "projets"                       => "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,niveau_projets{id,piece,bureau,toillette,chambre,salon,cuisine}",
         
         "typeremarques"                 => "id",
 

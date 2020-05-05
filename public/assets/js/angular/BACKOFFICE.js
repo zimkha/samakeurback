@@ -452,7 +452,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
             "niveauprojets"                 :  ["id",""],
 
             "projets"                       :  [
-                "id,superficie,longeur,largeur", 
+                "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage", 
                 ",niveau_projets{id,piece,bureau,toillette,chambre,salon,cuisine}"
             ],
 
