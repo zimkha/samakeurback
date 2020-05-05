@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Outil;
 use App\Projet;
+use App\Remarque;
+use App\PlanProjet;
 use App\NiveauProjet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +22,7 @@ class ProjetController extends Controller
                 $item  = new Projet();
                 $array = [
                          'user', 'fichier', 'description', 'superficie', 'longeur', 'largeur',
-                        'acces_voirie', 'electricite', 'courant_faible', 'assainissement', 'eaux_pluviable','bornes_visible',
+                         'acces_voirie', 'electricite', 'courant_faible', 'assainissement', 'eaux_pluviable','bornes_visible',
                         'necessite_bornage','presence_mitoyen','cadatre','geometre'];
                 if (isset($request->id)) {
                     $item = Projet::find($id);
@@ -123,7 +125,51 @@ class ProjetController extends Controller
         try
         {
             return DB::transaction(function () use($id) {
-                
+                $errors = null;
+                $data   = 0;
+                if (isset($id))
+                 {
+                   $item = Projet::find($id);
+                   if(isset($item))
+                     {
+                        $plan_projets = PlanProjet::where('projet_id', $item->id)->get();
+                        if (count($plan_projets) > 0) 
+                         {
+                            $errors = "Impossible de supprimer des données liées au système";
+                           
+                         } 
+                        if (count(Remarque::where('projet_id', $item->id)->get()) > 0)
+                         {
+                            $errors = "Impossible de supprimer des données liées au système";
+                         }
+                         if (!isset($errors))
+                          {
+                              NiveauProjet::where('projet_id', $item->id)->delete();
+                              NiveauProjet::where('projet_id', $item->id)->forceDelete();
+                              $item->delete();
+                              $item->forceDelete();
+                              $data = 1;
+                            $retour = array(
+                                'data'          => $data,
+                            );
+                            return response()->json($retour);
+                          }
+                          else
+                              throw new \Exception($errors);
+
+                     } 
+                   else
+                   {
+                    $errors = "Impossible de supprimer car ces données n'existe pas dans la base de données";
+                    throw new \Exception($errors);
+                   }
+                 }
+                else
+                {
+                    $errors = "Impossible, données manquantes";
+                    throw new \Exception($errors);
+                }
+                   
             });
         }
         catch(\Exception $e)
@@ -150,22 +196,7 @@ class ProjetController extends Controller
             ));
         }
     }
-    public function status($id)
-    {
-        try
-        {
-            return DB::transaction(function () use($id) {
-                
-            });
-        }
-        catch(\Exception $e)
-        {
-            return response()->json(array(
-                'errors'          => config('app.debug') ? $e->getMessage() : Outil::getMsgError(),
-                'errors_debug'    => [$e->getMessage()],
-            ));
-        }
-    }
+   
 
     public function makeContrat($id)
     {

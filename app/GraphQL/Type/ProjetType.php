@@ -28,7 +28,6 @@ class ProjetType extends GraphQLType
             'niveau_projets'         => ['type' => Type::listOf(GraphQL::type('Niveauplan')), 'description' => ''],
             'remarques'              => ['type' => Type::listOf(GraphQL::type('Remarque')), 'description' => ''],
             'plan_projets'           => ['type' => Type::listOf(GraphQL::type('Planprojet')), 'description' => ''],
-
             'created_at'             => ['type'  => Type::string()],
             'created_at_fr'          => ['type'  => Type::string()],
             'updated_at'             => ['type'  => Type::string()],

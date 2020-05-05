@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('home');
 
-
+Auth::routes();
 
 Route::get('/page/{namepage}', function ($namepage)
 {
@@ -48,3 +48,6 @@ Route::get('/test/{id}', 'PlanController@test');
 Route::get('/debug-sentry', function () {
     throw new Exception('My first Sentry error!');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

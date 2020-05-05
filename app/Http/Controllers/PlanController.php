@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\NiveauPlan;
+use App\Outil;
+use App\Plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Plan;
-use App\Outil;
-use App\NiveauPlan;
 class PlanController extends Controller
 {
     protected $queryName = "plans";

@@ -63,7 +63,7 @@
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                            <tr>
+                                <tr align="center">
                                 <th>Nom Complet</th>
                                 <th>Pays</th>
                                 <th>Adresse</th>
@@ -74,15 +74,15 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
+                            <tr align="center">
                                 <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
+                                <td>Sénégal</td>
+                                <td>Dakar/Sénégal</td>
+                                <td>12500</td>
+                                <td>221 77 196 77 77</td>
+                                <td>email@email.com</td>
                                 <td class="text-center">
-                                    <a href="#!/detail-demande/2" class="btn btn-sm btn-primary btn-circle">
+                                    <a href="#!/detail-projet/2" class="btn btn-sm btn-primary btn-circle">
                                         <i class="fas fa-info"></i>
                                     </a>
                                     <button  class="btn btn-sm btn-success btn-circle">
@@ -93,15 +93,15 @@
                                     </button>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr align="center">
                                 <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
+                                <td>Sénégal</td>
+                                <td>Dakar/Sénégal</td>
+                                <td>12500</td>
+                                <td>221 77 196 77 77</td>
+                                <td>email@email.com</td>
                                 <td class="text-center">
-                                    <a href="#!/detail-demande/2" class="btn btn-sm btn-primary btn-circle">
+                                    <a href="#!/detail-projet/2" class="btn btn-sm btn-primary btn-circle">
                                         <i class="fas fa-info"></i>
                                     </a>
                                     <button  class="btn btn-sm btn-success btn-circle">
@@ -112,15 +112,15 @@
                                     </button>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr align="center">
                                 <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
+                                <td>Sénégal</td>
+                                <td>Dakar/Sénégal</td>
+                                <td>12500</td>
+                                <td>221 77 196 77 77</td>
+                                <td>email@email.com</td>
                                 <td class="text-center">
-                                    <a href="#!/detail-demande/2" class="btn btn-sm btn-primary btn-circle">
+                                    <a href="#!/detail-projet/2" class="btn btn-sm btn-primary btn-circle">
                                         <i class="fas fa-info"></i>
                                     </a>
                                     <button  class="btn btn-sm btn-success btn-circle">

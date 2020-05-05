@@ -2,7 +2,6 @@
 
 namespace App\GraphQL\Query;
 
-use App\Outil;
 use App\Projet;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
@@ -12,12 +11,13 @@ use Illuminate\Support\Arr;
 
 class ProjetPaginatedQuery extends Query
 {
-    protected $attributes = [
+	 protected $attributes = [
         'name' => 'projetspaginated'
     ];
 
     public function type(): Type
     {
+
         return GraphQL::type('projetpaginated');
     }
 
@@ -40,15 +40,13 @@ class ProjetPaginatedQuery extends Query
             'updated_at'             => ['type'  => Type::string()],
             'updated_at_fr'          => ['type'  => Type::string()],
             'deleted_at'             => ['type'  => Type::string()],
+
             'page'                => ['type' => Type::int()],
             'count'               => ['type' => Type::int()]
-
-           
         ];
         
     }
-
-    public function resolve($root, $args)
+     public function resolve($root, $args)
     {
        $query = Projet::with('niveau_projets');
 
@@ -68,10 +66,9 @@ class ProjetPaginatedQuery extends Query
        {
           $query = $query->where('etat', $args['etat']);
        }
-      
        $count = Arr::get($args, 'count', 10);
        $page  = Arr::get($args, 'page', 1);
 
        return $query->orderBy('created_at', 'desc')->paginate($count, ['*'], 'page', $page);
-    }
+      }
 }

@@ -822,7 +822,7 @@ $scope.get_Somme_daye = function ()
             + ($('#projet_user').val() ? ',user_id:' + $('#projet_user').val() : "" )
             
                 +')';
-            Init.getElementPaginated(rewriteelement, listofrequests_assoc["projet"]).then(function (data)
+            Init.getElementPaginated(rewriteelement, listofrequests_assoc["projets"]).then(function (data)
             {
                 $scope.paginationprojet = {
                     currentPage: data.metadata.current_page,
@@ -1066,11 +1066,11 @@ $scope.get_Somme_daye = function ()
          }
          else if(angular.lowercase(current.templateUrl).indexOf('list-a-confirme')!==-1)
          {
-             $scope.getelements('clients');
+             $scope.pageChanged('user');
          }
          else if(angular.lowercase(current.templateUrl).indexOf('list-projet')!==-1)
          {
-             $scope.pageChanged('projets');
+             $scope.pageChanged('projet');
          }
          else if(angular.lowercase(current.templateUrl).indexOf('list-projet-encour')!==-1)
          {
@@ -1246,7 +1246,7 @@ $scope.get_Somme_daye = function ()
             .val("");
         $('#affimg' + type).attr('src',imgupload);
 
-        console.log('factureproformaview before', $scope.factureproformaview);
+        console.log('affichage du formulaire', $scope.factureproformaview);
 
         return dfd.promise();
     }
@@ -1422,6 +1422,18 @@ $scope.get_Somme_daye = function ()
         $scope.chstat.id = id;
         $scope.chstat.statut = statut;
         $scope.chstat.type = type;
+        $scope.chstat.title = title;
+
+        emptyform('chstat');
+        $("#modal_addchstat").modal('show');
+    };
+    $scope.showModalconfirme = function(event, title = null)
+    {
+        // var id = 0;
+        // id = obj.id;
+        // $scope.chstat.id = id;
+        // $scope.chstat.statut = statut;
+        // $scope.chstat.type = type;
         $scope.chstat.title = title;
 
         emptyform('chstat');
