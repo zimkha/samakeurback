@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Outil;
+use App\Remarque;
 
 class RemarqueController extends Controller
 {
@@ -28,14 +29,37 @@ class RemarqueController extends Controller
            {
             $errors = "Veuillez renseigner le type de remarque";
            }
-           if (isset($request->demande_text)) {
+           if (empty($request->demande_text)) {
             $errors = "Veuillez renseigner vos remarques";
            }
            if (!isset($errors)) {
-               $item->type_remarque_id = $request->type_remarque;
+               $item->type_remarque_id  = $request->type_remarque;
                $item->demande_text      = $request->demande_text;
                $item->projet_id         = $request->projet;
+               if (!isset($errors) && $request->hasFile('fichier') )
+                    {
+
+                         if ($item->fichier == null)
+                         {
+
+                            $fichier = $_FILES['fichier']['name'];
+                            $fichier_tmp = $_FILES['fichier']['tmp_name'];
+                            $k = rand(100, 9999);
+                            $ext = explode('.',$fichier);
+                            $rename = config('view.uploads')['remarques']."/remarques_".$k.".".end($ext);
+                            move_uploaded_file($fichier_tmp,$rename);
+                            //$path = $request->fichier->storeAs('uploads/plans', $rename);
+                            $item->fichier = $rename;
+                         }
+                       
+                       
+                    }
+                
+               $item->save();
+                return Outil::redirectgraphql($this->queryName, "id:{$item->id}", Outil::$queries[$this->queryName]);
            }
+           throw new \Exception($errors);
+           
         });
        }
        catch(\Exception $e)

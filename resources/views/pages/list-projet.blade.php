@@ -23,35 +23,35 @@
                             <label for="other" >Tout</label>
                         </div>
                         <div class="col-md-6">
-                            <select class="form-control" id="searchoption_client" ng-model="searchoption_client" name="searchoption">
+                            <select class="form-control" id="searchoption_projet" ng-model="searchoption_projet" name="searchoption">
                                 <option value="">Rechercher dans </option>
                                 <option value="nomcomplet">Nom client</option>
                                 <option value="telephone">Téléphone</option>
                                 <option value="email">E-mail</option>
-                                <option value="email">Pays</option>
-                                <option value="email">Adresse</option>
-                                <option value="code_client">Code client</option>
+                                <option value="pays">Pays</option>
+                                <option value="adress_complet">Adresse</option>
+                                <option value="code_postal">Code postal</option>
                             </select>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="searchtexte_client" ng-model="searchtexte_client" placeholder="Texte de la recherche" ng-readonly="!searchoption_client" autocomplete="off">
+                                <input type="text" class="form-control" id="searchtexte_projet" ng-model="searchtexte_projet" placeholder="Texte de la recherche" ng-readonly="!searchoption_projet" autocomplete="off">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Entre le </label>
-                                <input type="date" class="form-control">
+                                <input type="date" id="created_at_start_listprojet" name="created_at_start" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Et le </label>
-                                <input type="date" class="form-control">
+                                <input type="date" id="created_at_end_listprojet" name="created_at_end" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-12 text-right">
-                            <button class="mt-2 btn btn-primary pull-right" ng-click="pageChanged('demande')">
+                            <button class="mt-2 btn btn-primary pull-right" ng-click="pageChanged('projet')">
                                 Filtrer <i class="fa fa-search"></i>
                             </button>
                         </div>

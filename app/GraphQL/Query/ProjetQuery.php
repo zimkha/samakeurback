@@ -4,6 +4,7 @@ namespace App\GraphQL\Query;
 
 use App\Outil;
 use App\Projet;
+use App\User;
 use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
@@ -33,8 +34,19 @@ class ProjetQuery extends Query
             'superficie'             => ['type' => Type::int()],
             'longeur'                => ['type' => Type::int()],
             'largeur'                => ['type' => Type::int()],
+            'email'                  => ['type' => Type::string()],
+            'name'                   => ['type' => Type::string()],
+            'prenom'                 => ['type' => Type::string()],
+            'pays'                   => ['type' => Type::string()],
+            'adress_complet'         => ['type' => Type::string()],
+            'telephone'              => ['type' => Type::string()],
+            'code_postal'            => ['type' => Type::string()],
+          
+          
           
             'created_at'             => ['type'  => Type::string()],
+            'created_at_start'       => ['type'  => Type::string()],
+            'created_at_end'         => ['type'  => Type::string()],
             'created_at_fr'          => ['type'  => Type::string()],
             'updated_at'             => ['type'  => Type::string()],
             'updated_at_fr'          => ['type'  => Type::string()],
@@ -65,7 +77,47 @@ class ProjetQuery extends Query
        {
           $query = $query->where('etat', $args['etat']);
        }
-      
+        if (isset($args['email']))
+       {
+          $query = $query->whereIn('user_id', User::where('email',  Outil::getOperateurLikeDB(), '%'.$args['email'].'%')->get(['id']));
+       }
+       if (isset($args['nom']))
+       {
+          $query = $query->whereIn('user_id', User::where('nom',  Outil::getOperateurLikeDB(), '%'.$args['nom'].'%')->get(['id']));
+       }
+       if (isset($args['prenom']))
+       {
+          $query = $query->whereIn('user_id', User::where('prenom',  Outil::getOperateurLikeDB(), '%'.$args['prenom'].'%')->get(['id']));
+       }
+       if (isset($args['pays']))
+       {
+          $query = $query->whereIn('user_id', User::where('pays',  Outil::getOperateurLikeDB(), '%'.$args['pays'].'%')->get(['id']));
+       }
+       if (isset($args['adress_complet']))
+       {
+          $query = $query->whereIn('user_id', User::where('adress_complet',  Outil::getOperateurLikeDB(), '%'.$args['adress_complet'].'%')->get(['id']));
+       }
+        if (isset($args['telephone']))
+       {
+          $query = $query->whereIn('user_id', User::where('telephone',  Outil::getOperateurLikeDB(), '%'.$args['telephone'].'%')->get(['id']));
+       }
+        if (isset($args['code_postal']))
+       {
+          $query = $query->whereIn('user_id', User::where('code_postal',  Outil::getOperateurLikeDB(), '%'.$args['code_postal'].'%')->get(['id']));
+       }
+       if (isset($args['created_at_start']) && isset($args['created_at_end']))
+         {
+             $from = $args['created_at_start'];
+             $to = $args['created_at_end'];
+
+             // Eventuellement la date fr
+             $from = (strpos($from, '/') !== false) ? Carbon::createFromFormat('d/m/Y', $from)->format('Y-m-d') : $from;
+             $to = (strpos($to, '/') !== false) ? Carbon::createFromFormat('d/m/Y', $to)->format('Y-m-d') : $to;
+
+             $from = date($from.' 00:00:00');
+             $to = date($to.' 23:59:59');
+             $query->whereBetween('created_at', array($from, $to));
+         }
        $query = $query->get();
        return $query->map(function (Projet $item)
        {

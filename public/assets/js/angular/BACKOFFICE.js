@@ -452,21 +452,23 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
             "niveauprojets"                 :  ["id",""],
 
             "projets"                       :  [
-                "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage", 
-                ",niveau_projets{id,piece,bureau,toillette,chambre,salon,cuisine}"
+                "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adress_complet,code_postal}", 
+                ",niveau_projets{id,piece,bureau,toillette,chambre,salon,cuisine},remarques{id,demande_text,projet_id,type_remarque_id}"
             ],
 
             "clients"                       :  ["id",""],
 
             "typeremarques"                 : ["id",""],
 
-            "remarques"                     : ["id",""],
+            "remarques"                     : [
+            "id,demande_text,projet_id,type_remarque_id",""],
 
             'permissions'                   : ['id,name,display_name,guard_name', ""],
 
             "roles"                         : ["id,name,guard_name,permissions{id,name,display_name,guard_name}", ""],
 
-            "users"                         : ["id,name,email,active,password,image,roles{id,name,guard_name,permissions{id,name,display_name,guard_name}}", ",last_login,last_login_ip,created_at_fr"
+            "users"                         : [
+            "id,nom,prenom,adress_complet,pays,code_postal,is_client,telephone,name,email,active,password,image,roles{id,name,guard_name,permissions{id,name,display_name,guard_name}}", ",last_login,last_login_ip,created_at_fr"
         , ""],
 
             "dashboards"                    : ["clients,assurances,ventes,fournisseurs"],
@@ -819,10 +821,14 @@ $scope.get_Somme_daye = function ()
         {
             rewriteelement = 'projetspaginated(page:'+ $scope.paginationprojet.currentPage +',count:'+ $scope.paginationprojet.entryLimit
             + ($scope.projetview ? ',projet_id:' + $scope.projetview.id : "" )
+            + ($('[name="etat_projet"]:checked').attr('data-value') ? ',etat:' + '"' + $('[name="etat_ projet"]:checked').attr('data-value') + '"' : "" )
+            + ($('#searchtexte_projet').val() ? (',' + $('#searchoption_projet').val() + ':"' + $('#searchtexte_projet').val() + '"') : "" )
             + ($('#projet_user').val() ? ',user_id:' + $('#projet_user').val() : "" )
-            
+            + ($('#created_at_start_listprojet').val() ? ',created_at_start:' + '"' + $('#created_at_start_listprojet').val() + '"' : "" )
+            + ($('#created_at_end_listprojet').val() ? ',created_at_end:' + '"' + $('#created_at_end_listprojet').val() + '"' : "" )
+            + ($scope.onlyEnCours ? ',tout:true' : "" )
                 +')';
-            Init.getElementPaginated(rewriteelement, listofrequests_assoc["projets"]).then(function (data)
+            Init.getElementPaginated(rewriteelement, listofrequests_assoc["projets"][0]).then(function (data)
             {
                 $scope.paginationprojet = {
                     currentPage: data.metadata.current_page,
@@ -1071,6 +1077,7 @@ $scope.get_Somme_daye = function ()
          else if(angular.lowercase(current.templateUrl).indexOf('list-projet')!==-1)
          {
              $scope.pageChanged('projet');
+             $scope.getelements('remarques');
          }
          else if(angular.lowercase(current.templateUrl).indexOf('list-projet-encour')!==-1)
          {

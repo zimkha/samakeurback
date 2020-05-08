@@ -848,6 +848,7 @@
       'users' => 'uploads/users',
       'plans' => 'uploads/plans',
       'projets' => 'uploads/projets',
+      'remarques' => 'uploads/remarques',
     ),
     'compiled' => 'C:\\laragon\\www\\samakeurback\\storage\\framework\\views',
   ),

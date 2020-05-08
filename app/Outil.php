@@ -37,13 +37,13 @@ class Outil extends Model
 
         "niveauprojets"                 => "id",
 
-        "projets"                       => "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,niveau_projets{id,piece,bureau,toillette,chambre,salon,cuisine}",
+        "projets"                       => "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,niveau_projets{id,piece,bureau,toillette,chambre,salon,cuisine},user_id,user{id,name,",
         
-        "typeremarques"                 => "id",
+        "typeremarques"                 => "id,name",
 
-        "remarques"                     => "id",
+        "remarques"                     => "id,type_remarque_id,demande_text,projet_id",
 
-        "users"                         => "id,name,email,active,password,image,roles{id,name,guard_name,permissions{id,name,display_name,guard_name}},last_login,last_login_ip,created_at_fr",
+        "users"                         => "id,name,email,active,password,image,nom,prenom,adress_complet,pays,code_postal,is_client,telephone,roles{id,name,guard_name,permissions{id,name,display_name,guard_name}},last_login,last_login_ip,created_at_fr",
 
         "roles"                         => "id,name,guard_name,permissions{id,name,display_name,guard_name}",
 
