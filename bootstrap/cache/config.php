@@ -4,13 +4,13 @@
     'name' => 'Laravel',
     'env' => 'local',
     'debug' => true,
-    'url' => 'http://localhost/samakeurback/public/',
+    'url' => 'http://localhost',
     'asset_url' => NULL,
     'timezone' => 'UTC',
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:cU1s9b45DLf7CPDqstAcd+ugkxBV5nZadEg6RfbKu+I=',
+    'key' => '',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -184,7 +184,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\laragon\\www\\samakeurback\\storage\\framework/cache/data',
+        'path' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -403,7 +403,7 @@
     ),
     'temporary_files' => 
     array (
-      'local_path' => 'C:\\Users\\Usr\\AppData\\Local\\Temp',
+      'local_path' => 'C:\\Users\\mou\\AppData\\Local\\Temp',
       'remote_disk' => NULL,
       'remote_prefix' => NULL,
     ),
@@ -417,13 +417,13 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\laragon\\www\\samakeurback\\storage\\app',
+        'root' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\laragon\\www\\samakeurback\\storage\\app/public',
-        'url' => 'http://localhost/samakeurback/public//storage',
+        'root' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\app/public',
+        'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
       's3' => 
@@ -438,7 +438,7 @@
     ),
     'links' => 
     array (
-      'C:\\laragon\\www\\samakeurback\\public\\storage' => 'C:\\laragon\\www\\samakeurback\\storage\\app/public',
+      'C:\\xampp\\htdocs\\samakeurback\\public\\storage' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\app/public',
     ),
   ),
   'graphql' => 
@@ -572,13 +572,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\laragon\\www\\samakeurback\\storage\\logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\laragon\\www\\samakeurback\\storage\\logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -628,7 +628,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\laragon\\www\\samakeurback\\storage\\logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -684,7 +684,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\laragon\\www\\samakeurback\\resources\\views/vendor/mail',
+        0 => 'C:\\xampp\\htdocs\\samakeurback\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -787,7 +787,7 @@
   ),
   'sentry' => 
   array (
-    'dsn' => 'https://3e93fad967de4d009bddb43cb86faecd@o287105.ingest.sentry.io/5220055',
+    'dsn' => NULL,
     'breadcrumbs' => 
     array (
       'logs' => true,
@@ -821,7 +821,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\laragon\\www\\samakeurback\\storage\\framework/sessions',
+    'files' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -841,7 +841,7 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\laragon\\www\\samakeurback\\resources\\views',
+      0 => 'C:\\xampp\\htdocs\\samakeurback\\resources\\views',
     ),
     'uploads' => 
     array (
@@ -850,7 +850,7 @@
       'projets' => 'uploads/projets',
       'remarques' => 'uploads/remarques',
     ),
-    'compiled' => 'C:\\laragon\\www\\samakeurback\\storage\\framework\\views',
+    'compiled' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\framework\\views',
   ),
   'flare' => 
   array (
