@@ -636,7 +636,11 @@ $scope.get_Somme_daye = function ()
         $scope.urlWrite = urlWrite ? "?" + urlWrite : urlWrite;
     };
 
-
+    $scope.addNiveauPanier = function(object)
+    {
+         
+        console.log("je suis la");
+    };
     $scope.getelements = function (type, addData=null, forModal = false, nullableAddToReq = false)
     {
         rewriteType = type;
@@ -900,7 +904,14 @@ $scope.get_Somme_daye = function ()
 
     $scope.OneBuffetAlReadySelected = true;
     // Permet d'ajouter une reservation à la liste des reservation d'une facture
+    $scope.list_niveau_plan = [];
     $scope.menu_consommations = [];
+    $scope.addToPlan = function($event, item)
+    {
+        let add = true;
+        console.log(item);
+        $scope.panier.push(item);
+    };
     $scope.addToMenu = function (event, itemId)
     {
         $scope.OneBuffetAlReadySelected = true;
@@ -1562,6 +1573,7 @@ $scope.get_Somme_daye = function ()
 
         if (form.validate() && continuer)
         {
+           
             form.parent().parent().blockUI_start();
             Init.saveElementAjax(type, send_data).then(function(data)
             {
@@ -1629,6 +1641,19 @@ $scope.get_Somme_daye = function ()
                                     }
                                 });
                             }
+                        }
+                    }
+                    else if (type.indexOf('plan')!==-1)
+                    {
+                        send_data.append("data", JSON.stringify($scope.panier));
+                        if ($scope.panier.length==0)
+                        {
+                            iziToast.error({
+                                title: "",
+                                message: "Il faut au moins un niveau pour un plan",
+                                position: 'topRight'
+                            });
+                            continuer = false;
                         }
                     }
                     else if (type.indexOf('role')!==-1)
@@ -2052,6 +2077,151 @@ $scope.get_Somme_daye = function ()
         //console.log('ici', response);
 
         return response;
+    };
+    $scope.addInCommande = function(event, from='plan', item, action=1)
+    {
+        console.log('from', from);
+        var add = true;
+        $.each($scope.panier, function (key, value)
+        {
+            console.log('ici panier', from);
+            if (Number(value.produit_id) === Number(item.id))
+            {
+                console.log('value', value);
+                if (action==0)
+                {
+                    $scope.panier.splice(key,1);
+                }
+                else
+                {
+                    if (from.indexOf('commande')!==-1)
+                    {
+                        $scope.panier[key].qte_commande+=action;
+                        if ($scope.panier[key].qte_commande===0)
+                        {
+                            $scope.panier.splice(key,1);
+                        }
+                    }
+                    else if (from.indexOf('menu')!==-1)
+                    {
+                        $scope.panier[key].qte_produit+=action;
+                        if ($scope.panier[key].qte_produit===0)
+                        {
+                            $scope.panier.splice(key,1);
+                        }
+                    }
+                    else if (from.indexOf('plan')!==-1)
+                    {
+                        console.log($scope.panier);
+                        $scope.panier[key].nb_click+=action;
+                        if ($scope.panier[key].nb_click===0)
+                        {
+                            $scope.panier.splice(key,1);
+                        }
+                    }
+                    else if (from.indexOf('projet')!==-1)
+                    {
+                        $scope.panier[key].nb_click+=action;
+                        if ($scope.panier[key].nb_click===0)
+                        {
+                            $scope.panier.splice(key,1);
+                        }
+                    }
+                    else if (from.indexOf('inventaire')!==-1)
+                    {
+                        $scope.panier[key].qte_inventaire+=action;
+                        if ($scope.panier[key].qte_inventaire===0)
+                        {
+                            $scope.panier.splice(key,1);
+                        }
+                    }
+                    else if (from.indexOf('livreur')!==-1)
+                    {
+                        $scope.panier[key].quantity+=action;
+                        if ($scope.panier[key].quantity===0)
+                        {
+                            $scope.panier.splice(key,1);
+                        }
+                    }
+                    else if (from.indexOf('minuterie')!==-1)
+                    {
+                        $scope.panier[key].qte+=action;
+                        if ($scope.panier[key].qte===0)
+                        {
+                            $scope.panier.splice(key,1);
+                        }
+                    }
+                    else if (from.indexOf('vente')!==-1)
+                    {
+                        $scope.panier[key].qte_vendue+=action;
+                        if ($scope.panier[key].qte_vendue===0)
+                        {
+                            $scope.panier.splice(key,1);
+                        }
+                    }
+                }
+                add = false;
+                //}
+            }
+            return add;
+        });
+        if (add)
+        {
+            if (from.indexOf('plan')!==-1)
+            {
+                console.log(panier);
+                $scope.panier.push({"id":item.id, "produit_id":item.id, "name":item.name, "qte_commande" : 1, "offert" : 0,"options" :"", "prix":item.prix});
+
+            }
+            else if (from.indexOf('projet')!==-1)
+            {
+                $scope.panier.push({"id":item.id,"produit_id":item.id, "name":item.name, "prix":item.prix});
+            }
+            else if (from.indexOf('menu')!==-1)
+            {
+                $scope.panier.push({"id":item.id, "produit_id":item.id, "qte_produit" : 1, "name":item.name});
+            }
+            else if (from.indexOf('inventaire')!==-1)
+            {
+                $scope.panier.push({"id":item.id, "produit_id":item.id, "designation":item.designation, "current_quantity":item.current_quantity, "qte_inventaire" : item.current_quantity});
+            }
+            else if (from.indexOf('livreur')!==-1)
+            {
+                $scope.panier.push({"id":item.id, "produit_id":item.id, "designation":item.designation, "tva":item.with_tva, "quantity" : 1, "prix_cession":item.prix_cession});
+            }
+            else if (from.indexOf('fusion')!==-1)
+            {
+                $scope.panier.push({"id":item.id, "produit_id":item.id, "designation":item.designation, "prix_cession":item.prix_cession});
+                console.log($scope.panier);
+            }
+            else if (from.indexOf('minuterie')!==-1)
+            {
+                $scope.panier.push({"id":item.id,"produit_id":item.id, "designation":item.designation, "qte" : 1});
+            }
+            else if (from.indexOf('vente')!==-1)
+            {
+                $scope.panier.push({"id":item.id,"produit_id":item.id, "designation":item.designation, "qte_vendue" : 1, "tva" : item.with_tva, "prix_unitaire":item.prix_public});
+            }
+        }
+        if (from.indexOf('teste')!==-1)
+            {
+                $scope.panier.push({"id":item.id, "produit_id":item.id, "name":item.name, "qte_commande" : 1, "offert" : 0,"options" :"", "prix":item.prix});
+                $scope.calculateTotal('commande');
+
+            }
+        if (from.indexOf('commande')!==-1)
+        {
+            $scope.calculateTotal('commande');
+            $scope.setAdresseAndZone('commande');
+        }
+        else if (from.indexOf('vente')!==-1)
+        {
+            $scope.calculateTotal('vente');
+        }
+        else if (from.indexOf('livreur')!==-1)
+        {
+            $scope.calculateTotal('livreur');
+        }
     };
     $scope.getEtatStock = function()
     {
