@@ -28,6 +28,8 @@ Route::post('/projet', 'ProjetController@save');
 Route::post('/user', 'UserController@save');
 Route::post('/plan', 'PlanController@save');
 Route::post('/remarque', 'RemarqueController@save');
+Route::post('/resave', 'UserController@resave');
+Route::post('/statut', 'UserController@statut');
 
 // les actions de suppressions
 Route::delete('/projet/{id}', 'ProjetController@delete');

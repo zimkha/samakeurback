@@ -35,7 +35,7 @@ class UserPaginatedQuery extends Query
                 'prenom'                       => ['type' => Type::string(), 'description' => ''],
                 'telephone'                    => ['type' => Type::string(), 'description' => ''],
                 'pays'                         => ['type' => Type::string(), 'description' => ''],
-                'adress_complet'               => ['type' => Type::string(), 'description' => ''],
+                'adresse_complet'               => ['type' => Type::string(), 'description' => ''],
                 'code_postal'                  => ['type' => Type::string(), 'description' => ''],
                 'page'                         => ['type' => Type::int()],
                 'count'                        => ['type' => Type::int()],

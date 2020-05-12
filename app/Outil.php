@@ -43,7 +43,7 @@ class Outil extends Model
 
         "remarques"                     => "id,type_remarque_id,demande_text,projet_id",
 
-        "users"                         => "id,name,email,active,password,image,nom,prenom,adress_complet,pays,code_postal,is_client,telephone,roles{id,name,guard_name,permissions{id,name,display_name,guard_name}},last_login,last_login_ip,created_at_fr",
+        "users"                         => "id,name,email,active,password,image,nom,prenom,adresse_complet,pays,code_postal,is_client,telephone,roles{id,name,guard_name,permissions{id,name,display_name,guard_name}},last_login,last_login_ip,created_at_fr",
 
         "roles"                         => "id,name,guard_name,permissions{id,name,display_name,guard_name}",
 
