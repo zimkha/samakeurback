@@ -90,16 +90,16 @@ class PlanController extends Controller
                     if (isset($datum['piece']) && $datum['piece'] <= 0) {
                         $errors = "Veuillez verifier le nombre de pieces  à la ligne n°".$n;
                     }
-                    if (isset($datum['chambre']) && $datum['chambre'] <= 0) {
+                    if (isset($datum['chambre']) && $datum['chambre'] < 0) {
                         $errors = "Veuillez verifier le nombre de chambre à la ligne n°".$n;
                     }
-                    if (isset($datum['salon']) && $datum['salon'] <= 0) {
+                    if (isset($datum['salon']) && $datum['salon'] < 0) {
                         $errors = "Veuillez verifier le nombre de salon  à la ligne n°".$n;
                     }
-                    if (isset($datum['bureau']) && $datum['bureau'] <= 0) {
+                    if (isset($datum['bureau']) && $datum['bureau'] < 0) {
                         $errors = "Veuillez verifier le nombre de bureau  à la ligne n°".$n;
                     }
-                    if (isset($datum['toillette']) && $datum['toillette'] <= 0) {
+                    if (isset($datum['toillette']) && $datum['toillette'] < 0) {
                         $errors = "Veuillez verifier le nombre de toillettes  à la ligne n°".$n;
                     }
                     $niveau->piece          = $datum['piece'];

@@ -29,7 +29,7 @@ class Outil extends Model
     }
 
     public static $queries = array(
-        "plans"                         => "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,niveau_plans{id,piece,bureau,toillette,chambre,salon,cuisine}",
+        "plans"                         => "id,fichier,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,niveau_plans{id,piece,bureau,toillette,chambre,salon,cuisine}",
 
         "planprojets"                   => "id,plan_id,projet_id,etat_active,message,etat,plan{id}",
 
@@ -37,7 +37,7 @@ class Outil extends Model
 
         "niveauprojets"                 => "id",
 
-        "projets"                       => "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,niveau_projets{id,piece,bureau,toillette,chambre,salon,cuisine},user_id,user{id,name,",
+        "projets"                       => "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,niveau_projets{id,piece,bureau,toillette,chambre,salon,cuisine},user_id,user{id,name},plan_projets{id,plan_id,plan{id,fichier,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage}}",
         
         "typeremarques"                 => "id,name",
 

@@ -134,7 +134,7 @@ class ProjetQuery extends Query
             'fichier'                => $item->fichier,
             'etat'                   => $item->etat,
             'niveau_projets'         => $item->niveau_projets,
-            'planprojets'            => $item->planprojets,
+            'plan_projets'            => $item->plan_projets,
             'created_at'             => $item->created_at,
         ];
       });

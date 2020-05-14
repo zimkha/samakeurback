@@ -27,7 +27,8 @@ class PlanQuery extends Query
             'superficie'             => ['type' => Type::int()],
             'longeur'                => ['type' => Type::int()],
             'largeur'                => ['type' => Type::int()],
-
+            'fichier'                => ['type' => Type::string()],
+            'piscine'                => ['type' => Type::int()],
             'nb_pieces'                => ['type' => Type::int()],
             'nb_chambre'                => ['type' => Type::int()],
             'nb_toillette'                => ['type' => Type::int()],
@@ -84,8 +85,9 @@ class PlanQuery extends Query
             'longeur'                => $item->longeur,
             'largeur'                => $item->largeur,
             'piscine'                => $item->piscine,
+            'fichier'                => $item->fichier,
             'niveau_plans'           => $item->niveau_plans,
-            'planprojets'            => $item->planprojets,
+            'plan_projets'            => $item->plan_projets,
             'created_at'             => $item->created_at,
         ];
       });

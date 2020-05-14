@@ -27,7 +27,8 @@ class PlanPaginatedQuery extends Query
             'superficie'             => ['type' => Type::int()],
             'longeur'                => ['type' => Type::int()],
             'largeur'                => ['type' => Type::int()],
-          
+            'fichier'                => ['type' => Type::string()],
+            'piscine'                => ['type' => Type::int()],
             'created_at'             => [ 'type' => Type::string()],
             'created_at_fr'          => [ 'type' => Type::string()],
             'updated_at'             => [ 'type' => Type::string()],
