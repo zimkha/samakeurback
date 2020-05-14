@@ -156,6 +156,14 @@ class ProjetController extends Controller
                 {
                     $errors = "données manquante pour cette opération, veuillez contacter le service technique";
                 }
+                if(isset($request->projet))
+                {
+                    $count = PlanProjet::where('projet_id', $request->projet)->count();
+                    if($count == 3)
+                    {
+                        throw new \Exception("Impossible d'effectuer cette action, le nombre de soumissions de plan est atteint");
+                    }
+                }
                 if(isset($request->plan))
                 {
                     $plan = Plan::find($request->plan);
@@ -272,23 +280,31 @@ class ProjetController extends Controller
     {
         try
         {
+            // dd("je suis la ");
             $errors = null;
             $data = 0;
             $item = PlanProjet::find($request->plan_projet);
             if(isset($item))
             {
                 $projet = Projet::find($item->projet_id);
+
+                //dd($projet);
                 if(isset($projet))
                 {
+                   
                     $plan_active = PlanProjet::where('active', true)->where('projet_id', $projet->id)->get();
-                    if(isset($plan_projet) && count($plan_projet) > 0)
+                  
+                    if(isset($plan_active) && count($plan_active) > 0)
                     {
-                        foreach($plan_projet as $key)
+                      //  dd("je suis la");
+                        foreach($plan_active as $key)
                         {
+                            //dd($key);
                             $key->active = 0;
                             $key->save();
                         }
                     }
+                
                 }
                 else
                 {
@@ -298,6 +314,11 @@ class ProjetController extends Controller
             }
             if(!isset($errors))
             {
+                if(isset($request->message))
+                {
+                    $item->message = $request->message;
+                }
+                $item->active = 1;
                 $item->save();
                 return Outil::redirectgraphql($this->queryName, "id:{$item->projet_id}", Outil::$queries[$this->queryName]);
             }
