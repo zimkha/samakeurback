@@ -403,14 +403,14 @@ app.config(function($routeProvider) {
         .when("/list-a-confirme", {
             templateUrl : "page/list-a-confirme",
         })
-        .when("/list-demande", {
-            templateUrl : "page/list-demande",
+        .when("/list-projet", {
+            templateUrl : "page/list-projet",
         })
-        .when("/detail-demande/:itemId", {
-            templateUrl : "page/detail-demande",
+        .when("/detail-projet/:itemId", {
+            templateUrl : "page/detail-projet",
         })
-        .when("/list-demande-encour", {
-            templateUrl : "page/list-demande-encour",
+        .when("/list-projet-encour", {
+            templateUrl : "page/list-projet-encour",
         })
         .when("/list-plan", {
             templateUrl : "page/list-plan",
@@ -440,7 +440,10 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
 
     var listofrequests_assoc =
         {
-            "plans"                         : ["id,superficie,longeur,largeur,niveauplans{id,pieces,chambre,salon,cuisine}",""],
+            "plans"                         : [
+                                                            "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage",
+                                                            ",niveau_plans{id,piece,bureau,toillette,chambre,salon,cuisine}"]
+                                                            ,
 
             "planprojets"                   : ["id,plan_id,projet_id,etat_active,message,etat,plan{id}",""],
 
@@ -448,19 +451,25 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
 
             "niveauprojets"                 :  ["id",""],
 
-            "projets"                       :  ["id",""],
+            "projets"                       :  [
+                "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adress_complet,code_postal}", 
+                ",niveau_projets{id,piece,bureau,toillette,chambre,salon,cuisine},remarques{id,demande_text,projet_id,type_remarque_id}"
+            ],
 
             "clients"                       :  ["id",""],
 
             "typeremarques"                 : ["id",""],
 
-            "remarques"                     : ["id",""],
+            "remarques"                     : [
+            "id,demande_text,projet_id,type_remarque_id",""],
 
             'permissions'                   : ['id,name,display_name,guard_name', ""],
 
             "roles"                         : ["id,name,guard_name,permissions{id,name,display_name,guard_name}", ""],
 
-            "users"                         : ["id,name,email,active,password,image,roles{id,name,guard_name,permissions{id,name,display_name,guard_name}}", ",last_login,last_login_ip,created_at_fr,ventes{id},recouvrements{id},clotures{id},versements{id},bon_commandes{id},bon_livraisons{id},facture_proformas{id},retours{id},entree_stocks{id},sortie_stocks{id}"],
+            "users"                         : [
+            "id,nom,prenom,adress_complet,pays,code_postal,is_client,telephone,name,email,active,password,image,roles{id,name,guard_name,permissions{id,name,display_name,guard_name}}", ",last_login,last_login_ip,created_at_fr"
+        , ""],
 
             "dashboards"                    : ["clients,assurances,ventes,fournisseurs"],
 
@@ -554,6 +563,12 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
         entryLimit: 10,
         totalItems: 0
     };
+    $scope.paginationprojet = {
+        currentPage: 1,
+        maxSize: 10,
+        entryLimit: 10,
+        totalItems: 0
+    };
     $scope.paginationcli = {
         currentPage: 1,
         maxSize: 10,
@@ -621,7 +636,11 @@ $scope.get_Somme_daye = function ()
         $scope.urlWrite = urlWrite ? "?" + urlWrite : urlWrite;
     };
 
-
+    $scope.addNiveauPanier = function(object)
+    {
+         
+        console.log("je suis la");
+    };
     $scope.getelements = function (type, addData=null, forModal = false, nullableAddToReq = false)
     {
         rewriteType = type;
@@ -744,6 +763,11 @@ $scope.get_Somme_daye = function ()
         {
             rewriteelement = 'planspaginated(page:'+ $scope.paginationplan.currentPage +',count:'+ $scope.paginationplan.entryLimit
                 + ($scope.planview ? ',plan_id:' + $scope.planview.id : "" )
+                + ($('#plan_piece').val() ? ',nb_piece:' + $('#plan_piece').val() : "" )
+                + ($('#plan_piscine').val() ? ',piscine:' + $('#plan_piscine').val() : "" )
+                + ($('#plan_salon').val() ? ',salon:' + $('#plan_salon').val() : "" )
+                + ($('#plan_garage').val() ? ',garage:' + $('#plan_garage').val() : "" )
+
                 + ($('#searchtexte_fournisseur').val() ? (',' + $('#searchoption_fournisseur').val() + ':"' + $('#searchtexte_fournisseur').val() + '"') : "" )
                 +')';
             $scope.requetePlan = ""
@@ -753,7 +777,7 @@ $scope.get_Somme_daye = function ()
             Init.getElementPaginated(rewriteelement, listofrequests_assoc["plans"]).then(function (data)
             {
                 // blockUI_stop_all('#section_listeclients');
-                console.log(data);
+                console.log(data, "je suis la");
                 // pagination controls
                 $scope.paginationplan = {
                     currentPage: data.metadata.current_page,
@@ -771,28 +795,56 @@ $scope.get_Somme_daye = function ()
         }
         else if ( currentpage.indexOf('client')!==-1 )
         {
-            rewriteelement = 'clientspaginated(page:'+ $scope.paginationcli.currentPage +',count:'+ $scope.paginationcli.entryLimit
+            rewriteelement = 'userspaginated(page:'+ $scope.paginationuser.currentPage +',count:'+ $scope.paginationuser.entryLimit
+           
                 + ($('#searchtexte_client').val() ? (',' + $('#searchoption_client').val() + ':"' + $('#searchtexte_client').val() + '"') : "" )
                 + ($('#typeclient_listclient').val() ? ',type_client_id:' + $('#typeclient_listclient').val() : "" )
                 + ($('#zone_listclient').val() ? ',zone_livraison_id:' + $('#zone_listclient').val() : "" )
                 +')';
             // blockUI_start_all('#section_listeclients');
-            Init.getElementPaginated(rewriteelement, listofrequests_assoc["clients"]).then(function (data)
+            Init.getElementPaginated(rewriteelement, listofrequests_assoc["users"]).then(function (data)
             {
                 // blockUI_stop_all('#section_listeclients');
                 console.log(data);
                 // pagination controls
-                $scope.paginationcli = {
+                $scope.paginationuser = {
                     currentPage: data.metadata.current_page,
                     maxSize: 10,
-                    entryLimit: $scope.paginationcli.entryLimit,
+                    entryLimit: $scope.paginationuser.entryLimit,
                     totalItems: data.metadata.total
                 };
                 // $scope.noOfPages_produit = data.metadata.last_page;
-                $scope.clients = data.data;
+                $scope.users = data.data;
             },function (msg)
             {
                 // blockUI_stop_all('#section_listeclients');
+                toastr.error(msg);
+            });
+        }
+        else if ( currentpage.indexOf('projet')!==-1 )
+        {
+            rewriteelement = 'projetspaginated(page:'+ $scope.paginationprojet.currentPage +',count:'+ $scope.paginationprojet.entryLimit
+            + ($scope.projetview ? ',projet_id:' + $scope.projetview.id : "" )
+            + ($('[name="etat_projet"]:checked').attr('data-value') ? ',etat:' + '"' + $('[name="etat_ projet"]:checked').attr('data-value') + '"' : "" )
+            + ($('#searchtexte_projet').val() ? (',' + $('#searchoption_projet').val() + ':"' + $('#searchtexte_projet').val() + '"') : "" )
+            + ($('#projet_user').val() ? ',user_id:' + $('#projet_user').val() : "" )
+            + ($('#created_at_start_listprojet').val() ? ',created_at_start:' + '"' + $('#created_at_start_listprojet').val() + '"' : "" )
+            + ($('#created_at_end_listprojet').val() ? ',created_at_end:' + '"' + $('#created_at_end_listprojet').val() + '"' : "" )
+            + ($scope.onlyEnCours ? ',tout:true' : "" )
+                +')';
+            Init.getElementPaginated(rewriteelement, listofrequests_assoc["projets"][0]).then(function (data)
+            {
+                $scope.paginationprojet = {
+                    currentPage: data.metadata.current_page,
+                    maxSize: 10,
+                    entryLimit: $scope.paginationprojet.entryLimit,
+                    totalItems: data.metadata.total
+                };
+               
+                $scope.projets = data.data;
+            },function (msg)
+            {
+               
                 toastr.error(msg);
             });
         }
@@ -852,7 +904,14 @@ $scope.get_Somme_daye = function ()
 
     $scope.OneBuffetAlReadySelected = true;
     // Permet d'ajouter une reservation à la liste des reservation d'une facture
+    $scope.list_niveau_plan = [];
     $scope.menu_consommations = [];
+    $scope.addToPlan = function($event, item)
+    {
+        let add = true;
+        console.log(item);
+        $scope.panier.push(item);
+    };
     $scope.addToMenu = function (event, itemId)
     {
         $scope.OneBuffetAlReadySelected = true;
@@ -965,6 +1024,7 @@ $scope.get_Somme_daye = function ()
         $scope.currenttemplateurl = current.templateUrl;
         /******* Réintialisation de certaines valeurs *******/
         $scope.planview = null;
+        $scope.projetview = null;
 
 
         $scope.pageUpload = false;
@@ -1023,83 +1083,85 @@ $scope.get_Somme_daye = function ()
          }
          else if(angular.lowercase(current.templateUrl).indexOf('list-a-confirme')!==-1)
          {
-             $scope.getelements('clients');
+             $scope.pageChanged('user');
          }
-         else if(angular.lowercase(current.templateUrl).indexOf('list-demande')!==-1)
+         else if(angular.lowercase(current.templateUrl).indexOf('list-projet')!==-1)
          {
-             $scope.getelements('users');
+             $scope.pageChanged('projet');
+             $scope.getelements('remarques');
          }
-         else if(angular.lowercase(current.templateUrl).indexOf('list-demande-encour')!==-1)
+         else if(angular.lowercase(current.templateUrl).indexOf('list-projet-encour')!==-1)
          {
-             $scope.getelements('users');
-         }
+            $scope.pageChanged('projet');
+        }
 
          else if(angular.lowercase(current.templateUrl).indexOf('list-client')!==-1)
          {
+            $scope.pageChanged('user');
 
-            $scope.clientview = null;
-            if(current.params.itemId)
-            {
-                var idElmtclient = current.params.itemId;
-                setTimeout(function ()
-                {
-                    Init.getStatElement('client', idElmtclient);
-                },1000);
+        //     $scope.clientview = null;
+        //     if(current.params.itemId)
+        //     {
+        //         var idElmtclient = current.params.itemId;
+        //         setTimeout(function ()
+        //         {
+        //             Init.getStatElement('client', idElmtclient);
+        //         },1000);
 
-                var req = "clients";
-                $scope.clientview = {};
-                rewriteReq = req + "(id:" + current.params.itemId + ")";
-                Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
-                {
-                    $scope.clientview = data[0];
-                    $scope.getelements("typeclients");
+        //         var req = "clients";
+        //         $scope.clientview = {};
+        //         rewriteReq = req + "(id:" + current.params.itemId + ")";
+        //         Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
+        //         {
+        //             $scope.clientview = data[0];
+        //             $scope.getelements("typeclients");
 
 
-                },function (msg)
-                {
-                    toastr.error(msg);
-                });
-            }
-            else
-            {
-                $scope.getelements("typeclients");
-                $scope.pageChanged('client');
-            }
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('list-profil')!==-1)
-        {
-            $scope.getelements('permissions');
-            $scope.getelements('roles');
-            //$scope.pageChanged('role');
-        }
-        else if(angular.lowercase(current.templateUrl).indexOf('user')!==-1)
-        {
-            $scope.userview = null;
-            if(current.params.itemId)
-            {
-                var req = "users";
-                $scope.userview = {};
-                rewriteReq = req + "(id:" + current.params.itemId + ")";
-                Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
-                {
-                    $scope.userview = data[0];
-                    changeStatusForm('detailuser',true);
+        //         },function (msg)
+        //         {
+        //             toastr.error(msg);
+        //         });
+        //     }
+        //     else
+        //     {
+        //         $scope.getelements("typeclients");
+        //         $scope.pageChanged('client');
+        //     }
+        // }
+        // else if(angular.lowercase(current.templateUrl).indexOf('list-profil')!==-1)
+        // {
+        //     $scope.getelements('permissions');
+        //     $scope.getelements('roles');
+        //     //$scope.pageChanged('role');
+        // }
+        // else if(angular.lowercase(current.templateUrl).indexOf('user')!==-1)
+        // {
+        //     $scope.userview = null;
+        //     if(current.params.itemId)
+        //     {
+        //         var req = "users";
+        //         $scope.userview = {};
+        //         rewriteReq = req + "(id:" + current.params.itemId + ")";
+        //         Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
+        //         {
+        //             $scope.userview = data[0];
+        //             changeStatusForm('detailuser',true);
 
-                    console.log($scope.userview );
-                    console.log('userId', current.params.itemId);
+        //             console.log($scope.userview );
+        //             console.log('userId', current.params.itemId);
 
-                    $scope.pageChanged('users');
-                },function (msg)
-                {
-                    toastr.error(msg);
-                });
-            }
-            else
-            {
-                $scope.getelements('roles');
-                $scope.pageChanged('user');
-            }
-        }
+        //             $scope.pageChanged('users');
+        //         },function (msg)
+        //         {
+        //             toastr.error(msg);
+        //         });
+        //     }
+        //     else
+        //     {
+        //         $scope.getelements('roles');
+        //        
+        //     }
+         }
     });
 
 
@@ -1202,7 +1264,7 @@ $scope.get_Somme_daye = function ()
             .val("");
         $('#affimg' + type).attr('src',imgupload);
 
-        console.log('factureproformaview before', $scope.factureproformaview);
+        console.log('affichage du formulaire', $scope.factureproformaview);
 
         return dfd.promise();
     }
@@ -1383,6 +1445,18 @@ $scope.get_Somme_daye = function ()
         emptyform('chstat');
         $("#modal_addchstat").modal('show');
     };
+    $scope.showModalconfirme = function(event, title = null)
+    {
+        // var id = 0;
+        // id = obj.id;
+        // $scope.chstat.id = id;
+        // $scope.chstat.statut = statut;
+        // $scope.chstat.type = type;
+        $scope.chstat.title = title;
+
+        emptyform('chstat');
+        $("#modal_addchstat").modal('show');
+    };
 
 
     //TODO: définir l\'etat d'une reservation
@@ -1499,6 +1573,7 @@ $scope.get_Somme_daye = function ()
 
         if (form.validate() && continuer)
         {
+           
             form.parent().parent().blockUI_start();
             Init.saveElementAjax(type, send_data).then(function(data)
             {
@@ -1566,6 +1641,19 @@ $scope.get_Somme_daye = function ()
                                     }
                                 });
                             }
+                        }
+                    }
+                    else if (type.indexOf('plan')!==-1)
+                    {
+                        send_data.append("data", JSON.stringify($scope.panier));
+                        if ($scope.panier.length==0)
+                        {
+                            iziToast.error({
+                                title: "",
+                                message: "Il faut au moins un niveau pour un plan",
+                                position: 'topRight'
+                            });
+                            continuer = false;
                         }
                     }
                     else if (type.indexOf('role')!==-1)
@@ -1989,6 +2077,151 @@ $scope.get_Somme_daye = function ()
         //console.log('ici', response);
 
         return response;
+    };
+    $scope.addInCommande = function(event, from='plan', item, action=1)
+    {
+        console.log('from', from);
+        var add = true;
+        $.each($scope.panier, function (key, value)
+        {
+            console.log('ici panier', from);
+            if (Number(value.produit_id) === Number(item.id))
+            {
+                console.log('value', value);
+                if (action==0)
+                {
+                    $scope.panier.splice(key,1);
+                }
+                else
+                {
+                    if (from.indexOf('commande')!==-1)
+                    {
+                        $scope.panier[key].qte_commande+=action;
+                        if ($scope.panier[key].qte_commande===0)
+                        {
+                            $scope.panier.splice(key,1);
+                        }
+                    }
+                    else if (from.indexOf('menu')!==-1)
+                    {
+                        $scope.panier[key].qte_produit+=action;
+                        if ($scope.panier[key].qte_produit===0)
+                        {
+                            $scope.panier.splice(key,1);
+                        }
+                    }
+                    else if (from.indexOf('plan')!==-1)
+                    {
+                        console.log($scope.panier);
+                        $scope.panier[key].nb_click+=action;
+                        if ($scope.panier[key].nb_click===0)
+                        {
+                            $scope.panier.splice(key,1);
+                        }
+                    }
+                    else if (from.indexOf('projet')!==-1)
+                    {
+                        $scope.panier[key].nb_click+=action;
+                        if ($scope.panier[key].nb_click===0)
+                        {
+                            $scope.panier.splice(key,1);
+                        }
+                    }
+                    else if (from.indexOf('inventaire')!==-1)
+                    {
+                        $scope.panier[key].qte_inventaire+=action;
+                        if ($scope.panier[key].qte_inventaire===0)
+                        {
+                            $scope.panier.splice(key,1);
+                        }
+                    }
+                    else if (from.indexOf('livreur')!==-1)
+                    {
+                        $scope.panier[key].quantity+=action;
+                        if ($scope.panier[key].quantity===0)
+                        {
+                            $scope.panier.splice(key,1);
+                        }
+                    }
+                    else if (from.indexOf('minuterie')!==-1)
+                    {
+                        $scope.panier[key].qte+=action;
+                        if ($scope.panier[key].qte===0)
+                        {
+                            $scope.panier.splice(key,1);
+                        }
+                    }
+                    else if (from.indexOf('vente')!==-1)
+                    {
+                        $scope.panier[key].qte_vendue+=action;
+                        if ($scope.panier[key].qte_vendue===0)
+                        {
+                            $scope.panier.splice(key,1);
+                        }
+                    }
+                }
+                add = false;
+                //}
+            }
+            return add;
+        });
+        if (add)
+        {
+            if (from.indexOf('plan')!==-1)
+            {
+                console.log(panier);
+                $scope.panier.push({"id":item.id, "produit_id":item.id, "name":item.name, "qte_commande" : 1, "offert" : 0,"options" :"", "prix":item.prix});
+
+            }
+            else if (from.indexOf('projet')!==-1)
+            {
+                $scope.panier.push({"id":item.id,"produit_id":item.id, "name":item.name, "prix":item.prix});
+            }
+            else if (from.indexOf('menu')!==-1)
+            {
+                $scope.panier.push({"id":item.id, "produit_id":item.id, "qte_produit" : 1, "name":item.name});
+            }
+            else if (from.indexOf('inventaire')!==-1)
+            {
+                $scope.panier.push({"id":item.id, "produit_id":item.id, "designation":item.designation, "current_quantity":item.current_quantity, "qte_inventaire" : item.current_quantity});
+            }
+            else if (from.indexOf('livreur')!==-1)
+            {
+                $scope.panier.push({"id":item.id, "produit_id":item.id, "designation":item.designation, "tva":item.with_tva, "quantity" : 1, "prix_cession":item.prix_cession});
+            }
+            else if (from.indexOf('fusion')!==-1)
+            {
+                $scope.panier.push({"id":item.id, "produit_id":item.id, "designation":item.designation, "prix_cession":item.prix_cession});
+                console.log($scope.panier);
+            }
+            else if (from.indexOf('minuterie')!==-1)
+            {
+                $scope.panier.push({"id":item.id,"produit_id":item.id, "designation":item.designation, "qte" : 1});
+            }
+            else if (from.indexOf('vente')!==-1)
+            {
+                $scope.panier.push({"id":item.id,"produit_id":item.id, "designation":item.designation, "qte_vendue" : 1, "tva" : item.with_tva, "prix_unitaire":item.prix_public});
+            }
+        }
+        if (from.indexOf('teste')!==-1)
+            {
+                $scope.panier.push({"id":item.id, "produit_id":item.id, "name":item.name, "qte_commande" : 1, "offert" : 0,"options" :"", "prix":item.prix});
+                $scope.calculateTotal('commande');
+
+            }
+        if (from.indexOf('commande')!==-1)
+        {
+            $scope.calculateTotal('commande');
+            $scope.setAdresseAndZone('commande');
+        }
+        else if (from.indexOf('vente')!==-1)
+        {
+            $scope.calculateTotal('vente');
+        }
+        else if (from.indexOf('livreur')!==-1)
+        {
+            $scope.calculateTotal('livreur');
+        }
     };
     $scope.getEtatStock = function()
     {

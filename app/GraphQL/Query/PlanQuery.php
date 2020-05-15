@@ -27,6 +27,15 @@ class PlanQuery extends Query
             'superficie'             => ['type' => Type::int()],
             'longeur'                => ['type' => Type::int()],
             'largeur'                => ['type' => Type::int()],
+            'fichier'                => ['type' => Type::string()],
+            'piscine'                => ['type' => Type::int()],
+            'nb_pieces'                => ['type' => Type::int()],
+            'nb_chambre'                => ['type' => Type::int()],
+            'nb_toillette'                => ['type' => Type::int()],
+            'nb_salon'                => ['type' => Type::int()],
+            'nb_cuisine'                => ['type' => Type::int()],
+            'nb_etage'                => ['type' => Type::int()],
+            
           
             'created_at'             => [ 'type' => Type::string()],
             'created_at_fr'          => [ 'type' => Type::string()],
@@ -63,6 +72,9 @@ class PlanQuery extends Query
        {
           $query = $query->where('piscine', $args['piscine']);
        }
+       if (isset($args['nb_pieces'])) {
+          $query = $query->whereIn('id');
+       }
        $query = $query->get();
        return $query->map(function (Plan $item)
        {
@@ -73,8 +85,9 @@ class PlanQuery extends Query
             'longeur'                => $item->longeur,
             'largeur'                => $item->largeur,
             'piscine'                => $item->piscine,
-            'niveaus'                => $item->niveaus,
-            'planprojets'            => $item->planprojets,
+            'fichier'                => $item->fichier,
+            'niveau_plans'           => $item->niveau_plans,
+            'plan_projets'            => $item->plan_projets,
             'created_at'             => $item->created_at,
         ];
       });

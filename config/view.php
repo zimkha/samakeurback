@@ -16,7 +16,12 @@ return [
     'paths' => [
         resource_path('views'),
     ],
-
+    'uploads' => [
+        'users'           => 'uploads/users',
+        'plans'           => 'uploads/plans',
+        'projets'         => 'uploads/projets',
+        'remarques'       => 'uploads/remarques'
+    ],
     /*
     |--------------------------------------------------------------------------
     | Compiled View Path

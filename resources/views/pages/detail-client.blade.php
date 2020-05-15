@@ -9,13 +9,13 @@
                 <div class="card-body">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">A propos</a>
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" target="_self" role="tab" aria-controls="home" aria-selected="true">A propos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Encours</a>
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" target="_self" role="tab" aria-controls="profile" aria-selected="false">Encours</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Finalisée</a>
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" target="_self" role="tab" aria-controls="contact" aria-selected="false">Finalisée</a>
                         </li>
                     </ul>
                 </div>

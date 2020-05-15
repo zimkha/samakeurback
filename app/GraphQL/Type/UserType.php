@@ -26,6 +26,13 @@ class UserType extends GraphQLType
            'last_login'                    => ['type' => Type::string(), 'description' => ''],
            'last_login_ip'                 => ['type' => Type::string(), 'description' => ''],
            'image'                         => ['type' => Type::string(), 'description' => ''],
+           'is_client'                     => ['type' => Type::boolean(), 'description' => ''],
+           'nom'                           => ['type' => Type::string(), 'description' => ''],
+           'prenom'                        => ['type' => Type::string(), 'description' => ''],
+           'telephone'                     => ['type' => Type::string(), 'description' => ''],
+           'pays'                          => ['type' => Type::string(), 'description' => ''],
+           'adresse_complet'                => ['type' => Type::string(), 'description' => ''],
+           'code_postal'                   => ['type' => Type::string(), 'description' => ''],
 
            'roles'                         => ['type' =>Type::listOf(GraphQL::type('Role')), 'description' => ''],
            'projets'                       => ['type'  => Type::listOf(GraphQL::type('Projet'))],

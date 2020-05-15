@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Pays;
+use App\User;
+use App\Outil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -52,8 +57,10 @@ class UserController extends Controller
 
                 $user->name = $request->name;
                 $user->email = $request->email;
+                $user->is_client = true;
                 !empty($request->password) ? $user->password = bcrypt($request->password) : '' ;
-                $role = Role::find($request->input('role'));
+
+                $role = Role::find($request->role);
                 if (!isset($errors) && $user->save())
                 {
                     if (isset($user->id))
@@ -74,7 +81,7 @@ class UserController extends Controller
                         $user->assignRole($role);
 
                     // Pour upload d'une image
-                    if (!isset($errors) && !empty(Input::file('image')) )
+                    if (!isset($errors) && $request->hasFile('image') )
                     {
                         // upload file
                         $fichier = $_FILES['image']['name'];
@@ -84,10 +91,10 @@ class UserController extends Controller
                         move_uploaded_file($fichier_tmp,$rename);
                         $user->image = $rename;
                     }
-                    else if (Input::get('image_erase')) // Permet de supprimer l'image de l'utilisateur
-                    {
-                        $user->image = null;
-                    }
+                    // else if (Input::get('image_erase')) // Permet de supprimer l'image de l'utilisateur
+                    // {
+                    //     $user->image = null;
+                    // }
                     $user->save();
                     $id = $user->id;
 
@@ -102,7 +109,62 @@ class UserController extends Controller
         }
     }
 
+        public function resave(Request $request)
+        {
+            try
+            {
+                return DB::transaction(function () use($request){
+                    $errors = null;
+                    if (empty($request->id)) 
+                    {
+                        $errors = "veuillez contacter le service technique";
+                    }
+                    
+                    $item = User::find($request->id);
+                    if(isset($item))
+                    {
+                        if(isset($request->nom))
+                        {
+                            $item->nom = $request->nom;
+                        }
+                        if(isset($request->prenom))
+                        {
+                            $item->prenom = $request->prenom;
+                        }
+                        if(isset($request->code_postal))
+                        {
+                            $item->code_postal = $request->code_postal;
+                        }
+                        if(isset($request->telephone))
+                        {
+                            $item->telephone = $request->telephone;
+                        }
+                        if(isset($request->pays))
+                        {
+                            $pays = Pays::find($request->pays);
+                            if ($pays) {
+                                $item->pays = $pays->nom_fr_fr;
+                            }
+                        }
+                        if(isset($request->adresse_complet))
+                        {
+                            $item->adresse_complet = $request->adresse_complet;
+                        }
 
+                    }
+                    if(!isset($errors))
+                    {
+                        $item->save();
+                        return Outil::redirectgraphql($this->queryName, "id:{$item->id}", Outil::$queries[$this->queryName]);
+
+                    }
+                    throw new \Exception($errors);
+                });
+            }catch(\Exception $e)
+            {
+                return response()->json(['errors' => $e->getMessage()]);
+            }
+        }
     public function statut(Request $request)
     {
         $errors = null;
@@ -110,7 +172,7 @@ class UserController extends Controller
 
         try
         {
-
+            // dd($request->all());
             $user = User::find($request->id);
             if ($user != null)
             {
@@ -121,11 +183,13 @@ class UserController extends Controller
                 $errors = "Cet utilisateur n'existe pas";
             }
 
-
+            // dd($user->active);
             if (!isset($errors) && $user->save())
             {
                 $data = 1;
             }
+            else
+                throw new \Exception($errors);
         }
         catch (\Exception $e)
         {

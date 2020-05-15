@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool) env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -162,8 +162,10 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
-         Maatwebsite\Excel\ExcelServiceProvider::class,
-          Rebing\GraphQL\GraphQLServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        Rebing\GraphQL\GraphQLServiceProvider::class,
+        Sentry\Laravel\ServiceProvider::class,
+
 
 
 
@@ -233,6 +235,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'GraphQL' => Rebing\GraphQL\Support\Facades\GraphQL::class,
+        'Sentry' => Sentry\Laravel\Facade::class,
+
 
 
 

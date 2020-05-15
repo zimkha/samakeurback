@@ -17,11 +17,12 @@ class NiveauPlanType extends GraphQLType
         return [
             'id'                     => ['type' => Type::id(), 'description' => ''],
             'plan_id'                => ['type' => Type::int()],
-            'pieces'                 => ['type' => Type::int()],
+            'piece'                 => ['type' => Type::int()],
             'chambre'                => ['type' => Type::int()],
             'salon'                  => ['type' => Type::int()],
             'cuisine'                => ['type' => Type::int()],
             'garage'                 => ['type' => Type::int()],
+            'bureau'                 => ['type' => Type::int()],
             'toillette'              => ['type' => Type::int()],
 
             'plan'                   => ['type' => GraphQL::type('Plan')],

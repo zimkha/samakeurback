@@ -102,6 +102,7 @@ return [
                  \App\GraphQL\Query\PlanPaginatedQuery::class,
                  \App\GraphQL\Query\ProjetQuery::class,
                  \App\GraphQL\Query\PlanPaginatedQuery::class,
+                 \App\GraphQL\Query\ProjetPaginatedQuery::class,
                  \App\GraphQL\Query\RoleQuery::class,
                  \App\GraphQL\Query\NiveauPlanQuery::class,
                  \App\GraphQL\Query\NiveauProjetQuery::class,

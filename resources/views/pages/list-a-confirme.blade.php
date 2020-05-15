@@ -57,7 +57,7 @@
                                 <td>2011/04/25</td>
                                 <td>$320,800</td>
                                 <td class="text-center">
-                                    <button class="btn btn-sm btn-circle btn-primary">
+                                    <button class="btn btn-sm btn-circle btn-primary" title="Activer cette utilisateur" value="1" ng-click="showModalconfirme($event,'user', 0,item, 'Activer cette utilisateur')">
                                         <span class="fa fa-edit"></span>
                                     </button>
                                     <button class="btn btn-sm btn-circle btn-danger">

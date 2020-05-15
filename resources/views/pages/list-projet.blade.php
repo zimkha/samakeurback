@@ -23,35 +23,35 @@
                             <label for="other" >Tout</label>
                         </div>
                         <div class="col-md-6">
-                            <select class="form-control" id="searchoption_client" ng-model="searchoption_client" name="searchoption">
+                            <select class="form-control" id="searchoption_projet" ng-model="searchoption_projet" name="searchoption">
                                 <option value="">Rechercher dans </option>
                                 <option value="nomcomplet">Nom client</option>
                                 <option value="telephone">Téléphone</option>
                                 <option value="email">E-mail</option>
-                                <option value="email">Pays</option>
-                                <option value="email">Adresse</option>
-                                <option value="code_client">Code client</option>
+                                <option value="pays">Pays</option>
+                                <option value="adress_complet">Adresse</option>
+                                <option value="code_postal">Code postal</option>
                             </select>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="searchtexte_client" ng-model="searchtexte_client" placeholder="Texte de la recherche" ng-readonly="!searchoption_client" autocomplete="off">
+                                <input type="text" class="form-control" id="searchtexte_projet" ng-model="searchtexte_projet" placeholder="Texte de la recherche" ng-readonly="!searchoption_projet" autocomplete="off">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Entre le </label>
-                                <input type="date" class="form-control">
+                                <input type="date" id="created_at_start_listprojet" name="created_at_start" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Et le </label>
-                                <input type="date" class="form-control">
+                                <input type="date" id="created_at_end_listprojet" name="created_at_end" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-12 text-right">
-                            <button class="mt-2 btn btn-primary pull-right" ng-click="pageChanged('demande')">
+                            <button class="mt-2 btn btn-primary pull-right" ng-click="pageChanged('projet')">
                                 Filtrer <i class="fa fa-search"></i>
                             </button>
                         </div>
@@ -63,7 +63,7 @@
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                            <tr>
+                                <tr align="center">
                                 <th>Nom Complet</th>
                                 <th>Pays</th>
                                 <th>Adresse</th>
@@ -74,15 +74,15 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
+                            <tr align="center">
                                 <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
+                                <td>Sénégal</td>
+                                <td>Dakar/Sénégal</td>
+                                <td>12500</td>
+                                <td>221 77 196 77 77</td>
+                                <td>email@email.com</td>
                                 <td class="text-center">
-                                    <a href="#!/detail-demande/2" class="btn btn-sm btn-primary btn-circle">
+                                    <a href="#!/detail-projet/2" class="btn btn-sm btn-primary btn-circle">
                                         <i class="fas fa-info"></i>
                                     </a>
                                     <button  class="btn btn-sm btn-success btn-circle">
@@ -93,15 +93,15 @@
                                     </button>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr align="center">
                                 <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
+                                <td>Sénégal</td>
+                                <td>Dakar/Sénégal</td>
+                                <td>12500</td>
+                                <td>221 77 196 77 77</td>
+                                <td>email@email.com</td>
                                 <td class="text-center">
-                                    <a href="#!/detail-demande/2" class="btn btn-sm btn-primary btn-circle">
+                                    <a href="#!/detail-projet/2" class="btn btn-sm btn-primary btn-circle">
                                         <i class="fas fa-info"></i>
                                     </a>
                                     <button  class="btn btn-sm btn-success btn-circle">
@@ -112,15 +112,15 @@
                                     </button>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr align="center">
                                 <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
+                                <td>Sénégal</td>
+                                <td>Dakar/Sénégal</td>
+                                <td>12500</td>
+                                <td>221 77 196 77 77</td>
+                                <td>email@email.com</td>
                                 <td class="text-center">
-                                    <a href="#!/detail-demande/2" class="btn btn-sm btn-primary btn-circle">
+                                    <a href="#!/detail-projet/2" class="btn btn-sm btn-primary btn-circle">
                                         <i class="fas fa-info"></i>
                                     </a>
                                     <button  class="btn btn-sm btn-success btn-circle">

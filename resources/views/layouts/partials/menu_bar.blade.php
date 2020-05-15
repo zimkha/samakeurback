@@ -51,8 +51,8 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Projets:</h6>
-                <a class="collapse-item" href="#!/list-demande">Finalisé</a>
-                <a class="collapse-item" href="#!/list-demande-encour">Encours</a>
+                <a class="collapse-item" href="#!/list-projet">Finalisé</a>
+                <a class="collapse-item" href="#!/list-projet-encour">Encours</a>
 
             </div>
         </div>

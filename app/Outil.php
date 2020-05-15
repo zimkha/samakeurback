@@ -29,7 +29,7 @@ class Outil extends Model
     }
 
     public static $queries = array(
-        "plans"                         => "id,superficie,longeur,largeur,niveauplan{id,piece,chambre,salon,cuisine}",
+        "plans"                         => "id,fichier,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,niveau_plans{id,piece,bureau,toillette,chambre,salon,cuisine}",
 
         "planprojets"                   => "id,plan_id,projet_id,etat_active,message,etat,plan{id}",
 
@@ -37,13 +37,13 @@ class Outil extends Model
 
         "niveauprojets"                 => "id",
 
-        "projets"                       => "id",
+        "projets"                       => "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,niveau_projets{id,piece,bureau,toillette,chambre,salon,cuisine},user_id,user{id,name},plan_projets{id,plan_id,plan{id,fichier,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage}}",
         
-        "typeremarques"                 => "id",
+        "typeremarques"                 => "id,name",
 
-        "remarques"                     => "id",
+        "remarques"                     => "id,type_remarque_id,demande_text,projet_id",
 
-        "users"                         => "id,name,email,active,password,image,roles{id,name,guard_name,permissions{id,name,display_name,guard_name}},last_login,last_login_ip,created_at_fr",
+        "users"                         => "id,name,email,active,password,image,nom,prenom,adresse_complet,pays,code_postal,is_client,telephone,roles{id,name,guard_name,permissions{id,name,display_name,guard_name}},last_login,last_login_ip,created_at_fr",
 
         "roles"                         => "id,name,guard_name,permissions{id,name,display_name,guard_name}",
 
@@ -154,6 +154,33 @@ class Outil extends Model
         return config('database.default')=="mysql" ? "like" : "ilike";
     }
 
- 
+    public static function validation($request,Array $array)
+    {
+        $errors = null;
+        foreach($array as $item)
+        {
+            if ($request->$item == null ) {
+               $errors = "veuillez renseigner le champs {$item}";
+            }
+        }
+        if ($errors != null) {
+            throw new \Exception($errors);
+        }
+        return $errors;
+    }
+    public static function validat(Array $array)
+    {
+        $errors = null;
+       foreach ($array as  $value) {
+         
+           foreach ($value as $key => $item) {
+               if (isset($key)) {
+                   dd('c pas vide');
+               }
+               else
+                 dd('c vide');
+           }
+       }
+    }
 
 }

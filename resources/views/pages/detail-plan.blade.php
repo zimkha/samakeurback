@@ -10,13 +10,13 @@
                 <div class="card-body">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">A propos</a>
+                            <a class="nav-link active" id="home-tab" target="_self" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">A propos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Demandes associés au plan: Encour</a>
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" target="_self" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Demandes associés au plan: Encour</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Demandes asspciés au plan: Finalisés</a>
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" target="_self" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Demandes asspciés au plan: Finalisés</a>
                         </li>
                         <li class="nav-item">
                             <div class="float-right pt-0 mx-1">

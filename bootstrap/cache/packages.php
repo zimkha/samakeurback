@@ -74,6 +74,17 @@
       'GraphQL' => 'Rebing\\GraphQL\\Support\\Facades\\GraphQL',
     ),
   ),
+  'sentry/sentry-laravel' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Sentry\\Laravel\\ServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Sentry' => 'Sentry\\Laravel\\Facade',
+    ),
+  ),
   'spatie/laravel-permission' => 
   array (
     'providers' => 
