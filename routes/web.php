@@ -31,6 +31,7 @@ Route::post('/remarque', 'RemarqueController@save');
 Route::post('/resave', 'UserController@resave');
 Route::post('/statut', 'UserController@statut');
 Route::post('/active_plan', 'ProjetController@active_plan');
+Route::post('/connexion', 'ClientController@connexion');
 Route::post('/link_plan_to_projet', 'ProjetController@linkPlanToProjet');
 
 // les actions de suppressions
@@ -44,6 +45,9 @@ Route::get('/plan-pdf/{id}', 'PlanController@getpdf');
 Route::get('/projet-pdf/{id}', 'ProjetController@getpdf');
 Route::get('/plan-pdfs/{id}', 'PlanController@getAllFiles');
 Route::get('/status/{id}/{model}', 'ValidationController@status');
+
+Route::get('/plan/pdf/{id}', 'PdfController@pdf_plan');
+Route::get('/contrat/{id}', 'ProjetController@makeContrat');
 
 
 // les routes de teste
