@@ -165,6 +165,8 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Rebing\GraphQL\GraphQLServiceProvider::class,
         Sentry\Laravel\ServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
+
 
 
 
@@ -236,6 +238,8 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'GraphQL' => Rebing\GraphQL\Support\Facades\GraphQL::class,
         'Sentry' => Sentry\Laravel\Facade::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+
 
 
 

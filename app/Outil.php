@@ -27,6 +27,12 @@ class Outil extends Model
             'errors_line'    => [$e->getLine()],
         ));
     }
+    public static function getPdf($queryName, $id_critere, $justone = true)
+    {
+       $data = Outil::getOneItemWithGraphQl($queryName, $id_critere, $justone);
+
+        return PDF::loadView("pdfs.{$queryName}", $data);
+    }
 
     public static $queries = array(
         "plans"                         => "id,fichier,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,niveau_plans{id,piece,bureau,toillette,chambre,salon,cuisine}",

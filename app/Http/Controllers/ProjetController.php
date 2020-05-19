@@ -8,6 +8,8 @@ use App\Projet;
 use App\Remarque;
 use App\PlanProjet;
 use App\NiveauProjet;
+use PDF;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -336,7 +338,18 @@ class ProjetController extends Controller
     {
         try
         {
-
+                $item = Projet::find($id);
+                if(isset($item))
+                {
+                    $client = $item->user;
+                    $created_at = Carbon::parse($item->created_at)->format('d/m/Y');
+                    $pdf = PDF::loadView('pdf.contrat', ['projet' => $item, 'created_at' => $created_at]);
+                    return $pdf->setPaper( 'orientation')->stream();
+                }
+                else
+                {
+                    $errors = "Impossible de touver ces données pour un contrat";
+                }
         }
         catch(\Exception $e)
         {

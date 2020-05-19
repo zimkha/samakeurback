@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
@@ -29,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/#!/';
 
     /**
      * Create a new controller instance.
@@ -40,23 +39,19 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+
     function authenticated(Request $request, $user)
     {
-        
-        if ($user->active == false && $user->is_client == 1)
+        if ($user->active == false)
         {
             Auth::logout();
-            return Redirect::back()->withErrors(['msg'=>['Votre compte est désactivé, veuillez contacter votre responsable pour plus d\'information']]);
+            return Redirect::back()->withErrors(['msg'=>['Votre compte est désactivé, veuillez contacter l\'administration de SAMAKEUR pour plus d\'information']]);
         }
-       
-        else
-        {
-            $user->last_login = Carbon::now();
-            $user->last_login_ip = $request->getClientIp();
-            $user->save();
-            redirect('#!/profile');
-        }
+        return redirect('/#!/');
     }
+
+
     public function logout(Request $request)
     {
         Auth::logout();
