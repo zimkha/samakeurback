@@ -18,6 +18,7 @@ class PlanController extends Controller
     }
     public function save(Request $request)
     {
+        dd($request->all());
         try {
            return DB::transaction(function () use($request) {
                 $errors = null;
@@ -26,9 +27,9 @@ class PlanController extends Controller
                 if (isset($request->id)) {
                     $item = Plan::find($request->id);
                     $code = $item->code;
-                } 
-               
-                $item->code = $code; 
+                }
+
+                $item->code = $code;
                 if (empty($request->superficie)) {
                    $errors = "Veuillez preciser la superficie pour ce plan";
                 }
@@ -74,19 +75,19 @@ class PlanController extends Controller
                 {
                     throw new \Exception($errors);
                 }
-            
+
                 //$data       = json_decode($request->data, true);
                 $data = $request->data;
                 $tableau    = array();
-                $n = 0; 
+                $n = 0;
                 foreach ($data as $datum) {
                     $n = $n + 1;
                     $niveau = new NiveauPlan();
-                   
+
                     if (empty($datum['piece']))
                     {
                         $errors = "Veuillez renseigner au moins le nombre de pièces pour ce niveau";
-                    } 
+                    }
                     if (isset($datum['piece']) && $datum['piece'] <= 0) {
                         $errors = "Veuillez verifier le nombre de pieces  à la ligne n°".$n;
                     }
@@ -107,18 +108,18 @@ class PlanController extends Controller
                     $niveau->salon          = $datum['salon'];
                     $niveau->cuisine        = $datum['cuisine'];
                     $niveau->bureau         = $datum['bureau'];
-                    $niveau->toillette      = $datum['toillette']; 
-                    $niveau->niveau         = $datum['niveau']; 
+                    $niveau->toillette      = $datum['toillette'];
+                    $niveau->niveau         = $datum['niveau'];
 
                     $total_pieces = $niveau->chambre + $niveau->salon + $niveau->cuisine + $niveau->bureau + $niveau->toillette;
-                  
+
                     if ($total_pieces != (int) $datum['piece']) {
                         $errors = "Veuillez verifier si le total des pieces est repecter  à la ligne n°".$n;
                     }
                     if (isset($errors)) {
                         throw new \Exception($errors);
                     }
-                    array_push($tableau, $niveau);   
+                    array_push($tableau, $niveau);
                 }
                 if (!isset($errors)) {
                     $item->superficie       = $request->superficie;
@@ -139,8 +140,8 @@ class PlanController extends Controller
                             //$path = $request->fichier->storeAs('uploads/plans', $rename);
                             $item->fichier = $rename;
                          }
-                       
-                       
+
+
                     }
                     if (!isset($request->piscine)) {
                         $item->piscine = 0;
@@ -219,6 +220,6 @@ class PlanController extends Controller
         }
     }
 
-   
-    
+
+
 }

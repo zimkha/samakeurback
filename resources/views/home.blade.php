@@ -51,19 +51,19 @@
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="superficie">Superficie</label>
+                                    <label for="superficie_plan">Superficie</label>
                                     <input type="number" id="superficie_plan" name="superficie" class="form-control">
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="superficie">Longeur</label>
+                                    <label for="longeur_plan">Longeur</label>
                                     <input type="number" id="longeur_plan" name="longeur" class="form-control">
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="superficie">Largeur</label>
+                                    <label for="largeur_plan">Largeur</label>
                                     <input type="number" id="largeur_plan" name="largeur" class="form-control">
                                 </div>
                             </div>
@@ -154,11 +154,10 @@
                         </div>
 
                         <div class="row mt-5">
-                        <div class="animated fadeIn text-center" ng-if="produitsInTable.length==0">
-                                <h3> Ajouter un Niveau pour ce plan
-                              </h3>
-                        </div>
-                            <div ng-if="produitsInTable.length !=0">
+                            <div class="col-md-12 animated fadeIn text-center" ng-if="produitsInTable.length==0">
+                                    <h3> Ajouter un Niveau pour ce plan</h3>
+                            </div>
+                            <div class="col-md-12" ng-if="produitsInTable.length !=0">
                                 <div class="table-responsive">
                                     <table class="table table-responsive-sm table-bordered mb-0 text-center dataTable dtr-inline" id="tabNiveau" role="grid">
                                         <thead>
@@ -235,12 +234,15 @@
                     </button>
                 </div>
                 <div class="modal-body m-3">
-                    <form>
+                    <form id="form_addprojet" class="form" enctype="multipart/form-data" accept-charset="UTF-8">
+                        @csrf
+                        <input type="hidden" id="id_plan" name="id">
+                        <input type="hidden" name="tab_niveau" id="tab_niveau" value="@{{produitsInTable}}">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="superficie">Client</label>
-                                    <select class="js-example-basic-single form-control" name="state">
+                                    <label for="client_projet">Client</label>
+                                    <select class="js-example-basic-single form-control" id="client_projet" name="client">
 
                                         <option value="CL">client 2</option>
                                         <option value="AL">Alabama</option>
@@ -250,22 +252,22 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="superficie">Fichier</label>
-                                    <input type="file" class="form-control">
+                                    <label for="fichier_projet">Fichier</label>
+                                    <input type="file" class="form-control" id="fichier_projet" name="fichier">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="superficie">Superficie</label>
-                                    <input type="number" class="form-control">
+                                    <label for="superficie_plan">Superficie</label>
+                                    <input type="number" class="form-control" id="superficie_plan" name="superficie">
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="superficie">Type de Chambre</label>
-                                    <select class="form-control">
+                                    <label for="type_chambre_projet">Type de Chambre</label>
+                                    <select class="form-control" id="type_chambre_projet" name="type_chambre">
                                         <option>TYPE 1</option>
                                         <option>TYPE 2</option>
                                     </select>
@@ -273,8 +275,8 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="superficie">Garage</label>
-                                    <select class="form-control">
+                                    <label for="garage_projet">Garage</label>
+                                    <select class="form-control" id="garage_projet" name="garage">
                                         <option>OUI</option>
                                         <option>NON</option>
                                     </select>
@@ -282,8 +284,8 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="superficie">Piscine</label>
-                                    <select class="form-control">
+                                    <label for="superficie_projet">Piscine</label>
+                                    <select class="form-control" id="superficie_projet" name="superficie">
                                         <option>OUI</option>
                                         <option>NON</option>
                                     </select>
@@ -358,11 +360,11 @@
                         </div>
 
                         <div class="row mt-5">
-                            <div class="animated fadeIn text-center" ng-if="produitsInTable.length==0">
+                            <div class="col-md-12 animated fadeIn text-center" ng-if="produitsInTable.length==0">
                                 <h3> Ajouter un Niveau pour ce plan
                                 </h3>
                             </div>
-                            <div ng-if="produitsInTable.length !=0">
+                            <div class="col-md-12" ng-if="produitsInTable.length !=0">
                                 <div class="table-responsive">
                                     <table class="table table-responsive-sm table-bordered mb-0 text-center dataTable dtr-inline" id="tabNiveau" role="grid">
                                         <thead>
@@ -417,7 +419,7 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-primary" ng-click="addElement($event,'projet')">Enregistrer</button>
                         </div>
                     </form>
                 </div>

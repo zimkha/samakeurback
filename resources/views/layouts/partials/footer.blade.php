@@ -31,9 +31,12 @@
 <!--Multiselect-->
 <script src="{{ asset('assets/js/select2/select2.full.min.js') }}" type="text/javascript"></script>
 
-
 <script src="{{ asset('assets/js/main.js') }}"></script>
 
+
+<!--BlockUI -->
+<script src="{{asset('assets/js/vendors/blockui.js')}}"></script>
+<script src="{{asset('assets/js/scripts-init/blockui.js')}}"></script>
 
 
 

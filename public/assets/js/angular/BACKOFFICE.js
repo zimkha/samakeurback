@@ -1,6 +1,6 @@
 var app=angular.module('BackEnd',[ 'ngRoute' , 'ngSanitize' , 'ngLoadScript', 'ui.bootstrap' , 'angular.filter']);
 
-var BASE_URL='//'+location.host+'/samakeurback/public';
+var BASE_URL='//'+location.host+'/samakeurback/public/';
 var imgupload = BASE_URL + '/assets/images/upload.jpg';
 var msg_erreur = 'Veuillez contacter le support technique';
 
@@ -1469,10 +1469,10 @@ $scope.get_Somme_daye = function ()
     {
         var form = $('#form_addchstat');
         var send_data = {id: $scope.chstat.id, etat:$scope.chstat.statut, commentaire: $('#commentaire_chstat').val()};
-        form.parent().parent().blockUI_start();
+       // form.parent().parent().blockUI_start();
         Init.changeStatut(type, send_data).then(function(data)
         {
-            form.parent().parent().blockUI_stop();
+         //   form.parent().parent().blockUI_stop();
             if (data.data!=null && !data.errors)
             {
                 if (type.indexOf('user')!==-1)
@@ -1519,7 +1519,7 @@ $scope.get_Somme_daye = function ()
             }
         }, function (msg)
         {
-            form.parent().parent().blockUI_stop();
+         //   form.parent().parent().blockUI_stop();
             iziToast.error({
                 message: '<span class="h4">' + msg + '</span>',
                 position: 'topRight'
@@ -1585,15 +1585,27 @@ $scope.get_Somme_daye = function ()
                 continuer = false;
             }
         }
+        else if (type == 'projet' || type == 'projets') {
+            if ($scope.produitsInTable.length > 0) {
+                send_data.append('tab_plan', JSON.stringify($scope.produitsInTable));
+                continuer = true;
+            } else {
+                iziToast.error({
+                    message: "Veuillez ajouter au moins un niveau dans le tableau",
+                    position: 'topRight'
+                });
+                continuer = false;
+            }
+        }
 
         if (form.validate() && continuer)
         {
 
-            form.parent().parent().blockUI_start();
+           // form.parent().parent().blockUI_start();
             Init.saveElementAjax(type, send_data).then(function(data)
             {
                 console.log('data retour', data);
-                form.parent().parent().blockUI_stop();
+                //form.parent().parent().blockUI_stop();
                 if (data.data!=null && !data.errors)
                 {
                     emptyform(type);
@@ -1660,16 +1672,6 @@ $scope.get_Somme_daye = function ()
                     }
                     else if (type.indexOf('plan')!==-1)
                     {
-                       /* send_data.append("data", JSON.stringify($scope.panier));
-                        if ($scope.panier.length==0)
-                        {
-                            iziToast.error({
-                                title: "",
-                                message: "Il faut au moins un niveau pour un plan",
-                                position: 'topRight'
-                            });
-                            continuer = false;
-                        }*/
 
                        // getObj = data['data'][type + 's'][0];
                         if (!send_dataObj.id)
@@ -1686,6 +1688,31 @@ $scope.get_Somme_daye = function ()
                                 if (oneItem.id===getObj.id)
                                 {
                                     $scope.plans[keyItem] = getObj;
+                                    return false;
+                                }
+                            });
+                            $scope.produitsInTable = [];
+                        }
+
+                    }
+                    else if (type.indexOf('projet')!==-1)
+                    {
+
+                       // getObj = data['data'][type + 's'][0];
+                        if (!send_dataObj.id)
+                        {
+                            $scope.projets.push(getObj);
+                            $scope.pageChanged('projet');
+                            $scope.produitsInTable = [];
+                        }
+                        else
+                        {
+                            $scope.pageChanged("projet");
+                            $.each($scope.projets, function (keyItem, oneItem)
+                            {
+                                if (oneItem.id===getObj.id)
+                                {
+                                    $scope.projets[keyItem] = getObj;
                                     return false;
                                 }
                             });
@@ -1758,7 +1785,7 @@ $scope.get_Somme_daye = function ()
                 }
             }, function (msg)
             {
-                form.parent().parent().blockUI_stop();
+               // form.parent().parent().blockUI_stop();
                 iziToast.error({
                     title: (!send_data.id ? 'AJOUT' : 'MODIFICATION'),
                     message: '<span class="h4">Erreur depuis le serveur, veuillez contactez l\'administrateur</span>',
@@ -1769,6 +1796,10 @@ $scope.get_Somme_daye = function ()
         }
     };
 
+    $scope.viderTab = function () {
+        $scope.produitsInTable = [];
+        console.log("$scope.produitsInTable", $scope.produitsInTable);
+    };
 
     $scope.actionSurPlan = function (action, selectedItem = null) {
         if (action == 'add')
@@ -2049,11 +2080,11 @@ $scope.get_Somme_daye = function ()
 
         if (form.validate() && continuer)
         {
-            form.parent().parent().blockUI_start();
+           // form.parent().parent().blockUI_start();
             Init.importerExcel(type, send_data).then(function(data)
             {
                 console.log('retour', data);
-                form.parent().parent().blockUI_stop();
+               // form.parent().parent().blockUI_stop();
                 if (data.data!=null && !data.errors)
                 {
 
@@ -2079,7 +2110,7 @@ $scope.get_Somme_daye = function ()
                 }
             }, function (msg)
             {
-                form.parent().parent().blockUI_stop();
+              //  form.parent().parent().blockUI_stop();
                 iziToast.error({
                     title: (!send_data.id ? 'AJOUT' : 'MODIFICATION'),
                     message: '<span class="h4">Erreur depuis le serveur, veuillez contactez l\'administrateur</span>',
@@ -2122,11 +2153,9 @@ $scope.get_Somme_daye = function ()
 
         if (form.validate() && continuer)
         {
-            form.parent().parent().blockUI_start();
             Init.fusionner(type, send_data).then(function(data)
             {
                 console.log('retour', data);
-                form.parent().parent().blockUI_stop();
                 if (data.data!=null && !data.errors)
                 {
 
@@ -2152,7 +2181,6 @@ $scope.get_Somme_daye = function ()
                 }
             }, function (msg)
             {
-                form.parent().parent().blockUI_stop();
                 iziToast.error({
                     title: (!send_data.id ? 'AJOUT' : 'FUSION'),
                     message: '<span class="h4">Erreur depuis le serveur, veuillez contactez l\'administrateur</span>',
@@ -2181,11 +2209,11 @@ $scope.get_Somme_daye = function ()
 
         if (form.validate() && continuer)
         {
-            form.parent().parent().blockUI_start();
+          //  form.parent().parent().blockUI_start();
             Init.addDetail(type, send_data).then(function(data)
             {
                 console.log('detail', data);
-                form.parent().parent().blockUI_stop();
+           //     form.parent().parent().blockUI_stop();
                 if (data.data!=null && !data.errors)
                 {
 
@@ -2211,7 +2239,7 @@ $scope.get_Somme_daye = function ()
                 }
             }, function (msg)
             {
-                form.parent().parent().blockUI_stop();
+           //     form.parent().parent().blockUI_stop();
                 iziToast.error({
                     title: (!send_data.id ? 'AJOUT' : 'FUSION'),
                     message: '<span class="h4">Erreur depuis le serveur, veuillez contactez l\'administrateur</span>',

@@ -1,7 +1,7 @@
 
 <div class="">
     <div class="float-right pt-0">
-        <button class="btn btn-primary"  ng-click="showModalAdd('plan')" title="ajouter un nouveau projet"><i class="fa fa-plus"></i></button>
+        <button class="btn btn-primary"  ng-click="viderTab();showModalAdd('plan')" title="ajouter un nouveau projet"><i class="fa fa-plus"></i></button>
     </div>
     <h1 class="h3 mb-4 text-gray-800"> Liste des plans</h1>
 
