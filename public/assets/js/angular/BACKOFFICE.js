@@ -452,7 +452,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
             "niveauprojets"                 :  ["id",""],
 
             "projets"                       :  [
-                "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adress_complet,code_postal}", 
+                "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adress_complet,code_postal}",
                 ",niveau_projets{id,piece,bureau,toillette,chambre,salon,cuisine},remarques{id,demande_text,projet_id,type_remarque_id}"
             ],
 
@@ -543,6 +543,9 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
     $scope.typeremarques = [];
     $scope.remarques = [];
     $scope.users = [];
+
+
+    $scope.produitsInTable = [];
 
 
     $scope.tot_day = 0;
@@ -638,7 +641,7 @@ $scope.get_Somme_daye = function ()
 
     $scope.addNiveauPanier = function(object)
     {
-         
+
         console.log("je suis la");
     };
     $scope.getelements = function (type, addData=null, forModal = false, nullableAddToReq = false)
@@ -796,7 +799,7 @@ $scope.get_Somme_daye = function ()
         else if ( currentpage.indexOf('client')!==-1 )
         {
             rewriteelement = 'userspaginated(page:'+ $scope.paginationuser.currentPage +',count:'+ $scope.paginationuser.entryLimit
-           
+
                 + ($('#searchtexte_client').val() ? (',' + $('#searchoption_client').val() + ':"' + $('#searchtexte_client').val() + '"') : "" )
                 + ($('#typeclient_listclient').val() ? ',type_client_id:' + $('#typeclient_listclient').val() : "" )
                 + ($('#zone_listclient').val() ? ',zone_livraison_id:' + $('#zone_listclient').val() : "" )
@@ -840,11 +843,11 @@ $scope.get_Somme_daye = function ()
                     entryLimit: $scope.paginationprojet.entryLimit,
                     totalItems: data.metadata.total
                 };
-               
+
                 $scope.projets = data.data;
             },function (msg)
             {
-               
+
                 toastr.error(msg);
             });
         }
@@ -1159,7 +1162,7 @@ $scope.get_Somme_daye = function ()
         //     else
         //     {
         //         $scope.getelements('roles');
-        //        
+        //
         //     }
          }
     });
@@ -1570,10 +1573,22 @@ $scope.get_Somme_daye = function ()
                 continuer = false;
             }
         }
+        else if (type == 'plan' || type == 'plans') {
+            if ($scope.produitsInTable.length > 0) {
+                send_data.append('tab_plan', JSON.stringify($scope.produitsInTable));
+                continuer = true;
+            } else {
+                iziToast.error({
+                    message: "Veuillez ajouter au moins un niveau dans le tableau",
+                    position: 'topRight'
+                });
+                continuer = false;
+            }
+        }
 
         if (form.validate() && continuer)
         {
-           
+
             form.parent().parent().blockUI_start();
             Init.saveElementAjax(type, send_data).then(function(data)
             {
@@ -1645,7 +1660,7 @@ $scope.get_Somme_daye = function ()
                     }
                     else if (type.indexOf('plan')!==-1)
                     {
-                        send_data.append("data", JSON.stringify($scope.panier));
+                       /* send_data.append("data", JSON.stringify($scope.panier));
                         if ($scope.panier.length==0)
                         {
                             iziToast.error({
@@ -1654,7 +1669,29 @@ $scope.get_Somme_daye = function ()
                                 position: 'topRight'
                             });
                             continuer = false;
+                        }*/
+
+                       // getObj = data['data'][type + 's'][0];
+                        if (!send_dataObj.id)
+                        {
+                            $scope.plans.push(getObj);
+                            $scope.pageChanged('plan');
+                            $scope.produitsInTable = [];
                         }
+                        else
+                        {
+                            $scope.pageChanged("plan");
+                            $.each($scope.plans, function (keyItem, oneItem)
+                            {
+                                if (oneItem.id===getObj.id)
+                                {
+                                    $scope.plans[keyItem] = getObj;
+                                    return false;
+                                }
+                            });
+                            $scope.produitsInTable = [];
+                        }
+
                     }
                     else if (type.indexOf('role')!==-1)
                     {
@@ -1730,6 +1767,268 @@ $scope.get_Somme_daye = function ()
                 console.log('Erreur serveur ici = ' + msg);
             });
         }
+    };
+
+
+    $scope.actionSurPlan = function (action, selectedItem = null) {
+        if (action == 'add')
+        {
+            //Ajouter un élément dans le tableau
+            var niveau = $("#niveau_plan").val();
+            var piece_plan = $("#piece_plan").val();
+            var chambre_plan = $("#chambre_plan").val();
+            var bureau_plan = $("#bureau_plan").val();
+            var salon_plan = $("#salon_plan").val();
+            var cuisine_plan = $("#cuisine_plan").val();
+            var toillete_plan = $("#toillete_plan").val();
+
+            if ($scope.estEntier(niveau) == false) {
+                iziToast.error({
+                    message: "Sélectionnez un niveau",
+                    position: 'topRight'
+                });
+                return false;
+            }
+            if ($scope.estEntier(piece_plan) == false) {
+                iziToast.error({
+                    message: "Sélectionnez une piece",
+                    position: 'topRight'
+                });
+                return false;
+            }
+            if ($scope.estEntier(chambre_plan) == false) {
+                iziToast.error({
+                    message: "Sélectionnez une chambre",
+                    position: 'topRight'
+                });
+                return false;
+            }
+            if ($scope.estEntier(salon_plan) == false) {
+                iziToast.error({
+                    message: "Sélectionnez une salon",
+                    position: 'topRight'
+                });
+                return false;
+            }
+            if ($scope.estEntier(cuisine_plan) == false) {
+                iziToast.error({
+                    message: "Sélectionnez une cuisine",
+                    position: 'topRight'
+                });
+                return false;
+            }
+            if ($scope.estEntier(toillete_plan) == false) {
+                iziToast.error({
+                    message: "Sélectionnez une toillete",
+                    position: 'topRight'
+                });
+                return false;
+            }
+            else if ($scope.testSiUnElementEstDansTableau($scope.produitsInTable, niveau) == true) {
+                iziToast.error({
+                    message: "Le niveau est déja dans le tableau",
+                    position: 'topRight'
+                });
+                return false;
+            }
+
+            $scope.produitsInTable.unshift({
+                "niveau": niveau,
+                "piece": piece_plan,
+                "chambre": chambre_plan,
+                "bureau": bureau_plan,
+                "salon": salon_plan,
+                "cuisine": cuisine_plan,
+                "toillete": toillete_plan,
+            });
+
+            console.log("this.produitsInTable",$scope.produitsInTable)
+
+            $("#niveau_plan").val('');
+            $("#piece_plan").val('');
+            $("#chambre_plan").val('');
+            $("#salon_plan").val('');
+            $("#cuisine_plan").val('');
+            $("#bureau_plan").val('');
+            $("#toillete_plan").val('');
+
+        }
+        else if (action == 'delete') {
+            //Supprimer un élément du tableau
+            $.each($scope.produitsInTable, function (keyItem, oneItem) {
+                if (oneItem.id == selectedItem.id) {
+                    $scope.produitsInTable.splice(keyItem, 1);
+                    return false;
+                }
+            });
+        }
+        else {
+            //Vider le tableau
+            $scope.produitsInTable = [];
+        }
+    };
+    // fin plan
+
+
+    $scope.actionSurProjet = function (action, selectedItem = null) {
+        if (action == 'add')
+        {
+            //Ajouter un élément dans le tableau
+            var niveau = $("#niveau_projet").val();
+            var piece_projet = $("#piece_projet").val();
+            var chambre_projet = $("#chambre_projet").val();
+            var bureau_projet = $("#bureau_projet").val();
+            var salon_projet = $("#salon_projet").val();
+            var cuisine_projet = $("#cuisine_projet").val();
+            var toillete_projet = $("#toillete_projet").val();
+
+            if ($scope.estEntier(niveau) == false) {
+                iziToast.error({
+                    message: "Sélectionnez un niveau",
+                    position: 'topRight'
+                });
+                return false;
+            }
+            if ($scope.estEntier(piece_projet) == false) {
+                iziToast.error({
+                    message: "Sélectionnez une piece",
+                    position: 'topRight'
+                });
+                return false;
+            }
+            if ($scope.estEntier(chambre_projet) == false) {
+                iziToast.error({
+                    message: "Sélectionnez une chambre",
+                    position: 'topRight'
+                });
+                return false;
+            }
+            if ($scope.estEntier(salon_projet) == false) {
+                iziToast.error({
+                    message: "Sélectionnez une salon",
+                    position: 'topRight'
+                });
+                return false;
+            }
+            if ($scope.estEntier(cuisine_projet) == false) {
+                iziToast.error({
+                    message: "Sélectionnez une cuisine",
+                    position: 'topRight'
+                });
+                return false;
+            }
+            if ($scope.estEntier(toillete_projet) == false) {
+                iziToast.error({
+                    message: "Sélectionnez une toillete",
+                    position: 'topRight'
+                });
+                return false;
+            }
+            else if ($scope.testSiUnElementEstDansTableau($scope.produitsInTable, niveau) == true) {
+                iziToast.error({
+                    message: "Le niveau est déja dans le tableau",
+                    position: 'topRight'
+                });
+                return false;
+            }
+
+            $scope.produitsInTable.unshift({
+                "niveau": niveau,
+                "piece": piece_projet,
+                "chambre": chambre_projet,
+                "bureau": bureau_projet,
+                "salon": salon_projet,
+                "cuisine": cuisine_projet,
+                "toillete": toillete_projet,
+            });
+
+            console.log("this.produitsInTable",$scope.produitsInTable)
+
+            $("#niveau_projet").val('');
+            $("#piece_projet").val('');
+            $("#chambre_projet").val('');
+            $("#salon_projet").val('');
+            $("#cuisine_projet").val('');
+            $("#bureau_projet").val('');
+            $("#toillete_projet").val('');
+
+        }
+        else if (action == 'delete') {
+            //Supprimer un élément du tableau
+            $.each($scope.produitsInTable, function (keyItem, oneItem) {
+                if (oneItem.id == selectedItem.id) {
+                    $scope.produitsInTable.splice(keyItem, 1);
+                    return false;
+                }
+            });
+        }
+        else {
+            //Vider le tableau
+            $scope.produitsInTable = [];
+        }
+    };
+    // fin projet
+
+
+    $scope.estEntier = function (val, superieur = true, peutEtreEgaleAzero = false) {
+        //tags: isInt, tester entier
+        var retour = false;
+        if (val == undefined || val == null) {
+            retour = false;
+        } else if (val === '') {
+            retour = false;
+        } else if (isNaN(val) == true) {
+            retour = false;
+        } else if (parseInt(val) != parseFloat(val)) {
+            retour = false;
+        } else {
+            if (superieur == false) {
+                //entier inférieur
+                if (parseInt(val) <= 0 && peutEtreEgaleAzero == true) {
+                    //]-inf; 0]
+                    retour = true;
+                } else if (parseInt(val) < 0 && peutEtreEgaleAzero == false) {
+                    //]-inf; 0[
+                    retour = true;
+                } else {
+                    retour = false;
+                }
+            } else {
+                //entier supérieur
+                if (parseInt(val) >= 0 && peutEtreEgaleAzero == true) {
+                    //[0; +inf[
+                    retour = true;
+                } else if (parseInt(val) > 0 && peutEtreEgaleAzero == false) {
+                    //]0; +inf[
+                    retour = true;
+                } else {
+                    retour = false;
+                }
+            }
+        }
+        return retour;
+    };
+    //---FIN => Tester si la valeur est un entier ou pas---//
+
+    $scope.testSiUnElementEstDansTableau = function (tableau, idElement)
+    {
+        var retour = false;
+        try
+        {
+            idElement = parseInt(idElement);
+            $.each(tableau, function (keyItem, oneItem) {
+                if (oneItem.id == idElement) {
+                    retour = true;
+                }
+                return !retour;
+            });
+        }
+        catch(error)
+        {
+            console.log('testSiUnElementEstDansTableau error =', error);
+        }
+
+        return retour;
     };
 
     $scope.addTabElements = function(e,type,from='modal')

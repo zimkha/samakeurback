@@ -40,10 +40,11 @@
       23 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
       24 => 'Rebing\\GraphQL\\GraphQLServiceProvider',
       25 => 'Sentry\\Laravel\\ServiceProvider',
-      26 => 'App\\Providers\\AppServiceProvider',
-      27 => 'App\\Providers\\AuthServiceProvider',
-      28 => 'App\\Providers\\EventServiceProvider',
-      29 => 'App\\Providers\\RouteServiceProvider',
+      26 => 'Barryvdh\\DomPDF\\ServiceProvider',
+      27 => 'App\\Providers\\AppServiceProvider',
+      28 => 'App\\Providers\\AuthServiceProvider',
+      29 => 'App\\Providers\\EventServiceProvider',
+      30 => 'App\\Providers\\RouteServiceProvider',
     ),
     'aliases' => 
     array (
@@ -86,6 +87,7 @@
       'Excel' => 'Maatwebsite\\Excel\\Facades\\Excel',
       'GraphQL' => 'Rebing\\GraphQL\\Support\\Facades\\GraphQL',
       'Sentry' => 'Sentry\\Laravel\\Facade',
+      'PDF' => 'Barryvdh\\DomPDF\\Facade',
     ),
   ),
   'auth' => 
@@ -339,6 +341,29 @@
         'port' => '6379',
         'database' => '1',
       ),
+    ),
+  ),
+  'dompdf' => 
+  array (
+    'show_warnings' => false,
+    'orientation' => 'portrait',
+    'defines' => 
+    array (
+      'font_dir' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/fonts/',
+      'font_cache' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/fonts/',
+      'temp_dir' => '/var/folders/zs/nt1ktc7s0k110789ywrq2sym0000gn/T',
+      'chroot' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback',
+      'enable_font_subsetting' => false,
+      'pdf_backend' => 'CPDF',
+      'default_media_type' => 'screen',
+      'default_paper_size' => 'a4',
+      'default_font' => 'serif',
+      'dpi' => 96,
+      'enable_php' => false,
+      'enable_javascript' => true,
+      'enable_remote' => true,
+      'font_height_ratio' => 1.1,
+      'enable_html5_parser' => false,
     ),
   ),
   'excel' => 
