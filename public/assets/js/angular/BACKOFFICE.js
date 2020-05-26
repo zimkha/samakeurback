@@ -66,7 +66,7 @@ app.factory('Init',function ($http, $q)
                 console.log(dataget);
                 $http({
                     method: 'GET',
-                    url: BASE_URL + (is_graphQL ? '/graphql?query= {'+element+' {'+listeattributs+'} }' : element),
+                    url: BASE_URL + (is_graphQL ? 'graphql?query= {'+element+' {'+listeattributs+'} }' : element),
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -94,7 +94,7 @@ app.factory('Init',function ($http, $q)
                 var deferred=$q.defer();
                 $http({
                     method: 'GET',
-                    url: BASE_URL + '/graphql?query= {'+element+'{metadata{total,per_page,current_page,last_page},data{'+listeattributs+'}}}'
+                    url: BASE_URL + 'graphql?query= {'+element+'{metadata{total,per_page,current_page,last_page},data{'+listeattributs+'}}}'
                 }).then(function successCallback(response) {
                     factory.data=response['data']['data'][!element.indexOf('(')!=-1 ? element.split('(')[0] : element];
                     deferred.resolve(factory.data);
@@ -452,7 +452,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
             "niveauprojets"                 :  ["id",""],
 
             "projets"                       :  [
-                "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adress_complet,code_postal}",
+                "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adresse_complet,code_postal}",
                 ",niveau_projets{id,piece,bureau,toillette,chambre,salon,cuisine},remarques{id,demande_text,projet_id,type_remarque_id}"
             ],
 
