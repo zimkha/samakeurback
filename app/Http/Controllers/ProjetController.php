@@ -16,10 +16,15 @@ use Illuminate\Support\Facades\DB;
 class ProjetController extends Controller
 {
     protected $queryName = "projets";
+    public function avalider($id)
+    {
+        return Projet::a_valider($id);
+    }
     public function save(Request $request)
     {
         try
         {
+            dd($request->all());
             return DB::transaction(function () use($request) {
                 $errors = null;
                 $item  = new Projet();

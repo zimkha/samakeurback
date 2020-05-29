@@ -26,6 +26,27 @@ class Projet extends Model
     {
         return $this->hasMany(PlanProjet::class);
     }
+    public static function a_valider($id)
+    {
+         $item = Projet::find($id);
+         if(isset($item))
+         {
+             $date = $item->updated_at;
+             $date = date('Y-m-d', strtotime($date. '15 days'));
+             $date_now =  new \DateTime();
+             $date = date($date. '23:59:59');
+             $date = new \DateTime($date);
+             $response = null;
+             $response = date_diff($date,$date_now);
+            if($response->d >0)
+            {
+                return $response->d;
+            }
+            else
+            return null;
+         }
+
+    }
      public static function nb_attribut($id, $attribut)
     {
         $item = Projet::find($id);

@@ -34,6 +34,7 @@ class ProjetQuery extends Query
             'superficie'             => ['type' => Type::int()],
             'longeur'                => ['type' => Type::int()],
             'largeur'                => ['type' => Type::int()],
+            'plan_id'                => ['type' => Type::int()],
             'email'                  => ['type' => Type::string()],
             'name'                   => ['type' => Type::string()],
             'prenom'                 => ['type' => Type::string()],
@@ -93,9 +94,9 @@ class ProjetQuery extends Query
        {
           $query = $query->whereIn('user_id', User::where('pays',  Outil::getOperateurLikeDB(), '%'.$args['pays'].'%')->get(['id']));
        }
-       if (isset($args['adress_complet']))
+       if (isset($args['adresse_complet']))
        {
-          $query = $query->whereIn('user_id', User::where('adress_complet',  Outil::getOperateurLikeDB(), '%'.$args['adress_complet'].'%')->get(['id']));
+          $query = $query->whereIn('user_id', User::where('adresse_complet',  Outil::getOperateurLikeDB(), '%'.$args['adresse_complet'].'%')->get(['id']));
        }
         if (isset($args['telephone']))
        {
@@ -104,6 +105,10 @@ class ProjetQuery extends Query
         if (isset($args['code_postal']))
        {
           $query = $query->whereIn('user_id', User::where('code_postal',  Outil::getOperateurLikeDB(), '%'.$args['code_postal'].'%')->get(['id']));
+       }
+       if (isset($args['plan_id']))
+       {
+          $query = $query->whereIn('id', PlanProjet::where('plan_id', $args['plan_id'])->get('projet_id'));
        }
        if (isset($args['created_at_start']) && isset($args['created_at_end']))
          {

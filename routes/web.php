@@ -48,6 +48,7 @@ Route::get('/status/{id}/{model}', 'ValidationController@status');
 
 Route::get('/plan/pdf/{id}', 'PdfController@pdf_plan');
 Route::get('/contrat/{id}', 'ProjetController@makeContrat');
+Route::get('/a_valider/{id}', 'ProjetController@avalider');
 
 
 // les routes de teste

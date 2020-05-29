@@ -6,6 +6,8 @@ use GraphQL;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 use App\Projet;
+use App\Outil;
+use Carbon\Carbon;
 use App\NiveauProjet;
 class ProjetType extends GraphQLType
 {
@@ -36,6 +38,7 @@ class ProjetType extends GraphQLType
             'nb_salon'               => ['type' => Type::int()],
             'nb_cuisine'             => ['type' => Type::int()],
             'nb_etage'               => ['type' => Type::int()],
+            'a_valider'              => ['type' => Type::int()],
 
             'created_at'             => ['type'  => Type::string()],
             'created_at_fr'          => ['type'  => Type::string()],
@@ -44,6 +47,23 @@ class ProjetType extends GraphQLType
             'deleted_at'             => ['type'  => Type::string()],
            
         ];
+    }
+    public function resolveAValiderField($root, $args)
+    {
+        if (!isset($root['id']))
+        {
+            $projet_id = $root->id;
+        
+}        else
+        {
+            $projet_id = $root['id'];
+        }
+        $response = Projet::a_valider($projet_id);
+        if($response == null)
+         return 0;
+
+        else
+          return $response; 
     }
     public function resolveNbPiecesField($root, $args)
     {
@@ -164,7 +184,7 @@ class ProjetType extends GraphQLType
         {
             $created_at = $root['created_at'];
         }
-        return Carbon::parse($created_at)->format('d/m/Y H:i');
+        return Carbon::parse($created_at)->format('d/m/Y ');
     }
 
 }

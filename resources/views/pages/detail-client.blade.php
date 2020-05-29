@@ -89,10 +89,9 @@
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
-                                        <tr>
+                                        <tr align="center">
                                             <th>Code</th>
                                             <th>Date</th>
-                                            <th>Pays</th>
                                             <th>Adresse</th>
                                             <th>Superficie</th>
                                             <th>Actions</th>
@@ -100,44 +99,18 @@
                                         </thead>
 
                                         <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>320,800</td>
+                                        <tr align="center" ng-repeat="item in projets" ng-if="item.active==1 && item.etat==1">
+                                            <td>@{{ $index + 1 }}</td>
+                                           <td>@{{ item.created_at_fr }}</td>
+                                           <td>@{{ item.adresse }}</td>
+                                           <td>@{{ item.superficie }}</td>
                                             <td>
-                                                <button href="detail-client.html" class="btn btn-primary btn-circle" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                                <button href="#!/detail-projet/@{{ item.id }}" class="btn btn-primary btn-circle" data-toggle="modal" data-target=".bd-example-modal-lg">
                                                     <i class="fas fa-info-circle"></i>
                                                 </button>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>170,750</td>
-                                            <td>
-                                                <button href="detail-client.html" class="btn btn-primary btn-circle" data-toggle="modal" data-target=".bd-example-modal-lg">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>86,000</td>
-                                            <td>
-                                                <button href="detail-client.html" class="btn btn-primary btn-circle" data-toggle="modal" data-target=".bd-example-modal-lg">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-
-
+                                    
                                         </tbody>
                                     </table>
                                 </div>

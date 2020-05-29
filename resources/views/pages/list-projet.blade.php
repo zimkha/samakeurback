@@ -15,12 +15,12 @@
                 <form>
                     <div class="form-row mt-4">
                         <div class="col-md-12 text-center">
-                            <input  type="radio" id="male" name="gender" value="male">
-                            <label for="male">en cours</label>
-                            <input type="radio" id="female" name="gender" value="female">
-                            <label for="female">finalise</label>
-                            <input type="radio" id="other"checked name="gender" value="other">
-                            <label for="other" >Tout</label>
+                            <div class="col-md-12 col-sm-12 uk-margin-small-top text-md-center" id="etat">
+                                <span class="uk-text-bold fsize-14 uk-text-uppercase uk-margin-small-right">Etat : </span>
+                                <input type="radio" value="1" name="radioBtnComposition" ng-click="onRadioCompositionClick($event, '1')" class="uk-radio"> <span class="fsize-12 uk-margin-small-right">en cours</span>
+                                <input type="radio" value="2" name="radioBtnComposition" ng-click="onRadioCompositionClick($event, '2')" class="uk-radio"> <span class="fsize-12 uk-margin-small-right">finalisé</span>
+                                <input type="radio" checked  name="radioBtnComposition" ng-click="onRadioCompositionClick($event, '')" class="uk-radio true"> <span class="fsize-12 uk-margin-small-right">Tout</span>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <select class="form-control" id="searchoption_projet" ng-model="searchoption_projet" name="searchoption">
@@ -64,74 +64,44 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr align="center">
+                                <th>Code Projet</th>
+                                <th>Date creation</th>
+                                <th>A valider dans</th>
                                 <th>Nom Complet</th>
-                                <th>Pays</th>
                                 <th>Adresse</th>
-                                <th>Code postal</th>
+                               
                                 <th>N° telephone</th>
-                                <th>Email</th>
+                                
                                 <th class="text-center">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr align="center">
-                                <td>Tiger Nixon</td>
-                                <td>Sénégal</td>
-                                <td>Dakar/Sénégal</td>
-                                <td>12500</td>
-                                <td>221 77 196 77 77</td>
-                                <td>email@email.com</td>
-                                <td class="text-center">
-                                    <a href="#!/detail-projet/2" class="btn btn-sm btn-primary btn-circle">
-                                        <i class="fas fa-info"></i>
-                                    </a>
-                                    <button  class="btn btn-sm btn-success btn-circle">
-                                        <i class="fa fa-file-excel" title="generer le fichier excel"></i>
-                                    </button>
-                                    <button  class="btn btn-sm btn-warning btn-circle">
-                                        <i class="fa fa-file-pdf" title="generer le pdf"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr align="center">
-                                <td>Tiger Nixon</td>
-                                <td>Sénégal</td>
-                                <td>Dakar/Sénégal</td>
-                                <td>12500</td>
-                                <td>221 77 196 77 77</td>
-                                <td>email@email.com</td>
-                                <td class="text-center">
-                                    <a href="#!/detail-projet/2" class="btn btn-sm btn-primary btn-circle">
-                                        <i class="fas fa-info"></i>
-                                    </a>
-                                    <button  class="btn btn-sm btn-success btn-circle">
-                                        <i class="fa fa-file-excel" title="generer le fichier excel"></i>
-                                    </button>
-                                    <button  class="btn btn-sm btn-warning btn-circle">
-                                        <i class="fa fa-file-pdf" title="generer le pdf"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr align="center">
-                                <td>Tiger Nixon</td>
-                                <td>Sénégal</td>
-                                <td>Dakar/Sénégal</td>
-                                <td>12500</td>
-                                <td>221 77 196 77 77</td>
-                                <td>email@email.com</td>
-                                <td class="text-center">
-                                    <a href="#!/detail-projet/2" class="btn btn-sm btn-primary btn-circle">
-                                        <i class="fas fa-info"></i>
-                                    </a>
-                                    <button  class="btn btn-sm btn-success btn-circle">
-                                        <i class="fa fa-file-excel" title="generer le fichier excel"></i>
-                                    </button>
-                                    <button  class="btn btn-sm btn-warning btn-circle">
-                                        <i class="fa fa-file-pdf" title="generer le pdf"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            <tr align="center" ng-repeat="item in projets">
+                                <td>@{{ $index + 1 }}</td>
+                                <td>@{{ item.created_at_fr }}</td>
+                                <td>
+                                    <span ng-if="item.a_valider==0" class="badge badge-danger">Epuisé</span>
+                                    <span ng-if="item.a_valider!=0" class="badge badge-success">@{{ item.a_valider }} jour</span>
 
+                                </td>
+                                <td>@{{ item.user.name}}</td>
+                                <td>@{{item.user.adresse_complet}}</td>
+                                
+                                 <td>@{{item.user.telephone}}</td>
+                               
+                                <td class="text-center">
+                                    <a href="#!/detail-projet/@{{ item.id }} " class="btn btn-sm btn-primary btn-circle">
+                                        <i class="fas fa-info"></i>
+                                    </a>
+                                    <a  class="btn btn-sm btn-success btn-circle"  href="#!/detail-projet/@{{ item.id }} ">
+                                        <i class="fa fa-file-excel" title="generer le fichier excel"></i>
+</a>
+                                    <a  class="btn btn-sm btn-warning btn-circle"  href="#!/detail-projet/@{{ item.id }} ">
+                                        <i class="fa fa-file-pdf" title="generer le pdf"></i>
+</a>
+                                </td>
+                            </tr>
+                           
                             </tbody>
                         </table>
                     </div>

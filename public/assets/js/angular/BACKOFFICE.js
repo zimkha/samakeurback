@@ -312,7 +312,7 @@ app.factory('Init',function ($http, $q)
                 var deferred=$q.defer();
                 $http({
                     method: 'DELETE',
-                    url: BASE_URL + '/' + element + '/' + id,
+                    url: BASE_URL +  element + '/' + id,
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -452,7 +452,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
             "niveauprojets"                 :  ["id",""],
 
             "projets"                       :  [
-                "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adresse_complet,code_postal}",
+                "id,a_valider,created_at_fr,created_at,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adresse_complet,code_postal}",
                 ",niveau_projets{id,piece,bureau,toillette,chambre,salon,cuisine},remarques{id,demande_text,projet_id,type_remarque_id}"
             ],
 
@@ -468,7 +468,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
             "roles"                         : ["id,name,guard_name,permissions{id,name,display_name,guard_name}", ""],
 
             "users"                         : [
-            "id,nom,prenom,adress_complet,pays,code_postal,is_client,telephone,name,email,active,password,image,roles{id,name,guard_name,permissions{id,name,display_name,guard_name}}", ",last_login,last_login_ip,created_at_fr"
+            "id,nom,prenom,adresse_complet,pays,code_postal,is_client,telephone,name,email,active,password,image,roles{id,name,guard_name,permissions{id,name,display_name,guard_name}}", ",last_login,last_login_ip,created_at_fr"
         , ""],
 
             "dashboards"                    : ["clients,assurances,ventes,fournisseurs"],
@@ -626,6 +626,17 @@ $scope.get_Somme_daye = function ()
 
     // Pour réecrire l'url pour les filtres fichiers à télécharger
     $scope.urlWrite = "";
+
+    $scope.radioBtn = null;
+    $scope.radioBtnComposition = null;
+    $scope.onRadioClick = function ($event, param) {
+        $scope.radioBtn = parseInt(param);
+        console.log($scope.radioBtn);
+    };
+    $scope.onRadioCompositionClick = function ($event, param) {
+        $scope.radioBtnComposition = parseInt(param);
+        console.log($scope.radioBtnComposition);
+    };
     $scope.writeUrl = function (type, addData=null)
     {
         var urlWrite = "";
@@ -828,7 +839,9 @@ $scope.get_Somme_daye = function ()
         {
             rewriteelement = 'projetspaginated(page:'+ $scope.paginationprojet.currentPage +',count:'+ $scope.paginationprojet.entryLimit
             + ($scope.projetview ? ',projet_id:' + $scope.projetview.id : "" )
-            + ($('[name="etat_projet"]:checked').attr('data-value') ? ',etat:' + '"' + $('[name="etat_ projet"]:checked').attr('data-value') + '"' : "" )
+            + ($scope.planview ? ',plan_id:' + $scope.planview.id : "" )
+            + ($scope.clientview ? ',user_id:' + $scope.clientview.id : "" )
+            + ($scope.radioBtnComposition ? ',etat:' + $scope.radioBtnComposition : "")
             + ($('#searchtexte_projet').val() ? (',' + $('#searchoption_projet').val() + ':"' + $('#searchtexte_projet').val() + '"') : "" )
             + ($('#projet_user').val() ? ',user_id:' + $('#projet_user').val() : "" )
             + ($('#created_at_start_listprojet').val() ? ',created_at_start:' + '"' + $('#created_at_start_listprojet').val() + '"' : "" )
@@ -1092,45 +1105,46 @@ $scope.get_Somme_daye = function ()
          {
              $scope.pageChanged('projet');
              $scope.getelements('remarques');
+             $scope.pageChanged('user');
          }
          else if(angular.lowercase(current.templateUrl).indexOf('list-projet-encour')!==-1)
          {
             $scope.pageChanged('projet');
         }
 
-         else if(angular.lowercase(current.templateUrl).indexOf('list-client')!==-1)
+         else if(angular.lowercase(current.templateUrl).indexOf('client')!==-1)
          {
-            $scope.pageChanged('user');
+          
 
-        //     $scope.clientview = null;
-        //     if(current.params.itemId)
-        //     {
-        //         var idElmtclient = current.params.itemId;
-        //         setTimeout(function ()
-        //         {
-        //             Init.getStatElement('client', idElmtclient);
-        //         },1000);
+            $scope.clientview = null;
+            if(current.params.itemId)
+            {
+                
+                var idElmtclient = current.params.itemId;
+                setTimeout(function ()
+                {
+                    Init.getStatElement('user', idElmtclient);
+                },1000);
 
-        //         var req = "clients";
-        //         $scope.clientview = {};
-        //         rewriteReq = req + "(id:" + current.params.itemId + ")";
-        //         Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
-        //         {
-        //             $scope.clientview = data[0];
-        //             $scope.getelements("typeclients");
+                var req = "users";
+                $scope.clientview = {};
+                rewriteReq = req + "(id:" + current.params.itemId + ")";
+                Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
+                {
+                    $scope.clientview = data[0];
+                    $scope.pageChanged("projet");
 
 
-        //         },function (msg)
-        //         {
-        //             toastr.error(msg);
-        //         });
-        //     }
-        //     else
-        //     {
-        //         $scope.getelements("typeclients");
-        //         $scope.pageChanged('client');
-        //     }
-        // }
+                },function (msg)
+                {
+                    toastr.error(msg);
+                });
+            }
+            else
+            {
+                $scope.pageChanged('user');
+            }
+        }
         // else if(angular.lowercase(current.templateUrl).indexOf('list-profil')!==-1)
         // {
         //     $scope.getelements('permissions');
@@ -1164,7 +1178,7 @@ $scope.get_Somme_daye = function ()
         //         $scope.getelements('roles');
         //
         //     }
-         }
+         //}
     });
 
 
@@ -1913,13 +1927,7 @@ $scope.get_Somme_daye = function ()
             var cuisine_projet = $("#cuisine_projet").val();
             var toillete_projet = $("#toillete_projet").val();
 
-            if ($scope.estEntier(niveau) == false) {
-                iziToast.error({
-                    message: "Sélectionnez un niveau",
-                    position: 'topRight'
-                });
-                return false;
-            }
+           
             if ($scope.estEntier(piece_projet) == false) {
                 iziToast.error({
                     message: "Sélectionnez une piece",

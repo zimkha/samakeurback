@@ -209,11 +209,11 @@ class UserController extends Controller
 
                 if($id)
                 {
-                    $user = User::with('ventes')->find($id);
-                    if ($user!=null)
+                    $user = User::with('projets')->find($id);
+                    if ($user!=null && $user->is_client == 1)
                     {
                         $dataliason = true;
-                        if (count($user->ventes)==0 && count($user->versements)==0 && count($user->decaisses)==0 && count($user->clotures)==0)
+                        if (count($user->projets)==0)
                         {
                             $user->delete();
                             $user->forceDelete();
@@ -224,7 +224,7 @@ class UserController extends Controller
                         if ($dataliason)
                         {
                             $data = 0;
-                            $errors = "Cet utilisateur à des données à son actif:  ".count($user->ventes)." ventes -> ".count($user->versements)." versements -> ".count($user->decaisses)." decaisses -> ".count($user->clotures). "clotures";
+                            $errors = "Cet utilisateur à des données à son actif:  ".count($user->projets)." projets";
                         }
                     }
                     else

@@ -242,11 +242,9 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="client_projet">Client</label>
-                                    <select class="js-example-basic-single form-control" id="client_projet" name="client">
-
-                                        <option value="CL">client 2</option>
-                                        <option value="AL">Alabama</option>
-                                        <option value="WY">Wyoming</option>
+                                    <select class="js-example-basic-single form-control" id="user_projet" name="user">
+                                    <option diseabled="diseabled" >choisir un client</option>
+                                    <option ng-repeat="item in users" ng-if="item.is_client==1 && item.active==1" value="@{{item.id}}">@{{item.name}} -- @{{item.email}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -264,36 +262,61 @@
                                     <input type="number" class="form-control" id="superficie_plan" name="superficie">
                                 </div>
                             </div>
+                           
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="type_chambre_projet">Type de Chambre</label>
-                                    <select class="form-control" id="type_chambre_projet" name="type_chambre">
-                                        <option>TYPE 1</option>
-                                        <option>TYPE 2</option>
-                                    </select>
+                                    <label for="longeur_projet">Longeur</label>
+                                   <input type="number" class="form-control" id="longeur_projet" name="longeur">
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="garage_projet">Garage</label>
-                                    <select class="form-control" id="garage_projet" name="garage">
-                                        <option>OUI</option>
-                                        <option>NON</option>
-                                    </select>
+                                    <label for="largeur_projet">Largeur</label>
+                                   <input type="number" class="form-control" id="largeur_projet" name="largeur">
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <label for="superficie_projet">Piscine</label>
-                                    <select class="form-control" id="superficie_projet" name="superficie">
-                                        <option>OUI</option>
-                                        <option>NON</option>
+                                    <select class="form-control" id="piscine_projet" name="piscine">
+                                        <option value="1">OUI</option>
+                                        <option value="0">NON</option>
                                     </select>
                                 </div>
                             </div>
+
                         </div>
 
-
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="electricte_projet" value="">Electricté
+                                  </label>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="accesvoirie_projet" value="">Accés voirie
+                                  </label>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="ass_projet" value="">Assainissement
+                                  </label>
+                            </div>
+                                                    <div class="col-lg-3">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="cadastre_projet" value="">Cadastre
+                                  </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="description_proje">Desciption</label>
+                                <textarea rows="4" class="form-control" id="description_projet" name="description"></textarea>
+                                </div>
+                            </div>
+                        </div>
                         <h4 class="form-section animated fadeInDown mb-3 mt-5 border-bottom border-alternate">
                             <i class="fa fa-shopping-cart"></i>
                             NIVEAUX
@@ -308,7 +331,7 @@
                                         <div class="col-lg-3">
                                             <div class="form-group">
                                                 <label for="niveau_projet">Designation</label>
-                                                <input type="number" name="niveau" id="niveau_projet" class="form-control" >
+                                                <input type="text" name="niveau" id="niveau_projet" class="form-control" >
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
@@ -358,7 +381,8 @@
                                 </div>
                             </div>
                         </div>
-
+                       
+                       
                         <div class="row mt-5">
                             <div class="col-md-12 animated fadeIn text-center" ng-if="produitsInTable.length==0">
                                 <h3> Ajouter un Niveau pour ce plan
