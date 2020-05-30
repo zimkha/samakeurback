@@ -34,6 +34,7 @@ Route::post('/active_plan', 'ProjetController@active_plan');
 Route::post('/connexion', 'ClientController@connexion');
 Route::post('/contrat', 'ContratController@save');
 Route::post('/link_plan_to_projet', 'ProjetController@linkPlanToProjet');
+Route::post('/inscription', 'UserController@save');
 
 // les actions de suppressions
 Route::delete('/projet/{id}', 'ProjetController@delete');
@@ -50,6 +51,7 @@ Route::get('/status/{id}/{model}', 'ValidationController@status');
 Route::get('/plan/pdf/{id}', 'PdfController@pdf_plan');
 Route::get('/contrat/{id}', 'ProjetController@makeContrat');
 Route::get('/a_valider/{id}', 'ProjetController@avalider');
+
 
 
 // les routes de teste
