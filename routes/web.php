@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'HomeController@index')->name('home');
-
+Route::get('/test', 'ContratController@test');
 Auth::routes();
 
 Route::get('/page/{namepage}', function ($namepage)
