@@ -102,7 +102,7 @@
                                         <div class="col-lg-3">
                                             <div class="form-group">
                                                 <label for="niveau_plan">Designation</label>
-                                                <input type="number" name="niveau" id="niveau_plan" class="form-control" >
+                                                <input type="text" name="niveau" id="niveau_plan" class="form-control" >
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
