@@ -18,6 +18,7 @@ class ClientController extends Controller
     }
     public function connexion(Request $request)
     {
+        dd($request->all());
        try
        {
          $errors = null;
@@ -40,7 +41,7 @@ class ClientController extends Controller
                 else
                  {
                    // Si tout se passe bien
-                  
+
                    return response()->json([
                     'data' => $user,
                     'message' => ["connexion réussi"]
@@ -53,7 +54,7 @@ class ClientController extends Controller
                     'data' => null,
                     'errors' => ["mot de passe incorrect"]
                 ], 200);
-             } 
+             }
          }
          else
          {
@@ -62,12 +63,12 @@ class ClientController extends Controller
                 'errors' => ["email incorrecte"]
             ], 200);
          }
-         
+
        }
        catch(\Exception $e)
        {
         return Outil::getResponseError($e);
        }
     }
-   
+
 }
