@@ -76,8 +76,8 @@ class PlanController extends Controller
                     throw new \Exception($errors);
                 }
 
-                //$data       = json_decode($request->data, true);
-                $data = $request->data;
+                $data       = json_decode($request->tab_plan, true);
+                //$data = $request->tab_plan;
                 $tableau    = array();
                 $n = 0;
                 foreach ($data as $datum) {
