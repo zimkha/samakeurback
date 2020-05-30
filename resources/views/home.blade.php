@@ -222,6 +222,34 @@
         </div>
     </div>
 
+
+    <div class="modal bd-example-modal-lg  fade" id="modal_changeStattus" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true" style="background-color: rgba(43, 43, 43, .69);">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header back-dark-50 text-white border-0">
+                    <div class="uk-text-bold">@{{changestatut.title}}</div>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body modal-body1">
+                    <form id="modal_addchstat" class="form" accept-charset="UTF-8" ng-submit="changestatut($event,changestatut.id)">
+                        @csrf
+                        <div class="uk-margin">
+                        </div>
+                        <div class="text-right">
+                            <div class="mt-30">
+                                <button class="uk-button back-red shadow text-white pl-2 pr-2 lh-34 button-mat-filtrer btn--7" type="reset" data-dismiss="modal"><span class="psuedo-text"><i class="fa fa-times"></i> Non</span> </button>
+                                <button class="uk-button back-dark shadow text-white pl-2 pr-2 lh-34 button-mat-valid btn--7" type="submit"> <span class="psuedo-text"><i class="fa fa-check"></i> Oui</span></button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
 {{--    modal demande --}}
 
     <div class="modal fade" id="modal_adddemande" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

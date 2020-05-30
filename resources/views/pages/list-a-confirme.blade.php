@@ -40,8 +40,6 @@
                             <thead>
                             <tr>
                                 <th>Nom Complet</th>
-                                <th>Pays</th>
-                                <th>Adresse</th>
                                 <th>Code Postal</th>
                                 <th>Telephone</th>
                                 <th>Email</th>
@@ -49,104 +47,23 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
+                            <tr align="center" ng-repeat="item in users" ng-if="item.active==0">
+                               <td>@{{ item.name }}</td>
+                               <td>@{{ item.code_postal }}</td>
+                               <td>@{{ item.telephone }}</td>
+                               <td>@{{ item.email }}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-sm btn-circle btn-primary" title="Activer cette utilisateur" value="1" ng-click="showModalconfirme($event,'user', 0,item, 'Activer cette utilisateur')">
-                                        <span class="fa fa-edit"></span>
-                                    </button>
-                                    <button class="btn btn-sm btn-circle btn-danger">
+                                    <button ng-if="item.active" class="menu-item uk-icon-button fa fa-thumbs-down border-0 back-rednoir text-white" title="Désactiver ce client" ng-click="showModalChangeStatut($event,'user', 0,item, 'Désactiver ce client')"></button>
+                                      
+                                        <button ng-if="!item.active"  class="btn btn-sm btn-circle btn-success" title="Activer ce client" ng-click="showModalChangeStatut($event,'user', 1,item, 'Activer ce client')"></button>
+                                        <button class="btn btn-sm btn-circle btn-danger"   ng-click="deleteElement('restaurant',item.id)"title="Supprimer">
                                         <span class="fa fa-trash"></span>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Garrett Winters</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>63</td>
-                                <td>2011/07/25</td>
-                                <td>$170,750</td>
-                                <td class="text-center">
-                                    <button class="btn btn-sm btn-circle btn-primary">
-                                        <span class="fa fa-edit"></span>
-                                    </button>
-                                    <button class="btn btn-sm btn-circle btn-danger">
-                                        <span class="fa fa-trash"></span>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Ashton Cox</td>
-                                <td>Junior Technical Author</td>
-                                <td>San Francisco</td>
-                                <td>66</td>
-                                <td>2009/01/12</td>
-                                <td>$86,000</td>
-                                <td class="text-center">
-                                    <button class="btn btn-sm btn-circle btn-primary">
-                                        <span class="fa fa-edit"></span>
-                                    </button>
-                                    <button class="btn btn-sm btn-circle btn-danger">
-                                        <span class="fa fa-trash"></span>
-                                    </button>
-                                </td>
-                            </tr>
+                                        </button>
 
-                            <tr>
-                                <td>Michelle House</td>
-                                <td>Integration Specialist</td>
-                                <td>Sidney</td>
-                                <td>37</td>
-                                <td>2011/06/02</td>
-                                <td>$95,400</td>
-                                <td class="text-center">
-                                    <button class="btn btn-sm btn-circle btn-primary">
-                                        <span class="fa fa-edit"></span>
-                                    </button>
-                                    <button class="btn btn-sm btn-circle btn-danger">
-                                        <span class="fa fa-trash"></span>
-                                    </button>
+                                    
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Suki Burks</td>
-                                <td>Developer</td>
-                                <td>London</td>
-                                <td>53</td>
-                                <td>2009/10/22</td>
-                                <td>$114,500</td>
-                                <td class="text-center">
-                                    <button class="btn btn-sm btn-circle btn-primary">
-                                        <span class="fa fa-edit"></span>
-                                    </button>
-                                    <button class="btn btn-sm btn-circle btn-danger">
-                                        <span class="fa fa-trash"></span>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Prescott Bartlett</td>
-                                <td>Technical Author</td>
-                                <td>London</td>
-                                <td>27</td>
-                                <td>2011/05/07</td>
-                                <td>$145,000</td>
-                                <td class="text-center">
-                                    <button class="btn btn-sm btn-circle btn-primary">
-                                        <span class="fa fa-edit"></span>
-                                    </button>
-                                    <button class="btn btn-sm btn-circle btn-danger">
-                                        <span class="fa fa-trash"></span>
-                                    </button>
-                                </td>
-                            </tr>
-
+                        
                             </tbody>
                         </table>
                     </div>

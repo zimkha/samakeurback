@@ -452,7 +452,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
             "niveauprojets"                 :  ["id",""],
 
             "projets"                       :  [
-                "id,a_valider,created_at_fr,created_at,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adresse_complet,code_postal}",
+                "id,etat,active,a_valider,created_at_fr,created_at,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adresse_complet,code_postal}",
                 ",niveau_projets{id,piece,bureau,toillette,chambre,salon,cuisine},remarques{id,demande_text,projet_id,type_remarque_id}"
             ],
 
@@ -1048,6 +1048,7 @@ $scope.get_Somme_daye = function ()
         $scope.pageCurrent = null;
         $scope.clientview = null;
         $scope.userview = null;
+        $scope.planview = null;
 
 
         // for pagination
@@ -1071,31 +1072,58 @@ $scope.get_Somme_daye = function ()
             entryLimit: 10,
             totalItems: 0
         };
+        $scope.paginationplan = {
+            currentPage: 1,
+            maxSize: 10,
+            entryLimit: 10,
+            totalItems: 0
+        };
+        $scope.paginationprojet = {
+            currentPage: 1,
+            maxSize: 10,
+            entryLimit: 10,
+            totalItems: 0
+        };
 
 
-        /******* /Réintialisation de certaines valeurs *******/
-
-
-        // Pour donner la posssiblité à un utilisateur connecté de modifier son profil
-      /*  $scope.pageChanged("medicament");
-        $scope.getelements("users");
-        $scope.getelements("categories");
-        //$scope.getelements("typemedicaments");
-        $scope.getelements("famillemedicaments");
-        //$scope.getelements("caisses");
-        $scope.getelements("modepaiements");
-        $scope.liste_notif = [];
-*/
-
-        // blockUI_start_all("#content");
         $scope.linknav = $location.path();
         $scope.getelements("roles");
         $scope.getelements("permissions");
-        console.log("angular je suis la ",(angular.lowercase(current.templateUrl)));
+        //console.log("angular je suis la ",(angular.lowercase(current.templateUrl)));
 
-         if(angular.lowercase(current.templateUrl).indexOf('list-plan')!==-1)
+         if(angular.lowercase(current.templateUrl).indexOf('plan')!==-1)
          {
-                $scope.pageChanged("plan");
+               // $scope.pageChanged("plan");
+                console.log("angular je suis la ",(angular.lowercase(current.templateUrl)));
+
+               $scope.planview = null;
+               if(current.params.itemId)
+               {
+                   
+                   var idElmtplan = current.params.itemId;
+                   setTimeout(function ()
+                   {
+                       Init.getStatElement('plan', idElmtplan);
+                   },1000);
+   
+                   var req = "plans";
+                   $scope.planview = {};
+                   rewriteReq = req + "(id:" + current.params.itemId + ")";
+                   Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
+                   {
+                       $scope.clientview = data[0];
+                       $scope.pageChanged("projet");
+   
+   
+                   },function (msg)
+                   {
+                       toastr.error(msg);
+                   });
+               }
+               else
+               {
+                   $scope.pageChanged('plan');
+               }
          }
          else if(angular.lowercase(current.templateUrl).indexOf('list-a-confirme')!==-1)
          {
@@ -1119,7 +1147,7 @@ $scope.get_Somme_daye = function ()
             $scope.clientview = null;
             if(current.params.itemId)
             {
-                
+                 
                 var idElmtclient = current.params.itemId;
                 setTimeout(function ()
                 {
@@ -1450,17 +1478,42 @@ $scope.get_Somme_daye = function ()
     };
 
     $scope.chstat = {'id':'', 'statut':'', 'type':'', 'title':''};
+
+    // $scope.showModalStatut = function(event,type, statut, obj= null, title = null)
+    // {
+    //     var id = 0;
+    //     id = obj.id;
+    //     $scope.chstat.id             = id;
+    //     $scope.chstat.statut         = statut;
+    //     $scope.chstat.type           = type;
+    //     $scope.chstat.title          = title;
+    //     emptyform('chstat');
+    //     $("#modal_addchstat").modal('show');
+    // };
+
     $scope.showModalStatut = function(event,type, statut, obj= null, title = null)
     {
+        console.log(obj);
         var id = 0;
         id = obj.id;
         $scope.chstat.id = id;
         $scope.chstat.statut = statut;
         $scope.chstat.type = type;
         $scope.chstat.title = title;
-
         emptyform('chstat');
-        $("#modal_addchstat").modal('show');
+        $("#modal_changeStattus").modal('show');
+    };
+    $scope.showModalChangeStatut  = function(event,type, statut, obj= null, title = null)
+    {
+        console.log(obj);
+        var id = 0;
+        id = obj.id;
+        $scope.chstat.id = id;
+        $scope.chstat.statut = statut;
+        $scope.chstat.type = type;
+        $scope.chstat.title = title;
+        emptyform('changestatut');
+        $("#modal_addchangestatut").modal('show');
     };
     $scope.showModalconfirme = function(event, title = null)
     {
