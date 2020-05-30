@@ -18,7 +18,7 @@ class PlanController extends Controller
     }
     public function save(Request $request)
     {
-        dd($request->all());
+       // dd($request->all());
         try {
            return DB::transaction(function () use($request) {
                 $errors = null;
