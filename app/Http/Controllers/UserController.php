@@ -30,23 +30,30 @@ class UserController extends Controller
                     $user->active = true;
                 }
 
-                // Si au moins un champ est vide?
-                if(empty($request->name) || empty($request->email))
+               if(empty($request->nom) || empty($request->prenom) || empty($request->telephone))
+               {
+                   $errors = "Veuillez remplire tous les champs du formulaire";
+               }
+                if(empty($request->name) || empty($request->email) || empty($request->confirmemail))
                 {
                     $errors = "Veuillez remplir tous les champs";
                 }
-                else if (empty($request->id))
-                {
+              
                     if (empty($request->password) || empty($request->confirmpassword))
                     {
                         $errors = "Veuillez remplir tous les mots de passe";
                     }
-                }
+                
 
                 if(!empty($request->password) && $request->password!= $request->confirmpassword)
                 {
                     $errors = "les deux mots de passe ne correspondent pas";
                 }
+                if(!empty($request->email) && $request->email!= $request->confirmemail)
+                {
+                    $errors = "L'email de confirmation n'est pas le même email";
+                }
+
                 if (empty($request->id))
                 {
                     if(!Outil::isUnique(['email'], [$request->email], $request->id, User::class))
@@ -55,9 +62,12 @@ class UserController extends Controller
                     }
                 }
 
-                $user->name = $request->name;
-                $user->email = $request->email;
-                $user->is_client = true;
+                  $user->name = $request->name;
+                  $user->nom = $request->nom;
+                  $user->prenom = $request->prenom;
+                  $user->telephone = $request->telephone;
+                  $user->email = $request->email;
+                  $user->is_client = true;
                 !empty($request->password) ? $user->password = bcrypt($request->password) : '' ;
 
                 $role = Role::find($request->role);
