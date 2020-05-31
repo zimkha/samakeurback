@@ -81,6 +81,7 @@ class PlanQuery extends Query
            return 
            [
             'id'                     => $item->id,
+            'code'                   => $item->code,
             'superficie'             => $item->superficie,
             'longeur'                => $item->longeur,
             'largeur'                => $item->largeur,
