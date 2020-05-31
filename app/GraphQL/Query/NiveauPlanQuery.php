@@ -25,6 +25,7 @@ class NiveauPlanQuery extends Query
         return
         [
             'id'                     => ['type' => Type::id(), 'description' => ''],
+            'niveau'                 => [ 'type' => Type::string(), 'description' => ''],
             'plan_id'                => ['type' => Type::int()],
             'piece'                 => ['type' => Type::int()],
             'chambre'                => ['type' => Type::int()],
@@ -68,6 +69,7 @@ class NiveauPlanQuery extends Query
            [
             'id'                    => $item->id,
             'plan_id'               => $item->plan_id,
+            'niveau'               => $item->niveau,
             'plan'                  => $item->plan,
             'piece'                 => $item->piece,
             'chambre'               => $item->chambre,

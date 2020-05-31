@@ -18,6 +18,7 @@ class PlanType extends GraphQLType
     {
         return [
             'id'                     => ['type' => Type::id()],
+            'fichier'                 => [ 'type' => Type::string(), 'description' => ''],
             'superficie'             => ['type' => Type::int()],
             'longeur'                => ['type' => Type::int()],
             'largeur'                => ['type' => Type::int()],

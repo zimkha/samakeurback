@@ -17,6 +17,8 @@ class NiveauPlanType extends GraphQLType
         return [
             'id'                     => ['type' => Type::id(), 'description' => ''],
             'plan_id'                => ['type' => Type::int()],
+            'niveau'                 => [ 'type' => Type::string(), 'description' => ''],
+
             'piece'                 => ['type' => Type::int()],
             'chambre'                => ['type' => Type::int()],
             'salon'                  => ['type' => Type::int()],
