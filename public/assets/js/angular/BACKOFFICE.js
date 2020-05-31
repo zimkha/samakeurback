@@ -440,9 +440,10 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
 
     var listofrequests_assoc =
         {
+           // unite_mesure_id,unite_mesure{id,name}
             "plans"                         : [
                                                             "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage",
-                                                            ",niveau_plans{id,piece,niveau,bureau,toillette,chambre,salon,cuisine}"]
+                                                            ",niveau_plans{id,piece,bureau,toillette,chambre,salon,cuisine}"]
                                                             ,
 
             "planprojets"                   : ["id,plan_id,projet_id,etat_active,message,etat,plan{id}",""],
@@ -2348,7 +2349,7 @@ $scope.get_Somme_daye = function ()
                 $('#longeur_' + type).val(item.longeur);
                 $('#largeur_' + type).val(item.largeur);
                 $('#fichier_' + type).val(item.fichier);
-                $('#unite_mesure_' + type).val(item.unite_mesure);
+                $('#unite_mesure_' + type).val(item.unite_mesure_id);
 
                 var liste_ligneniveau = [];
                 $.each(item.niveau_plans, function (keyItem, valueItem) {
