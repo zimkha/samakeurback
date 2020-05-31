@@ -67,38 +67,28 @@
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                            <tr>
-                                <th>Code P</th>
-                                <th>Type de plan</th>
+                            <tr class="text-center">
+                                <th>Code Pl</th>
+                                <th>Superficie</th>
+                                <th>Long / Larg</th>
                                 <th>Chambre</th>
                                 <th>Salons</th>
-                                <th> SDB</th>
-                                <th> WC</th>
-                                <th> CSN</th>
-                                <th>Superficie</th>
-                                <th> ETG</th>
-                                <th>Jardin</th>
-                                <th>Garage</th>
-                                <th>Piscine</th>
+                                <th>WC</th>
+                                <th>CSN</th>
                                 <th class="text-center">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>PL0001</td>
-                                <td>TYPE3</td>
-                                <td>6</td>
-                                <td>2</td>
-                                <td>3</td>
-                                <td>2</td>
-                                <td>1</td>
-                                <td>200 m2</td>
-                                <td>2</td>
-                                <td>OUI</td>
-                                <td>NON</td>
-                                <td>NON</td>
+                            <tr ng-repeat="item in plans" class="text-center">
+                                <td>@{{ item.id }}</td>
+                                <td>@{{ item.superficie }}</td>
+                                <td>@{{ item.longeur }} /@{{ item.largeur }}</td>
+                                <td>@{{ item.nb_chambre }}</td>
+                                <td>@{{ item.nb_salon }}</td>
+                                <td>@{{ item.nb_toillette }}</td>
+                                <td>@{{ item.nb_cuisine }}</td>
                                 <td class="text-center">
-                                    <a href="#!/detail-plan/2" title="detail" class="btn btn-sm btn-primary btn-circle">
+                                    <a href="#!/detail-plan/@{{ item.id }}" title="detail" class="btn btn-sm btn-primary btn-circle">
                                         <i class="fas fa-info"></i>
                                     </a>
                                     <button  title="detail" class="btn btn-success btn-sm btn-circle">
@@ -107,53 +97,6 @@
 
                                 </td>
                             </tr>
-                            <tr>
-                                <td>PL0001</td>
-                                <td>TYPE3</td>
-                                <td>6</td>
-                                <td>2</td>
-                                <td>3</td>
-                                <td>2</td>
-                                <td>1</td>
-                                <td>200 m2</td>
-                                <td>2</td>
-                                <td>OUI</td>
-                                <td>NON</td>
-                                <td>NON</td>
-                                <td class="text-center">
-                                    <a href="#!/detail-plan/2" title="detail" class="btn btn-sm btn-primary btn-circle">
-                                        <i class="fas fa-info"></i>
-                                    </a>
-                                    <button  title="detail" class="btn btn-success btn-sm btn-circle">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>PL0001</td>
-                                <td>TYPE3</td>
-                                <td>6</td>
-                                <td>2</td>
-                                <td>3</td>
-                                <td>2</td>
-                                <td>1</td>
-                                <td>200 m2</td>
-                                <td>2</td>
-                                <td>OUI</td>
-                                <td>NON</td>
-                                <td>NON</td>
-                                <td class="text-center">
-                                    <a href="#!/detail-plan/2" title="detail" class="btn btn-sm btn-primary btn-circle">
-                                        <i class="fas fa-info"></i>
-                                    </a>
-                                    <button  title="detail" class="btn btn-success btn-sm btn-circle">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-
-                                </td>
-                            </tr>
-
 
                             </tbody>
                         </table>

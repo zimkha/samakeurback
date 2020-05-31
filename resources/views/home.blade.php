@@ -137,8 +137,8 @@
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="form-group">
-                                                <label for="toillete_plan">Toillette</label>
-                                                <input type="number" name="toillete" class="form-control" id="toillete_plan">
+                                                <label for="toillette_plan">Toillette</label>
+                                                <input type="number" name="toillette" class="form-control" id="toillette_plan">
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
@@ -195,7 +195,7 @@
                                                 @{{ item.cuisine }}
                                             </td>
                                             <td class="text-center">
-                                                @{{ item.toillete }}
+                                                @{{ item.toillette }}
                                             </td>
                                             <td>
                                                 <button class="btn btn-danger" ng-click="actionSurPlan('delete',item)" title="Supprimer du tableau">
@@ -249,7 +249,7 @@
             </div>
         </div>
     </div>
-    
+
 {{--    modal demande --}}
 
     <div class="modal fade" id="modal_adddemande" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -290,7 +290,7 @@
                                     <input type="number" class="form-control" id="superficie_plan" name="superficie">
                                 </div>
                             </div>
-                           
+
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <label for="longeur_projet">Longeur</label>
@@ -394,8 +394,8 @@
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="form-group">
-                                                <label for="toillete_projet">Toillette</label>
-                                                <input type="number" name="toillete" class="form-control" id="toillete_projet">
+                                                <label for="toillette_projet">Toillette</label>
+                                                <input type="number" name="toillette" class="form-control" id="toillette_projet">
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
@@ -409,8 +409,8 @@
                                 </div>
                             </div>
                         </div>
-                       
-                       
+
+
                         <div class="row mt-5">
                             <div class="col-md-12 animated fadeIn text-center" ng-if="produitsInTable.length==0">
                                 <h3> Ajouter un Niveau pour ce plan
@@ -454,7 +454,7 @@
                                                 @{{ item.cuisine }}
                                             </td>
                                             <td class="text-center">
-                                                @{{ item.toillete }}
+                                                @{{ item.toillette }}
                                             </td>
                                             <td>
                                                 <button class="btn btn-danger" ng-click="actionSurProjet('delete',item)" title="Supprimer du tableau">

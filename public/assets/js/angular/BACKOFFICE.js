@@ -1099,13 +1099,13 @@ $scope.get_Somme_daye = function ()
                $scope.planview = null;
                if(current.params.itemId)
                {
-                   
+
                    var idElmtplan = current.params.itemId;
                    setTimeout(function ()
                    {
                        Init.getStatElement('plan', idElmtplan);
                    },1000);
-   
+
                    var req = "plans";
                    $scope.planview = {};
                    rewriteReq = req + "(id:" + current.params.itemId + ")";
@@ -1113,8 +1113,8 @@ $scope.get_Somme_daye = function ()
                    {
                        $scope.clientview = data[0];
                        $scope.pageChanged("projet");
-   
-   
+
+
                    },function (msg)
                    {
                        toastr.error(msg);
@@ -1142,12 +1142,12 @@ $scope.get_Somme_daye = function ()
 
          else if(angular.lowercase(current.templateUrl).indexOf('client')!==-1)
          {
-          
+
 
             $scope.clientview = null;
             if(current.params.itemId)
             {
-                 
+
                 var idElmtclient = current.params.itemId;
                 setTimeout(function ()
                 {
@@ -1878,15 +1878,15 @@ $scope.get_Somme_daye = function ()
             var bureau_plan = $("#bureau_plan").val();
             var salon_plan = $("#salon_plan").val();
             var cuisine_plan = $("#cuisine_plan").val();
-            var toillete_plan = $("#toillete_plan").val();
+            var toillette_plan = $("#toillette_plan").val();
 
-            if ($scope.estEntier(niveau) == false) {
+            /*if (niveau == false) {
                 iziToast.error({
                     message: "Sélectionnez un niveau",
                     position: 'topRight'
                 });
                 return false;
-            }
+            }*/
             if ($scope.estEntier(piece_plan) == false) {
                 iziToast.error({
                     message: "Sélectionnez une piece",
@@ -1915,9 +1915,9 @@ $scope.get_Somme_daye = function ()
                 });
                 return false;
             }
-            if ($scope.estEntier(toillete_plan) == false) {
+            if ($scope.estEntier(toillette_plan) == false) {
                 iziToast.error({
-                    message: "Sélectionnez une toillete",
+                    message: "Sélectionnez une toillette",
                     position: 'topRight'
                 });
                 return false;
@@ -1937,7 +1937,7 @@ $scope.get_Somme_daye = function ()
                 "bureau": bureau_plan,
                 "salon": salon_plan,
                 "cuisine": cuisine_plan,
-                "toillete": toillete_plan,
+                "toillette": toillette_plan,
             });
 
             console.log("this.produitsInTable",$scope.produitsInTable)
@@ -1948,7 +1948,7 @@ $scope.get_Somme_daye = function ()
             $("#salon_plan").val('');
             $("#cuisine_plan").val('');
             $("#bureau_plan").val('');
-            $("#toillete_plan").val('');
+            $("#toillette_plan").val('');
 
         }
         else if (action == 'delete') {
@@ -1978,9 +1978,9 @@ $scope.get_Somme_daye = function ()
             var bureau_projet = $("#bureau_projet").val();
             var salon_projet = $("#salon_projet").val();
             var cuisine_projet = $("#cuisine_projet").val();
-            var toillete_projet = $("#toillete_projet").val();
+            var toillette_projet = $("#toillette_projet").val();
 
-           
+
             if ($scope.estEntier(piece_projet) == false) {
                 iziToast.error({
                     message: "Sélectionnez une piece",
@@ -2009,9 +2009,9 @@ $scope.get_Somme_daye = function ()
                 });
                 return false;
             }
-            if ($scope.estEntier(toillete_projet) == false) {
+            if ($scope.estEntier(toillette_projet) == false) {
                 iziToast.error({
-                    message: "Sélectionnez une toillete",
+                    message: "Sélectionnez une toillette",
                     position: 'topRight'
                 });
                 return false;
@@ -2031,7 +2031,7 @@ $scope.get_Somme_daye = function ()
                 "bureau": bureau_projet,
                 "salon": salon_projet,
                 "cuisine": cuisine_projet,
-                "toillete": toillete_projet,
+                "toillette": toillette_projet,
             });
 
             console.log("this.produitsInTable",$scope.produitsInTable)
@@ -2042,7 +2042,7 @@ $scope.get_Somme_daye = function ()
             $("#salon_projet").val('');
             $("#cuisine_projet").val('');
             $("#bureau_projet").val('');
-            $("#toillete_projet").val('');
+            $("#toillette_projet").val('');
 
         }
         else if (action == 'delete') {
