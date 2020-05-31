@@ -778,12 +778,14 @@ $scope.get_Somme_daye = function ()
         {
             rewriteelement = 'planspaginated(page:'+ $scope.paginationplan.currentPage +',count:'+ $scope.paginationplan.entryLimit
                 + ($scope.planview ? ',plan_id:' + $scope.planview.id : "" )
-                + ($('#plan_piece').val() ? ',nb_piece:' + $('#plan_piece').val() : "" )
-                + ($('#plan_piscine').val() ? ',piscine:' + $('#plan_piscine').val() : "" )
-                + ($('#plan_salon').val() ? ',salon:' + $('#plan_salon').val() : "" )
-                + ($('#plan_garage').val() ? ',garage:' + $('#plan_garage').val() : "" )
-
-                + ($('#searchtexte_fournisseur').val() ? (',' + $('#searchoption_fournisseur').val() + ':"' + $('#searchtexte_fournisseur').val() + '"') : "" )
+              //  + ($('#plan_piece').val() ? ',nb_piece:' + $('#plan_piece').val() : "" )
+                + ($('#superficie_plan').val() ? ',superficie:' + $('#superficie_plan').val() : "" )
+                + ($('#chambre_plan').val() ? ',nb_chambre:' + $('#chambre_plan').val() : "" )
+                + ($('#longeur_plan').val() ? ',longeur:' + $('#longeur_plan').val() : "" )
+                + ($('#largeur_plan').val() ? ',largeur:' + $('#largeur_plan').val() : "" )
+                + ($('#salon_plan').val() ? ',nb_salon:' + $('#salon_plan').val() : "" )
+                + ($('#toillette_plan').val() ? ',nb_toillette:' + $('#toillette_plan').val() : "" )
+                + ($('#cuisine_plan').val() ? ',nb_cuisine:' + $('#toillette_plan').val() : "" )
                 +')';
             $scope.requetePlan = ""
 

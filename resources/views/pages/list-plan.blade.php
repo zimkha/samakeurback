@@ -12,49 +12,31 @@
         <!-- Card Content - Collapse -->
         <div class="collapse show" id="collapseCardExample">
             <div class="card-body">
-                <form>
+                <form ng-submit="pageChanged('plan')">
                     <div class="row mt-40">
                         <div class="col-md-3 mt-1 pt-1">
-                            <input type="number" class="form-control" placeholder="superficie">
+                            <input type="text" class="form-control" placeholder="Superficie ..." id="superficie_plan" ng-model="superficie_plan" ng-change="pageChanged('plan')">
                         </div>
                         <div class="col-md-3 mt-1 pt-1">
-                            <input type="number" class="form-control" placeholder="nbr de chambre">
+                            <input type="text" class="form-control" placeholder="Chambre ..."  id="chambre_plan" ng-model="chambre_plan" ng-change="pageChanged('plan')">
                         </div>
                         <div class="col-md-3 mt-1 pt-1">
-                            <input type="number" class="form-control" placeholder="nbr salle de bain">
+                            <input type="text" class="form-control" placeholder="Longeur ..."  id="longeur_plan" ng-model="longeur_plan" ng-change="pageChanged('plan')">
                         </div>
                         <div class="col-md-3 mt-1 pt-1">
-                            <input type="number" class="form-control" placeholder="nbr d'étage">
+                            <input type="text" class="form-control" placeholder="Largeur ..."  id="largeur_plan" ng-model="largeur_plan" ng-change="pageChanged('plan')">
                         </div>
                         <div class="col-md-3 mt-1 pt-1">
-                            <select class="form-control">
-                                <option value="">Jardin</option>
-                                <option >OUI</option>
-                                <option >NON</option>
-                            </select>
+                            <input type="text" class="form-control" placeholder="Salon ..."  id="salon_plan" ng-model="salon_plan" ng-change="pageChanged('plan')">
                         </div>
                         <div class="col-md-3 mt-1 pt-1">
-                            <select class="form-control">
-                                <option value="">Garage</option>
-                                <option >OUI</option>
-                                <option >NON</option>
-                            </select>
+                            <input type="text" class="form-control" placeholder="WC ..."  id="toillette_plan" ng-model="toillette_plan" ng-change="pageChanged('plan')">
                         </div>
                         <div class="col-md-3 mt-1 pt-1">
-                            <select class="form-control">
-                                <option value="">Type de chambre</option>
-                                <option >Type 1</option>
-                                <option >Type 2</option>
-                            </select>
+                            <input type="text" class="form-control" placeholder="Cuisine ..."  id="cuisine_plan" ng-model="cuisine_plan" ng-change="pageChanged('plan')">
                         </div>
-                        <div class="col-md-3 mt-1 pt-1">
-                            <select class="form-control">
-                                <option value="">Piscine</option>
-                                <option >Type 1</option>
-                                <option >Type 2</option>
-                            </select>
-                        </div>
-                        <div class="col-md-12 mt-1 pt-1 text-right">
+
+                        <div class="col-md-3 mt-1 pt-1 text-right">
                             <button class="mt-2 btn btn-primary pull-right" ng-click="pageChanged('plan')">
                                 Filtrer <i class="fa fa-search"></i>
                             </button>
