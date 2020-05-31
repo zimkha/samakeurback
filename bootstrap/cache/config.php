@@ -4,13 +4,13 @@
     'name' => 'Laravel',
     'env' => 'local',
     'debug' => true,
-    'url' => 'http://localhost/samakeurback/public/',
+    'url' => 'http://localhost',
     'asset_url' => NULL,
     'timezone' => 'UTC',
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:KpVepK/Nss+aus0TW0OMaUM0eHBu5huLcSnvHrepqL4=',
+    'key' => 'base64:VZQ6/XK29X6iLjupRBm+ZTYvvMGCx4rXYNiE6RfgsoA=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -186,7 +186,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/framework/cache/data',
+        'path' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -349,10 +349,10 @@
     'orientation' => 'portrait',
     'defines' => 
     array (
-      'font_dir' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/fonts/',
-      'font_cache' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/fonts/',
-      'temp_dir' => '/var/folders/zs/nt1ktc7s0k110789ywrq2sym0000gn/T',
-      'chroot' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback',
+      'font_dir' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\fonts/',
+      'font_cache' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\fonts/',
+      'temp_dir' => 'C:\\Users\\mou\\AppData\\Local\\Temp',
+      'chroot' => 'C:\\xampp\\htdocs\\samakeurback',
       'enable_font_subsetting' => false,
       'pdf_backend' => 'CPDF',
       'default_media_type' => 'screen',
@@ -428,7 +428,7 @@
     ),
     'temporary_files' => 
     array (
-      'local_path' => '/var/folders/zs/nt1ktc7s0k110789ywrq2sym0000gn/T',
+      'local_path' => 'C:\\Users\\mou\\AppData\\Local\\Temp',
       'remote_disk' => NULL,
       'remote_prefix' => NULL,
     ),
@@ -442,13 +442,13 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/app',
+        'root' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/app/public',
-        'url' => 'http://localhost/samakeurback/public//storage',
+        'root' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\app/public',
+        'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
       's3' => 
@@ -463,7 +463,7 @@
     ),
     'links' => 
     array (
-      '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/public/storage' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/app/public',
+      'C:\\xampp\\htdocs\\samakeurback\\public\\storage' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\app/public',
     ),
   ),
   'graphql' => 
@@ -597,13 +597,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -653,7 +653,7 @@
       ),
       'emergency' => 
       array (
-        'path' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -709,7 +709,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/resources/views/vendor/mail',
+        0 => 'C:\\xampp\\htdocs\\samakeurback\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -846,7 +846,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/framework/sessions',
+    'files' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -866,7 +866,7 @@
   array (
     'paths' => 
     array (
-      0 => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/resources/views',
+      0 => 'C:\\xampp\\htdocs\\samakeurback\\resources\\views',
     ),
     'uploads' => 
     array (
@@ -875,7 +875,7 @@
       'projets' => 'uploads/projets',
       'remarques' => 'uploads/remarques',
     ),
-    'compiled' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/framework/views',
+    'compiled' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\framework\\views',
   ),
   'flare' => 
   array (
