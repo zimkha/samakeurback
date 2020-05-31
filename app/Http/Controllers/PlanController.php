@@ -7,6 +7,8 @@ use App\Outil;
 use App\Plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\PlanProjet;
+
 class PlanController extends Controller
 {
     protected $queryName = "plans";
