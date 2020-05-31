@@ -39,7 +39,7 @@ class Outil extends Model
 
         "planprojets"                   => "id,plan_id,projet_id,etat_active,message,etat,plan{id}",
 
-        "niveauplans"                   => "id",
+        "niveauplans"                   => "id,niveau,piece,chambre,salon",
 
         "niveauprojets"                 => "id",
 
