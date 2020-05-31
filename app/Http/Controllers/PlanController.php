@@ -42,7 +42,7 @@ class PlanController extends Controller
                     # code...
                     $errors = "Veuillez preciser la largeur";
                 }
-                if (empty($request->data)) {
+                if (empty($request->tab_plan)) {
                    $errors = "Veuillez preciser au moins le RDC pour ce plan";
                 }
                 if (empty($request->unite_mesure)) {
