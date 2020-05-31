@@ -91,8 +91,11 @@
                                     <a href="#!/detail-plan/@{{ item.id }}" title="detail" class="btn btn-sm btn-primary btn-circle">
                                         <i class="fas fa-info"></i>
                                     </a>
-                                    <button  title="detail" class="btn btn-success btn-sm btn-circle">
-                                        <i class="fas fa-search"></i>
+                                    <button  title="Editer" ng-click="showModalUpdate('plan',item.id)" class="btn btn-success btn-sm btn-circle">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button  title="Supprimer" ng-click="deleteElement('plan',item.id)" class="btn btn-danger btn-sm btn-circle">
+                                        <i class="fas fa-trash"></i>
                                     </button>
 
                                 </td>

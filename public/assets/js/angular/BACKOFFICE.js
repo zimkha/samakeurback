@@ -442,7 +442,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
         {
             "plans"                         : [
                                                             "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage",
-                                                            ",niveau_plans{id,piece,bureau,toillette,chambre,salon,cuisine}"]
+                                                            ",niveau_plans{id,piece,niveau,bureau,toillette,chambre,salon,cuisine}"]
                                                             ,
 
             "planprojets"                   : ["id,plan_id,projet_id,etat_active,message,etat,plan{id}",""],
@@ -2325,6 +2325,7 @@ $scope.get_Somme_daye = function ()
         Init.getElement(reqwrite, listofrequests_assoc[type + "s"]).then(function(data)
         {
             var item = data[0];
+            console.log("item item", item);
             $scope.itemUpdated = data[0];
             $scope.typeUpdated = type;
 
@@ -2341,9 +2342,22 @@ $scope.get_Somme_daye = function ()
 
             $('#id_' + type).val(item.id);
 
-            if (type.indexOf("typeclient")!==-1)
+            if (type.indexOf("plan")!==-1)
             {
-                $('#nom_' + type).val(item.nom);
+                $('#superficie_' + type).val(item.superficie);
+                $('#longeur_' + type).val(item.longeur);
+                $('#largeur_' + type).val(item.largeur);
+                $('#fichier_' + type).val(item.fichier);
+                $('#unite_mesure_' + type).val(item.unite_mesure);
+
+                var liste_ligneniveau = [];
+                $.each(item.niveau_plans, function (keyItem, valueItem) {
+                    console.log("le produit en question",valueItem)
+                    liste_ligneniveau.push({"id":valueItem.id, "niveau":valueItem.niveau,"piece":valueItem.piece, "chambre" : valueItem.chambre, "bureau" : valueItem.bureau, "salon" : valueItem.salon, "cuisine" : valueItem.cuisine, "toillette" : valueItem.toillette});
+                });
+                $scope.produitsInTable = [];
+                $scope.produitsInTable = liste_ligneniveau;
+
             }
             else if (type.indexOf("client")!==-1)
             {
@@ -2920,6 +2934,28 @@ $scope.get_Somme_daye = function ()
                                         return false;
                                     }
                                 });
+                            }
+                            else if (type.indexOf('plan')!==-1)
+                            {
+                                if ($scope.clientview && $scope.clientview.id)
+                                {
+                                    $location.path('list-client');
+                                }
+
+                                $.each($scope.plans, function (keyItem, oneItem)
+                                {
+                                    if (oneItem.id===itemId)
+                                    {
+                                        $scope.plans.splice(keyItem, 1);
+                                        return false;
+                                    }
+                                });
+
+                                $scope.paginationplan.totalItems--;
+                                if($scope.plans.length < $scope.paginationplan.entryLimit)
+                                {
+                                    $scope.pageChanged('plan');
+                                }
                             }
                             else if (type.indexOf('client')!==-1)
                             {
