@@ -9,7 +9,7 @@ use Rebing\GraphQL\Support\Type as GraphQLType;
 class UniteMesureType extends GraphQLType
 {
     protected $attributes = [
-        'name' => 'Unitemesuere',
+        'name' => 'Unitemesure',
     ];
 
     public function fields(): array
