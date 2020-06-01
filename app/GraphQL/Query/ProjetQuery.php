@@ -7,6 +7,7 @@ use App\Projet;
 use App\User;
 use GraphQL;
 use GraphQL\Type\Definition\Type;
+use App\PlanProjet;
 use Rebing\GraphQL\Support\Query;
 
 

@@ -5,6 +5,7 @@ namespace App\GraphQL\Query;
 use App\Projet;
 use App\User;
 use App\Outil;
+use App\PlanProjet;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
 use Rebing\GraphQL\Support\Facades\GraphQL;
