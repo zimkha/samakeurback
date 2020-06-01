@@ -39,9 +39,9 @@ class Outil extends Model
 
         "planprojets"                   => "id,plan_id,projet_id,etat_active,message,etat,plan{id}",
 
-        "niveauplans"                   => "id,niveau,piece,chambre,salon",
+        "niveauplans"                   => "id,niveau,piece,bureau,toillette,chambre,salon,cuisine",
 
-        "niveauprojets"                 => "id",
+        "niveauprojets"                 => "id,niveau,piece,bureau,toillette,chambre,salon,cuisine",
 
         "projets"                       => "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,niveau_projets{id,piece,bureau,toillette,chambre,salon,cuisine},user_id,user{id,name},plan_projets{id,plan_id,plan{id,fichier,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage}}",
         
@@ -52,6 +52,8 @@ class Outil extends Model
         "users"                         => "id,name,email,active,password,image,nom,prenom,adresse_complet,pays,code_postal,is_client,telephone,roles{id,name,guard_name,permissions{id,name,display_name,guard_name}},last_login,last_login_ip,created_at_fr",
 
         "roles"                         => "id,name,guard_name,permissions{id,name,display_name,guard_name}",
+
+        "unitemesures"                  => "id,name"
 
        
     );

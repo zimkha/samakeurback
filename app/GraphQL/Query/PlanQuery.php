@@ -54,6 +54,7 @@ class PlanQuery extends Query
     {
        $query = Plan::with('niveau_plans');
 
+      
        if (isset($args['id']))
        {
           $query = $query->where('id', $args['id']);
@@ -75,7 +76,23 @@ class PlanQuery extends Query
           $query = $query->where('piscine', $args['piscine']);
        }
        if (isset($args['nb_pieces'])) {
-          $query = $query->whereIn('id');
+          $query = $query->whereIn('id', NiveauPlan::);
+       }
+       if(isset($args['nb_toillette']))
+       {
+
+       }
+       if(isset($args['nb_etage']))
+       {
+
+       }
+       if(isset($args['nb_salon']))
+       {
+          
+       }
+       if(isset($args['nb_cuisine']))
+       {
+          
        }
        $query = $query->get();
        return $query->map(function (Plan $item)
@@ -93,7 +110,7 @@ class PlanQuery extends Query
             'piscine'                => $item->piscine,
             'fichier'                => $item->fichier,
             'niveau_plans'           => $item->niveau_plans,
-            'plan_projets'            => $item->plan_projets,
+            'plan_projets'           => $item->plan_projets,
             'created_at'             => $item->created_at,
         ];
       });
