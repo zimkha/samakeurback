@@ -77,7 +77,7 @@ class PlanPaginatedQuery extends Query
        }
        if (isset($args['nb_pieces'])) {
          $tab = DB::select(DB::raw("
-         select sum(n.piece) as attr , n.plan_id as id from niveau_plans n GROUP By n.plan_id
+         select sum(n.peice) as attr , n.plan_id as id from niveau_plans n GROUP By n.plan_id
          "));
          $array = [];
          foreach($tab as $elemnt)
@@ -87,8 +87,8 @@ class PlanPaginatedQuery extends Query
                array_push($array, $elemnt->id);
             }
          }
-       
          $query = $query->whereIn('id',$array);
+      }
       if(isset($args['nb_toillette']))
       {
          $tab = DB::select(DB::raw("
@@ -102,13 +102,12 @@ class PlanPaginatedQuery extends Query
                array_push($array, $elemnt->id);
             }
          }
-       
-         $query = $query->whereIn('id',$array); 
+         $query = $query->whereIn('id',$array);
       }
      
       if(isset($args['nb_salon']))
       {
-         //$attribut = "salon";
+       
          $tab = DB::select(DB::raw("
          select sum(n.salon) as attr , n.plan_id as id from niveau_plans n GROUP By n.plan_id
          "));
@@ -120,13 +119,12 @@ class PlanPaginatedQuery extends Query
                array_push($array, $elemnt->id);
             }
          }
-        // $array = Plan::getNbAttribut($attribut, $args['nb_salon']);
          $query = $query->whereIn('id',$array); 
       }
       if(isset($args['nb_cuisine']))
       {
          $tab = DB::select(DB::raw("
-         select sum(n.cuisine) as attr , n.plan_id as id from niveau_plans n GROUP By n.plan_id
+         select sum(n.cusine) as attr , n.plan_id as id from niveau_plans n GROUP By n.plan_id
          "));
          $array = [];
          foreach($tab as $elemnt)
@@ -136,8 +134,7 @@ class PlanPaginatedQuery extends Query
                array_push($array, $elemnt->id);
             }
          }
-       
-         $query = $query->whereIn('id',$array); 
+         $query = $query->whereIn('id',$array);
       }
        
        $count = Arr::get($args, 'count', 10);
