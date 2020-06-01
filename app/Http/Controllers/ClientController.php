@@ -18,7 +18,7 @@ class ClientController extends Controller
     }
     public function connexion(Request $request)
     {
-        dd($request->all());
+        
        try
        {
          $errors = null;
