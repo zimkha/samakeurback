@@ -27,6 +27,7 @@ class PlanType extends GraphQLType
             'fichier'                => ['type' => Type::string()],
             'niveau_plans'            => ['type' => Type::listOf(GraphQL::type('Niveauplan'))],
             'planprojets'            => ['type' => Type::listOf(GraphQL::type('Planprojet'))],
+            'unite_mesure'                   => ['type' => GraphQL::type('Unitemesure')],
 
             // Resolve 
             'nb_pieces'                => ['type' => Type::int()],

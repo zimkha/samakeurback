@@ -85,6 +85,7 @@ class PlanQuery extends Query
             'id'                     => $item->id,
             'fichier'                => $item->fichier,
             'unite_mesure_id'        => $item->unite_mesure_id,
+            'unite_mesure'           => $item->unite_mesure,
             'code'                   => $item->code,
             'superficie'             => $item->superficie,
             'longeur'                => $item->longeur,
