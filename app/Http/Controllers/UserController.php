@@ -27,18 +27,14 @@ class UserController extends Controller
                 }
                 else
                 {
-                    $user->active = true;
+                    $user->active = false;
                 }
 
-               if(empty($request->nom) || empty($request->prenom) || empty($request->telephone))
+               if(empty($request->nom) || empty($request->prenom) || empty($request->telephone) ||  empty($request->email) || empty($request->confirmemail))
                {
                    $errors = "Veuillez remplire tous les champs du formulaire";
                }
-                if(empty($request->name) || empty($request->email) || empty($request->confirmemail))
-                {
-                    $errors = "Veuillez remplir tous les champs";
-                }
-              
+               
                     if (empty($request->password) || empty($request->confirmpassword))
                     {
                         $errors = "Veuillez remplir tous les mots de passe";
@@ -62,7 +58,7 @@ class UserController extends Controller
                     }
                 }
 
-                  $user->name = $request->name;
+                  $user->name = $request->nom;
                   $user->nom = $request->nom;
                   $user->prenom = $request->prenom;
                   $user->telephone = $request->telephone;
@@ -73,34 +69,34 @@ class UserController extends Controller
                 $role = Role::find($request->role);
                 if (!isset($errors) && $user->save())
                 {
-                    if (isset($user->id))
-                    {
-                        if ($role!=null)
-                        {
-                            $user->syncRoles($role);
-                        }
+                    // if (isset($user->id))
+                    // {
+                    //     if ($role!=null)
+                    //     {
+                    //         $user->syncRoles($role);
+                    //     }
 
-                    }
-                    else
-                    {
-                        $user->id = DB::select('SELECT id FROM users ORDER BY id DESC LIMIT 1')[0]->id;
-                    }
+                    // }
+                    // else
+                    // {
+                    //     $user->id = DB::select('SELECT id FROM users ORDER BY id DESC LIMIT 1')[0]->id;
+                    // }
 
                     // Dans le cas de la modification d'un profil
-                    if ($role!=null)
-                        $user->assignRole($role);
+                    // if ($role!=null)
+                    //     $user->assignRole($role);
 
-                    // Pour upload d'une image
-                    if (!isset($errors) && $request->hasFile('image') )
-                    {
-                        // upload file
-                        $fichier = $_FILES['image']['name'];
-                        $fichier_tmp = $_FILES['image']['tmp_name'];
-                        $ext = explode('.',$fichier);
-                        $rename = config('view.uploads')['users']."/user_".$user->id.".".end($ext);
-                        move_uploaded_file($fichier_tmp,$rename);
-                        $user->image = $rename;
-                    }
+                    // // Pour upload d'une image
+                    // if (!isset($errors) && $request->hasFile('image') )
+                    // {
+                    //     // upload file
+                    //     $fichier = $_FILES['image']['name'];
+                    //     $fichier_tmp = $_FILES['image']['tmp_name'];
+                    //     $ext = explode('.',$fichier);
+                    //     $rename = config('view.uploads')['users']."/user_".$user->id.".".end($ext);
+                    //     move_uploaded_file($fichier_tmp,$rename);
+                    //     $user->image = $rename;
+                    // }
                     // else if (Input::get('image_erase')) // Permet de supprimer l'image de l'utilisateur
                     // {
                     //     $user->image = null;
