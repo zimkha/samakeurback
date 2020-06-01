@@ -76,7 +76,7 @@ class ClientController extends Controller
         $password = $request->password;
 
         $client = User::where('email', $email)->first();
-        if (!$client)
+        if (!isset($client))
         {
             return response()->json(array(
                 'data' => NULL,
@@ -91,7 +91,7 @@ class ClientController extends Controller
             ));
         }
 
-        if ($client->etat==false)
+        if ($client->activ==false)
         {
             return  response()->json(array(
                 'data' => NULL,
@@ -104,7 +104,7 @@ class ClientController extends Controller
         return  response()->json(array(
             'data' => $client,
             'success' => 'Vous etes connecté',
-            'panier' => null,
+           
         ));
     }
 
