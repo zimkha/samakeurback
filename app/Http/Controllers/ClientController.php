@@ -6,8 +6,10 @@ use App\User;
 use App\Outil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Redirect;
+
 
 class ClientController extends Controller
 {
@@ -72,11 +74,11 @@ class ClientController extends Controller
     }
     public function login(Request $request)
     {
-        $email    = $request->login;
+        $email    = $request->email;
         $password = $request->password;
 
         $client = User::where('email', $email)->first();
-        dd($client);
+       // dd($client);
         if (!isset($client))
         {
             return response()->json(array(
