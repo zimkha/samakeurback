@@ -104,6 +104,21 @@ class PlanPaginatedQuery extends Query
          }
          $query = $query->whereIn('id',$array);
       }
+      if(isset($args['nb_chambre']))
+      {
+         $tab = DB::select(DB::raw("
+         select sum(n.chambre) as attr , n.plan_id as id from niveau_plans n GROUP By n.plan_id
+         "));
+         $array = [];
+         foreach($tab as $elemnt)
+         {
+            if($elemnt->attr == $args['nb_chambre'])
+            {
+               array_push($array, $elemnt->id);
+            }
+         }
+         $query = $query->whereIn('id',$array);
+      }
      
       if(isset($args['nb_salon']))
       {
