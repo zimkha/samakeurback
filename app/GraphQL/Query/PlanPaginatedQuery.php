@@ -139,7 +139,7 @@ class PlanPaginatedQuery extends Query
       if(isset($args['nb_cuisine']))
       {
          $tab = DB::select(DB::raw("
-         select sum(n.cusine) as attr , n.plan_id as id from niveau_plans n GROUP By n.plan_id
+         select sum(n.cuisine) as attr , n.plan_id as id from niveau_plans n GROUP By n.plan_id
          "));
          $array = [];
          foreach($tab as $elemnt)
