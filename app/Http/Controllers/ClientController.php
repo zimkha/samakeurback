@@ -76,6 +76,7 @@ class ClientController extends Controller
         $password = $request->password;
 
         $client = User::where('email', $email)->first();
+        dd($client);
         if (!isset($client))
         {
             return response()->json(array(
