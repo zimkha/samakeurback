@@ -18,6 +18,10 @@ class Plan extends Model
     {
         return $this->hasMany(PlanProjet::class);
     }
+    public function unite_mesure()
+    {
+        return $this->belongsTo(UniteMesure::class);
+    }
 
 
     public static function makeCode()
