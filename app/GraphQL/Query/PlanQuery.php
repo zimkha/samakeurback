@@ -76,23 +76,28 @@ class PlanQuery extends Query
           $query = $query->where('piscine', $args['piscine']);
        }
        if (isset($args['nb_pieces'])) {
-          $query = $query->whereIn('id', NiveauPlan::);
+          $attribut = "piece";
+          $array = Plan::getNbAttribut($attribut);
+          $query = $query->whereIn('id',$array);
        }
        if(isset($args['nb_toillette']))
        {
-
+         $attribut = "toillette";
+         $array = Plan::getNbAttribut($attribut);
+         $query = $query->whereIn('id',$array);
        }
-       if(isset($args['nb_etage']))
-       {
-
-       }
+      
        if(isset($args['nb_salon']))
        {
-          
+          $attribut = "salon";
+          $array = Plan::getNbAttribut($attribut);
+          $query = $query->whereIn('id',$array); 
        }
        if(isset($args['nb_cuisine']))
        {
-          
+         $attribut = "cusine";
+         $array = Plan::getNbAttribut($attribut);
+         $query = $query->whereIn('id',$array);
        }
        $query = $query->get();
        return $query->map(function (Plan $item)
