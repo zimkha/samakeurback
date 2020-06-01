@@ -29,6 +29,8 @@ class PlanController extends Controller
                 if (isset($request->id)) {
                     $item = Plan::find($request->id);
                     $code = $item->code;
+                    NiveauPlan::where('plan_id', $request->id)->delete();
+                    NiveauPlan::where('plan_id', $request->id)->forceDelete();
                 }
 
                 $item->code = $code;

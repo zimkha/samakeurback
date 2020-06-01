@@ -62,5 +62,11 @@ class Plan extends Model
         }
         return $nb_attribut;
     }
+    public static function getNbAttribut($attribut)
+    {
+        $nb = DB::select(DB::raw("
+         select sum(p.$attribut), 
+        "));
+    }
     
 }
