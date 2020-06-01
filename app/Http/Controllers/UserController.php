@@ -56,6 +56,10 @@ class UserController extends Controller
                     {
                         $errors = "Cet email existe déja";
                     }
+                    if(!Outil::isUnique(['telephone'], [$request->telephone], $request->id, User::class))
+                    {
+                        $errors = "Ce numéro téléphone existe déja";
+                    }
                 }
 
                   $user->name = $request->nom;
