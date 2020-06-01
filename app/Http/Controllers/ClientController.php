@@ -18,7 +18,7 @@ class ClientController extends Controller
     }
     public function connexion(Request $request)
     {
-        
+
        try
        {
          $errors = null;
@@ -104,7 +104,7 @@ class ClientController extends Controller
         return  response()->json(array(
             'data' => $client,
             'success' => 'Vous etes connecté',
-           
+
         ));
     }
 
