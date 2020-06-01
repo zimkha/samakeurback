@@ -67,6 +67,30 @@ class PlanPaginatedQuery extends Query
        {
           $query = $query->where('piscine', $args['piscine']);
        }
+       if (isset($args['nb_pieces'])) {
+         $attribut = "piece";
+         $array = Plan::getNbAttribut($attribut);
+         $query = $query->whereIn('id',$array);
+      }
+      if(isset($args['nb_toillette']))
+      {
+        $attribut = "toillette";
+        $array = Plan::getNbAttribut($attribut);
+        $query = $query->whereIn('id',$array);
+      }
+     
+      if(isset($args['nb_salon']))
+      {
+         $attribut = "salon";
+         $array = Plan::getNbAttribut($attribut);
+         $query = $query->whereIn('id',$array); 
+      }
+      if(isset($args['nb_cuisine']))
+      {
+        $attribut = "cusine";
+        $array = Plan::getNbAttribut($attribut);
+        $query = $query->whereIn('id',$array);
+      }
        
        $count = Arr::get($args, 'count', 10);
        $page  = Arr::get($args, 'page', 1);
