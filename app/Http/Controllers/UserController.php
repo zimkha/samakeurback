@@ -69,42 +69,15 @@ class UserController extends Controller
                 $role = Role::find($request->role);
                 if (!isset($errors) && $user->save())
                 {
-                    // if (isset($user->id))
-                    // {
-                    //     if ($role!=null)
-                    //     {
-                    //         $user->syncRoles($role);
-                    //     }
-
-                    // }
-                    // else
-                    // {
-                    //     $user->id = DB::select('SELECT id FROM users ORDER BY id DESC LIMIT 1')[0]->id;
-                    // }
-
-                    // Dans le cas de la modification d'un profil
-                    // if ($role!=null)
-                    //     $user->assignRole($role);
-
-                    // // Pour upload d'une image
-                    // if (!isset($errors) && $request->hasFile('image') )
-                    // {
-                    //     // upload file
-                    //     $fichier = $_FILES['image']['name'];
-                    //     $fichier_tmp = $_FILES['image']['tmp_name'];
-                    //     $ext = explode('.',$fichier);
-                    //     $rename = config('view.uploads')['users']."/user_".$user->id.".".end($ext);
-                    //     move_uploaded_file($fichier_tmp,$rename);
-                    //     $user->image = $rename;
-                    // }
-                    // else if (Input::get('image_erase')) // Permet de supprimer l'image de l'utilisateur
-                    // {
-                    //     $user->image = null;
-                    // }
+                    
                     $user->save();
                     $id = $user->id;
+                    return response()->json(array(
+                        'data' => $user,
+                        'success' => "inscription réussi",
+                    ));
 
-                    return Outil::redirectgraphql($this->queryName, "id:{$id}", Outil::$queries[$this->queryName]);
+                    // return Outil::redirectgraphql($this->queryName, "id:{$id}", Outil::$queries[$this->queryName]);
                 }
                 return response()->json(['errors' => $errors]);
             });
