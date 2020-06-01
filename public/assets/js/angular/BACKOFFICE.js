@@ -442,8 +442,8 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
         {
            // unite_mesure_id,unite_mesure{id,name}
             "plans"                         : [
-                                                            "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage",
-                                                            ",niveau_plans{id,piece,bureau,toillette,chambre,salon,cuisine}"]
+                                                            "id,fichier,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,unite_mesure_id,unite_mesure{id,name}",
+                                                            ",niveau_plans{id,piece,niveau,bureau,toillette,chambre,salon,cuisine}"]
                                                             ,
 
             "planprojets"                   : ["id,plan_id,projet_id,etat_active,message,etat,plan{id}",""],
