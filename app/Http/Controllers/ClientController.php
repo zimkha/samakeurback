@@ -72,11 +72,11 @@ class ClientController extends Controller
     }
     public function login(Request $request)
     {
-        $email    = $request->login;
+        $email    = $request->email;
         $password = $request->password;
 
         $client = User::where('email', $email)->first();
-        dd($client);
+       
         if (!isset($client))
         {
             return response()->json(array(
