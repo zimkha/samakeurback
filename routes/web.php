@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/test', 'ContratController@test');
+//Route::get('/test', 'ContratController@test');
 Auth::routes();
 
 Route::get('/page/{namepage}', function ($namepage)
@@ -56,7 +56,7 @@ Route::get('/a_valider/{id}', 'ProjetController@avalider');
 
 // les routes de teste
 
-Route::get('/test/{id}', 'PlanController@test');
+Route::get('/test', 'PlanController@test');
 Route::get('/debug-sentry', function () {
     throw new Exception('My first Sentry error!');
 });

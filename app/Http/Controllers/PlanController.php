@@ -12,10 +12,10 @@ use App\PlanProjet;
 class PlanController extends Controller
 {
     protected $queryName = "plans";
-    public function test($id)
+    public function test()
     {
         $attribut = "salon";
-        $nb = Plan::nb_attribut($id, $attribut);
+        $nb = Plan::getNbAttribut($attribut);
         return $nb;
     }
     public function save(Request $request)
