@@ -15,25 +15,25 @@
                 <form ng-submit="pageChanged('plan')">
                     <div class="row mt-40">
                         <div class="col-md-3 mt-1 pt-1">
-                            <input type="text" class="form-control" placeholder="Superficie ..." id="superficie_plan" ng-model="superficie_plan" ng-change="pageChanged('plan')">
+                            <input type="text" class="form-control" placeholder="Superficie ..." id="superficie_plan_filtre" ng-model="superficie_plan_filtre" ng-change="pageChanged('plan')">
                         </div>
                         <div class="col-md-3 mt-1 pt-1">
-                            <input type="text" class="form-control" placeholder="Chambre ..."  id="chambre_plan" ng-model="chambre_plan" ng-change="pageChanged('plan')">
+                            <input type="text" class="form-control" placeholder="Chambre ..."  id="chambre_plan_filtre" ng-model="chambre_plan_filtre" ng-change="pageChanged('plan')">
                         </div>
                         <div class="col-md-3 mt-1 pt-1">
-                            <input type="text" class="form-control" placeholder="Longeur ..."  id="longeur_plan" ng-model="longeur_plan" ng-change="pageChanged('plan')">
+                            <input type="text" class="form-control" placeholder="Longeur ..."  id="longeur_plan_filtre" ng-model="longeur_plan_filtre" ng-change="pageChanged('plan')">
                         </div>
                         <div class="col-md-3 mt-1 pt-1">
-                            <input type="text" class="form-control" placeholder="Largeur ..."  id="largeur_plan" ng-model="largeur_plan" ng-change="pageChanged('plan')">
+                            <input type="text" class="form-control" placeholder="Largeur ..."  id="largeur_plan_filtre" ng-model="largeur_plan_filtre" ng-change="pageChanged('plan')">
                         </div>
                         <div class="col-md-3 mt-1 pt-1">
-                            <input type="text" class="form-control" placeholder="Salon ..."  id="salon_plan" ng-model="salon_plan" ng-change="pageChanged('plan')">
+                            <input type="text" class="form-control" placeholder="Salon ..."  id="salon_plan_filtre" ng-model="salon_plan_filtre" ng-change="pageChanged('plan')">
                         </div>
                         <div class="col-md-3 mt-1 pt-1">
-                            <input type="text" class="form-control" placeholder="WC ..."  id="toillette_plan" ng-model="toillette_plan" ng-change="pageChanged('plan')">
+                            <input type="text" class="form-control" placeholder="WC ..."  id="toillette_plan_filtre" ng-model="toillette_plan_filtre" ng-change="pageChanged('plan')">
                         </div>
                         <div class="col-md-3 mt-1 pt-1">
-                            <input type="text" class="form-control" placeholder="Cuisine ..."  id="cuisine_plan" ng-model="cuisine_plan" ng-change="pageChanged('plan')">
+                            <input type="text" class="form-control" placeholder="Cuisine ..."  id="cuisine_plan_filtre" ng-model="cuisine_plan_filtre" ng-change="pageChanged('plan')">
                         </div>
 
                         <div class="col-md-3 mt-1 pt-1 text-right">
