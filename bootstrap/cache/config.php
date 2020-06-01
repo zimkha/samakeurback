@@ -498,6 +498,7 @@
           11 => 'App\\GraphQL\\Query\\UserPaginatedQuery',
           12 => 'App\\GraphQL\\Query\\PermissionQuery',
           13 => 'App\\GraphQL\\Query\\PlanProjetQuery',
+          14 => 'App\\GraphQL\\Query\\UniteMesureQuery',
         ),
         'mutation' => 
         array (
@@ -529,6 +530,7 @@
       11 => 'App\\GraphQL\\Type\\UserType',
       12 => 'App\\GraphQL\\Type\\UserPaginatedType',
       13 => 'App\\GraphQL\\Type\\PlanProjetType',
+      14 => 'App\\GraphQL\\Type\\UniteMesureType',
     ),
     'lazyload_types' => false,
     'error_formatter' => 

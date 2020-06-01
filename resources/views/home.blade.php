@@ -46,7 +46,7 @@
                     <form id="form_addplan" class="form" enctype="multipart/form-data" accept-charset="UTF-8">
                         @csrf
                         <input type="hidden" id="id_plan" name="id">
-                        <input type="hidden" name="tab_niveau" id="tab_niveau" value="@{{produitsInTable}}">
+                        <input type="hidden" name="tab_plan" id="tab_plan" value="@{{produitsInTable}}">
 
                         <div class="row">
                             <div class="col-lg-3">

@@ -442,7 +442,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
         {
            // unite_mesure_id,unite_mesure{id,name}
             "plans"                         : [
-                                                            "id,fichier,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,unite_mesure_id,unite_mesure{id,name}",
+                                                            "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,unite_mesure_id,unite_mesure{id,name},fichier",
                                                             ",niveau_plans{id,piece,niveau,bureau,toillette,chambre,salon,cuisine}"]
                                                             ,
 
@@ -779,13 +779,13 @@ $scope.get_Somme_daye = function ()
             rewriteelement = 'planspaginated(page:'+ $scope.paginationplan.currentPage +',count:'+ $scope.paginationplan.entryLimit
                 + ($scope.planview ? ',plan_id:' + $scope.planview.id : "" )
               //  + ($('#plan_piece').val() ? ',nb_piece:' + $('#plan_piece').val() : "" )
-                + ($('#superficie_plan').val() ? ',superficie:' + $('#superficie_plan').val() : "" )
-                + ($('#chambre_plan').val() ? ',nb_chambre:' + $('#chambre_plan').val() : "" )
-                + ($('#longeur_plan').val() ? ',longeur:' + $('#longeur_plan').val() : "" )
-                + ($('#largeur_plan').val() ? ',largeur:' + $('#largeur_plan').val() : "" )
-                + ($('#salon_plan').val() ? ',nb_salon:' + $('#salon_plan').val() : "" )
-                + ($('#toillette_plan').val() ? ',nb_toillette:' + $('#toillette_plan').val() : "" )
-                + ($('#cuisine_plan').val() ? ',nb_cuisine:' + $('#toillette_plan').val() : "" )
+             /*   + ($('#superficie_plan_filtre').val() ? ',superficie:' + $('#superficie_plan_filtre').val() : "" )
+                + ($('#chambre_plan_filtre').val() ? ',nb_chambre:' + $('#chambre_plan_filtre').val() : "" )
+                + ($('#longeur_plan_filtre').val() ? ',longeur:' + $('#longeur_plan_filtre').val() : "" )
+                + ($('#largeur_plan_filtre').val() ? ',largeur:' + $('#largeur_plan_filtre').val() : "" )
+                + ($('#salon_plan_filtre').val() ? ',nb_salon:' + $('#salon_plan_filtre').val() : "" )
+                + ($('#toillette_plan_filtre').val() ? ',nb_toillette:' + $('#toillette_plan_filtre').val() : "" )
+                + ($('#cuisine_plan_filtre').val() ? ',nb_cuisine:' + $('#toillette_plan_filtre').val() : "" )*/
                 +')';
             $scope.requetePlan = ""
 
@@ -1871,6 +1871,12 @@ $scope.get_Somme_daye = function ()
         console.log("$scope.produitsInTable", $scope.produitsInTable);
     };
 
+    $("#modal_addplan").on('hidden.bs.modal', ()=>{
+        console.log('hide hide')
+        $scope.produitsInTable = [];
+        console.log("$scope.produitsInTable", $scope.produitsInTable);
+    });
+
     $scope.actionSurPlan = function (action, selectedItem = null) {
         if (action == 'add')
         {
@@ -2320,6 +2326,7 @@ $scope.get_Somme_daye = function ()
         window.location.reload();
     };
 
+
     $scope.assistedListe = false;
     $scope.showModalUpdate=function (type,itemId, forceChangeForm=false)
     {
@@ -2350,7 +2357,7 @@ $scope.get_Somme_daye = function ()
                 $('#superficie_' + type).val(item.superficie);
                 $('#longeur_' + type).val(item.longeur);
                 $('#largeur_' + type).val(item.largeur);
-                $('#fichier_' + type).val(item.fichier);
+                //   $('#fichier_' + type).val(item.fichier);
                 $('#unite_mesure_' + type).val(item.unite_mesure_id);
 
                 var liste_ligneniveau = [];
