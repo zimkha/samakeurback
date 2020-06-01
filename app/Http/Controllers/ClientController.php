@@ -70,5 +70,42 @@ class ClientController extends Controller
         return Outil::getResponseError($e);
        }
     }
+    public function login(Request $request)
+    {
+        $email    = $request->login;
+        $password = $request->password;
+
+        $client = User::where('email', $email)->first();
+        if (!$client)
+        {
+            return response()->json(array(
+                'data' => NULL,
+                'errors' => 'Aucun compte associé à cet email',
+            ));
+        }
+        else if (!Hash::check($password,$client->password))
+        {
+            return  response()->json(array(
+                'data' => NULL,
+                'errors' => 'login ou mot de passe incorrect',
+            ));
+        }
+
+        if ($client->etat==false)
+        {
+            return  response()->json(array(
+                'data' => NULL,
+                'errors' => 'Votre compte n\'a pas encore été activé<br><br>Un lien d\'activation vous a été envoyé dans votre boite mail',
+            ));
+        }
+
+        $client = Outil::getOneItemWithGraphQl($this->queryName, $client->id, true);;
+
+        return  response()->json(array(
+            'data' => $client,
+            'success' => 'Vous etes connecté',
+            'panier' => null,
+        ));
+    }
 
 }
