@@ -7,6 +7,8 @@ use Rebing\GraphQL\Support\Query;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Illuminate\Support\Arr;
 use App\Plan;
+use Illuminate\Support\Facades\DB;
+
 class PlanPaginatedQuery extends Query
 {
     protected $attributes = [
@@ -74,28 +76,68 @@ class PlanPaginatedQuery extends Query
           $query = $query->where('piscine', $args['piscine']);
        }
        if (isset($args['nb_pieces'])) {
-         $attribut = "piece";
-         $array = Plan::getNbAttribut($attribut);
+         $tab = DB::select(DB::raw("
+         select sum(n.piece) as attr , n.plan_id as id from niveau_plans n GROUP By n.plan_id
+         "));
+         $array = [];
+         foreach($tab as $elemnt)
+         {
+            if($elemnt->attr == $args['nb_pieces'])
+            {
+               array_push($array, $elemnt->id);
+            }
+         }
+       
          $query = $query->whereIn('id',$array);
-      }
       if(isset($args['nb_toillette']))
       {
-        $attribut = "toillette";
-        $array = Plan::getNbAttribut($attribut);
-        $query = $query->whereIn('id',$array);
+         $tab = DB::select(DB::raw("
+         select sum(n.toillette) as attr , n.plan_id as id from niveau_plans n GROUP By n.plan_id
+         "));
+         $array = [];
+         foreach($tab as $elemnt)
+         {
+            if($elemnt->attr == $args['nb_toillette'])
+            {
+               array_push($array, $elemnt->id);
+            }
+         }
+       
+         $query = $query->whereIn('id',$array); 
       }
      
       if(isset($args['nb_salon']))
       {
-         $attribut = "salon";
-         $array = Plan::getNbAttribut($attribut);
+         //$attribut = "salon";
+         $tab = DB::select(DB::raw("
+         select sum(n.salon) as attr , n.plan_id as id from niveau_plans n GROUP By n.plan_id
+         "));
+         $array = [];
+         foreach($tab as $elemnt)
+         {
+            if($elemnt->attr == $args['nb_salon'])
+            {
+               array_push($array, $elemnt->id);
+            }
+         }
+        // $array = Plan::getNbAttribut($attribut, $args['nb_salon']);
          $query = $query->whereIn('id',$array); 
       }
       if(isset($args['nb_cuisine']))
       {
-        $attribut = "cusine";
-        $array = Plan::getNbAttribut($attribut);
-        $query = $query->whereIn('id',$array);
+         $tab = DB::select(DB::raw("
+         select sum(n.cuisine) as attr , n.plan_id as id from niveau_plans n GROUP By n.plan_id
+         "));
+         $array = [];
+         foreach($tab as $elemnt)
+         {
+            if($elemnt->attr == $args['nb_cuisine'])
+            {
+               array_push($array, $elemnt->id);
+            }
+         }
+       
+         $query = $query->whereIn('id',$array); 
       }
        
        $count = Arr::get($args, 'count', 10);

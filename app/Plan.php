@@ -62,7 +62,7 @@ class Plan extends Model
         }
         return $nb_attribut;
     }
-    public static function getNbAttribut($attribut)
+    public static function getNbAttribut($attribut, $nb_attribut)
     {
         $tab = DB::select(DB::raw("
         select sum(n.$attribut) as attr , n.plan_id as id from niveau_plans n GROUP By n.plan_id
@@ -70,7 +70,10 @@ class Plan extends Model
         $array = array();
         foreach($tab as $element)
         {
+           if($elment->attr == $nb_attribt)
+           {
             array_push($array, $element->id);
+           }
         }
         return $array;
     }
