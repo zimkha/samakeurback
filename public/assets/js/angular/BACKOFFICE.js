@@ -1537,8 +1537,11 @@ $scope.get_Somme_daye = function ()
 
     $scope.changeStatut = function(e, type)
     {
+        alert("nieuwal fii");
         var form = $('#form_addchstat');
-        var send_data = {id: $scope.chstat.id, etat:$scope.chstat.statut, commentaire: $('#commentaire_chstat').val()};
+
+        var send_data = {id: $scope.chstat.id, etat:$scope.chstat.statut};
+        console.log("dadtdtadta ici", send_data)
        // form.parent().parent().blockUI_start();
         Init.changeStatut(type, send_data).then(function(data)
         {

@@ -223,13 +223,13 @@
     </div>
 
 
-    <div class="modal bd-example-modal-lg  fade" id="modal_changeStattus" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true" style="background-color: rgba(43, 43, 43, .69);">
-        <div class="modal-dialog modal-sm" role="document">
+    <div class="modal fade" id="modal_addchangestatut"  tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog modal-md" role="document" >
             <div class="modal-content">
-                <div class="modal-header back-dark-50 text-white border-0">
-                    <div class="uk-text-bold">@{{changestatut.title}}</div>
-                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
+                <div class="modal-header bg-gradient-dark text-white">
+                    <h5 class="modal-title" id="exampleModalLongTitle">@{{chstat.title}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body modal-body1">
@@ -246,6 +246,16 @@
                     </form>
 
                 </div>
+                {{--<div class="modal-body m-3">
+                    <form id="form_addchstat" class="form" accept-charset="UTF-8" ng-submit="changestatut($event,chstat.type)">
+                        @csrf
+
+                        <div class="modal-footer">
+                            <button type="reset" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        </div>
+                    </form>
+                </div>--}}
             </div>
         </div>
     </div>
