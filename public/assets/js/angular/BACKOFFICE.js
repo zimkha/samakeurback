@@ -779,13 +779,13 @@ $scope.get_Somme_daye = function ()
             rewriteelement = 'planspaginated(page:'+ $scope.paginationplan.currentPage +',count:'+ $scope.paginationplan.entryLimit
                 + ($scope.planview ? ',plan_id:' + $scope.planview.id : "" )
               //  + ($('#plan_piece').val() ? ',nb_piece:' + $('#plan_piece').val() : "" )
-             /*   + ($('#superficie_plan_filtre').val() ? ',superficie:' + $('#superficie_plan_filtre').val() : "" )
+                + ($('#superficie_plan_filtre').val() ? ',superficie:' + $('#superficie_plan_filtre').val() : "" )
                 + ($('#chambre_plan_filtre').val() ? ',nb_chambre:' + $('#chambre_plan_filtre').val() : "" )
                 + ($('#longeur_plan_filtre').val() ? ',longeur:' + $('#longeur_plan_filtre').val() : "" )
                 + ($('#largeur_plan_filtre').val() ? ',largeur:' + $('#largeur_plan_filtre').val() : "" )
                 + ($('#salon_plan_filtre').val() ? ',nb_salon:' + $('#salon_plan_filtre').val() : "" )
                 + ($('#toillette_plan_filtre').val() ? ',nb_toillette:' + $('#toillette_plan_filtre').val() : "" )
-                + ($('#cuisine_plan_filtre').val() ? ',nb_cuisine:' + $('#toillette_plan_filtre').val() : "" )*/
+                + ($('#cuisine_plan_filtre').val() ? ',nb_cuisine:' + $('#toillette_plan_filtre').val() : "" )
                 +')';
             $scope.requetePlan = ""
 
