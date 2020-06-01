@@ -70,7 +70,7 @@ class Plan extends Model
         $array = array();
         foreach($tab as $element)
         {
-            array_push($array, $element->id)
+            array_push($array, $element->id);
         }
         return $array;
     }
