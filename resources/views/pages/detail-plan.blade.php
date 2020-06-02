@@ -7,7 +7,7 @@
 
             <div class="row">
                 <div class="col-md-8">
-                    Detail Plan: code-plan: <strong><u><span class="badge badge-info">PL0001</span></u></strong>
+                    Detail Plan: code-plan: <strong><u><span class="badge badge-info">PL-@{{ planview.id }}</span></u></strong>
                 </div>
                 <div class="col-md-4">
                     <div class="float-right pt-0 mx-1 text-right">
@@ -25,7 +25,7 @@
                             <a class="nav-link active" id="home-tab" target="_self" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">A propos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" target="_self" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Demandes associés au plan: Encour</a>
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" target="_self" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Demandes associés au plan: En cour</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="contact-tab" data-toggle="tab" target="_self" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Demandes asspciés au plan: Finalisés</a>
@@ -47,52 +47,52 @@
                                         <div class="text-center p-1">
                                             <div>
                                                 <i class="fa fa-calendar-check"></i> <strong><u>Date creation:</u></strong>
-                                                <span class="text-muted">12/04/2020</span>
+                                                <span class="text-muted">@{{ planview.created }}</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div  class="card-body row animated fadeInUp">
                                         <div class=" col-md-3 col-sm-12 mt-10">
                                             <div class="border-danger">
-                                                <h6> Superficie :<strong><u></u> aa</u></strong></h6>
+                                                <h6> Superficie :<strong><u> @{{ planview.superficie }}</u></strong></h6>
+                                            </div>
+                                        </div>
+                                        <div class=" col-md-3 col-sm-12 mt-10">
+                                            <div class="border-danger">
+                                                <h6> Longeur :<strong><u> @{{ planview.longeur }}</u></strong></h6>
+                                            </div>
+                                        </div>
+                                        <div class=" col-md-3 col-sm-12 mt-10">
+                                            <div class="border-danger">
+                                                <h6> Largeur :<strong><u> @{{ planview.largeur }}</u></strong></h6>
+                                            </div>
+                                        </div>
+                                        <div class=" col-md-3 col-sm-12 mt-10">
+                                            <div class="border-danger">
+                                                <h6> Nombre Chambre :<strong><u> @{{ planview.nb_chambre }}</u></strong></h6>
                                             </div>
 
                                         </div>
                                         <div class=" col-md-3 col-sm-12 mt-10">
                                             <div class="border-danger">
-                                                <h6> nbr étage :<strong><u></u> aa</u></strong></h6>
-                                            </div>
-
-                                        </div>
-                                        <div class=" col-md-3 col-sm-12 mt-10">
-                                            <div class="border-danger">
-                                                <h6> nbr chambre :<strong><u></u> aa</u></strong></h6>
-                                            </div>
-
-                                        </div>
-                                        <div class=" col-md-3 col-sm-12 mt-10">
-                                            <div class="border-danger">
-                                                <h6> cuisine :<strong><u></u> aa</u></strong></h6>
-
-                                            </div>
-
-                                        </div>
-                                        <div class=" col-md-3 col-sm-12 mt-10">
-                                            <div class="border-danger">
-                                                <h6> nbr wc :<strong><u></u> aa</u></strong></h6>
+                                                <h6>Nbre cuisine :<strong><u>  @{{ planview.nb_cuisine }}</u></strong></h6>
 
                                             </div>
 
                                         </div>
                                         <div class=" col-md-3 col-sm-12 mt-10">
                                             <div class="border-danger">
-                                                <h6> type chambre :<strong><u></u> type 1</u></strong></h6>
+                                                <h6> Nombre wc :<strong><u>  @{{ planview.nb_toillette }}</u></strong></h6>
+
                                             </div>
+
                                         </div>
                                         <div class=" col-md-3 col-sm-12 mt-10">
                                             <div class="border-danger">
-                                                <h6> type terrain    :<strong><u></u> type 1</u></strong></h6>
+                                                <h6> Nombre salon :<strong><u>  @{{ planview.nb_salon }}</u></strong></h6>
+
                                             </div>
+
                                         </div>
 
 

@@ -62,7 +62,7 @@
                             </thead>
                             <tbody>
                             <tr ng-repeat="item in plans" class="text-center">
-                                <td>@{{ item.id }}</td>
+                                <td>@{{ item.code }}</td>
                                 <td>@{{ item.superficie }}</td>
                                 <td>@{{ item.longeur }} /@{{ item.largeur }}</td>
                                 <td>@{{ item.nb_chambre }}</td>
