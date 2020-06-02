@@ -18,6 +18,159 @@ class PlanController extends Controller
         $nb = Plan::getNbAttribut($attribut);
         return $nb;
     }
+    public function cloner(Request $request)
+    {
+        try {
+            return DB::transaction(function () use($request) {
+                 $errors = null;
+                 $item = new Plan();
+                 $code = Plan::makeCode();
+                
+                 $item->code = $code;
+                 if (empty($request->superficie)) {
+                    $errors = "Veuillez preciser la superficie pour ce plan";
+                 }
+                 if (empty($request->longeur)) {
+                     # code...
+                     $errors = "Veuillez preciser la longeur";
+ 
+                 }
+                 if (empty($request->largeur)) {
+                     # code...
+                     $errors = "Veuillez preciser la largeur";
+                 }
+                 if (empty($request->tab_plan)) {
+                    $errors = "Veuillez preciser au moins le RDC pour ce plan";
+                 }
+                 if (empty($request->unite_mesure)) {
+                     $errors = "Veuillez preciser l'unité de mesur du terrain";
+ 
+                 }
+                 if (isset($request->superficie) && isset($request->longeur) && isset($request->largeur))
+                  {
+                     $sup = $request->longeur  * $request->largeur;
+                     if ( $sup != $request->superficie) {
+                         $errors = "Veuillez preciser des valeurs correctes au niveau des longeurs et largeurs";
+                     }
+                  }
+                  if (isset($request->superficie) && $request->superficie <= 0) {
+                     $errors = "Veuillez preciser une bonne valeur pour la superficie";
+ 
+                  }
+                  if (isset($request->longeur) && $request->longeur <= 0) {
+                     $errors = "Veuillez preciser une bonne valeur pour la longeur";
+ 
+                  }
+                  if (empty($request->fichier)) {
+                     $errors = "Un fichier du plan est manquant";
+                  }
+                  if (isset($request->largeur) && $request->largeur <= 0) {
+                     $errors = "Veuillez preciser une bonne valeur pour la largeur";
+ 
+                  }
+                 if (isset($errors))
+                 {
+                     throw new \Exception($errors);
+                 }
+ 
+                 $data       = json_decode($request->tab_plan, true);
+                 $tableau    = array();
+                 $n = 0;
+                 foreach ($data as $datum) {
+                     $n = $n + 1;
+                     $niveau = new NiveauPlan();
+ 
+                     if (empty($datum['piece']))
+                     {
+                         $errors = "Veuillez renseigner au moins le nombre de pièces pour ce niveau";
+                     }
+                     if (isset($datum['piece']) && $datum['piece'] <= 0) {
+                         $errors = "Veuillez verifier le nombre de pieces  à la ligne n°".$n;
+                     }
+                     if (isset($datum['chambre']) && $datum['chambre'] < 0) {
+                         $errors = "Veuillez verifier le nombre de chambre à la ligne n°".$n;
+                     }
+                     if (isset($datum['salon']) && $datum['salon'] < 0) {
+                         $errors = "Veuillez verifier le nombre de salon  à la ligne n°".$n;
+                     }
+                     if (isset($datum['bureau']) && $datum['bureau'] < 0) {
+                         $errors = "Veuillez verifier le nombre de bureau  à la ligne n°".$n;
+                     }
+                     if (isset($datum['toillette']) && $datum['toillette'] < 0) {
+                         $errors = "Veuillez verifier le nombre de toillettes  à la ligne n°".$n;
+                     }
+                     $niveau->piece          = $datum['piece'];
+                     $niveau->chambre        = $datum['chambre'];
+                     $niveau->salon          = $datum['salon'];
+                     $niveau->cuisine        = $datum['cuisine'];
+                     $niveau->bureau         = $datum['bureau'];
+                     $niveau->toillette      = $datum['toillette'];
+                     $niveau->niveau         = $datum['niveau'];
+ 
+                     $total_pieces = $niveau->chambre + $niveau->salon + $niveau->cuisine + $niveau->bureau + $niveau->toillette;
+ 
+                     if ($total_pieces != (int) $datum['piece']) {
+                         $errors = "Veuillez verifier si le total des pieces est repecter  à la ligne n°".$n;
+                     }
+                     if (isset($errors)) {
+                         throw new \Exception($errors);
+                     }
+                     array_push($tableau, $niveau);
+                 }
+                 if (!isset($errors)) {
+                     $item->superficie       = $request->superficie;
+                     $item->longeur          = $request->longeur;
+                     $item->largeur          = $request->largeur;
+                     $item->unite_mesure_id  = $request->unite_mesure;
+                     //dd($request->file('fichier'));
+                     if (!isset($errors) && $request->hasFile('fichier') )
+                     {
+                          if ($item->fichier == null)
+                          {
+                             $fichier = $_FILES['fichier']['name'];
+                             $fichier_tmp = $_FILES['fichier']['tmp_name'];
+                             $k = rand(100, 9999);
+                             $ext = explode('.',$fichier);
+                             $rename = config('view.uploads')['plans']."/plans_".$k.".".end($ext);
+                             move_uploaded_file($fichier_tmp,$rename);
+                             //$path = $request->fichier->storeAs('uploads/plans', $rename);
+                             $item->fichier = $rename;
+                          }
+ 
+ 
+                     }
+                     if (!isset($request->piscine)) {
+                         $item->piscine = 0;
+                     }
+                     else
+                     {
+                         $item->piscine= 1;
+                     }
+                     $item->save();
+                     foreach($tableau as $var)
+                     {
+                         $var->plan_id = $item->id;
+                         $var->save();
+                     }
+                     if (isset($request->projet)) {
+                         $plan_projet              = new PlanProjet();
+                         $plan_projet->plan_id     = $item->id;
+                         $plan_projet->projet_id   = $request->id;
+                         $plan_projet->etat_active = false;
+                         $plan_projet->etat        = 0;
+                         $plan_projet->save();
+                     }
+                     return Outil::redirectgraphql($this->queryName, "id:{$item->id}", Outil::$queries[$this->queryName]);
+ 
+                 }
+                 throw new \Exception($errors);
+ 
+            });
+         } catch (\Exception $e) {
+             return Outil::getResponseError($e);
+ 
+         }
+    }
     public function save(Request $request)
     {
        // dd($request->all());

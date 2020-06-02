@@ -34,6 +34,8 @@ class ProjetController extends Controller
                         'necessite_bornage','presence_mitoyen','cadatre','geometre'];
                 if (isset($request->id)) {
                     $item = Projet::find($id);
+                    NiveauProjet::where('projet_id', $request->id)->delete();
+                    NiveauProjet::where('projet_id', $request->id)->forceDelete();
                 }
 
                 $errors = Outil::validation($request, $array);
@@ -287,7 +289,7 @@ class ProjetController extends Controller
     {
         try
         {
-            // dd("je suis la ");
+           
             $errors = null;
             $data = 0;
             $item = PlanProjet::find($request->plan_projet);
@@ -306,7 +308,7 @@ class ProjetController extends Controller
                       //  dd("je suis la");
                         foreach($plan_active as $key)
                         {
-                            //dd($key);
+                           
                             $key->active = 0;
                             $key->save();
                         }
@@ -338,6 +340,47 @@ class ProjetController extends Controller
                 'errors_debug'    => [$e->getMessage()],
             ));  
         }  
+    }
+    public function activeProjet($id)
+    {
+        try
+        {
+            $errors = null;
+            $data = null;
+            if(isset($id))
+            {
+                $item = Projet::find($id);
+                if(isset($item))
+                {
+                    $item->active = true;
+                    $item->save();
+                    $data = 1;
+                }
+                else
+                {
+                    $errors = "Erreur veuillez contacter le service technique";
+                }
+            }
+            else
+            {
+                $errors = "Données manquantes";
+            }
+            if(isset(!$errors))
+            {
+                $retour = array(
+                    'data'          => $data,
+                );
+                return response()->json($retour);
+            }
+             throw new \Exception($errors);
+        }
+        catch(\Exception $e)
+        {
+            return response()->json(array(
+                'errors'          => config('app.debug') ? $e->getMessage() : Outil::getMsgError(),
+                'errors_debug'    => [$e->getMessage()],
+            ));  
+        }
     }
     public function makeContrat($id)
     {
