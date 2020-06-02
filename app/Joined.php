@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Joined extends Model
 {
-    use SofDeletes;
+    use SoftDeletes;
     public function plan ()
     {
         return $this->belongsTo(Plan::class);
