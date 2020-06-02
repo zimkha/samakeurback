@@ -31,6 +31,7 @@ class ProjetPaginatedQuery extends Query
             'id'                     => ['type'  => Type::id()],
             'user_id'                => ['type'  => Type::int()],
             'text_projet'            => ['type'  => Type::string()],
+            'name'                   => ['type'  => Type::string()],
             'fichier'                => ['type'  => Type::string()],
             'active'                 => ['type'  => Type::boolean()],
             'etat'                   => ['type'  => Type::int()],
@@ -98,6 +99,10 @@ class ProjetPaginatedQuery extends Query
        if (isset($args['adress_complet']))
        {
           $query = $query->whereIn('user_id', User::where('adress_complet',  Outil::getOperateurLikeDB(), '%'.$args['adress_complet'].'%')->get(['id']));
+       }
+       if(isset($args['name']))
+       {
+          $query = $query->where('name', $args['name']);
        }
         if (isset($args['telephone']))
        {

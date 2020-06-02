@@ -27,6 +27,7 @@ class ProjetController extends Controller
             dd($request->all());
             return DB::transaction(function () use($request) {
                 $errors = null;
+                $name = Projet::makeCode();
                 $item  = new Projet();
                 $array = [
                          'user', 'description', 'superficie', 'longeur', 'largeur',
@@ -36,6 +37,7 @@ class ProjetController extends Controller
                     $item = Projet::find($id);
                     NiveauProjet::where('projet_id', $request->id)->delete();
                     NiveauProjet::where('projet_id', $request->id)->forceDelete();
+                    $name = $item->name;
                 }
 
                 $errors = Outil::validation($request, $array);
@@ -43,6 +45,8 @@ class ProjetController extends Controller
                 if ((int)$request->superficie != ($request->longeur * $request->largeur)) {
                     $errors = "le produit du longeur et de la laregeur doit être égale à la superficie total";
                 }
+               // $user = User::find($request->user);
+                $item->name                    = $name 
                 $item->user_id                 = $request->user;
                 $item->superficie              = $request->superficie;
                 $item->longeur                 = $request->longeur;

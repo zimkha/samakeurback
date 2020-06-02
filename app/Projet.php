@@ -63,5 +63,27 @@ class Projet extends Model
         }
         return $nb_attribut;
     }
+    public static function makeCode()
+    {
+        $last = Projet::all()->last();
+        $nume = null;
+        $code = "PR";
+        if (isset($last)) {
+            $nume = $last->id;
+        }
+        else $nume = 0;
+        $nume = $nume + 1;
+        
+        if ($nume >= 1  && $nume <= 9) 
+        {
+          $code = $code ."000".$nume;
+        }
+        if ($nume > 9 && $nume <= 99)
+        {
+            $code = $code ."00".$nume;
+        }
+        return $code;
+
+    }
     
 }

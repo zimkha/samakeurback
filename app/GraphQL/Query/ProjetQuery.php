@@ -29,6 +29,7 @@ class ProjetQuery extends Query
             'id'                     => ['type'  => Type::id()],
             'user_id'                => ['type'  => Type::int()],
             'text_projet'            => ['type'  => Type::string()],
+            'name'                   => ['type'  => Type::string()],
             'fichier'                => ['type'  => Type::string()],
             'active'                 => ['type'  => Type::boolean()],
             'etat'                   => ['type'  => Type::int()],
@@ -133,6 +134,7 @@ class ProjetQuery extends Query
             'user_id'                => $item->user_id,
             'superficie'             => $item->superficie,
             'longeur'                => $item->longeur,
+            'name'                   => $item->name;
             'largeur'                => $item->largeur,
             'user'                   => $item->user,
             'active'                 => $item->active,
