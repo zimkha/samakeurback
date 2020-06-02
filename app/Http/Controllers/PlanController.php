@@ -8,7 +8,7 @@ use App\Plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\PlanProjet;
-
+use App\Joined;
 class PlanController extends Controller
 {
     protected $queryName = "plans";
@@ -17,6 +17,53 @@ class PlanController extends Controller
         $attribut = "salon";
         $nb = Plan::getNbAttribut($attribut);
         return $nb;
+    }
+    public function joined(Request $request)
+    {
+      try
+      {
+          return DB::transaction(function() use($request)
+          {
+              $errors = null;
+              $item = new Joined();
+              if(isset($request->id))
+              {
+                  $item = Joined::find($request->id);
+              }
+             if(empty($request->plan))
+             {
+                 $errors = "Veuillez contacter le service technique";
+             } 
+             if(empty($request->fichier))
+             {
+                 $errors = "Veuillez choisir un fichier a joindre au plan";
+             }
+             if(empty($errors) && $request->hasfile(fichier))
+             {
+                 $item->plan_id = $request->plan;
+                 $fichier = $_FILES['fichier']['name'];
+                 $fichier_tmp = $_FILES['fichier']['tmp_name'];
+                 $k = rand(1, 9999);
+                 $ext = explode('.',$fichier);
+                 $rename = config('view.uploads')['fichierplans']."/fichier_plans_".$k.".".end($ext);
+                 move_uploaded_file($fichier_tmp,$rename);
+                 //$path = $request->fichier->storeAs('uploads/plans', $rename);
+                 $item->fichier = $rename;
+                 if(isset($request->description))
+                 {
+                     $item->description = $request->description;
+                 }
+                 $item->save();
+                 return Outil::redirectgraphql($this->queryName, "id:{$item->plan_id}", Outil::$queries[$this->queryName]);
+                 
+             }
+             throw new \Exception($errors)
+          });
+      }
+      catch(\Exception $e)
+      {
+        return Outil::getResponseError($e);  
+      }
     }
     public function cloner(Request $request)
     {

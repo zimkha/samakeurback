@@ -20,7 +20,8 @@ return [
         'users'           => 'uploads/users',
         'plans'           => 'uploads/plans',
         'projets'         => 'uploads/projets',
-        'remarques'       => 'uploads/remarques'
+        'remarques'       => 'uploads/remarques',
+        'fichierplans'    => 'uploads/fichierplans'
     ],
     /*
     |--------------------------------------------------------------------------

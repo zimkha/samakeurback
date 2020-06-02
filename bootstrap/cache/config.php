@@ -499,6 +499,7 @@
           12 => 'App\\GraphQL\\Query\\PermissionQuery',
           13 => 'App\\GraphQL\\Query\\PlanProjetQuery',
           14 => 'App\\GraphQL\\Query\\UniteMesureQuery',
+          15 => 'App\\GraphQL\\Query\\JoinedQuery',
         ),
         'mutation' => 
         array (
@@ -531,6 +532,7 @@
       12 => 'App\\GraphQL\\Type\\UserPaginatedType',
       13 => 'App\\GraphQL\\Type\\PlanProjetType',
       14 => 'App\\GraphQL\\Type\\UniteMesureType',
+      15 => 'App\\GraphQL\\Type\\JoinedType',
     ),
     'lazyload_types' => false,
     'error_formatter' => 
@@ -876,6 +878,7 @@
       'plans' => 'uploads/plans',
       'projets' => 'uploads/projets',
       'remarques' => 'uploads/remarques',
+      'fichierplans' => 'uploads/fichierplans',
     ),
     'compiled' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\framework\\views',
   ),

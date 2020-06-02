@@ -111,6 +111,8 @@ return [
                  \App\GraphQL\Query\PermissionQuery::class,
                  \App\GraphQL\Query\PlanProjetQuery::class,
                   \App\GraphQL\Query\UniteMesureQuery::class,
+                  \App\GraphQL\Query\JoinedQuery::class,
+
             ],
             'mutation' => [
                 // 'example_mutation'  => ExampleMutation::class,
@@ -145,6 +147,8 @@ return [
         \App\GraphQL\Type\UserPaginatedType::class,
         \App\GraphQL\Type\PlanProjetType::class,
         \App\GraphQL\Type\UniteMesureType::class,
+        \App\GraphQL\Type\JoinedType::class,
+
     ],
 
     // The types will be loaded on demand. Default is to load all types on each request
