@@ -25,7 +25,7 @@ class PlanQuery extends Query
         [
             'id'                     => ['type' => Type::id()],
             'fichier'                 => [ 'type' => Type::string(), 'description' => ''],
-            'code'                  => [ 'type' => Type::string(), 'description' => ''],PlanQuery
+            'code'                  => [ 'type' => Type::string(), 'description' => ''],
             'unite_mesure_id'        => ['type' => Type::id()],
             'superficie'             => ['type' => Type::int()],
             'longeur'                => ['type' => Type::int()],

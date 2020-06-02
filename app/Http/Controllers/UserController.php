@@ -25,10 +25,7 @@ class UserController extends Controller
                 {
                     $user = User::find($request->id);
                 }
-                else
-                {
-                    $user->active = false;
-                }
+               
 
                if(empty($request->nom) || empty($request->prenom) || empty($request->telephone) ||  empty($request->email) || empty($request->confirmemail))
                {
@@ -68,6 +65,7 @@ class UserController extends Controller
                   $user->telephone = $request->telephone;
                   $user->email = $request->email;
                   $user->is_client = true;
+                  $user->active = true;
                 !empty($request->password) ? $user->password = bcrypt($request->password) : '' ;
 
                 $role = Role::find($request->role);
