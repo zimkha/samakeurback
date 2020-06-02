@@ -25,7 +25,7 @@ class JoinedQuery extends Query
         [
             'id'                     => ['type' => Type::id()],
             'fichier'                => [ 'type' => Type::string(), 'description' => ''],
-            'active'                 => ['type' => Type::bollean()],  
+            'active'                 => ['type' => Type::boolean()], 
             'description'            => [ 'type' => Type::string()],
             'created_at'             => [ 'type' => Type::string()],
             'created_at_fr'          => [ 'type' => Type::string()],
