@@ -7,14 +7,14 @@
 
             <div class="row">
                 <div class="col-md-8">
-                    Detail Plan: code-plan: <strong><u><span class="badge badge-info">PL-@{{ planview.id }}</span></u></strong>
+                    Detail Plan: code-plan: <strong><u><span class="badge badge-info">@{{ planview.code }}</span></u></strong>
                 </div>
                 <div class="col-md-4">
                     <div class="float-right pt-0 mx-1 text-right">
                         <button class="btn btn-success btn-circle mb-2" ng-click="showModalAdd('lier_plan')" title="lier le plan a un projet"><i class="fa fa-magnet"></i></button>
                     </div>
                     <div class="float-right pt-0 mx-1 text-right">
-                        <button class="btn btn-warning btn-circle mb-2" ng-click="showModalAdd('jointe_plan')" title="Fichier a un projet"><i class="fa fa-file"></i></button>
+                        <button class="btn btn-warning btn-circle mb-2" ng-click="showModalAdd('joined')" title="Fichier a un projet"><i class="fa fa-file"></i></button>
                     </div>
                 </div>
             </div>

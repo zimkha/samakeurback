@@ -845,7 +845,7 @@ $scope.get_Somme_daye = function ()
             + ($scope.projetview ? ',projet_id:' + $scope.projetview.id : "" )
             + ($scope.planview ? ',plan_id:' + $scope.planview.id : "" )
             + ($scope.clientview ? ',user_id:' + $scope.clientview.id : "" )
-            + ($scope.client_id != 0 ? (',' + 'client_id:' + $scope.client_id + '') : "")
+            + ($scope.client_id != 0 ? (',' + 'user_id:' + $scope.client_id + '') : "")
             + ($scope.radioBtnComposition ? ',etat:' + $scope.radioBtnComposition : "")
             + ($('#searchtexte_projet').val() ? (',' + $('#searchoption_projet').val() + ':"' + $('#searchtexte_projet').val() + '"') : "" )
             + ($('#projet_user').val() ? ',user_id:' + $('#projet_user').val() : "" )
@@ -1110,7 +1110,7 @@ $scope.get_Somme_daye = function ()
                        Init.getStatElement('plan', idElmtplan);
                    },1000);
 
-                   $scope.getelements('projets');
+                   $scope.getelements('users');
 
                    var req = "plans";
                    $scope.planview = {};
@@ -1689,6 +1689,12 @@ $scope.get_Somme_daye = function ()
            // send_data.append('projet_id', JSON.stringify($scope.projet_id));
             continuer = true;
         }
+        else if (type == 'joined' || type == 'joined') {
+            console.log("bonjour $scope.planview", $scope.planview)
+            send_data.append('plan', JSON.stringify($scope.planview.id));
+           // send_data.append('projet_id', JSON.stringify($scope.projet_id));
+            continuer = true;
+        }
         else if (type == 'projet' || type == 'projets') {
             if ($scope.produitsInTable.length > 0) {
                 send_data.append('tab_plan', JSON.stringify($scope.produitsInTable));
@@ -1777,6 +1783,10 @@ $scope.get_Somme_daye = function ()
                     else if (type.indexOf('lier_plan')!==-1)
                     {
                         $scope.pageChanged("plan");
+                    }
+                    else if (type.indexOf('joined')!==-1)
+                    {
+                        console.log("ok");
                     }
                     else if (type.indexOf('plan')!==-1)
                     {

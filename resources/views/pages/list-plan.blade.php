@@ -73,9 +73,10 @@
                                     <a href="#!/detail-plan/@{{ item.id }}" title="detail" class="btn btn-sm btn-primary btn-circle">
                                         <i class="fas fa-info"></i>
                                     </a>
-                                    <div class="float-right pt-0 mx-1">
-                                        <button class="btn btn-primary btn-circle" ng-click="showModalUpdate('plan',item.id)" title="cloner le plan"><i class="fa fa-clone"></i></button>
-                                    </div>
+                                    <button class="btn btn-secondary btn-sm btn-circle" ng-click="showModalUpdate('plan',item.id)" title="cloner le plan">
+                                        <i class="fa fa-clone">
+
+                                        </i></button>
                                     <button  title="Editer" ng-click="showModalUpdate('plan',item.id)" class="btn btn-success btn-sm btn-circle">
                                         <i class="fas fa-edit"></i>
                                     </button>
