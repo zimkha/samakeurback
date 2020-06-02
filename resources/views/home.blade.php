@@ -7,6 +7,39 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
+        <style>
+
+            .select2-container--default .select2-selection--single {
+                border-radius: 0px !important;
+                color: #83B2DF !important;
+
+            }
+
+            .select2-container .select2-selection--single {
+                box-sizing: border-box;
+                cursor: pointer;
+                display: block;
+                height: 40px !important;
+                border-radius: 5px!important;
+                user-select: none;
+                -webkit-user-select: none;
+            }
+
+            .select2-container--default .select2-selection--single .select2-selection__arrow {
+                height: 26px;
+                position: absolute;
+                top: 6px !important;
+                right: 1px;
+                width: 20px;
+            }
+
+            .select2-container--default .select2-selection--single .select2-selection__rendered {
+                line-height: 35px;
+                top: 5px !important;
+            }
+
+        </style>
+
         @include('layouts.partials.menu_bar')
 
         <div id="content-wrapper" class="d-flex flex-column">
@@ -242,7 +275,7 @@
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label for="client_lier_plan">Client</label>
-                                    <select class="form-control" id="client_lier_plan" name="client">
+                                    <select class="form-control select2" id="client_lier_plan" name="client">
                                         <option value="1">Client 1</option>
                                         <option value="2">Client 2</option>
                                     </select>

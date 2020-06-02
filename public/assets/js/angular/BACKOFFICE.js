@@ -545,6 +545,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
     $scope.remarques = [];
     $scope.users = [];
 
+    $scope.client_id = null;
 
     $scope.produitsInTable = [];
 
@@ -844,6 +845,7 @@ $scope.get_Somme_daye = function ()
             + ($scope.projetview ? ',projet_id:' + $scope.projetview.id : "" )
             + ($scope.planview ? ',plan_id:' + $scope.planview.id : "" )
             + ($scope.clientview ? ',user_id:' + $scope.clientview.id : "" )
+            + ($scope.client_id != 0 ? (',' + 'client_id:' + $scope.client_id + '') : "")
             + ($scope.radioBtnComposition ? ',etat:' + $scope.radioBtnComposition : "")
             + ($('#searchtexte_projet').val() ? (',' + $('#searchoption_projet').val() + ':"' + $('#searchtexte_projet').val() + '"') : "" )
             + ($('#projet_user').val() ? ',user_id:' + $('#projet_user').val() : "" )
@@ -1386,6 +1388,28 @@ $scope.get_Somme_daye = function ()
             // Souscription
             $('.select2').select2();
         },500);
+
+
+        // Détecter le changement du select entreprise
+        setTimeout(function () {
+            $('select.select2').select2(
+                {
+                    width: 'resolve',
+                    tags: true
+                }
+            ).on('change', function (e) {
+
+                var getId = $(this).attr("id");
+                console.log('getId', getId, 'value', $(this).val());
+
+                    if ($(this).val()) {
+                        $scope.client_id = $(this).val();
+                        $scope.pageChanged("projet");
+
+                    }
+            });
+
+        }, 500);
 
 
         emptyform(type);
