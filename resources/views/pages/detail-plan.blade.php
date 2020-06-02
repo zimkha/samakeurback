@@ -47,52 +47,43 @@
                                         <div class="text-center p-1">
                                             <div>
                                                 <i class="fa fa-calendar-check"></i> <strong><u>Date creation:</u></strong>
-                                                <span class="text-muted">12/04/2020</span>
+                                                <span class="text-muted">@{{ planview.created }}</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div  class="card-body row animated fadeInUp">
                                         <div class=" col-md-3 col-sm-12 mt-10">
                                             <div class="border-danger">
-                                                <h6> Superficie :<strong><u></u> aa</u></strong></h6>
+                                                <h6> Superficie :<strong><u> @{{ planview.superficie }}</u></strong></h6>
                                             </div>
 
                                         </div>
                                         <div class=" col-md-3 col-sm-12 mt-10">
                                             <div class="border-danger">
-                                                <h6> nbr étage :<strong><u></u> aa</u></strong></h6>
+                                                <h6> Nombre Chambre :<strong><u> @{{ planview.nb_chambre }}</u></strong></h6>
                                             </div>
 
                                         </div>
                                         <div class=" col-md-3 col-sm-12 mt-10">
                                             <div class="border-danger">
-                                                <h6> nbr chambre :<strong><u></u> aa</u></strong></h6>
-                                            </div>
-
-                                        </div>
-                                        <div class=" col-md-3 col-sm-12 mt-10">
-                                            <div class="border-danger">
-                                                <h6> cuisine :<strong><u></u> aa</u></strong></h6>
+                                                <h6>Nbre cuisine :<strong><u>  @{{ planview.nb_cuisine }}</u></strong></h6>
 
                                             </div>
 
                                         </div>
                                         <div class=" col-md-3 col-sm-12 mt-10">
                                             <div class="border-danger">
-                                                <h6> nbr wc :<strong><u></u> aa</u></strong></h6>
+                                                <h6> Nombre wc :<strong><u>  @{{ planview.nb_toillette }}</u></strong></h6>
 
                                             </div>
 
                                         </div>
                                         <div class=" col-md-3 col-sm-12 mt-10">
                                             <div class="border-danger">
-                                                <h6> type chambre :<strong><u></u> type 1</u></strong></h6>
+                                                <h6> Nombre salon :<strong><u>  @{{ planview.nb_salon }}</u></strong></h6>
+
                                             </div>
-                                        </div>
-                                        <div class=" col-md-3 col-sm-12 mt-10">
-                                            <div class="border-danger">
-                                                <h6> type terrain    :<strong><u></u> type 1</u></strong></h6>
-                                            </div>
+
                                         </div>
 
 
