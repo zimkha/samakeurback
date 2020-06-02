@@ -1051,7 +1051,6 @@ $scope.get_Somme_daye = function ()
         $scope.pageCurrent = null;
         $scope.clientview = null;
         $scope.userview = null;
-        $scope.planview = null;
 
 
         // for pagination
@@ -1108,6 +1107,8 @@ $scope.get_Somme_daye = function ()
                    {
                        Init.getStatElement('plan', idElmtplan);
                    },1000);
+
+                   $scope.getelements('projets');
 
                    var req = "plans";
                    $scope.planview = {};
@@ -1658,6 +1659,12 @@ $scope.get_Somme_daye = function ()
                 continuer = false;
             }
         }
+        else if (type == 'lier_plan' || type == 'lierplan') {
+            console.log("bonjour $scope.planview", $scope.planview)
+            send_data.append('plan_id', JSON.stringify($scope.planview.id));
+           // send_data.append('projet_id', JSON.stringify($scope.projet_id));
+            continuer = true;
+        }
         else if (type == 'projet' || type == 'projets') {
             if ($scope.produitsInTable.length > 0) {
                 send_data.append('tab_plan', JSON.stringify($scope.produitsInTable));
@@ -1742,6 +1749,10 @@ $scope.get_Somme_daye = function ()
                                 });
                             }
                         }
+                    }
+                    else if (type.indexOf('lier_plan')!==-1)
+                    {
+                        $scope.pageChanged("plan");
                     }
                     else if (type.indexOf('plan')!==-1)
                     {

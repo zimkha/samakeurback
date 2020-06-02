@@ -5,7 +5,19 @@
 
         <div class="col-lg-12">
 
-            Detail Plan: code-plan: <strong><u><span class="badge badge-info">PL0001</span></u></strong>
+            <div class="row">
+                <div class="col-md-8">
+                    Detail Plan: code-plan: <strong><u><span class="badge badge-info">PL0001</span></u></strong>
+                </div>
+                <div class="col-md-4">
+                    <div class="float-right pt-0 mx-1 text-right">
+                        <button class="btn btn-success btn-circle mb-2" ng-click="showModalAdd('lier_plan')" title="lier le plan a un projet"><i class="fa fa-magnet"></i></button>
+                    </div>
+                    <div class="float-right pt-0 mx-1 text-right">
+                        <button class="btn btn-warning btn-circle mb-2" ng-click="showModalAdd('jointe_plan')" title="Fichier a un projet"><i class="fa fa-file"></i></button>
+                    </div>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-body">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -17,16 +29,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="contact-tab" data-toggle="tab" target="_self" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Demandes asspciés au plan: Finalisés</a>
-                        </li>
-                        <li class="nav-item">
-                            <div class="float-right pt-0 mx-1">
-                                <button class="btn btn-primary btn-circle"  data-toggle="modal" data-target="#modalPlan" title="cloner le plan"><i class="fa fa-clone"></i></button>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <div class="float-right pt-0 mx-1">
-                                <button class="btn btn-success btn-circle"   data-toggle="modal" data-target="#modalliaison" title="lier le plan a un projet"><i class="fa fa-magnet"></i></button>
-                            </div>
                         </li>
                     </ul>
                 </div>
