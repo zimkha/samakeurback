@@ -35,6 +35,7 @@ Route::post('/connexion', 'ClientController@login');
 Route::post('/contrat', 'ContratController@save');
 Route::post('/link_plan_to_projet', 'ProjetController@linkPlanToProjet');
 Route::post('/inscription', 'UserController@save');
+Route::post('/joinde', 'PlanController@joinde')
 
 // les actions de suppressions
 Route::delete('/projet/{id}', 'ProjetController@delete');
