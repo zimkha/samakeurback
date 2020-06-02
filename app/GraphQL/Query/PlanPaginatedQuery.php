@@ -27,6 +27,7 @@ class PlanPaginatedQuery extends Query
         [
             'id'                     => ['type' => Type::id()],
             'unite_mesure_id'        => ['type' => Type::id()],
+            'code'                  => [ 'type' => Type::string(), 'description' => ''],
             'fichier'                 => [ 'type' => Type::string(), 'description' => ''],
             'superficie'             => ['type' => Type::int()],
             'longeur'                => ['type' => Type::int()],

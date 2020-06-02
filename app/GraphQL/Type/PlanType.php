@@ -20,6 +20,8 @@ class PlanType extends GraphQLType
             'id'                     => ['type' => Type::id()],
             'unite_mesure_id'        => ['type' => Type::id()],
             'fichier'                 => [ 'type' => Type::string(), 'description' => ''],
+            'code'                  => [ 'type' => Type::string(), 'description' => ''],
+
             'superficie'             => ['type' => Type::int()],
             'longeur'                => ['type' => Type::int()],
             'largeur'                => ['type' => Type::int()],
