@@ -38,16 +38,15 @@ class PlanController extends Controller
              {
                  $errors = "Veuillez choisir un fichier a joindre au plan";
              }
-             if(empty($errors) && $request->hasfile(fichier))
+             if(empty($errors) && $request->hasfile('fichier'))
              {
-                 $item->plan_id = $request->plan;
-                 $fichier = $_FILES['fichier']['name'];
-                 $fichier_tmp = $_FILES['fichier']['tmp_name'];
-                 $k = rand(1, 9999);
-                 $ext = explode('.',$fichier);
-                 $rename = config('view.uploads')['fichierplans']."/fichier_plans_".$k.".".end($ext);
+                 $item->plan_id         = $request->plan;
+                 $fichier               = $_FILES['fichier']['name'];
+                 $fichier_tmp           = $_FILES['fichier']['tmp_name'];
+                 $k                     = rand(1, 9999);
+                 $ext                   = explode('.',$fichier);
+                 $rename                = config('view.uploads')['fichierplans']."/fichier_plans_".$k.".".end($ext);
                  move_uploaded_file($fichier_tmp,$rename);
-                 //$path = $request->fichier->storeAs('uploads/plans', $rename);
                  $item->fichier = $rename;
                  if(isset($request->description))
                  {
