@@ -223,6 +223,112 @@
     </div>
 
 
+    <div class="modal fade" id="modal_addlier_plan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-gradient-dark text-white">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Lier Plan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body m-3">
+                    <form id="form_addlier_plan" class="form" enctype="multipart/form-data" accept-charset="UTF-8">
+                        @csrf
+                        <input type="hidden" id="id_plan" name="id">
+                        {{--<input type="hidden" name="tab_plan" id="tab_plan" value="@{{produitsInTable}}">--}}
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="client_lier_plan">Client</label>
+                                    <select class="form-control" id="client_lier_plan" name="client">
+                                        <option value="1">Client 1</option>
+                                        <option value="2">Client 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="projet_lier_plan">Projets</label>
+                                    <select class="form-control" id="projet_lier_plan" name="projet_id">
+                                        <option ng-repeat="item in projets" value="@{{item.id}}">@{{item.name}} </option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    {{--    <div class="row mt-5">
+                            <div class="col-md-12 animated fadeIn text-center" ng-if="produitsInTable.length==0">
+                                    <h3> Ajouter un Niveau pour ce plan</h3>
+                            </div>
+                            <div class="col-md-12" ng-if="produitsInTable.length !=0">
+                                <div class="table-responsive">
+                                    <table class="table table-responsive-sm table-bordered mb-0 text-center dataTable dtr-inline" id="tabNiveau" role="grid">
+                                        <thead>
+                                        <th class="text-center">N°</th>
+                                        <th class="text-center">Niveau</th>
+                                        <th class="text-center">Pièce</th>
+                                        <th class="text-center">Chambre</th>
+                                        <th class="text-center">Bureau</th>
+                                        <th class="text-center">Salon</th>
+                                        <th class="text-center">Cuisine</th>
+                                        <th class="text-center">Toillettes</th>
+                                        <th class="text-center">Actions</th>
+                                        </thead>
+                                        <tbody>
+                                        <tr class="animated fadeIn" ng-repeat="item in produitsInTable">
+                                            <td class="text-center">
+                                                1
+                                            </td>
+                                            <td class="text-center">
+                                                @{{ item.niveau }}
+                                            </td>
+                                            <td class="text-center">
+                                                @{{ item.piece }}
+                                            </td>
+                                            <td class="text-center">
+                                                @{{ item.chambre }}
+                                            </td>
+                                            <td class="text-center">
+                                                @{{ item.bureau }}
+                                            </td>
+                                            <td class="text-center">
+                                                @{{ item.salon }}
+                                            </td>
+                                            <td class="text-center">
+                                                @{{ item.cuisine }}
+                                            </td>
+                                            <td class="text-center">
+                                                @{{ item.toillette }}
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-danger" ng-click="actionSurPlan('delete',item)" title="Supprimer du tableau">
+                                                    <span class="fa fa-trash"></span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>--}}
+
+
+                        <div class="modal-footer">
+                            <button type="reset" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn btn-primary" ng-click="addElement($event,'lier_plan')">Enregistrer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
     <div class="modal fade" id="modal_addchangestatut"  tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog modal-md" role="document" >
             <div class="modal-content">

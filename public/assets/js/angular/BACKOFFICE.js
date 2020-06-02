@@ -785,7 +785,7 @@ $scope.get_Somme_daye = function ()
                 + ($('#largeur_plan_filtre').val() ? ',largeur:' + $('#largeur_plan_filtre').val() : "" )
                 + ($('#salon_plan_filtre').val() ? ',nb_salon:' + $('#salon_plan_filtre').val() : "" )
                 + ($('#toillette_plan_filtre').val() ? ',nb_toillette:' + $('#toillette_plan_filtre').val() : "" )
-                + ($('#cuisine_plan_filtre').val() ? ',nb_cuisine:' + $('#toillette_plan_filtre').val() : "" )
+                + ($('#cuisine_plan_filtre').val() ? ',nb_cuisine:' + $('#cuisine_plan_filtre').val() : "" )
                 +')';
             $scope.requetePlan = ""
 
@@ -1051,7 +1051,6 @@ $scope.get_Somme_daye = function ()
         $scope.pageCurrent = null;
         $scope.clientview = null;
         $scope.userview = null;
-        $scope.planview = null;
 
 
         // for pagination
@@ -1109,12 +1108,14 @@ $scope.get_Somme_daye = function ()
                        Init.getStatElement('plan', idElmtplan);
                    },1000);
 
+                   $scope.getelements('projets');
+
                    var req = "plans";
                    $scope.planview = {};
                    rewriteReq = req + "(id:" + current.params.itemId + ")";
                    Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
                    {
-                       $scope.clientview = data[0];
+                       $scope.planview = data[0];
                        $scope.pageChanged("projet");
 
 
@@ -1546,7 +1547,7 @@ $scope.get_Somme_daye = function ()
         Init.changeStatut(type, send_data).then(function(data)
         {
          //   form.parent().parent().blockUI_stop();
-            if (data.data!=null && !data.errors)
+            if (data.data!=null && !data.errors_debug)
             {
                 if (type.indexOf('user')!==-1)
                 {
@@ -1586,7 +1587,7 @@ $scope.get_Somme_daye = function ()
             {
                 iziToast.error({
                     title: "",
-                    message: '<span class="h4">' + data.errors + '</span>',
+                    message: '<span class="h4">' + data.errors_debug + '</span>',
                     position: 'topRight'
                 });
             }
@@ -1658,6 +1659,12 @@ $scope.get_Somme_daye = function ()
                 continuer = false;
             }
         }
+        else if (type == 'lier_plan' || type == 'lierplan') {
+            console.log("bonjour $scope.planview", $scope.planview)
+            send_data.append('plan_id', JSON.stringify($scope.planview.id));
+           // send_data.append('projet_id', JSON.stringify($scope.projet_id));
+            continuer = true;
+        }
         else if (type == 'projet' || type == 'projets') {
             if ($scope.produitsInTable.length > 0) {
                 send_data.append('tab_plan', JSON.stringify($scope.produitsInTable));
@@ -1679,7 +1686,7 @@ $scope.get_Somme_daye = function ()
             {
                 console.log('data retour', data);
                 //form.parent().parent().blockUI_stop();
-                if (data.data!=null && !data.errors)
+                if (data.data!=null && !data.errors_debug)
                 {
                     emptyform(type);
                     getObj = data['data'][type + 's'][0];
@@ -1742,6 +1749,10 @@ $scope.get_Somme_daye = function ()
                                 });
                             }
                         }
+                    }
+                    else if (type.indexOf('lier_plan')!==-1)
+                    {
+                        $scope.pageChanged("plan");
                     }
                     else if (type.indexOf('plan')!==-1)
                     {
@@ -1852,7 +1863,7 @@ $scope.get_Somme_daye = function ()
                 {
                     iziToast.error({
                         title: "",
-                        message: '<span class="h4">' + data.errors + '</span>',
+                        message: '<span class="h4">' + data.errors_debug + '</span>',
                         position: 'topRight'
                     });
                 }
@@ -2158,7 +2169,7 @@ $scope.get_Somme_daye = function ()
             {
                 console.log('retour', data);
                // form.parent().parent().blockUI_stop();
-                if (data.data!=null && !data.errors)
+                if (data.data!=null && !data.errors_debug)
                 {
 
                     iziToast.success({
@@ -2177,7 +2188,7 @@ $scope.get_Somme_daye = function ()
                 {
                     iziToast.error({
                         title: "",
-                        message: '<span class="h4">' + data.errors + '</span>',
+                        message: '<span class="h4">' + data.errors_debug + '</span>',
                         position: 'topRight'
                     });
                 }
@@ -2229,7 +2240,7 @@ $scope.get_Somme_daye = function ()
             Init.fusionner(type, send_data).then(function(data)
             {
                 console.log('retour', data);
-                if (data.data!=null && !data.errors)
+                if (data.data!=null && !data.errors_debug)
                 {
 
                     iziToast.success({
@@ -2248,7 +2259,7 @@ $scope.get_Somme_daye = function ()
                 {
                     iziToast.error({
                         title: "",
-                        message: '<span class="h4">' + data.errors + '</span>',
+                        message: '<span class="h4">' + data.errors_debug + '</span>',
                         position: 'topRight'
                     });
                 }
@@ -2287,7 +2298,7 @@ $scope.get_Somme_daye = function ()
             {
                 console.log('detail', data);
            //     form.parent().parent().blockUI_stop();
-                if (data.data!=null && !data.errors)
+                if (data.data!=null && !data.errors_debug)
                 {
 
                     iziToast.success({
@@ -2306,7 +2317,7 @@ $scope.get_Somme_daye = function ()
                 {
                     iziToast.error({
                         title: "",
-                        message: '<span class="h4">' + data.errors + '</span>',
+                        message: '<span class="h4">' + data.errors_debug + '</span>',
                         position: 'topRight'
                     });
                 }
@@ -2934,7 +2945,7 @@ $scope.get_Somme_daye = function ()
                     Init.removeElement(type, itemId).then(function (data) {
 
                         console.log('deleted', data);
-                        if (data.data && !data.errors)
+                        if (data.data && !data.errors_debug)
                         {
 
                             if (type.indexOf('typeclient')!==-1)
@@ -3031,7 +3042,7 @@ $scope.get_Somme_daye = function ()
                         {
                             iziToast.error({
                                 title: title,
-                                message: data.errors,
+                                message: data.errors_debug,
                                 position: 'topRight'
                             });
                         }
