@@ -453,7 +453,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
             "niveauprojets"                 :  ["id",""],
 
             "projets"                       :  [
-                "id,name,etat,active,a_valider,created_at_fr,created_at,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adresse_complet,code_postal}",
+                "id,adresse_terrain,name,etat,active,a_valider,created_at_fr,created_at,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adresse_complet,code_postal}",
                 ",niveau_projets{id,piece,bureau,toillette,chambre,salon,cuisine},remarques{id,demande_text,projet_id,type_remarque_id}"
             ],
 
@@ -1690,8 +1690,8 @@ $scope.get_Somme_daye = function ()
             continuer = true;
         }
         else if (type == 'joined' || type == 'joined') {
-            console.log("bonjour $scope.planview", $scope.planview)
-            send_data.append('plan', JSON.stringify($scope.planview.id));
+            console.log("bonjour $scope.planview",parseInt($scope.planview.id))
+            send_data.append('plan', JSON.stringify(parseInt($scope.planview.id)));
            // send_data.append('projet_id', JSON.stringify($scope.projet_id));
             continuer = true;
         }

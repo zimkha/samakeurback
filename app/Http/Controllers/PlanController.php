@@ -18,6 +18,50 @@ class PlanController extends Controller
         $nb = Plan::getNbAttribut($attribut);
         return $nb;
     }
+    public function active_plan($id);
+    {
+        try
+        {
+            $data = 0;
+            $errors = null;
+            if(isset($id))
+            {
+                $item = Joined::find($id);
+                if(isset($item))
+                {
+                    $item->active = 1;
+                    $item->save;
+                    $data = 1;
+                }
+                else
+                {
+                    $errors = "Impossible de trouver les données";
+                }
+            }
+            else
+            {
+                $errors = "Impossible d'effectuer cette opération, données manquantes";
+            }
+            if (isset($errors))
+            {
+                throw new \Exception($errors);
+            }
+            else
+            {
+                $retour = array(
+                    'data'          => $data,
+                );
+            }
+            return response()->json($retour);
+        }
+        catch(\Exception $e)
+        {
+            return response()->json(array(
+                'errors'          => config('app.debug') ? $e->getMessage() : Outil::getMsgError(),
+                'errors_debug'    => [$e->getMessage()],
+            ));
+        }
+    }
     public function joined(Request $request)
     {
       try
@@ -40,7 +84,9 @@ class PlanController extends Controller
              }
              if(empty($errors) && $request->hasfile('fichier'))
              {
-                 $item->plan_id         = $request->plan;
+                 $tab = json_decode($request->plan);
+                
+                 $item->plan_id         = (int)$tab;
                  $fichier               = $_FILES['fichier']['name'];
                  $fichier_tmp           = $_FILES['fichier']['tmp_name'];
                  $k                     = rand(1, 9999);
@@ -52,6 +98,7 @@ class PlanController extends Controller
                  {
                      $item->description = $request->description;
                  }
+                
                  $item->save();
                  return Outil::redirectgraphql($this->queryName, "id:{$item->plan_id}", Outil::$queries[$this->queryName]);
 

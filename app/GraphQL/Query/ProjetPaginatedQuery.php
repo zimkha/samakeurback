@@ -31,6 +31,7 @@ class ProjetPaginatedQuery extends Query
             'id'                     => ['type'  => Type::id()],
             'user_id'                => ['type'  => Type::int()],
             'text_projet'            => ['type'  => Type::string()],
+            'adresse_terrain'        => ['type'  => Type::string()],
             'name'                   => ['type'  => Type::string()],
             'fichier'                => ['type'  => Type::string()],
             'active'                 => ['type'  => Type::boolean()],

@@ -24,6 +24,7 @@ class ProjetType extends GraphQLType
             'longeur'                => ['type' => Type::int()],
             'largeur'                => ['type' => Type::int()],
             'text_projet'            => ['type'  => Type::string()],
+            'adresse_terrain'        => ['type'  => Type::string()],
             'name'                   => ['type'  => Type::string()],
             'fichier'                => ['type'  => Type::string()],
             'active'                 => ['type'  => Type::boolean()],

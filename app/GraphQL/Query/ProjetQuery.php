@@ -29,6 +29,8 @@ class ProjetQuery extends Query
             'id'                     => ['type'  => Type::id()],
             'user_id'                => ['type'  => Type::int()],
             'text_projet'            => ['type'  => Type::string()],
+            'adresse_terrain'        => ['type'  => Type::string()],
+
             'name'                   => ['type'  => Type::string()],
             'fichier'                => ['type'  => Type::string()],
             'active'                 => ['type'  => Type::boolean()],
@@ -144,6 +146,7 @@ class ProjetQuery extends Query
             'niveau_projets'         => $item->niveau_projets,
             'plan_projets'            => $item->plan_projets,
             'created_at'             => $item->created_at,
+            'adresse_terrain'        => $item->adresse_terrain,
         ];
       });
     }

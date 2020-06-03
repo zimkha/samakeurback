@@ -14,7 +14,7 @@
                         <button class="btn btn-success btn-circle mb-2" ng-click="showModalAdd('lier_plan')" title="lier le plan a un projet"><i class="fa fa-magnet"></i></button>
                     </div>
                     <div class="float-right pt-0 mx-1 text-right">
-                        <button class="btn btn-warning btn-circle mb-2" ng-click="showModalAdd('joined')" title="Fichier a un projet"><i class="fa fa-file"></i></button>
+                        <button class="btn btn-warning btn-circle mb-2" ng-click="showModalAdd('joined')" title="Joindre un fichier au plan"><i class="fa fa-file"></i></button>
                     </div>
                 </div>
             </div>
@@ -113,51 +113,24 @@
                                             <th>Date</th>
                                             <th>Client</th>
                                             <th>Adresse </th>
-                                            <th>etat</th>
+                                            
                                             <th>Actions</th>
                                         </tr>
                                         </thead>
 
                                         <tbody>
-                                        <tr align="center">
-                                            <td>DM0001</td>
-                                            <td>12/01/2020</td>
-                                            <td>Khazim Ndiaye</td>
-                                            <td>Dakr Senegal</td>
-                                            <td><span class="badge badge-success">PAYE</span></td>
+                                        <tr align="center" ng-repeat="item in projets" ng-if="item.active==1 && item.etat==1">
+                                            <td>@{{ item.name }}</td>
+                                            <td>@{{ item.created_at_fr }}</td>
+                                            <td>@{{ item.user.prenom }} -- @{{ item.nom }}</td>
+                                            <td>@{{ item.adresse_terrain }}</td>
+                                           
                                             <td>
                                                 <button href="detail-client.html" class="btn btn-primary btn-circle" data-toggle="modal" data-target=".bd-example-modal-lg">
                                                     <i class="fas fa-info-circle"></i>
                                                 </button>
                                             </td>
                                         </tr>
-
-                                        <tr align="center">
-                                            <td>DM0002</td>
-                                            <td>12/0Z/2020</td>
-                                            <td>Moussa Ndiaye</td>
-                                            <td>Dakr Senegal</td>
-                                            <td><span class="badge badge-success">PAYE</span></td>
-                                            <td>
-                                                <button href="detail-client.html" class="btn btn-primary btn-circle" data-toggle="modal" data-target=".bd-example-modal-lg">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr align="center">
-                                            <td>DM0021</td>
-                                            <td>12/03/2020</td>
-                                            <td>Sydi Ndiaye</td>
-                                            <td>Dakr Senegal</td>
-                                            <td><span class="badge badge-danger">NON PAYE</span></td>
-                                            <td>
-                                                <button href="detail-client.html" class="btn btn-primary btn-circle" data-toggle="modal" data-target=".bd-example-modal-lg">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -169,57 +142,30 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
+                                    <thead>
                                         <tr align="center">
                                             <th>Code</th>
                                             <th>Date</th>
                                             <th>Client</th>
                                             <th>Adresse </th>
-                                            <th>etat</th>
+                                            
                                             <th>Actions</th>
                                         </tr>
                                         </thead>
 
                                         <tbody>
-                                        <tr align="center">
-                                            <td>DM0001</td>
-                                            <td>12/01/2020</td>
-                                            <td>Khazim Ndiaye</td>
-                                            <td>Dakr Senegal</td>
-                                            <td><span class="badge badge-success">PAYE</span></td>
+                                        <tr align="center" ng-repeat="item in projets" ng-if="item.etat==2">
+                                            <td>@{{ item.name }}</td>
+                                            <td>@{{ item.created_at_fr }}</td>
+                                            <td>@{{ item.user.prenom }} -- @{{ item.nom }}</td>
+                                            <td>@{{ item.adresse_terrain }}</td>
+                                          
                                             <td>
                                                 <button href="detail-client.html" class="btn btn-primary btn-circle" data-toggle="modal" data-target=".bd-example-modal-lg">
                                                     <i class="fas fa-info-circle"></i>
                                                 </button>
                                             </td>
                                         </tr>
-
-                                        <tr align="center">
-                                            <td>DM0002</td>
-                                            <td>12/0Z/2020</td>
-                                            <td>Moussa Ndiaye</td>
-                                            <td>Dakr Senegal</td>
-                                            <td><span class="badge badge-success">PAYE</span></td>
-                                            <td>
-                                                <button href="detail-client.html" class="btn btn-primary btn-circle" data-toggle="modal" data-target=".bd-example-modal-lg">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr align="center">
-                                            <td>DM0021</td>
-                                            <td>12/03/2020</td>
-                                            <td>Sydi Ndiaye</td>
-                                            <td>Dakr Senegal</td>
-                                            <td><span class="badge badge-danger">NON PAYE</span></td>
-                                            <td>
-                                                <button href="detail-client.html" class="btn btn-primary btn-circle" data-toggle="modal" data-target=".bd-example-modal-lg">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-
-
                                         </tbody>
                                     </table>
                                 </div>

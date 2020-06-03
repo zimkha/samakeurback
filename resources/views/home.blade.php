@@ -274,7 +274,7 @@
                                 <div class="form-group">
                                     <label for="client_lier_plan">Client</label>
                                     <select class="form-control select2" id="client_lier_plan" name="client">
-                                        <option ng-repeat="item in users" value="@{{item.id}}">@{{item.nom}} </option>
+                                        <option ng-repeat="item in users" value="@{{item.id}}">@{{item.prenom}} @{{ item.nom}} </option>
                                     </select>
                                 </div>
                             </div>
@@ -283,7 +283,6 @@
                                     <label for="projet_lier_plan">Projets</label>
                                     <select class="form-control" id="projet_lier_plan" name="projet_id">
                                         <option ng-repeat="item in projets" value="@{{item.id}}">@{{item.name}} </option>
-
                                     </select>
                                 </div>
                             </div>
