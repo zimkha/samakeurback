@@ -8,6 +8,7 @@ use Rebing\GraphQL\Support\Facades\GraphQL;
 use Illuminate\Support\Arr;
 use App\Plan;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class PlanPaginatedQuery extends Query
 {
