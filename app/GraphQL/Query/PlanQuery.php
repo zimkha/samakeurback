@@ -119,6 +119,7 @@ class PlanQuery extends Query
             'niveau_plans'           => $item->niveau_plans,
             'plan_projets'           => $item->plan_projets,
             'created_at'             => $item->created_at,
+            'joindes'                => $item->joindes,
         ];
       });
     }
