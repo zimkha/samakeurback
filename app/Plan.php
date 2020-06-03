@@ -22,7 +22,7 @@ class Plan extends Model
     {
         return $this->belongsTo(UniteMesure::class);
     }
-    public function joindes()
+    public function joineds()
     {
         return $this->hasMany(Joined::class);
     }
