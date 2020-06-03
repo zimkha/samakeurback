@@ -24,7 +24,7 @@ class Plan extends Model
     }
     public function joindes()
     {
-        retunr $this->hasMany(Joined::class);
+        return $this->hasMany(Joined::class);
     }
 
 
