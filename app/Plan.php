@@ -22,6 +22,10 @@ class Plan extends Model
     {
         return $this->belongsTo(UniteMesure::class);
     }
+    public function joindes()
+    {
+        retunr $this->hasMany(Joined::class);
+    }
 
 
     public static function makeCode()

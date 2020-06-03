@@ -135,6 +135,7 @@ class ProjetQuery extends Query
             'id'                     => $item->id,
             'user_id'                => $item->user_id,
             'superficie'             => $item->superficie,
+            'joineds'                => $item->joindes,
             'longeur'                => $item->longeur,
             'name'                   => $item->name,
             'largeur'                => $item->largeur,

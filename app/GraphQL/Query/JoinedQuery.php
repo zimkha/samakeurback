@@ -95,7 +95,8 @@ class JoinedQuery extends Query
             'id'                     => $item->id,
             'fichier'                => $item->fichier,
             'active'                 => $item->active,
-           
+            'plan_id'                => $item->plan_id,
+            'plan'                   => $item->plan,
         ];
       });
     }
