@@ -39,6 +39,10 @@ class ProjetController extends Controller
                     NiveauProjet::where('projet_id', $request->id)->forceDelete();
                     $name = $item->name;
                 }
+                if(isset($request->adresse_terrain))
+                {
+                    $item->adresse_terrain = $request->adresse_terrain;
+                }
 
                 $errors = Outil::validation($request, $array);
                 //dd($request->superficie,($request->longeur * $request->largeur));
