@@ -18,7 +18,7 @@ class PlanController extends Controller
         $nb = Plan::getNbAttribut($attribut);
         return $nb;
     }
-    public function active_plan($id);
+    public function active_plan($id)
     {
         try
         {
@@ -85,7 +85,7 @@ class PlanController extends Controller
              if(empty($errors) && $request->hasfile('fichier'))
              {
                  $tab = json_decode($request->plan);
-                
+
                  $item->plan_id         = (int)$tab;
                  $fichier               = $_FILES['fichier']['name'];
                  $fichier_tmp           = $_FILES['fichier']['tmp_name'];
@@ -98,7 +98,7 @@ class PlanController extends Controller
                  {
                      $item->description = $request->description;
                  }
-                
+
                  $item->save();
                  return Outil::redirectgraphql($this->queryName, "id:{$item->plan_id}", Outil::$queries[$this->queryName]);
 
