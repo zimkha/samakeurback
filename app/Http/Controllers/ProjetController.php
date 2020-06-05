@@ -50,7 +50,7 @@ class ProjetController extends Controller
                     $errors = "le produit du longeur et de la laregeur doit être égale à la superficie total";
                 }
                // $user = User::find($request->user);
-                $item->name                    = $name 
+                $item->name                    = $name;
                 $item->user_id                 = $request->user;
                 $item->superficie              = $request->superficie;
                 $item->longeur                 = $request->longeur;
@@ -373,7 +373,7 @@ class ProjetController extends Controller
             {
                 $errors = "Données manquantes";
             }
-            if(isset(!$errors))
+            if($errors!=null)
             {
                 $retour = array(
                     'data'          => $data,
@@ -414,6 +414,22 @@ class ProjetController extends Controller
                 'errors_debug'    => [$e->getMessage()],
             ));  
         }
+    }
+    public function payment()
+    {
+        $config = [
+            "id"  => "AcftOJdjG7Oa5OHrLQfzrMB8Bl2u27xdTMzbygvJX9B59200UAGQ05yGjwzn23z0Wy9EanSHZRLDtp6w",
+            "secrete" => "ENDRItY4jUMH9BBjH6IMxiLWHBk-GO9t7sCe7X4b9Es5Cuz2mqe995WJc7vuNj-IuJA-PkWa6c4gCSxo"
+        ];
+        $apiContext = new \Paypal\Rest\ApiContext(
+            new \PayPal\Auth\OAuthTokenCredential(
+                $config['id'],
+                $config['secrete']     // ClientSecret
+            )
+        );
+        $payment = new \Paypal\Rest\Payment($apiContext);
+        dd($payment);
+
     }
     
 }

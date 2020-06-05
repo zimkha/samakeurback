@@ -166,6 +166,7 @@ return [
         Rebing\GraphQL\GraphQLServiceProvider::class,
         Sentry\Laravel\ServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        Srmklive\PayPal\Providers\PayPalServiceProvider::class,
 
 
 
@@ -239,6 +240,7 @@ return [
         'GraphQL' => Rebing\GraphQL\Support\Facades\GraphQL::class,
         'Sentry' => Sentry\Laravel\Facade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'PayPal' => Srmklive\PayPal\Facades\PayPal::class,
 
 
 

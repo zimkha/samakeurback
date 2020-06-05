@@ -18,7 +18,7 @@ class PlanController extends Controller
         $nb = Plan::getNbAttribut($attribut);
         return $nb;
     }
-    public function active_plan($id);
+    public function active_plan($id)
     {
         try
         {
@@ -62,6 +62,8 @@ class PlanController extends Controller
             ));
         }
     }
+
+
     public function joined(Request $request)
     {
       try
