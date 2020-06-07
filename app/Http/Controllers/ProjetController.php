@@ -12,6 +12,9 @@ use PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Srmklive\PayPal\Services\ExpressCheckout;
+use Srmklive\PayPal\Services\AdaptivePayments;
+use PayPal\Rest\ApiContext;
 
 class ProjetController extends Controller
 {
@@ -417,18 +420,35 @@ class ProjetController extends Controller
     }
     public function payment()
     {
-        $config = [
-            "id"  => "AcftOJdjG7Oa5OHrLQfzrMB8Bl2u27xdTMzbygvJX9B59200UAGQ05yGjwzn23z0Wy9EanSHZRLDtp6w",
-            "secrete" => "ENDRItY4jUMH9BBjH6IMxiLWHBk-GO9t7sCe7X4b9Es5Cuz2mqe995WJc7vuNj-IuJA-PkWa6c4gCSxo"
-        ];
-        $apiContext = new \Paypal\Rest\ApiContext(
+          $config = [
+             "id"  => "AcftOJdjG7Oa5OHrLQfzrMB8Bl2u27xdTMzbygvJX9B59200UAGQ05yGjwzn23z0Wy9EanSHZRLDtp6w",
+             "secrete" => "ENDRItY4jUMH9BBjH6IMxiLWHBk-GO9t7sCe7X4b9Es5Cuz2mqe995WJc7vuNj-IuJA-PkWa6c4gCSxo"
+         ];
+        $apiContext = new ApiContext(
             new \PayPal\Auth\OAuthTokenCredential(
                 $config['id'],
-                $config['secrete']     // ClientSecret
+                $config['secrete']
             )
         );
-        $payment = new \Paypal\Rest\Payment($apiContext);
-        dd($payment);
+        $payment = new \PayPal\Api\Payment();
+        $payment->create($apiContext);
+
+        $payment->getApprovalLink();
+            dd($payment);
+        // $provider = new ExpressCheckout;      // To use express checkout.
+        // $provider = new AdaptivePayments;
+        // $provider = PayPal::setProvider('express_checkout');      // To use express checkout(used by default).
+        // $provider = PayPal::setProvider('adaptive_payments');    
+       
+        // $apiContext = new \Paypal\Rest\ApiContext(
+        //     new \PayPal\Auth\OAuthTokenCredential(
+        //         $config['id'],
+        //         $config['secrete']     // ClientSecret
+        //     )
+        // );
+        // $provider->setApiCredentials($config);
+        // $payment = new \Paypal\Rest\Payment($apiContext);
+        // dd($payment);
 
     }
     
