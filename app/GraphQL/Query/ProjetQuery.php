@@ -148,6 +148,7 @@ class ProjetQuery extends Query
             'plan_projets'            => $item->plan_projets,
             'created_at'             => $item->created_at,
             'adresse_terrain'        => $item->adresse_terrain,
+            'remarques'              => $item->remarques,
         ];
       });
     }
