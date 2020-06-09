@@ -477,6 +477,8 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
 
         };
 
+    $scope.link = BASE_URL;
+
     //--DEBUT => Donne la qté  par rapport à la quantité total--//
     $scope.donneClient = function () {
         var retour = 0;

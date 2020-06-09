@@ -97,6 +97,15 @@
 
 
                                     </div>
+
+                                    <div class="row mt-30 animated px-2">
+                                        <div class="col-md-2 mb-10" ng-repeat="item in planview.joineds">
+                                            <a href="@{{link}}/@{{ item.fichier }}">
+                                                <span class="fa fa-file-pdf"></span>
+                                            </a>
+                                            @{{ item.description }}
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
@@ -113,7 +122,7 @@
                                             <th>Date</th>
                                             <th>Client</th>
                                             <th>Adresse </th>
-                                            
+
                                             <th>Actions</th>
                                         </tr>
                                         </thead>
@@ -124,7 +133,7 @@
                                             <td>@{{ item.created_at_fr }}</td>
                                             <td>@{{ item.user.prenom }} -- @{{ item.nom }}</td>
                                             <td>@{{ item.adresse_terrain }}</td>
-                                           
+
                                             <td>
                                                 <button href="detail-client.html" class="btn btn-primary btn-circle" data-toggle="modal" data-target=".bd-example-modal-lg">
                                                     <i class="fas fa-info-circle"></i>
@@ -148,7 +157,7 @@
                                             <th>Date</th>
                                             <th>Client</th>
                                             <th>Adresse </th>
-                                            
+
                                             <th>Actions</th>
                                         </tr>
                                         </thead>
@@ -159,7 +168,7 @@
                                             <td>@{{ item.created_at_fr }}</td>
                                             <td>@{{ item.user.prenom }} -- @{{ item.nom }}</td>
                                             <td>@{{ item.adresse_terrain }}</td>
-                                          
+
                                             <td>
                                                 <button href="detail-client.html" class="btn btn-primary btn-circle" data-toggle="modal" data-target=".bd-example-modal-lg">
                                                     <i class="fas fa-info-circle"></i>
