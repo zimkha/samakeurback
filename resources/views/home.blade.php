@@ -362,7 +362,7 @@
         <div class="modal-dialog modal-dialog modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-gradient-dark text-white">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Lier Plan</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Joindre Plan</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

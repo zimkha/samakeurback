@@ -14,18 +14,21 @@
             <div class="card-body">
                 <form ng-submit="pageChanged('plan')">
                     <div class="row mt-40">
+                        <div class="col-md-6 mt-1 pt-1">
+                            <input type="text" class="form-control" placeholder="Nom client ..." id="client_plan_filtre" ng-model="client_plan_filtre" ng-change="pageChanged('plan')">
+                        </div>
                         <div class="col-md-3 mt-1 pt-1">
                             <input type="text" class="form-control" placeholder="Superficie ..." id="superficie_plan_filtre" ng-model="superficie_plan_filtre" ng-change="pageChanged('plan')">
                         </div>
                         <div class="col-md-3 mt-1 pt-1">
                             <input type="text" class="form-control" placeholder="Chambre ..."  id="chambre_plan_filtre" ng-model="chambre_plan_filtre" ng-change="pageChanged('plan')">
                         </div>
-                        <div class="col-md-3 mt-1 pt-1">
+                       {{-- <div class="col-md-3 mt-1 pt-1">
                             <input type="text" class="form-control" placeholder="Longeur ..."  id="longeur_plan_filtre" ng-model="longeur_plan_filtre" ng-change="pageChanged('plan')">
                         </div>
                         <div class="col-md-3 mt-1 pt-1">
                             <input type="text" class="form-control" placeholder="Largeur ..."  id="largeur_plan_filtre" ng-model="largeur_plan_filtre" ng-change="pageChanged('plan')">
-                        </div>
+                        </div>--}}
                         <div class="col-md-3 mt-1 pt-1">
                             <input type="text" class="form-control" placeholder="Salon ..."  id="salon_plan_filtre" ng-model="salon_plan_filtre" ng-change="pageChanged('plan')">
                         </div>
@@ -51,8 +54,8 @@
                             <thead>
                             <tr class="text-center">
                                 <th>Code Pl</th>
+                                <th>Client</th>
                                 <th>Superficie</th>
-                                <th>Long / Larg</th>
                                 <th>Chambre</th>
                                 <th>Salons</th>
                                 <th>WC</th>
@@ -63,8 +66,8 @@
                             <tbody>
                             <tr ng-repeat="item in plans" class="text-center">
                                 <td>@{{ item.code }}</td>
+                                <td>Nom_client</td>
                                 <td>@{{ item.superficie }}</td>
-                                <td>@{{ item.longeur }} /@{{ item.largeur }}</td>
                                 <td>@{{ item.nb_chambre }}</td>
                                 <td>@{{ item.nb_salon }}</td>
                                 <td>@{{ item.nb_toillette }}</td>

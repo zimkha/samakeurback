@@ -784,6 +784,7 @@ $scope.get_Somme_daye = function ()
             rewriteelement = 'planspaginated(page:'+ $scope.paginationplan.currentPage +',count:'+ $scope.paginationplan.entryLimit
                 + ($scope.planview ? ',plan_id:' + $scope.planview.id : "" )
               //  + ($('#plan_piece').val() ? ',nb_piece:' + $('#plan_piece').val() : "" )
+             //   + ($('#client_plan_filtre').val() ? ',user_id:' + $('#client_plan_filtre').val() : "" )
                 + ($('#superficie_plan_filtre').val() ? ',superficie:' + $('#superficie_plan_filtre').val() : "" )
                 + ($('#chambre_plan_filtre').val() ? ',nb_chambre:' + $('#chambre_plan_filtre').val() : "" )
                 + ($('#longeur_plan_filtre').val() ? ',longeur:' + $('#longeur_plan_filtre').val() : "" )
@@ -1109,10 +1110,10 @@ $scope.get_Somme_daye = function ()
                {
 
                    var idElmtplan = current.params.itemId;
-                   setTimeout(function ()
+                  /* setTimeout(function ()
                    {
                        Init.getStatElement('plan', idElmtplan);
-                   },1000);
+                   },1000);*/
 
                    $scope.getelements('users');
 
@@ -1150,11 +1151,11 @@ $scope.get_Somme_daye = function ()
             $scope.projetview = null;
                if(current.params.itemId)
                {
-                   var idElmtprojet = current.params.itemId;
+                  /* var idElmtprojet = current.params.itemId;
                    setTimeout(function ()
                    {
                        Init.getStatElement('projet', idElmtprojet);
-                   },1000);
+                   },1000);*/
                    $scope.getelements('projets');
                    var req = "projets";
                    $scope.projetview = {};
@@ -1182,11 +1183,11 @@ $scope.get_Somme_daye = function ()
             if(current.params.itemId)
             {
 
-                var idElmtclient = current.params.itemId;
+               /* var idElmtclient = current.params.itemId;
                 setTimeout(function ()
                 {
                     Init.getStatElement('user', idElmtclient);
-                },1000);
+                },1000);*/
 
                 var req = "users";
                 $scope.clientview = {};
@@ -1722,6 +1723,10 @@ $scope.get_Somme_daye = function ()
             send_data.append('plan', JSON.stringify(parseInt($scope.planview.id)));
            // send_data.append('projet_id', JSON.stringify($scope.projet_id));
             continuer = true;
+            $("#modal_addjoined").modal('hide');
+            setTimeout(function () {
+                $scope.pageChanged("plan");
+            },1500);
         }
         else if (type == 'projet' || type == 'projets') {
             if ($scope.produitsInTable.length > 0) {
@@ -1815,6 +1820,7 @@ $scope.get_Somme_daye = function ()
                     else if (type.indexOf('joined')!==-1)
                     {
                         console.log("ok");
+                        $scope.pageChanged("plan");
                     }
                     else if (type.indexOf('plan')!==-1)
                     {
