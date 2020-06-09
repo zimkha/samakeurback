@@ -47,7 +47,7 @@
                                         <div class="text-center p-1">
                                             <div>
                                                 <i class="fa fa-calendar-check"></i> <strong><u>Date creation:</u></strong>
-                                                <span class="text-muted">@{{ planview.created }}</span>
+                                                <span class="text-muted">@{{ planview.created_at_fr }}</span>
                                             </div>
                                         </div>
                                     </div>

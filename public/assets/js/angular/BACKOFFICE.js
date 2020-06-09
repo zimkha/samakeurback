@@ -785,6 +785,8 @@ $scope.get_Somme_daye = function ()
                 + ($scope.planview ? ',plan_id:' + $scope.planview.id : "" )
               //  + ($('#plan_piece').val() ? ',nb_piece:' + $('#plan_piece').val() : "" )
                 + ($('#client_plan_filtre').val() ? ',user_id:' + $('#client_plan_filtre').val() : "" )
+                + ($('#date_plan_filtre').val() ? ',date:' + $('#date_plan_filtre').val() : "" )
+                + ($('#code_plan_filtre').val() ? ',code:' + $('#code_plan_filtre').val() : "" )
                 + ($('#superficie_plan_filtre').val() ? ',superficie:' + $('#superficie_plan_filtre').val() : "" )
                 + ($('#chambre_plan_filtre').val() ? ',nb_chambre:' + $('#chambre_plan_filtre').val() : "" )
                 + ($('#longeur_plan_filtre').val() ? ',longeur:' + $('#longeur_plan_filtre').val() : "" )
@@ -1124,6 +1126,7 @@ $scope.get_Somme_daye = function ()
                    {
                        $scope.planview = data[0];
 
+                       console.log("$scope.planview =>",$scope.planview)
                    },function (msg)
                    {
                        toastr.error(msg);
