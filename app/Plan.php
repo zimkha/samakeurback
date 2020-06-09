@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
+use App\PlanProjet;
+use App\Projet;
 
 class Plan extends Model
 {
@@ -49,6 +51,17 @@ class Plan extends Model
         }
         return $code;
 
+    }
+    public static function plan_by_user($user_id)
+    {
+        $all_projets_plan = PlanProjet::whereIn('projet_id', Projet::where('user_id', $user_id)->get(['projet_id']))->get();
+        $array =array();
+        foreach($all_projets_pla as $plan)
+        {
+            array_push($array, $plan->plan_id);
+        }
+        $all_plan = Plan::whereIn('id', $array);
+        return $all_plan;
     }
     public static function nb_attribut($id, $attribut)
     {

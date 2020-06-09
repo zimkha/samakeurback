@@ -27,6 +27,7 @@ class PlanQuery extends Query
             'fichier'                 => [ 'type' => Type::string(), 'description' => ''],
             'code'                  => [ 'type' => Type::string(), 'description' => ''],
             'unite_mesure_id'        => ['type' => Type::id()],
+            'user_id'                => ['type' => Type::int()],
             'superficie'             => ['type' => Type::int()],
             'longeur'                => ['type' => Type::int()],
             'largeur'                => ['type' => Type::int()],
@@ -75,6 +76,11 @@ class PlanQuery extends Query
        if (isset($args['piscine']))
        {
           $query = $query->where('piscine', $args['piscine']);
+       }
+       if(isset($args['user_id']))
+       {
+          $plans_id = Plan::plan_by_user($args['user_id']);
+          $query    = $query-where('id', $plans_id);
        }
        if (isset($args['nb_pieces'])) {
           $attribut = "piece";

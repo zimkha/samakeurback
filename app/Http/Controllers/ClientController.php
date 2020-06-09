@@ -32,12 +32,13 @@ class ClientController extends Controller
          {
              if(Hash::check($password, $user->password))
              {
+                 //Projetdd($user);
                 if($user->active == 0 || $user->active == false)
                 {
                    $errors = "votre compte n'est pas encore activé";
                    return response()->json([
                        'data' => $data,
-                       'errors' => $errors
+                       'errors_debug' => $errors
                    ], 200);
                 }
                 else
@@ -48,13 +49,13 @@ class ClientController extends Controller
                     'data' => $user,
                     'message' => ["connexion réussi"]
                 ], 200);
-                 }
+                 //}
              }
              else
              {
                 return response()->json([
-                    'data' => null,
-                    'errors' => ["mot de passe incorrect"]
+                    'data'   => null,
+                    'errors_debug' => ["mot de passe incorrect"]
                 ], 200);
              }
          }
@@ -62,7 +63,7 @@ class ClientController extends Controller
          {
             return response()->json([
                 'data' => null,
-                'errors' => ["email incorrecte"]
+                'errors_debug' => ["email incorrecte"]
             ], 200);
          }
 

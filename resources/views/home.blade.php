@@ -524,6 +524,28 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-lg-3">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="courant_faible_projet" value="">Courant Faible
+                                  </label>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="eaux_pluviable_projet" value="">Eaux pliviale
+                                  </label>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="bornes_visible_projet" value="">Bornez Visible
+                                  </label>
+                            </div>
+                                                    <div class="col-lg-3">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="necessite_bornage_projet" value="">Necessite bornage
+                                  </label>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-12">
                             <div class="form-group">
                                 <label for="description_proje">Desciption</label>
