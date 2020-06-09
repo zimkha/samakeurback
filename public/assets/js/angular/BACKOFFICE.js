@@ -1964,6 +1964,7 @@ $scope.get_Somme_daye = function ()
             var niveau = $("#niveau_plan").val();
             var piece_plan = $("#piece_plan").val();
             var chambre_plan = $("#chambre_plan").val();
+            var chambre_sdb_plan = $("#chambre_sdb_plan").val();
             var bureau_plan = $("#bureau_plan").val();
             var salon_plan = $("#salon_plan").val();
             var cuisine_plan = $("#cuisine_plan").val();
@@ -1986,6 +1987,13 @@ $scope.get_Somme_daye = function ()
             if ($scope.estEntier(chambre_plan) == false) {
                 iziToast.error({
                     message: "Sélectionnez une chambre",
+                    position: 'topRight'
+                });
+                return false;
+            }
+            if ($scope.estEntier(chambre_sdb_plan) == false) {
+                iziToast.error({
+                    message: "Sélectionnez une chambre avec SDB",
                     position: 'topRight'
                 });
                 return false;
@@ -2023,6 +2031,7 @@ $scope.get_Somme_daye = function ()
                 "niveau": niveau,
                 "piece": piece_plan,
                 "chambre": chambre_plan,
+                "sdb": chambre_sdb_plan,
                 "bureau": bureau_plan,
                 "salon": salon_plan,
                 "cuisine": cuisine_plan,
@@ -2034,6 +2043,7 @@ $scope.get_Somme_daye = function ()
             $("#niveau_plan").val('');
             $("#piece_plan").val('');
             $("#chambre_plan").val('');
+            $("#chambre_sdb_plan").val('');
             $("#salon_plan").val('');
             $("#cuisine_plan").val('');
             $("#bureau_plan").val('');
