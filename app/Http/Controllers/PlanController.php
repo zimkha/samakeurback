@@ -62,6 +62,8 @@ class PlanController extends Controller
             ));
         }
     }
+
+
     public function joined(Request $request)
     {
       try

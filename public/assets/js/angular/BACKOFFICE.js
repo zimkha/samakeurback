@@ -454,12 +454,14 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
 
             "projets"                       :  [
                 "id,adresse_terrain,name,etat,active,a_valider,created_at_fr,created_at,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adresse_complet,code_postal}",
-                ",niveau_projets{id,piece,bureau,toillette,chambre,salon,cuisine},remarques{id,demande_text,projet_id,type_remarque_id}"
+                ",niveau_projets{id,piece,bureau,toillette,chambre,salon,cuisine},remarques{id,demande_text,projet_id,type_remarque_id},plan_projets{id,plan_id,plan{id,code,created_at_fr,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,unite_mesure_id,unite_mesure{id,name},fichier,niveau_plans{id,piece,niveau,bureau,toillette,chambre,salon,cuisine},joineds{id,fichier,description}}}"
             ],
 
             "clients"                       :  ["id",""],
 
             "typeremarques"                 : ["id",""],
+
+             "niveauprojets"                 : ["id,name,piece,bureau,toillette,chambre,salon,cuisine",""],
 
             "remarques"                     : [
             "id,demande_text,projet_id,type_remarque_id",""],
@@ -1143,9 +1145,33 @@ $scope.get_Somme_daye = function ()
              $scope.getelements('remarques');
              $scope.pageChanged('user');
          }
-         else if(angular.lowercase(current.templateUrl).indexOf('list-projet-encour')!==-1)
+         else if(angular.lowercase(current.templateUrl).indexOf('projet')!==-1)
          {
-            $scope.pageChanged('projet');
+            $scope.projetview = null;
+               if(current.params.itemId)
+               {
+                   var idElmtprojet = current.params.itemId;
+                   setTimeout(function ()
+                   {
+                       Init.getStatElement('projet', idElmtprojet);
+                   },1000);
+                   $scope.getelements('projets');
+                   var req = "projets";
+                   $scope.projetview = {};
+                   rewriteReq = req + "(id:" + current.params.itemId + ")";
+                   Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
+                   {
+                       $scope.projetview = data[0];
+                       $scope.getelement("niveauprojets");
+                   },function (msg)
+                   {
+                       toastr.error(msg);
+                   });
+               }
+               else
+               {
+                   $scope.pageChanged('projet');
+               }
         }
 
          else if(angular.lowercase(current.templateUrl).indexOf('client')!==-1)
