@@ -23,10 +23,10 @@
                        <div class="col-md-3 mt-1 pt-1">
                             <input type="text" class="form-control" placeholder="Code ..." id="code_plan_filtre" ng-model="code_plan_filtre" ng-change="pageChanged('plan')">
                         </div>
-                        {{-- <div class="col-md-3 mt-1 pt-1">
-                             <input type="text" class="form-control" placeholder="Chambre ..."  id="chambre_plan_filtre" ng-model="chambre_plan_filtre" ng-change="pageChanged('plan')">
+                        <div class="col-md-3 mt-1 pt-1">
+                             <input type="text" class="form-control" placeholder="Superficie ..."  id="superficie_plan_filtre" ng-model="superficie_plan_filtre" ng-change="pageChanged('plan')">
                          </div>
-                         <div class="col-md-3 mt-1 pt-1">
+                        {{--  <div class="col-md-3 mt-1 pt-1">
                              <input type="text" class="form-control" placeholder="Longeur ..."  id="longeur_plan_filtre" ng-model="longeur_plan_filtre" ng-change="pageChanged('plan')">
                          </div>
                          <div class="col-md-3 mt-1 pt-1">
@@ -42,7 +42,7 @@
 {{--                            <input type="text" class="form-control" placeholder="Cuisine ..."  id="cuisine_plan_filtre" ng-model="cuisine_plan_filtre" ng-change="pageChanged('plan')">--}}
 {{--                        </div>--}}
 
-                        <div class="col-md-12 mt-1 pt-1 text-right">
+                        <div class="col-md-6 mt-1 pt-1 text-right">
                             <button class="mt-2 btn btn-primary pull-right" ng-click="pageChanged('plan')">
                                 Filtrer <i class="fa fa-search"></i>
                             </button>
