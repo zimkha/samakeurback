@@ -27,15 +27,14 @@ class ProjetController extends Controller
     {
         try
         {
-            dd($request->all());
             return DB::transaction(function () use($request) {
                 $errors = null;
                 $name = Projet::makeCode();
                 $item  = new Projet();
                 $array = [
-                         'user', 'description', 'superficie', 'longeur', 'largeur',
+                         'user', 'longeur', 'largeur',
                          'acces_voirie', 'electricite', 'courant_faible', 'assainissement', 'eaux_pluviable','bornes_visible',
-                        'necessite_bornage','presence_mitoyen','cadatre','geometre'];
+                        'necessite_bornage','presence_mitoyen','geometre'];
                 if (isset($request->id)) {
                     $item = Projet::find($id);
                     NiveauProjet::where('projet_id', $request->id)->delete();
@@ -49,16 +48,40 @@ class ProjetController extends Controller
 
                 $errors = Outil::validation($request, $array);
                 //dd($request->superficie,($request->longeur * $request->largeur));
-                if ((int)$request->superficie != ($request->longeur * $request->largeur)) {
-                    $errors = "le produit du longeur et de la laregeur doit être égale à la superficie total";
+                // if ((int)$request->superficie != ($request->longeur * $request->largeur)) {
+                //     $errors = "le produit du longeur et de la laregeur doit être égale à la superficie total";
+                // }
+                $user_connected = Auth::user()->id;
+                $User = User::find($user_connected);
+                
+                if(isset($User))
+                {
+                    if($User->is_client== 1)
+                    {
+                        if(empty($request->description))
+                        {
+                            $errors = "Veuillez remplire la description";
+                            throw new \Exception($errors);
+                        }
+                        
+                    }
+                    else if(empty($request->tab_niveau))
+                    {
+                        $errors = "Veuillez priciser les niveaux dans le projet";
+                        throw new \Exception($errors);
+                    }
+                    if($User->is_client == 0 && $errors == null)
+                    {
+                        $item->text_projet = "La description est remplie par l'administrateur";
+                    }
                 }
-               // $user = User::find($request->user);
+                $superficie                    = $request->longeur * $request->largeur;
                 $item->name                    = $name;
                 $item->user_id                 = $request->user;
-                $item->superficie              = $request->superficie;
+                $item->superficie              = $superficie;
                 $item->longeur                 = $request->longeur;
                 $item->largeur                 = $request->largeur;
-                $item->text_projet             = $request->description;
+                // $item->text_projet             = $request->description;
                 $item->acces_voirie            = $request->acces_voirie;
                 $item->electricite             = $request->electricite;
                 $item->courant_faible          = $request->courant_faible;
@@ -67,6 +90,7 @@ class ProjetController extends Controller
                 $item->bornes_visible          = $request->bornes_visible;
                 $item->necessite_bornage       = $request->necessite_bornage;
                 $item->presence_mitoyen        = $request->presence_mitoyen;
+                $item->sdb                     = $request->sdb;
                
                 // if (empty($request->data)) // Data represente les niveaux c'est a dire le RDC et les R+n
                 // {
@@ -400,9 +424,15 @@ class ProjetController extends Controller
                 $item = Projet::find($id);
                 if(isset($item))
                 {
-                    $client = $item->user;
+                                    $client = $item->user;
+                                    $niveaux = $item->niveau_projets;
+                                    if(count($niveaux) == 0)
+                                    {
+                                        $niveaux = null;
+                                    }
+                                    //dd($client);
                     $created_at = Carbon::parse($item->created_at)->format('d/m/Y');
-                    $pdf = PDF::loadView('pdf.contrat', ['projet' => $item, 'created_at' => $created_at]);
+                    $pdf = PDF::loadView('pdf.contrat', ['projet' => $item, 'created_at' => $created_at, 'client' => $client, 'niveaux' => $niveaux]);
                     return $pdf->setPaper( 'orientation')->stream();
                 }
                 else

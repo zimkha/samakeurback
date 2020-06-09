@@ -77,6 +77,11 @@ class PlanPaginatedQuery extends Query
        {
           $query = $query->where('piscine', $args['piscine']);
        }
+       if(isset($args['user_id']))
+       {
+          $plans_id = Plan::plan_by_user($args['user_id']);
+          $query    = $query-where('id', $plans_id);
+       }
        if (isset($args['nb_pieces'])) {
          $tab = DB::select(DB::raw("
          select sum(n.peice) as attr , n.plan_id as id from niveau_plans n GROUP By n.plan_id

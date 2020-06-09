@@ -1123,8 +1123,6 @@ $scope.get_Somme_daye = function ()
                    Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
                    {
                        $scope.planview = data[0];
-                       $scope.pageChanged("projet");
-
 
                    },function (msg)
                    {
@@ -2167,7 +2165,7 @@ $scope.get_Somme_daye = function ()
         } else {
             if (superieur == false) {
                 //entier inférieur
-                if (parseInt(val) <= 0 && peutEtreEgaleAzero == true) {
+                if (parseInt(val) < 0 && peutEtreEgaleAzero == true) {
                     //]-inf; 0]
                     retour = true;
                 } else if (parseInt(val) < 0 && peutEtreEgaleAzero == false) {
@@ -2178,7 +2176,7 @@ $scope.get_Somme_daye = function ()
                 }
             } else {
                 //entier supérieur
-                if (parseInt(val) >= 0 && peutEtreEgaleAzero == true) {
+                if (parseInt(val) > 0 && peutEtreEgaleAzero == true) {
                     //[0; +inf[
                     retour = true;
                 } else if (parseInt(val) > 0 && peutEtreEgaleAzero == false) {

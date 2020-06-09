@@ -30,6 +30,8 @@ class ProjetQuery extends Query
             'user_id'                => ['type'  => Type::int()],
             'text_projet'            => ['type'  => Type::string()],
             'adresse_terrain'        => ['type'  => Type::string()],
+            'sdb'                    => ['type' => Type::int()],
+            
 
             'name'                   => ['type'  => Type::string()],
             'fichier'                => ['type'  => Type::string()],
@@ -82,6 +84,7 @@ class ProjetQuery extends Query
        {
           $query = $query->where('etat', $args['etat']);
        }
+
         if (isset($args['email']))
        {
           $query = $query->whereIn('user_id', User::where('email',  Outil::getOperateurLikeDB(), '%'.$args['email'].'%')->get(['id']));
@@ -149,6 +152,7 @@ class ProjetQuery extends Query
             'created_at'             => $item->created_at,
             'adresse_terrain'        => $item->adresse_terrain,
             'remarques'              => $item->remarques,
+            'sdb'                    => $item->sdb,
         ];
       });
     }

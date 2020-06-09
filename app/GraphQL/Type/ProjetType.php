@@ -21,6 +21,7 @@ class ProjetType extends GraphQLType
             'id'                     => ['type'  => Type::id()],
             'user_id'                => ['type'  => Type::int()],
             'superficie'             => ['type' => Type::int()],
+            'sdb'                    => ['type' => Type::int()],
             'longeur'                => ['type' => Type::int()],
             'largeur'                => ['type' => Type::int()],
             'text_projet'            => ['type'  => Type::string()],
