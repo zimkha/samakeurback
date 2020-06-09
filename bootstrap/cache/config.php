@@ -41,10 +41,11 @@
       24 => 'Rebing\\GraphQL\\GraphQLServiceProvider',
       25 => 'Sentry\\Laravel\\ServiceProvider',
       26 => 'Barryvdh\\DomPDF\\ServiceProvider',
-      27 => 'App\\Providers\\AppServiceProvider',
-      28 => 'App\\Providers\\AuthServiceProvider',
-      29 => 'App\\Providers\\EventServiceProvider',
-      30 => 'App\\Providers\\RouteServiceProvider',
+      27 => 'Srmklive\\PayPal\\Providers\\PayPalServiceProvider',
+      28 => 'App\\Providers\\AppServiceProvider',
+      29 => 'App\\Providers\\AuthServiceProvider',
+      30 => 'App\\Providers\\EventServiceProvider',
+      31 => 'App\\Providers\\RouteServiceProvider',
     ),
     'aliases' => 
     array (
@@ -88,6 +89,7 @@
       'GraphQL' => 'Rebing\\GraphQL\\Support\\Facades\\GraphQL',
       'Sentry' => 'Sentry\\Laravel\\Facade',
       'PDF' => 'Barryvdh\\DomPDF\\Facade',
+      'PayPal' => 'Srmklive\\PayPal\\Facades\\PayPal',
     ),
   ),
   'auth' => 
@@ -716,6 +718,32 @@
         0 => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/resources/views/vendor/mail',
       ),
     ),
+  ),
+  'paypal' => 
+  array (
+    'mode' => 'sandbox',
+    'sandbox' => 
+    array (
+      'username' => 'zimkhandiaye@gmail.com',
+      'password' => 'passer123',
+      'secret' => 'ENDRItY4jUMH9BBjH6IMxiLWHBk-GO9t7sCe7X4b9Es5Cuz2mqe995WJc7vuNj-IuJA-PkWa6c4gCSxo',
+      'certificate' => '',
+      'app_id' => 'APP-80W284485P519543T',
+    ),
+    'live' => 
+    array (
+      'username' => '',
+      'password' => '',
+      'secret' => '',
+      'certificate' => '',
+      'app_id' => '',
+    ),
+    'payment_action' => 'Sale',
+    'currency' => 'USD',
+    'billing_type' => 'MerchantInitiatedBilling',
+    'notify_url' => '',
+    'locale' => '',
+    'validate_ssl' => true,
   ),
   'permission' => 
   array (

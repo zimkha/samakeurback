@@ -53,17 +53,17 @@
                                <td>@{{ item.telephone }}</td>
                                <td>@{{ item.email }}</td>
                                 <td class="text-center">
-                                    <button ng-if="item.active" class="menu-item uk-icon-button fa fa-thumbs-down border-0 back-rednoir text-white" title="Désactiver ce client" ng-click="showModalChangeStatut($event,'user', 0,item, 'Désactiver ce client')"></button>
-                                      
-                                        <button ng-if="!item.active"  class="btn btn-sm btn-circle btn-success" title="Activer ce client" ng-click="showModalChangeStatut($event,'user', 1,item, 'Activer ce client')"></button>
+                                   {{-- <button ng-if="item.active" class="menu-item uk-icon-button fa fa-thumbs-down border-0 back-rednoir text-white" title="Désactiver ce client" ng-click="showModalChangeStatut($event,'user', 0,item, 'Désactiver ce client')"></button>--}}
+
+                                        {{--<button ng-if="!item.active"  class="btn btn-sm btn-circle btn-success" title="Activer ce client" ng-click="showModalChangeStatut($event,'user', 1,item, 'Activer ce client')"></button>--}}
                                         <button class="btn btn-sm btn-circle btn-danger"   ng-click="deleteElement('restaurant',item.id)"title="Supprimer">
                                         <span class="fa fa-trash"></span>
                                         </button>
 
-                                    
+
                                 </td>
                             </tr>
-                        
+
                             </tbody>
                         </table>
                     </div>

@@ -41,10 +41,11 @@
     37 => 'Rebing\\GraphQL\\GraphQLServiceProvider',
     38 => 'Sentry\\Laravel\\ServiceProvider',
     39 => 'Barryvdh\\DomPDF\\ServiceProvider',
-    40 => 'App\\Providers\\AppServiceProvider',
-    41 => 'App\\Providers\\AuthServiceProvider',
-    42 => 'App\\Providers\\EventServiceProvider',
-    43 => 'App\\Providers\\RouteServiceProvider',
+    40 => 'Srmklive\\PayPal\\Providers\\PayPalServiceProvider',
+    41 => 'App\\Providers\\AppServiceProvider',
+    42 => 'App\\Providers\\AuthServiceProvider',
+    43 => 'App\\Providers\\EventServiceProvider',
+    44 => 'App\\Providers\\RouteServiceProvider',
   ),
   'eager' => 
   array (
@@ -75,10 +76,11 @@
     24 => 'Rebing\\GraphQL\\GraphQLServiceProvider',
     25 => 'Sentry\\Laravel\\ServiceProvider',
     26 => 'Barryvdh\\DomPDF\\ServiceProvider',
-    27 => 'App\\Providers\\AppServiceProvider',
-    28 => 'App\\Providers\\AuthServiceProvider',
-    29 => 'App\\Providers\\EventServiceProvider',
-    30 => 'App\\Providers\\RouteServiceProvider',
+    27 => 'Srmklive\\PayPal\\Providers\\PayPalServiceProvider',
+    28 => 'App\\Providers\\AppServiceProvider',
+    29 => 'App\\Providers\\AuthServiceProvider',
+    30 => 'App\\Providers\\EventServiceProvider',
+    31 => 'App\\Providers\\RouteServiceProvider',
   ),
   'deferred' => 
   array (
