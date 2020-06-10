@@ -19,9 +19,9 @@ use PayPal\Rest\ApiContext;
 class ProjetController extends Controller
 {
     protected $queryName = "projets";
-    public function avalider($id)
+    public function avalider()
     {
-        return Projet::a_valider($id);
+        return Plan::plan_by_user(1);
     }
     public function save(Request $request)
     {

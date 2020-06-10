@@ -80,7 +80,8 @@ class PlanQuery extends Query
        if(isset($args['user_id']))
        {
           $plans_id = Plan::plan_by_user($args['user_id']);
-          $query    = $query-where('id', $plans_id);
+          
+          $query    = $query->where('id', $plans_id);
        }
        if (isset($args['nb_pieces'])) {
           $attribut = "piece";

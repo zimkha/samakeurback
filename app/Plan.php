@@ -54,14 +54,24 @@ class Plan extends Model
     }
     public static function plan_by_user($user_id)
     {
-        $all_projets_plan = PlanProjet::whereIn('projet_id', Projet::where('user_id', $user_id)->get(['projet_id']))->get();
+        $all_projets_plan = PlanProjet::whereIn('projet_id', Projet::where('user_id', $user_id)->get(['id']))->get();
         $array =array();
-        foreach($all_projets_pla as $plan)
+        foreach($all_projets_plan as $plan)
         {
             array_push($array, $plan->plan_id);
         }
-        $all_plan = Plan::whereIn('id', $array);
-        return $all_plan;
+        $all_plan = Plan::whereIn('id', $array)->get();
+        $tab = [];
+        foreach($all_plan as $plan)
+        {
+            array_push($tab, $plan->id);
+        }
+        if($tab == null)
+        {
+            $tab = [0];
+        }
+        return $tab;
+       
     }
     public static function nb_attribut($id, $attribut)
     {
