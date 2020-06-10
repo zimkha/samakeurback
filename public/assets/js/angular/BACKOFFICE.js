@@ -2462,6 +2462,21 @@ $scope.get_Somme_daye = function ()
                 $scope.produitsInTable = liste_ligneniveau;
 
             }
+            else if (type.indexOf("projet")!==1)
+            {
+                $('#superficie_' + type).val(item.superficie);
+                $('#longeur_' + type).val(item.longeur);
+                $('#largeur_' + type).val(item.largeur);
+                $('#adresse_terrain_' + type).val(item.adresse_terrain);
+
+                var liste_ligneniveau = [];
+                $.each(item.niveau_projets, function (keyItem, valueItem) {
+                    console.log("le projet en question",valueItem)
+                    liste_ligneniveau.push({"id":valueItem.id, "niveau":valueItem.niveau,"piece":valueItem.piece, "chambre" : valueItem.chambre, "bureau" : valueItem.bureau, "salon" : valueItem.salon, "cuisine" : valueItem.cuisine, "toillette" : valueItem.toillette});
+                });
+                $scope.produitsInTable = [];
+                $scope.produitsInTable = liste_ligneniveau;
+            }
             else if (type.indexOf("client")!==-1)
             {
                 $('#nomcomplet_' + type).val(item.nomcomplet);

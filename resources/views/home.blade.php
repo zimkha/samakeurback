@@ -480,13 +480,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-3">
-                                <div class="form-group">
-                                    <label for="superficie_plan">Superficie</label>
-                                    <input type="number" class="form-control" id="superficie_plan" name="superficie">
-                                </div>
-                            </div>
-
+                           
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <label for="longeur_projet">Longeur</label>
@@ -497,6 +491,12 @@
                                 <div class="form-group">
                                     <label for="largeur_projet">Largeur</label>
                                    <input type="number" class="form-control" id="largeur_projet" name="largeur">
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label for="superficie_plan">Adresse Terrain</label>
+                                    <input type="text" class="form-control" id="adresse_terrain_plan" name="adresse_terrain">
                                 </div>
                             </div>
                             <div class="col-lg-3">

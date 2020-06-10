@@ -47,10 +47,7 @@ class ProjetController extends Controller
                 }
 
                 $errors = Outil::validation($request, $array);
-                //dd($request->superficie,($request->longeur * $request->largeur));
-                // if ((int)$request->superficie != ($request->longeur * $request->largeur)) {
-                //     $errors = "le produit du longeur et de la laregeur doit être égale à la superficie total";
-                // }
+            
                 $user_connected = Auth::user()->id;
                 $User = User::find($user_connected);
                 
@@ -58,30 +55,30 @@ class ProjetController extends Controller
                 {
                     if($User->is_client== 1)
                     {
-                        if(empty($request->description))
+                        if(empty($request->tab_niveau))
                         {
-                            $errors = "Veuillez remplire la description";
+                            $errors = "Veuillez remplir les niveaux dans le formulaire";
                             throw new \Exception($errors);
                         }
                         
                     }
-                    else if(empty($request->tab_niveau))
-                    {
-                        $errors = "Veuillez priciser les niveaux dans le projet";
-                        throw new \Exception($errors);
-                    }
-                    if($User->is_client == 0 && $errors == null)
-                    {
-                        $item->text_projet = "La description est remplie par l'administrateur";
-                    }
+                } 
+                else if(empty($request->description))
+                {
+                    $errors = "Veuillez compléter la description ";
+                    throw new \Exception($errors);
                 }
+                else
+                {
+                    $item->text_projet = $request->description;
+                }
+                
                 $superficie                    = $request->longeur * $request->largeur;
                 $item->name                    = $name;
                 $item->user_id                 = $request->user;
                 $item->superficie              = $superficie;
                 $item->longeur                 = $request->longeur;
                 $item->largeur                 = $request->largeur;
-                // $item->text_projet             = $request->description;
                 $item->acces_voirie            = $request->acces_voirie;
                 $item->electricite             = $request->electricite;
                 $item->courant_faible          = $request->courant_faible;
@@ -90,13 +87,9 @@ class ProjetController extends Controller
                 $item->bornes_visible          = $request->bornes_visible;
                 $item->necessite_bornage       = $request->necessite_bornage;
                 $item->presence_mitoyen        = $request->presence_mitoyen;
+                $item->adresse_terrain         = $request->adresse_terrain;
                 $item->sdb                     = $request->sdb;
                
-                // if (empty($request->data)) // Data represente les niveaux c'est a dire le RDC et les R+n
-                // {
-                //     $errors = "Veuillez renseigne au moins le RDC";
-                //     throw new \Exception($errors);
-                // }
                 $n = 0;
                 $array_level = array();
                 if(isset($request->data) && $request->data != null)
@@ -105,22 +98,22 @@ class ProjetController extends Controller
                         $n = $n + 1;
                         $niveau = new NiveauProjet();
                         if (empty($key['piece'])) {
-                           $errors = "Veuillez renseigne le nombre de pieces de ce niveau ligne n°". $n;
+                           $errors = "Veuillez renseigner le nombre de pieces de ce niveau ligne n°". $n;
                         }
                         if (empty($key['chambre'])) {
-                            $errors = "Veuillez renseigne le nombre de chambre de ce niveau ligne n°". $n;
+                            $errors = "Veuillez renseigner le nombre de chambre de ce niveau ligne n°". $n;
                           }
                          if (empty($key['salon'])) {
-                            $errors = "Veuillez renseigne le nombre de salon de ce niveau ligne n°". $n;
+                            $errors = "Veuillez renseigner le nombre de salon de ce niveau ligne n°". $n;
                          }
                          if (empty($key['bureau'])) {
-                            $errors = "Veuillez renseigne le nombre de bureau de ce niveau ligne n°". $n;
+                            $errors = "Veuillez renseigner le nombre de bureau de ce niveau ligne n°". $n;
                          }
                          if (empty($key['cuisine'])) {
-                            $errors = "Veuillez renseigne le nombre de cuisine de ce niveau ligne n°". $n;
+                            $errors = "Veuillez renseigner le nombre de cuisine de ce niveau ligne n°". $n;
                          }
                          if (empty($key['toillette'])) {
-                            $errors = "Veuillez renseigne le nombre de toillette de ce niveau ligne n°". $n;
+                            $errors = "Veuillez renseigner le nombre de toillette de ce niveau ligne n°". $n;
                          }
                          if (isset($errors)) 
                          {
@@ -129,7 +122,7 @@ class ProjetController extends Controller
                         $all_piece = $key['chambre'] + $key['salon'] + $key['bureau'] + $key['cuisine'] + $key['toillette'];
                         if ($all_piece != (int)$key['piece']) 
                         {
-                            $errors = "Erreur de decompte sur le nombre de pieces ligne n°{$n}";
+                            $errors = "Erreur de décompte sur le nombre de pièces ligne n°{$n}";
                         }
                         $niveau->niveau_name        = $key['niveau_name'];
                         $niveau->piece              = $key['piece'];
@@ -194,18 +187,18 @@ class ProjetController extends Controller
                 }
                 if(empty($request->plan))
                 {
-                    $errors = "veuillez definir le plan a liee a ce projet";
+                    $errors = "Veuillez définir le plan à lier à ce projet";
                 }
                 if(empty($request->projet))
                 {
-                    $errors = "données manquante pour cette opération, veuillez contacter le service technique";
+                    $errors = "Données manquantes pour cette opération, veuillez contacter le service technique";
                 }
                 if(isset($request->projet))
                 {
                     $count = PlanProjet::where('projet_id', $request->projet)->count();
                     if($count == 3)
                     {
-                        throw new \Exception("Impossible d'effectuer cette action, le nombre de soumissions de plan est atteint");
+                        throw new \Exception("Impossible d'effectuer cette action, le nombre maximal de demandes de modifications  de plan est atteint");
                     }
                 }
                 if(isset($request->plan))
@@ -220,7 +213,7 @@ class ProjetController extends Controller
                   $plan_projet = PlanProjet::where('plan_id', $request->plan)->where('projet_id', $request->projet)->get();
                   if(count($plan_projet)> 0)
                   {
-                      $errors = "Ce projet est déja lies a ce plan";
+                      $errors = "Ce projet est déjà lier à ce plan";
                   }  
                 }
                 $item->plan_id          = $plan->id;
@@ -283,7 +276,7 @@ class ProjetController extends Controller
                      } 
                    else
                    {
-                    $errors = "Impossible de supprimer car ces données n'existe pas dans la base de données";
+                    $errors = "Impossible de supprimer car ces données n'existent pas dans la base de données";
                     throw new \Exception($errors);
                    }
                  }
@@ -437,7 +430,7 @@ class ProjetController extends Controller
                 }
                 else
                 {
-                    $errors = "Impossible de touver ces données pour un contrat";
+                    $errors = "Impossible de trouver ces données pour un contrat";
                 }
         }
         catch(\Exception $e)
