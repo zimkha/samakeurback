@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\Plan;
 use App\Outil;
+use App\Joined;
 use App\Projet;
 use App\Remarque;
+use Carbon\Carbon;
 use App\PlanProjet;
 use App\NiveauProjet;
-use PDF;
-use Carbon\Carbon;
+use PayPal\Rest\ApiContext;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Srmklive\PayPal\Services\ExpressCheckout;
 use Srmklive\PayPal\Services\AdaptivePayments;
-use PayPal\Rest\ApiContext;
 
 class ProjetController extends Controller
 {
@@ -445,25 +446,30 @@ class ProjetController extends Controller
     {
        try
        {
-        $item = Joinde::find($id);
+        $item = Joined::find($id);
         $errors = null;
         $data = 0;
         if(isset($item))
         {
            $plan = Plan::find($item->plan_id);
-           $joined = Joined::where('plan_id', $plan->id)->where('active', 1)->get();
-           if(isset($joined))
+           $joined = Joined::where('plan_id', $plan->id)->where('active', 1)->get()->first();
+           if($joined!=null)
            {
+             
                $joined->active = 0;
                $joined->save();
            }
            $item->active = 1;
+           
+
            $item->save();
            $data = 1;
         }
         else
-          $errors = "Impossible d'effectuer cette opération, données introuvable";
-
+          {
+            $errors = "Impossible d'effectuer cette opération, données introuvable";
+             throw new \Exception($errors);
+          }
           if(!isset($errors))
           {
             $retour = array(

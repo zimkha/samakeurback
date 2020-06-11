@@ -45,6 +45,7 @@ Route::delete('/plan/{id}', 'PlanController@delete');
 Route::delete('/remarque/{id}', 'RemarqueController@delete');
 
 // les action de recuperations de modification
+Route::get('/active_fichier/{id}', 'ProjetController@activeFichier');
 Route::get('/plan-pdf/{id}', 'PlanController@getpdf');
 Route::get('/projet-pdf/{id}', 'ProjetController@getpdf');
 Route::get('/plan-pdfs/{id}', 'PlanController@getAllFiles');
