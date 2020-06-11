@@ -23,49 +23,50 @@ class ClientController extends Controller
 
        try
        {
-         $errors = null;
-         $data = null;
-         $user_email = $request->email;
-         $password   = $request->password;
-         $user = User::where('email', $user_email)->first();
-         if(isset($user))
-         {
-             if(Hash::check($password, $user->password))
-             {
-                 //Projetdd($user);
-                if($user->active == 0 || $user->active == false)
+            $errors = null;
+            $data = null;
+            $user_email = $request->email;
+            $password   = $request->password;
+            $user = User::where('email', $user_email)->first();
+            if(isset($user))
+            {
+                if(Hash::check($password, $user->password))
                 {
-                   $errors = "votre compte n'est pas encore activé";
-                   return response()->json([
-                       'data' => $data,
-                       'errors_debug' => $errors
-                   ], 200);
+                    //Projetdd($user);
+                    if($user->active == 0 || $user->active == false)
+                    {
+                    $errors = "votre compte n'est pas encore activé";
+                    return response()->json([
+                        'data' => $data,
+                        'errors_debug' => $errors
+                    ], 200);
+                    }
+                    else
+                    {
+                
+                    return response()->json([
+                        'data' => $user,
+                        'message' => ["connexion réussi"]
+                    ], 200);
+                    }
                 }
+                
                 else
-                 {
-                   // Si tout se passe bien
-
-                   return response()->json([
-                    'data' => $user,
-                    'message' => ["connexion réussi"]
-                ], 200);
-                 //}
-             }
-             else
-             {
-                return response()->json([
-                    'data'   => null,
-                    'errors_debug' => ["mot de passe incorrect"]
-                ], 200);
-             }
-         }
-         else
-         {
-            return response()->json([
-                'data' => null,
-                'errors_debug' => ["email incorrecte"]
-            ], 200);
-         }
+                {
+                    return response()->json([
+                        'data'   => null,
+                        'errors_debug' => ["mot de passe incorrect"]
+                    ], 200);
+                }
+            }
+            else
+                {
+                    return response()->json([
+                        'data' => null,
+                        'errors_debug' => ["email incorrecte"]
+                    ], 200);
+                }
+            
 
        }
        catch(\Exception $e)
@@ -73,6 +74,7 @@ class ClientController extends Controller
         return Outil::getResponseError($e);
        }
     }
+
     public function login(Request $request)
     {
         $email    = $request->email;

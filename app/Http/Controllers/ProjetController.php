@@ -441,6 +441,47 @@ class ProjetController extends Controller
             ));  
         }
     }
+    public function activeFichier($id)
+    {
+       try
+       {
+        $item = Joinde::find($id);
+        $errors = null;
+        $data = 0;
+        if(isset($item))
+        {
+           $plan = Plan::find($item->plan_id);
+           $joined = Joined::where('plan_id', $plan->id)->where('active', 1)->get();
+           if(isset($joined))
+           {
+               $joined->active = 0;
+               $joined->save();
+           }
+           $item->active = 1;
+           $item->save();
+           $data = 1;
+        }
+        else
+          $errors = "Impossible d'effectuer cette opération, données introuvable";
+
+          if(!isset($errors))
+          {
+            $retour = array(
+                'data'          => $data,
+            );
+            return response()->json($retour);
+          }
+          throw new \Exception($errors);
+      
+       }
+       catch(\Exception $e)
+       {
+        return response()->json(array(
+            'errors'          => config('app.debug') ? $e->getMessage() : Outil::getMsgError(),
+            'errors_debug'    => [$e->getMessage()],
+        )); 
+       }
+    }
     public function payment()
     {
           $config = [
