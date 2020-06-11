@@ -52,6 +52,16 @@ class Plan extends Model
         return $code;
 
     }
+    public static function SelecvByName($char)
+    {
+        $plans_id = DB::select(DB::raw("
+        SELECT DISTINCT p.id as plan_id from plans p, plan_projets pp, projets pr, users us 
+        where pp.plan_id = p.id and pp.projet_id = pr.id and us.id = pr.user_id
+         and us.prenom LIKE  '$char%'
+        ")); 
+        
+
+    }
     public static function plan_by_user($char)
     {
         $users = User::where('prenom',  Outil::getOperateurLikeDB(), '%'.$char.'%')->get();
