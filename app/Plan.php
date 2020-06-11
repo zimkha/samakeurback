@@ -59,8 +59,12 @@ class Plan extends Model
         where pp.plan_id = p.id and pp.projet_id = pr.id and us.id = pr.user_id
          and us.prenom LIKE  '$char%'
         ")); 
-        
-
+        $tab = array();
+        foreach($plans_id as $item)
+        {
+            array_push($tab, $item->plan_id);
+        }
+        return $tab;
     }
     public static function plan_by_user($char)
     {

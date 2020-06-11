@@ -81,7 +81,7 @@ class PlanPaginatedQuery extends Query
        }
        if(isset($args['user_name']))
        {
-          $plans_id = Plan::plan_by_user($args['user_name']);
+          $plans_id = Plan::SelecvByName($args['user_name']);
           $query    = $query->where('id', $plans_id);
        }
        if (isset($args['nb_pieces'])) {

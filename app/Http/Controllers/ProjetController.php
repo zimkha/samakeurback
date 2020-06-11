@@ -21,7 +21,7 @@ class ProjetController extends Controller
     protected $queryName = "projets";
     public function avalider()
     {
-        return Plan::plan_by_user(1);
+        return Plan::SelecvByName("kh");
     }
     public function save(Request $request)
     {

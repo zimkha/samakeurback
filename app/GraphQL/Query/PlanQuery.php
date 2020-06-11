@@ -78,10 +78,9 @@ class PlanQuery extends Query
        {
           $query = $query->where('piscine', $args['piscine']);
        }
-       if(isset($args['user_id']))
+       if(isset($args['user_name']))
        {
-          $plans_id = Plan::plan_by_user($args['user_id']);
-          
+          $plans_id = Plan::SelecvByName($args['user_name']);
           $query    = $query->where('id', $plans_id);
        }
        if (isset($args['nb_pieces'])) {
