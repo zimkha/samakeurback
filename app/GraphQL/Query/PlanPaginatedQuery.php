@@ -33,6 +33,7 @@ class PlanPaginatedQuery extends Query
             'superficie'             => ['type' => Type::int()],
             'longeur'                => ['type' => Type::int()],
             'user_id'                => ['type' => Type::int()],
+            'user_name'              => ['type' => Type::string()],
             'largeur'                => ['type' => Type::int()],
             'fichier'                => ['type' => Type::string()],
             'piscine'                => ['type' => Type::int()],
@@ -78,9 +79,9 @@ class PlanPaginatedQuery extends Query
        {
           $query = $query->where('piscine', $args['piscine']);
        }
-       if(isset($args['user_id']))
+       if(isset($args['user_name']))
        {
-          $plans_id = Plan::plan_by_user($args['user_id']);
+          $plans_id = Plan::plan_by_user($args['user_name']);
           $query    = $query->where('id', $plans_id);
        }
        if (isset($args['nb_pieces'])) {

@@ -52,23 +52,30 @@ class Plan extends Model
         return $code;
 
     }
-    public static function plan_by_user($user_id)
+    public static function plan_by_user($char)
     {
-        $all_projets_plan = PlanProjet::whereIn('projet_id', Projet::where('user_id', $user_id)->get(['id']))->get();
+        $users = User::where('prenom',  Outil::getOperateurLikeDB(), '%'.$char.'%')->get();
         $array =array();
-        foreach($all_projets_plan as $plan)
-        {
-            array_push($array, $plan->plan_id);
-        }
-        $all_plan = Plan::whereIn('id', $array)->get();
         $tab = [];
-        foreach($all_plan as $plan)
+        foreach($users as $item)
         {
-            array_push($tab, $plan->id);
-        }
-        if($tab == null)
-        {
-            $tab = [0];
+            $all_projets_plan = PlanProjet::whereIn('projet_id', Projet::where('user_id', $item->id)->get(['id']))->get();
+      
+            foreach($all_projets_plan as $plan)
+            {
+                array_push($array, $plan->plan_id);
+            }
+            $all_plan = Plan::whereIn('id', $array)->get();
+          
+            foreach($all_plan as $plan)
+            {
+                array_push($tab, $plan->id);
+            }
+            if($tab == null)
+            {
+                $tab = [0];
+            }
+           
         }
         return $tab;
        

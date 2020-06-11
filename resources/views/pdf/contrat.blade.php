@@ -209,7 +209,7 @@ tout engagement professionnel, il est convenu ce qui suit :
         <h3>Adresse du terrain  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; {{ $projet->adresse }}</h3>
         <h3>Reference Cadastral  :&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; La référence cadastral</h3>
         <h3>Surface fonciere du terrain: &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; {{ $projet->surface }} m2</h3>
-        <br><br><br> <br><br><br> <br><br><br>
+        <br><br><br> <br><br><br> <br><br><br
         <h3>Description du projet</h3>
         <table>
           <tr>
