@@ -460,8 +460,6 @@ class ProjetController extends Controller
                $joined->save();
            }
            $item->active = 1;
-           
-
            $item->save();
            $data = 1;
         }

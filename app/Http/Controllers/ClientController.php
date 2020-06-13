@@ -113,5 +113,46 @@ class ClientController extends Controller
 
         ));
     }
+    public function resetPassword(Request $request)
+    {
+        try{
+            DB::transaction(function() use($request)
+            {
+                if(isset($request->email))
+                {
+                    $user = User::where('email', $request->email)->where('active', '=', 1)->get();
+                    if(isset($user))
+                    {
+                        // Si l'utililsateur exist et l'utilisateur est active
+                        if(isset($request->password) && isset($request->confirmpassword))
+                        {
+                            if($request->password == $request->confirmpassword)
+                            {
+                                $password = Hash::make($request->password);
+                                $user->password = $password;
+                            }
+                        }
+                        else
+                        {
+                            $errors = "Veuillez renseigne les deux mot de passe";
+                        }
+                    }
+                    else
+                    {
+                        $errors = "Email introuvable ou utilisateur désactiver";
+                    }
+                }
+                else
+                {
+                    $errors = "veuillez preciser votre email";
+                }
+            });
+                    
+        }
+        catch(\Exception $e)
+        {
+
+        }
+    }
 
 }
