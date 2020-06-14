@@ -15,6 +15,8 @@ class AddNullableToProjets extends Migration
     {
         Schema::table('projets', function (Blueprint $table) {
             $table->text('text_projet')->nullable()->change();
+            $table->integer('presence_mitoyen')->nullable()->change();
+           
         });
     }
 
@@ -27,6 +29,8 @@ class AddNullableToProjets extends Migration
     {
         Schema::table('projets', function (Blueprint $table) {
             $table->text('text_projet')->nullable(false)->change();
+            $table->integer('presence_mitoyen')->nullable(false)->change();
+
 
         });
     }
