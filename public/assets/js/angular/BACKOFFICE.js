@@ -852,7 +852,7 @@ $scope.get_Somme_daye = function ()
             + ($scope.projetview ? ',projet_id:' + $scope.projetview.id : "" )
             + ($scope.planview ? ',plan_id:' + $scope.planview.id : "" )
             + ($scope.clientview ? ',user_id:' + $scope.clientview.id : "" )
-            + ($scope.client_id != 0 ? (',' + 'user_id:' + $scope.client_id + '') : "")
+           // + ($scope.client_id != 0 ? (',' + 'user_id:' + $scope.client_id + '') : "")
             + ($scope.radioBtnComposition ? ',etat:' + $scope.radioBtnComposition : "")
             + ($('#searchtexte_projet').val() ? (',' + $('#searchoption_projet').val() + ':"' + $('#searchtexte_projet').val() + '"') : "" )
             + ($('#projet_user').val() ? ',user_id:' + $('#projet_user').val() : "" )
@@ -908,7 +908,7 @@ $scope.get_Somme_daye = function ()
               //  + ($('#searchtexte_user').val() ? (',' + $('#searchoption_user').val() + ':"' + $('#searchtexte_user').val() + '"') : "" )
                 + ($('#nom_user_filtre').val() ? ',name:' + '"' + $('#nom_user_filtre').val() + '"' : "")
                 + ($('#email_user_filtre').val() ? ',email:' + '"' + $('#email_user_filtre').val() + '"' : "")
-                + ($('#adresse_user_filtre').val() ? ',adresse:' + '"' + $('#adresse_user_filtre').val() + '"' : "")
+                + ($('#adresse_user_filtre').val() ? ',adresse_complet:' + '"' + $('#adresse_user_filtre').val() + '"' : "")
                 + ($('#telephone_user_filtre').val() ? ',telephone:' + '"' + $('#telephone_user_filtre').val() + '"' : "")
 
                 +')';
@@ -2158,6 +2158,7 @@ $scope.get_Somme_daye = function ()
             var niveau = $("#niveau_projet").val();
             var piece_projet = $("#piece_projet").val();
             var chambre_projet = $("#chambre_projet").val();
+            var chambre_sdb_projet = $("#chambre_sdb_projet").val();
             var bureau_projet = $("#bureau_projet").val();
             var salon_projet = $("#salon_projet").val();
             var cuisine_projet = $("#cuisine_projet").val();
@@ -2174,6 +2175,13 @@ $scope.get_Somme_daye = function ()
             if ($scope.estEntier(chambre_projet) == false) {
                 iziToast.error({
                     message: "Sélectionnez une chambre",
+                    position: 'topRight'
+                });
+                return false;
+            }
+            if ($scope.estEntier(chambre_sdb_projet) == false) {
+                iziToast.error({
+                    message: "Sélectionnez une chambre SDB",
                     position: 'topRight'
                 });
                 return false;
@@ -2211,6 +2219,7 @@ $scope.get_Somme_daye = function ()
                 "niveau": niveau,
                 "piece": piece_projet,
                 "chambre": chambre_projet,
+                "sdb": chambre_sdb_projet,
                 "bureau": bureau_projet,
                 "salon": salon_projet,
                 "cuisine": cuisine_projet,
@@ -2222,6 +2231,7 @@ $scope.get_Somme_daye = function ()
             $("#niveau_projet").val('');
             $("#piece_projet").val('');
             $("#chambre_projet").val('');
+            $("#chambre_sdb_projet").val('');
             $("#salon_projet").val('');
             $("#cuisine_projet").val('');
             $("#bureau_projet").val('');

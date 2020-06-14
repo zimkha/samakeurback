@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\DB;
 use Srmklive\PayPal\Services\ExpressCheckout;
 use Srmklive\PayPal\Services\AdaptivePayments;
 use Illuminate\Support\Facades\Auth;
-
+use App\User;
 
 class ProjetController extends Controller
 {
@@ -54,6 +54,7 @@ class ProjetController extends Controller
                 $errors = Outil::validation($request, $array);
 
                 $user_connected = Auth::user()->id;
+
                 $User = User::find($user_connected);
 
                 if(isset($User))
