@@ -26,6 +26,7 @@ class ProjetController extends Controller
     }
     public function save(Request $request)
     {
+      //  dd($request->all());
         try
         {
             return DB::transaction(function () use($request) {
@@ -35,7 +36,8 @@ class ProjetController extends Controller
                 $array = [
                          'user', 'longeur', 'largeur',
                          'acces_voirie', 'electricite', 'courant_faible', 'assainissement', 'eaux_pluviable','bornes_visible',
-                        'necessite_bornage','presence_mitoyen','geometre'];
+                        'necessite_bornage','geometre'];
+                // presence_mitoyen
                 if (isset($request->id)) {
                     $item = Projet::find($id);
                     NiveauProjet::where('projet_id', $request->id)->delete();
@@ -48,10 +50,10 @@ class ProjetController extends Controller
                 }
 
                 $errors = Outil::validation($request, $array);
-            
+
                 $user_connected = Auth::user()->id;
                 $User = User::find($user_connected);
-                
+
                 if(isset($User))
                 {
                     if($User->is_client== 1)
@@ -61,9 +63,9 @@ class ProjetController extends Controller
                             $errors = "Veuillez remplir les niveaux dans le formulaire";
                             throw new \Exception($errors);
                         }
-                        
+
                     }
-                } 
+                }
                 else if(empty($request->description))
                 {
                     $errors = "Veuillez compléter la description ";
@@ -73,7 +75,7 @@ class ProjetController extends Controller
                 {
                     $item->text_projet = $request->description;
                 }
-                
+
                 $superficie                    = $request->longeur * $request->largeur;
                 $item->name                    = $name;
                 $item->user_id                 = $request->user;
@@ -87,10 +89,11 @@ class ProjetController extends Controller
                 $item->eaux_pluvial            = $request->eaux_pluviable;
                 $item->bornes_visible          = $request->bornes_visible;
                 $item->necessite_bornage       = $request->necessite_bornage;
-                $item->presence_mitoyen        = $request->presence_mitoyen;
+              //  $item->presence_mitoyen        = $request->presence_mitoyen;
+                $item->geometre                = $request->geometre;
                 $item->adresse_terrain         = $request->adresse_terrain;
                 $item->sdb                     = $request->sdb;
-               
+
                 $n = 0;
                 $array_level = array();
                 if(isset($request->data) && $request->data != null)
@@ -116,12 +119,12 @@ class ProjetController extends Controller
                          if (empty($key['toillette'])) {
                             $errors = "Veuillez renseigner le nombre de toillette de ce niveau ligne n°". $n;
                          }
-                         if (isset($errors)) 
+                         if (isset($errors))
                          {
                              throw new \Exception($errors);
                          }
                         $all_piece = $key['chambre'] + $key['salon'] + $key['bureau'] + $key['cuisine'] + $key['toillette'];
-                        if ($all_piece != (int)$key['piece']) 
+                        if ($all_piece != (int)$key['piece'])
                         {
                             $errors = "Erreur de décompte sur le nombre de pièces ligne n°{$n}";
                         }
@@ -132,17 +135,17 @@ class ProjetController extends Controller
                         $niveau->bureau             = $key['bureau'];
                         $niveau->cuisine            = $key['cuisine'];
                         $niveau->toillette          = $key['toillette'];
-    
+
                         array_push($array_level, $niveau);
-                        
+
                     }
                 }
-               
-                if (!isset($errors)) 
+
+                if (!isset($errors))
                 {
                     $item->active = false;
                     $item->etat = 0;
-                  
+
                     $item->save();
                     if(count($array_level) > 0)
                     {
@@ -150,9 +153,9 @@ class ProjetController extends Controller
                          {
                             $level->projet_id    = $item->id;
                             $level->save();
-                        } 
+                        }
                     }
-                  
+
                   return Outil::redirectgraphql($this->queryName, "id:{$item->id}", Outil::$queries[$this->queryName]);
                 }
                  throw new \Exception($errors);
@@ -215,7 +218,7 @@ class ProjetController extends Controller
                   if(count($plan_projet)> 0)
                   {
                       $errors = "Ce projet est déjà lier à ce plan";
-                  }  
+                  }
                 }
                 $item->plan_id          = $plan->id;
                 $item->projet_id        = $request->projet;
@@ -250,11 +253,11 @@ class ProjetController extends Controller
                    if(isset($item))
                      {
                         $plan_projets = PlanProjet::where('projet_id', $item->id)->get();
-                        if (count($plan_projets) > 0) 
+                        if (count($plan_projets) > 0)
                          {
                             $errors = "Impossible de supprimer des données liées au système";
-                           
-                         } 
+
+                         }
                         if (count(Remarque::where('projet_id', $item->id)->get()) > 0)
                          {
                             $errors = "Impossible de supprimer des données liées au système";
@@ -274,7 +277,7 @@ class ProjetController extends Controller
                           else
                               throw new \Exception($errors);
 
-                     } 
+                     }
                    else
                    {
                     $errors = "Impossible de supprimer car ces données n'existent pas dans la base de données";
@@ -286,7 +289,7 @@ class ProjetController extends Controller
                     $errors = "Impossible, données manquantes";
                     throw new \Exception($errors);
                 }
-                   
+
             });
         }
         catch(\Exception $e)
@@ -302,7 +305,7 @@ class ProjetController extends Controller
         try
         {
             return DB::transaction(function ()  {
-                
+
             });
         }
         catch(\Exception $e)
@@ -313,12 +316,12 @@ class ProjetController extends Controller
             ));
         }
     }
-   
+
     public function active_plan(Request $request)
     {
         try
         {
-           
+
             $errors = null;
             $data = 0;
             $item = PlanProjet::find($request->plan_projet);
@@ -329,20 +332,20 @@ class ProjetController extends Controller
                 //dd($projet);
                 if(isset($projet))
                 {
-                   
+
                     $plan_active = PlanProjet::where('active', true)->where('projet_id', $projet->id)->get();
-                  
+
                     if(isset($plan_active) && count($plan_active) > 0)
                     {
                       //  dd("je suis la");
                         foreach($plan_active as $key)
                         {
-                           
+
                             $key->active = 0;
                             $key->save();
                         }
                     }
-                
+
                 }
                 else
                 {
@@ -367,8 +370,8 @@ class ProjetController extends Controller
             return response()->json(array(
                 'errors'          => config('app.debug') ? $e->getMessage() : Outil::getMsgError(),
                 'errors_debug'    => [$e->getMessage()],
-            ));  
-        }  
+            ));
+        }
     }
     public function activeProjet($id)
     {
@@ -408,7 +411,7 @@ class ProjetController extends Controller
             return response()->json(array(
                 'errors'          => config('app.debug') ? $e->getMessage() : Outil::getMsgError(),
                 'errors_debug'    => [$e->getMessage()],
-            ));  
+            ));
         }
     }
     public function makeContrat($id)
@@ -439,7 +442,7 @@ class ProjetController extends Controller
             return response()->json(array(
                 'errors'          => config('app.debug') ? $e->getMessage() : Outil::getMsgError(),
                 'errors_debug'    => [$e->getMessage()],
-            ));  
+            ));
         }
     }
     public function activeFichier($id)
@@ -455,7 +458,7 @@ class ProjetController extends Controller
            $joined = Joined::where('plan_id', $plan->id)->where('active', 1)->get()->first();
            if($joined!=null)
            {
-             
+
                $joined->active = 0;
                $joined->save();
            }
@@ -476,14 +479,14 @@ class ProjetController extends Controller
             return response()->json($retour);
           }
           throw new \Exception($errors);
-      
+
        }
        catch(\Exception $e)
        {
         return response()->json(array(
             'errors'          => config('app.debug') ? $e->getMessage() : Outil::getMsgError(),
             'errors_debug'    => [$e->getMessage()],
-        )); 
+        ));
        }
     }
     public function payment()
@@ -506,8 +509,8 @@ class ProjetController extends Controller
         // $provider = new ExpressCheckout;      // To use express checkout.
         // $provider = new AdaptivePayments;
         // $provider = PayPal::setProvider('express_checkout');      // To use express checkout(used by default).
-        // $provider = PayPal::setProvider('adaptive_payments');    
-       
+        // $provider = PayPal::setProvider('adaptive_payments');
+
         // $apiContext = new \Paypal\Rest\ApiContext(
         //     new \PayPal\Auth\OAuthTokenCredential(
         //         $config['id'],
@@ -519,5 +522,5 @@ class ProjetController extends Controller
         // dd($payment);
 
     }
-    
+
 }
