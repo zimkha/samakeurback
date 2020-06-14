@@ -136,6 +136,7 @@ class ProjetController extends Controller
                         $niveau->salon              = $key['salon'];
                         $niveau->bureau             = $key['bureau'];
                         $niveau->cuisine            = $key['cuisine'];
+                        $niveaux->sdb               = $key['sdb'];
                         $niveau->toillette          = $key['toillette'];
 
                         array_push($array_level, $niveau);
