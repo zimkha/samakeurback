@@ -467,8 +467,10 @@
                                 <div class="form-group">
                                     <label for="client_projet">Client</label>
                                     <select class="js-example-basic-single form-control" id="user_projet" name="user">
-                                    <option diseabled="diseabled" >choisir un client</option>
-                                    <option ng-repeat="item in users" ng-if="item.is_client==1 && item.active==1" value="@{{item.id}}">@{{item.name}} -- @{{item.email}}</option>
+                                        <option value="1">Client 1</option>
+                                        <option value="2">Client 2</option>
+                                    {{--<option diseabled="diseabled" >choisir un client</option>
+                                    <option ng-repeat="item in users" ng-if="item.is_client==1 && item.active==1" value="@{{item.id}}">@{{item.name}} -- @{{item.email}}</option>--}}
                                     </select>
                                 </div>
                             </div>
@@ -480,7 +482,7 @@
                             </div>
                         </div>
                         <div class="row">
-                           
+
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <label for="longeur_projet">Longeur</label>
@@ -514,55 +516,48 @@
                         <div class="row">
                             <div class="col-lg-3">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="electricte_projet" value="">Electricté
+                                    <input type="checkbox" id="electricte_projet" value="true" name="electricite"> Electricté
                                   </label>
                             </div>
                             <div class="col-lg-3">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="accesvoirie_projet" value="">Accés voirie
+                                    <input type="checkbox" id="accesvoirie_projet" value="true" name="acces_voirie"> Accés voirie
                                   </label>
                             </div>
                             <div class="col-lg-3">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="ass_projet" value="">Assainissement
+                                    <input type="checkbox" id="ass_projet" value="true" name="assainissement"> Assainissement
                                   </label>
                             </div>
-                                                    <div class="col-lg-3">
+                            <div class="col-lg-3">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="cadastre_projet" value="">Cadastre
+                                    <input type="checkbox" id="cadastre_projet" value="true" name="geometre"> Cadastre
                                   </label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-3">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="courant_faible_projet" value="">Courant Faible
+                                    <input type="checkbox" id="courant_faible_projet" value="true" name="courant_faible"> Courant Faible
                                   </label>
                             </div>
                             <div class="col-lg-3">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="eaux_pluviable_projet" value="">Eaux pliviale
+                                    <input type="checkbox" id="eaux_pluviable_projet" value="true" name="eaux_pluviable"> Eaux pliviale
                                   </label>
                             </div>
                             <div class="col-lg-3">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="bornes_visible_projet" value="">Bornez Visible
+                                    <input type="checkbox" id="bornes_visible_projet" value="true" name="bornes_visible"> Bornez Visible
                                   </label>
                             </div>
-                                                    <div class="col-lg-3">
+                            <div class="col-lg-3">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="necessite_bornage_projet" value="">Necessite bornage
+                                    <input type="checkbox" id="necessite_bornage_projet" value="true" name="necessite_bornage"> Necessite bornage
                                   </label>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="description_proje">Desciption</label>
-                                <textarea rows="4" class="form-control" id="description_projet" name="description"></textarea>
-                                </div>
-                            </div>
-                        </div>
+
                         <h4 class="form-section animated fadeInDown mb-3 mt-5 border-bottom border-alternate">
                             <i class="fa fa-shopping-cart"></i>
                             NIVEAUX
@@ -683,6 +678,15 @@
                                         </tbody>
                                     </table>
 
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="description_proje">Desciption</label>
+                                    <textarea rows="4" class="form-control" id="description_projet" name="description"></textarea>
                                 </div>
                             </div>
                         </div>

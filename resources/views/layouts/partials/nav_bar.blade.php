@@ -168,11 +168,21 @@
                   Activity Log
                 </a> -->
 
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="text-white">
+               {{-- <div class="dropdown-divider"></div>--}}
+               {{-- <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="text-white">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Deconnexion
-                </a>
+                </a>--}}
+
+                <div>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-1 ml-2 text-gray-400"></i> Deconnexion
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
+
             </div>
         </li>
 

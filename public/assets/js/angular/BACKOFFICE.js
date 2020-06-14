@@ -784,7 +784,7 @@ $scope.get_Somme_daye = function ()
             rewriteelement = 'planspaginated(page:'+ $scope.paginationplan.currentPage +',count:'+ $scope.paginationplan.entryLimit
                 + ($scope.planview ? ',plan_id:' + $scope.planview.id : "" )
               //  + ($('#plan_piece').val() ? ',nb_piece:' + $('#plan_piece').val() : "" )
-                + ($('#client_plan_filtre').val() ? ',user_id:' + $('#client_plan_filtre').val() : "" )
+                + ($('#client_plan_filtre').val() ? ',user:' + '"' + $('#client_plan_filtre').val() + '"' : "")
                 + ($('#date_plan_filtre').val() ? ',date:' + $('#date_plan_filtre').val() : "" )
                 + ($('#code_plan_filtre').val() ? ',code:' + $('#code_plan_filtre').val() : "" )
                 + ($('#superficie_plan_filtre').val() ? ',superficie:' + $('#superficie_plan_filtre').val() : "" )
@@ -904,8 +904,13 @@ $scope.get_Somme_daye = function ()
         else if ( currentpage.indexOf('user')!==-1 )
         {
             rewriteelement = 'userspaginated(page:'+ $scope.paginationuser.currentPage +',count:'+ $scope.paginationuser.entryLimit
-                + ($('#searchrole_user').val() ? ',role_id:' + $('#searchrole_user').val() : "" )
-                + ($('#searchtexte_user').val() ? (',' + $('#searchoption_user').val() + ':"' + $('#searchtexte_user').val() + '"') : "" )
+              //  + ($('#searchrole_user').val() ? ',role_id:' + $('#searchrole_user').val() : "" )
+              //  + ($('#searchtexte_user').val() ? (',' + $('#searchoption_user').val() + ':"' + $('#searchtexte_user').val() + '"') : "" )
+                + ($('#nom_user_filtre').val() ? ',name:' + '"' + $('#nom_user_filtre').val() + '"' : "")
+                + ($('#email_user_filtre').val() ? ',email:' + '"' + $('#email_user_filtre').val() + '"' : "")
+                + ($('#adresse_user_filtre').val() ? ',adresse:' + '"' + $('#adresse_user_filtre').val() + '"' : "")
+                + ($('#telephone_user_filtre').val() ? ',telephone:' + '"' + $('#telephone_user_filtre').val() + '"' : "")
+
                 +')';
             // blockUI_start_all('#section_listeclients');
             Init.getElementPaginated(rewriteelement, listofrequests_assoc["users"]).then(function (data)
@@ -1668,6 +1673,15 @@ $scope.get_Somme_daye = function ()
         ticket.focus();
     };
 
+    $scope.electricite = 0;
+    $scope.acces_voirie = 0;
+    $scope.assainissement = 0;
+    $scope.geometre = 0;
+    $scope.courant_faible = 0;
+    $scope.eaux_pluviable = 0;
+    $scope.bornes_visible = 0;
+    $scope.necessite_bornage = 0;
+
     // Add element in database and in scope
     $scope.addElement = function(e,type,from='modal')
     {
@@ -1730,8 +1744,75 @@ $scope.get_Somme_daye = function ()
             },1500);
         }
         else if (type == 'projet' || type == 'projets') {
+
             if ($scope.produitsInTable.length > 0) {
-                send_data.append('tab_plan', JSON.stringify($scope.produitsInTable));
+
+                if($('#electricte_projet').prop('checked') == true){
+                    $scope.electricite = 1;
+                }
+                else
+                {
+                    $scope.electricite = 0;
+                }
+                if($('#accesvoirie_projet').prop('checked') == true){
+                    $scope.acces_voirie = 1;
+                }
+                else
+                {
+                    $scope.acces_voirie = 0;
+                }
+                if($('#ass_projet').prop('checked') == true){
+                    $scope.assainissement = 1;
+                }
+                else
+                {
+                    $scope.assainissement = 0;
+                }
+                if($('#cadastre_projet').prop('checked') == true){
+                    $scope.geometre = 1;
+                }
+                else
+                {
+                    $scope.geometre = 0;
+                }
+                if($('#courant_faible_projet').prop('checked') == true){
+                    $scope.courant_faible = 1;
+                }
+                else
+                {
+                    $scope.courant_faible = 0;
+                }
+                if($('#eaux_pluviable_projet').prop('checked') == true){
+                    $scope.eaux_pluviable = 1;
+                }
+                else
+                {
+                    $scope.eaux_pluviable = 0;
+                }
+                if($('#bornes_visible_projet').prop('checked') == true){
+                    $scope.bornes_visible = 1;
+                }
+                else
+                {
+                    $scope.bornes_visible = 0;
+                }
+                if($('#necessite_bornage_projet').prop('checked') == true){
+                    $scope.necessite_bornage = 1;
+                }
+                else
+                {
+                    $scope.necessite_bornage = 0;
+                }
+
+                send_data.append('tab_projet', JSON.stringify($scope.produitsInTable));
+                send_data.append('electricite', $scope.electricite);
+                send_data.append('acces_voirie', $scope.acces_voirie);
+                send_data.append('assainissement', $scope.assainissement);
+                send_data.append('geometre', $scope.geometre);
+                send_data.append('courant_faible', $scope.courant_faible);
+                send_data.append('eaux_pluviable', $scope.eaux_pluviable);
+                send_data.append('bornes_visible', $scope.bornes_visible);
+                send_data.append('necessite_bornage', $scope.necessite_bornage);
                 continuer = true;
             } else {
                 iziToast.error({
