@@ -23,8 +23,9 @@
                         <div class="col-md-6">
                             <select class="form-control" id="searchoption_projet" ng-model="searchoption_projet" name="searchoption">
                                 <option value="">Rechercher dans </option>
+                                <option value="name">Code projet</option>
                                 <option value="telephone">Téléphone</option>
-                                <option value="email">E-mail</option>
+                               {{-- <option value="email">E-mail</option>--}}
                                 <option value="adresse_terrain">Adresse Terrain</option>
                             </select>
                         </div>
