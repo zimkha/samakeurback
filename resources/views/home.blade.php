@@ -467,10 +467,10 @@
                                 <div class="form-group">
                                     <label for="client_projet">Client</label>
                                     <select class="js-example-basic-single form-control" id="user_projet" name="user">
-                                        <option value="1">Client 1</option>
-                                        <option value="2">Client 2</option>
-                                    {{--<option diseabled="diseabled" >choisir un client</option>
-                                    <option ng-repeat="item in users" ng-if="item.is_client==1 && item.active==1" value="@{{item.id}}">@{{item.name}} -- @{{item.email}}</option>--}}
+                                      {{--  <option value="1">Client 1</option>
+                                        <option value="2">Client 2</option>--}}
+                                    <option diseabled="diseabled" >Choisir un client</option>
+                                    <option ng-repeat="item in users" value="@{{item.id}}">@{{item.prenom}} @{{item.nom}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -497,8 +497,8 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label for="superficie_plan">Adresse Terrain</label>
-                                    <input type="text" class="form-control" id="adresse_terrain_plan" name="adresse_terrain">
+                                    <label for="adresse_terrain_projet">Adresse Terrain</label>
+                                    <input type="text" class="form-control" id="adresse_terrain_projet" name="adresse_terrain">
                                 </div>
                             </div>
                             <div class="col-lg-3">

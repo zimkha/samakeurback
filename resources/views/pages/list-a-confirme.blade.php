@@ -62,7 +62,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr align="center" ng-repeat="item in users" ng-if="item.active==0">
+                            <tr align="center" ng-repeat="item in users">
                                <td>@{{ item.name }}</td>
                                <td>@{{ item.telephone }}</td>
                                <td>@{{ item.email }}</td>
@@ -71,6 +71,9 @@
                                    {{-- <button ng-if="item.active" class="menu-item uk-icon-button fa fa-thumbs-down border-0 back-rednoir text-white" title="Désactiver ce client" ng-click="showModalChangeStatut($event,'user', 0,item, 'Désactiver ce client')"></button>--}}
 
                                         {{--<button ng-if="!item.active"  class="btn btn-sm btn-circle btn-success" title="Activer ce client" ng-click="showModalChangeStatut($event,'user', 1,item, 'Activer ce client')"></button>--}}
+                                        <a href="#!/detail-client/@{{item.id}}" class="btn btn-sm btn-circle btn-primary" title="Info">
+                                            <span class="fa fa-info"></span>
+                                        </a>
                                         <button class="btn btn-sm btn-circle btn-danger"   ng-click="deleteElement('user',item.id)"title="Supprimer">
                                             <span class="fa fa-trash"></span>
                                         </button>
