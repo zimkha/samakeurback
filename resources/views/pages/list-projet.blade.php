@@ -34,12 +34,12 @@
                                 <input type="text" class="form-control" id="searchtexte_projet" ng-model="searchtexte_projet" placeholder="Texte de la recherche" ng-readonly="!searchoption_projet" autocomplete="off">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                       {{-- <div class="col-md-6">
                             <div class="form-group">
                                 <label>Entre le </label>
                                 <input type="date" id="created_at_start_listprojet" name="created_at_start" class="form-control">
                             </div>
-                        </div>
+                        </div>--}}
                         <div class="col-md-12 text-right">
                             <button class="mt-2 btn btn-primary pull-right" ng-click="pageChanged('projet')">
                                 Filtrer <i class="fa fa-search"></i>
