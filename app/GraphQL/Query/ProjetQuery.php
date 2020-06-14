@@ -113,6 +113,10 @@ class ProjetQuery extends Query
        {
           $query = $query->whereIn('user_id', User::where('code_postal',  Outil::getOperateurLikeDB(), '%'.$args['code_postal'].'%')->get(['id']));
        }
+       if(isset($args['adresse_terrain']))
+       {
+          $query = $query->where('adresse_terrain',  Outil::getOperateurLikeDB(), '%'.$args['name']. '%');
+       }
        if (isset($args['plan_id']))
        {
           $query = $query->whereIn('id', PlanProjet::where('plan_id', $args['plan_id'])->get('projet_id'));
