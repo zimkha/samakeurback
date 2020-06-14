@@ -66,6 +66,13 @@ class ProjetType extends GraphQLType
          return 0;
 
         else
+          {
+              $response = 15 - $response;
+              if($response <= 0)
+              {
+                  $response = 0;
+              }
+          }
           return $response; 
     }
     public function resolveNbPiecesField($root, $args)
