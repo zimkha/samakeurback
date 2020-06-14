@@ -5,7 +5,7 @@
 
         <div class="col-lg-12">
 
-            Detail Projet: code-projet: <strong><u><span class="badge badge-info">PRT0001</span></u></strong>
+            Detail Projet: code-projet: <strong><u><span class="badge badge-info">@{{ projetview.name }}</span></u></strong>
             <div class="card">
                 <div class="card-body">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -48,54 +48,77 @@
                                         <div class="text-center p-1">
                                             <div>
                                                 <i class="fa fa-calendar-check"></i> <strong><u>Date creation:</u></strong>
-                                                <span class="text-muted">12/04/2020</span>
+                                                <span class="text-muted">@{{ projetview.created_at_fr }}</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div  class="card-body row animated fadeInUp">
-                                        <div class=" col-md-3 col-sm-12 mt-10">
+                                        <div class=" col-md-3 col-sm-12 mt-3">
                                             <div class="border-danger">
-                                                <h6> Superficie :<strong><u></u> aa</u></strong></h6>
+                                                <h6> Adresse :<strong><u> @{{ projetview.adresse_terrain }}</u></strong></h6>
                                             </div>
 
                                         </div>
-                                        <div class=" col-md-3 col-sm-12 mt-10">
+                                        <div class=" col-md-3 col-sm-12 mt-3">
                                             <div class="border-danger">
-                                                <h6> nbr étage :<strong><u></u> aa</u></strong></h6>
+                                                <h6> Superficie :<strong><u> @{{ projetview.superficie }}</u></strong></h6>
                                             </div>
 
                                         </div>
-                                        <div class=" col-md-3 col-sm-12 mt-10">
+                                        <div class=" col-md-3 col-sm-12 mt-3">
                                             <div class="border-danger">
-                                                <h6> nbr chambre :<strong><u></u> aa</u></strong></h6>
+                                                <h6> Longeur :<strong><u> @{{ projetview.longeur }}</u></strong></h6>
                                             </div>
 
                                         </div>
-                                        <div class=" col-md-3 col-sm-12 mt-10">
+                                        <div class=" col-md-3 col-sm-12 mt-3">
                                             <div class="border-danger">
-                                                <h6> cuisine :<strong><u></u> aa</u></strong></h6>
+                                                <h6> Largeur :<strong><u> @{{ projetview.largeur }}</u></strong></h6>
+                                            </div>
+
+                                        </div>
+                                        <div class=" col-md-3 col-sm-12 mt-3">
+                                            <div class="border-danger">
+                                                <h6>Nbre Chambre Sple :<strong><u>@{{ projetview.nb_chambre }}</u></strong></h6>
 
                                             </div>
 
                                         </div>
-                                        <div class=" col-md-3 col-sm-12 mt-10">
+                                        <div class=" col-md-3 col-sm-12 mt-3">
                                             <div class="border-danger">
-                                                <h6> nbr wc :<strong><u></u> aa</u></strong></h6>
+                                                <h6>Nbre Chambre SDB :<strong><u>@{{ projetview.sdb }}</u></strong></h6>
 
                                             </div>
 
                                         </div>
-                                        <div class=" col-md-3 col-sm-12 mt-10">
+                                        <div class=" col-md-3 col-sm-12 mt-3">
                                             <div class="border-danger">
-                                                <h6> type chambre :<strong><u></u> type 1</u></strong></h6>
-                                            </div>
-                                        </div>
-                                        <div class=" col-md-3 col-sm-12 mt-10">
-                                            <div class="border-danger">
-                                                <h6> type terrain    :<strong><u></u> type 1</u></strong></h6>
-                                            </div>
-                                        </div>
+                                                <h6>Nbre cuisine :<strong><u>@{{ projetview.nb_cuisine }}</u></strong></h6>
 
+                                            </div>
+
+                                        </div>
+                                        <div class=" col-md-3 col-sm-12 mt-3">
+                                            <div class="border-danger">
+                                                <h6> Nbre Toillette :<strong><u> @{{ projetview.nb_toillette }}</u></strong></h6>
+
+                                            </div>
+
+                                        </div>
+                                        <div class=" col-md-3 col-sm-12 mt-3">
+                                            <div class="border-danger">
+                                                <h6> Nbre Piece :<strong><u> @{{ projetview.nb_pieces }}</u></strong></h6>
+
+                                            </div>
+
+                                        </div>
+                                        <div class=" col-md-3 col-sm-12 mt-3">
+                                            <div class="border-danger">
+                                                <h6> Nbre Salon :<strong><u> @{{ projetview.nb_salon }}</u></strong></h6>
+
+                                            </div>
+
+                                        </div>
 
                                     </div>
                                 </div>
