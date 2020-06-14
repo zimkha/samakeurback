@@ -59,14 +59,16 @@ class UserController extends Controller
                         $errors = "Ce numéro téléphone existe déja";
                     }
                 }
+                
 
-                  $user->name = $request->nom;
-                  $user->nom = $request->nom;
-                  $user->prenom = $request->prenom;
-                  $user->telephone = $request->telephone;
-                  $user->email = $request->email;
-                  $user->is_client = true;
-                  $user->active = true;
+                  $user->name               = $request->nom;
+                  $user->nom                = $request->nom;
+                  $user->prenom             = $request->prenom;
+                  $user->telephone          = $request->telephone;
+                  $user->email              = $request->email;
+                  $user->adresse_complet    = $request->adresse_complet;
+                  $user->is_client          = true;
+                  $user->active             = true;
                 !empty($request->password) ? $user->password = bcrypt($request->password) : '' ;
 
                 $role = Role::find($request->role);
