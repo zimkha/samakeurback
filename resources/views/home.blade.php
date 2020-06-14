@@ -583,8 +583,14 @@
                                         </div>
                                         <div class="col-lg-3">
                                             <div class="form-group">
-                                                <label for="chambre_projet">Chambres</label>
+                                                <label for="chambre_projet">Chbres simples</label>
                                                 <input type="number" name="chambre" id="chambre_projet" class="form-control" >
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="form-group">
+                                                <label for="chambre_sdb_projet">Chbres SDB</label>
+                                                <input type="number" name="sdb" id="chambre_sdb_projet" class="form-control" >
                                             </div>
                                         </div>
                                         <div class="col-lg-3">
@@ -599,19 +605,19 @@
                                                 <input type="number" name="salon" id="salon_projet" class="form-control" >
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-2">
                                             <div class="form-group">
                                                 <label for="cuisine_projet">Cuisine</label>
                                                 <input type="number" name="cuisine" id="cuisine_projet" class="form-control" >
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-2">
                                             <div class="form-group">
                                                 <label for="toillette_projet">Toillette</label>
                                                 <input type="number" name="toillette" class="form-control" id="toillette_projet">
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-2">
                                             <div class="form-group mt-4 text-lg-right">
                                                 <button class="btn btn-success mt-2" ng-click="actionSurProjet('add')" title="Ajouter un niveau" >
                                                     <i class="fa fa-plus"></i>
@@ -636,7 +642,8 @@
                                         <th class="text-center">N°</th>
                                         <th class="text-center">Niveau</th>
                                         <th class="text-center">Pièce</th>
-                                        <th class="text-center">Chambre</th>
+                                        <th class="text-center">Chbres Sple</th>
+                                        <th class="text-center">Chbres SDB</th>
                                         <th class="text-center">Bureau</th>
                                         <th class="text-center">Salon</th>
                                         <th class="text-center">Cuisine</th>
@@ -656,6 +663,9 @@
                                             </td>
                                             <td class="text-center">
                                                 @{{ item.chambre }}
+                                            </td>
+                                            <td class="text-center">
+                                                @{{ item.sdb }}
                                             </td>
                                             <td class="text-center">
                                                 @{{ item.bureau }}

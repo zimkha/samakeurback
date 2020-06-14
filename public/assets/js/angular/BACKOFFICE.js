@@ -2158,6 +2158,7 @@ $scope.get_Somme_daye = function ()
             var niveau = $("#niveau_projet").val();
             var piece_projet = $("#piece_projet").val();
             var chambre_projet = $("#chambre_projet").val();
+            var chambre_sdb_projet = $("#chambre_sdb_projet").val();
             var bureau_projet = $("#bureau_projet").val();
             var salon_projet = $("#salon_projet").val();
             var cuisine_projet = $("#cuisine_projet").val();
@@ -2174,6 +2175,13 @@ $scope.get_Somme_daye = function ()
             if ($scope.estEntier(chambre_projet) == false) {
                 iziToast.error({
                     message: "Sélectionnez une chambre",
+                    position: 'topRight'
+                });
+                return false;
+            }
+            if ($scope.estEntier(chambre_sdb_projet) == false) {
+                iziToast.error({
+                    message: "Sélectionnez une chambre SDB",
                     position: 'topRight'
                 });
                 return false;
@@ -2211,6 +2219,7 @@ $scope.get_Somme_daye = function ()
                 "niveau": niveau,
                 "piece": piece_projet,
                 "chambre": chambre_projet,
+                "sdb": chambre_sdb_projet,
                 "bureau": bureau_projet,
                 "salon": salon_projet,
                 "cuisine": cuisine_projet,
@@ -2222,6 +2231,7 @@ $scope.get_Somme_daye = function ()
             $("#niveau_projet").val('');
             $("#piece_projet").val('');
             $("#chambre_projet").val('');
+            $("#chambre_sdb_projet").val('');
             $("#salon_projet").val('');
             $("#cuisine_projet").val('');
             $("#bureau_projet").val('');
