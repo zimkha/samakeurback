@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Redirect;
 
 class ClientController extends Controller
 {
+    private $queryName = "users";
+
     public function logout(Request $request)
     {
         Auth::logout();
@@ -130,7 +132,8 @@ class ClientController extends Controller
                             {
                                 $password = Hash::make($request->password);
                                 $user->password = $password;
-                            }
+                                $user->save();
+                }
                         }
                         else
                         {
@@ -146,12 +149,18 @@ class ClientController extends Controller
                 {
                     $errors = "veuillez preciser votre email";
                 }
+                if(!isset($errors))
+                {
+                    return Outil::redirectgraphql($this->queryName, "id:{$user->id}", Outil::$queries[$this->queryName]);
+                }
+                return response()->json(['errors' => $errors]);
+
             });
                     
         }
         catch(\Exception $e)
         {
-
+            return response()->json(['errors' => $e->getMessage()]);
         }
     }
 
