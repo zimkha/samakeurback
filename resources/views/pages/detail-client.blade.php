@@ -43,15 +43,15 @@
                                             </div>
 
                                         </div>
-                                        <div class=" col-md-4 col-sm-12 mt-10 mb-2">
+                                       {{-- <div class=" col-md-4 col-sm-12 mt-10 mb-2">
                                             <div class="border-danger">
                                                 <h6 > <span class="fa fa-flag text-dark"></span> Pays d'origine :<strong><u></u>@{{ clientview.pays }}</u></strong></h6>
                                             </div>
 
-                                        </div>
+                                        </div>--}}
                                         <div class=" col-md-4 col-sm-12 mt-10">
                                             <div class="border-danger">
-                                                <h6 ><span class="fa fa-home text-dark"></span> Adresse actuel :<strong><u></u>@{{ clientview.adresse_complet }} </u></strong></h6>
+                                                <h6 ><span class="fa fa-home text-dark"></span> Adresse actuel :<strong><u></u>@{{ clientview.adress_complet }} </u></strong></h6>
 
                                             </div>
 
@@ -69,7 +69,7 @@
                                             </div>
 
                                         </div>
-                                       
+
 
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@
                                         <thead>
                                         <tr align="center">
                                             <th>Code</th>
-                                            <th>Date</th>                                           
+                                            <th>Date</th>
                                             <th>Superficie</th>
                                             <th>Paiement</th>
                                             <th>Actions</th>
@@ -96,7 +96,7 @@
                                         <tr align="center" ng-repeat="item in projets" ng-if="item.active==1 && item.etat==1">
                                             <td>@{{ $index + 1 }}</td>
                                            <td>@{{ item.created_at_fr }}</td>
-                                          
+
                                            <td>@{{ item.superficie }}</td>
                                            <td><span class="badge badge-success">payé</span></td>
                                             <td>
@@ -108,7 +108,7 @@
                                                 </button>
                                             </td>
                                         </tr>
-                                    
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -123,18 +123,18 @@
                                         <thead>
                                             <tr align="center">
                                                 <th>Code</th>
-                                                <th>Date</th>                                           
+                                                <th>Date</th>
                                                 <th>Superficie</th>
                                                 <th>Paiement</th>
                                                 <th>Actions</th>
                                             </tr>
                                             </thead>
-    
+
                                             <tbody>
                                             <tr align="center" ng-repeat="item in projets" ng-if="item.active==1 && item.etat==2">
                                                 <td>@{{ $index + 1 }}</td>
                                                <td>@{{ item.created_at_fr }}</td>
-                                              
+
                                                <td>@{{ item.superficie }}</td>
                                                <td><span class="badge badge-success">non payé</span></td>
                                                 <td>
@@ -146,7 +146,7 @@
                                                     </button>
                                                 </td>
                                             </tr>
-                                        
+
                                             </tbody>
                                     </table>
                                 </div>

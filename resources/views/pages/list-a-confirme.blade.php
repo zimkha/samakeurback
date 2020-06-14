@@ -66,7 +66,7 @@
                                <td>@{{ item.name }}</td>
                                <td>@{{ item.telephone }}</td>
                                <td>@{{ item.email }}</td>
-                               <td>@{{ item.adresse }}</td>
+                               <td>@{{ item.adresse_complet }}</td>
                                 <td class="text-center">
                                    {{-- <button ng-if="item.active" class="menu-item uk-icon-button fa fa-thumbs-down border-0 back-rednoir text-white" title="Désactiver ce client" ng-click="showModalChangeStatut($event,'user', 0,item, 'Désactiver ce client')"></button>--}}
 
