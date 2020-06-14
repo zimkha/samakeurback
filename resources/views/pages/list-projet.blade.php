@@ -14,13 +14,11 @@
             <div class="card-body">
                 <form>
                     <div class="form-row mt-4">
-                        <div class="col-md-12 text-center">
-                            <div class="col-md-12 col-sm-12 uk-margin-small-top text-md-center" id="etat">
-                                <span class="uk-text-bold fsize-14 uk-text-uppercase uk-margin-small-right">Etat : </span>
-                                <input type="radio" value="1" name="radioBtnComposition" ng-click="onRadioCompositionClick($event, '1')" class="uk-radio"> <span class="fsize-12 uk-margin-small-right">en cours</span>
-                                <input type="radio" value="2" name="radioBtnComposition" ng-click="onRadioCompositionClick($event, '2')" class="uk-radio"> <span class="fsize-12 uk-margin-small-right">finalisé</span>
-                                <input type="radio" checked  name="radioBtnComposition" ng-click="onRadioCompositionClick($event, '')" class="uk-radio true"> <span class="fsize-12 uk-margin-small-right">Tout</span>
-                            </div>
+                        <div class="col-md-12 col-sm-12 uk-margin-small-top text-center text-md-center" id="etat">
+                            <span class="uk-text-bold fsize-14 uk-text-uppercase uk-margin-small-right">Etat : </span>
+                            <input type="radio" value="1" name="radioBtnComposition" ng-click="onRadioCompositionClick($event, '1')" class="uk-radio"> <span class="fsize-12 uk-margin-small-right">en cours</span>
+                            <input type="radio" value="2" name="radioBtnComposition" ng-click="onRadioCompositionClick($event, '2')" class="uk-radio"> <span class="fsize-12 uk-margin-small-right">finalisé</span>
+                            <input type="radio" checked  name="radioBtnComposition" ng-click="onRadioCompositionClick($event, '')" class="uk-radio true"> <span class="fsize-12 uk-margin-small-right">Tout</span>
                         </div>
                         <div class="col-md-6">
                             <select class="form-control" id="searchoption_projet" ng-model="searchoption_projet" name="searchoption">
@@ -69,9 +67,9 @@
                                 <th>A valider dans</th>
                                 <th>Nom Complet</th>
                                 <th>Adresse</th>
-                               
+
                                 <th>N° telephone</th>
-                                
+
                                 <th class="text-center">Actions</th>
                             </tr>
                             </thead>
@@ -86,9 +84,9 @@
                                 </td>
                                 <td>@{{ item.user.name}}</td>
                                 <td>@{{item.user.adresse_complet}}</td>
-                                
+
                                  <td>@{{item.user.telephone}}</td>
-                               
+
                                 <td class="text-center">
                                     <a href="#!/detail-projet/@{{ item.id }} " class="btn btn-sm btn-primary btn-circle">
                                         <i class="fas fa-info"></i>
@@ -101,7 +99,7 @@
 </a>
                                 </td>
                             </tr>
-                           
+
                             </tbody>
                         </table>
                     </div>

@@ -632,7 +632,7 @@
 
                         <div class="row mt-5">
                             <div class="col-md-12 animated fadeIn text-center" ng-if="produitsInTable.length==0">
-                                <h3> Ajouter un Niveau pour ce plan
+                                <h3> Ajouter un Niveau pour ce projet
                                 </h3>
                             </div>
                             <div class="col-md-12" ng-if="produitsInTable.length !=0">
