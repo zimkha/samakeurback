@@ -99,13 +99,17 @@ class ProjetPaginatedQuery extends Query
        {
           $query = $query->whereIn('user_id', User::where('pays',  Outil::getOperateurLikeDB(), '%'.$args['pays'].'%')->get(['id']));
        }
-       if (isset($args['adress_complet']))
+       if (isset($args['adresse_complet']))
        {
-          $query = $query->whereIn('user_id', User::where('adress_complet',  Outil::getOperateurLikeDB(), '%'.$args['adress_complet'].'%')->get(['id']));
+          $query = $query->whereIn('user_id', User::where('adresse_complet',  Outil::getOperateurLikeDB(), '%'.$args['adresse_complet'].'%')->get(['id']));
        }
        if(isset($args['name']))
        {
           $query = $query->where('name', $args['name']);
+       }
+       if(isset($args['adresse_terrain']))
+       {
+          $query = $query->where('adresse_terrain',  Outil::getOperateurLikeDB(), '%'.$args['name']. '%');
        }
         if (isset($args['telephone']))
        {

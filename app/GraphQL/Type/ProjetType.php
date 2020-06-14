@@ -67,11 +67,7 @@ class ProjetType extends GraphQLType
 
         else
           {
-              $response = 15 - $response;
-              if($response <= 0)
-              {
-                  $response = 0;
-              }
+              $response =  $response;
           }
           return $response; 
     }
