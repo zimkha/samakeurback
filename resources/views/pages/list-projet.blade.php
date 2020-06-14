@@ -14,21 +14,18 @@
             <div class="card-body">
                 <form>
                     <div class="form-row mt-4">
-                        <div class="col-md-12 col-sm-12 uk-margin-small-top text-center text-md-center" id="etat">
+                        <div class="col-md-12 col-sm-12 mb-3 uk-margin-small-top text-center text-md-center" id="etat">
                             <span class="uk-text-bold fsize-14 uk-text-uppercase uk-margin-small-right">Etat : </span>
-                            <input type="radio" value="1" name="radioBtnComposition" ng-click="onRadioCompositionClick($event, '1')" class="uk-radio"> <span class="fsize-12 uk-margin-small-right">en cours</span>
-                            <input type="radio" value="2" name="radioBtnComposition" ng-click="onRadioCompositionClick($event, '2')" class="uk-radio"> <span class="fsize-12 uk-margin-small-right">finalisé</span>
+                            <input type="radio" value="1" name="radioBtnComposition" ng-click="onRadioCompositionClick($event, '0')" class="uk-radio"> <span class="fsize-12 uk-margin-small-right">en cours</span>
+                            <input type="radio" value="2" name="radioBtnComposition" ng-click="onRadioCompositionClick($event, '1')" class="uk-radio"> <span class="fsize-12 uk-margin-small-right">validé</span>
                             <input type="radio" checked  name="radioBtnComposition" ng-click="onRadioCompositionClick($event, '')" class="uk-radio true"> <span class="fsize-12 uk-margin-small-right">Tout</span>
                         </div>
                         <div class="col-md-6">
                             <select class="form-control" id="searchoption_projet" ng-model="searchoption_projet" name="searchoption">
                                 <option value="">Rechercher dans </option>
-                                <option value="nomcomplet">Nom client</option>
                                 <option value="telephone">Téléphone</option>
                                 <option value="email">E-mail</option>
-                                <option value="pays">Pays</option>
-                                <option value="adress_complet">Adresse</option>
-                                <option value="code_postal">Code postal</option>
+                                <option value="adresse_terrain">Adresse Terrain</option>
                             </select>
                         </div>
                         <div class="col-md-6">
@@ -40,12 +37,6 @@
                             <div class="form-group">
                                 <label>Entre le </label>
                                 <input type="date" id="created_at_start_listprojet" name="created_at_start" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Et le </label>
-                                <input type="date" id="created_at_end_listprojet" name="created_at_end" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-12 text-right">
@@ -63,9 +54,10 @@
                             <thead>
                                 <tr align="center">
                                 <th>Code Projet</th>
+                                <th>Nom Complet</th>
                                 <th>Date creation</th>
                                 <th>A valider dans</th>
-                                <th>Nom Complet</th>
+                                <th>Etat</th>
                                 <th>Adresse</th>
 
                                 <th>N° telephone</th>
@@ -75,14 +67,18 @@
                             </thead>
                             <tbody>
                             <tr align="center" ng-repeat="item in projets">
-                                <td>@{{ $index + 1 }}</td>
+                                <td>@{{ item.name}}</td>
+                                <td>@{{ item.user.name}}</td>
                                 <td>@{{ item.created_at_fr }}</td>
                                 <td>
                                     <span ng-if="item.a_valider==0" class="badge badge-danger">Epuisé</span>
                                     <span ng-if="item.a_valider!=0" class="badge badge-success">@{{ item.a_valider }} jour</span>
 
                                 </td>
-                                <td>@{{ item.user.name}}</td>
+                                <td>
+                                    <span ng-if="item.active == 0"  class="badge badge-danger">en cour</span>
+                                    <span ng-if="item.etat == 1" class="badge badge-success">validé</span>
+                                </td>
                                 <td>@{{item.user.adresse_complet}}</td>
 
                                  <td>@{{item.user.telephone}}</td>

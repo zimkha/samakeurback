@@ -848,6 +848,7 @@ $scope.get_Somme_daye = function ()
         }
         else if ( currentpage.indexOf('projet')!==-1 )
         {
+            console.log("icic search $('#searchoption_projet').val() => ", $('#searchoption_projet').val())
             rewriteelement = 'projetspaginated(page:'+ $scope.paginationprojet.currentPage +',count:'+ $scope.paginationprojet.entryLimit
             + ($scope.projetview ? ',projet_id:' + $scope.projetview.id : "" )
             + ($scope.planview ? ',plan_id:' + $scope.planview.id : "" )
