@@ -1939,6 +1939,7 @@ $scope.get_Somme_daye = function ()
                             $scope.projets.push(getObj);
                             $scope.pageChanged('projet');
                             $scope.produitsInTable = [];
+                            $("#modal_adddemande").modal('hide');
                         }
                         else
                         {
@@ -1952,6 +1953,7 @@ $scope.get_Somme_daye = function ()
                                 }
                             });
                             $scope.produitsInTable = [];
+                            $("#modal_adddemande").modal('hide');
                         }
 
                     }
