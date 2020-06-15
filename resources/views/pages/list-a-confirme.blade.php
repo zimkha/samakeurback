@@ -74,7 +74,7 @@
                                         <a href="#!/detail-client/@{{item.id}}" class="btn btn-sm btn-circle btn-primary" title="Info">
                                             <span class="fa fa-info"></span>
                                         </a>
-                                        <button class="btn btn-sm btn-circle btn-danger"   ng-click="deleteElement('user',item.id)"title="Supprimer">
+                                        <button class="btn btn-sm btn-circle btn-danger"   ng-click="deleteElement('user',item.id)" title="Supprimer">
                                             <span class="fa fa-trash"></span>
                                         </button>
 

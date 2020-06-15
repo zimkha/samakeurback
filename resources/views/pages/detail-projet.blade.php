@@ -18,19 +18,19 @@
                         <li class="nav-item">
                             <a class="nav-link" id="contact-tab" data-toggle="tab" target="_self" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Remarques Associés</a>
                         </li>
-                        <li class="nav-item">
+                        {{--<li class="nav-item">
                             <a class="nav-link" id="contact-tab" data-toggle="tab" target="_self" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Fichiers</a>
                         </li>
                         <li class="nav-item">
                             <div class="float-right pt-0 mx-1">
                                 <button class="btn btn-primary btn-circle"  data-toggle="modal" data-target="#modalPlan" title="cloner le plan"><i class="fa fa-clone"></i></button>
                             </div>
-                        </li>
-                        <li class="nav-item">
+                        </li>--}}
+                       {{-- <li class="nav-item">
                             <div class="float-right pt-0 mx-1">
                                 <button class="btn btn-success btn-circle"   data-toggle="modal" data-target="#modalliaison" title="lier le plan a un projet"><i class="fa fa-magnet"></i></button>
                             </div>
-                        </li>
+                        </li>--}}
                     </ul>
                 </div>
 
@@ -120,6 +120,15 @@
 
                                         </div>
 
+                                        <div class="row mt-30 animated px-2">
+                                            <div class="col-md-2 mb-10" ng-repeat="item in projetview.remarques">
+                                                <a href="@{{link}}/@{{ item.demande_text }}">
+                                                    <span class="fa fa-file-pdf"></span>
+                                                </a>
+                                                @{{ item.demande_text }}
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
 
@@ -134,52 +143,45 @@
                                         <thead>
                                         <tr align="center">
                                             <th>Code</th>
-                                            <th>Date</th>
-                                            <th>Client</th>
-                                            <th>Adresse </th>
-                                            <th>etat</th>
-                                            <th>Actions</th>
+                                            <th>Niveau</th>
+                                            <th>Piece</th>
+                                            <th>Chbres Sple </th>
+                                            <th>Chbres SDB</th>
+                                            <th>Bureau</th>
+                                            <th>Salon</th>
+                                            <th>Cuisine</th>
+                                            <th>Toillettes</th>
                                         </tr>
                                         </thead>
 
                                         <tbody>
-                                        <tr align="center">
-                                            <td>DM0001</td>
-                                            <td>12/01/2020</td>
-                                            <td>Khazim Ndiaye</td>
-                                            <td>Dakr Senegal</td>
-                                            <td><span class="badge badge-success">PAYE</span></td>
-                                            <td>
-                                                <button href="detail-client.html" class="btn btn-primary btn-circle" data-toggle="modal" data-target=".bd-example-modal-lg">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </button>
+                                        <tr class="animated fadeIn" ng-repeat="item in projetview.niveau_projets">
+                                            <td class="text-center">
+                                                @{{ item.name }}
+                                            </td>
+                                            <td class="text-center">
+                                                @{{ item.piece }}
+                                            </td>
+                                            <td class="text-center">
+                                                @{{ item.chambre }}
+                                            </td>
+                                            <td class="text-center">
+                                                @{{ item.sdb }}
+                                            </td>
+                                            <td class="text-center">
+                                                @{{ item.bureau }}
+                                            </td>
+                                            <td class="text-center">
+                                                @{{ item.salon }}
+                                            </td>
+                                            <td class="text-center">
+                                                @{{ item.cuisine }}
+                                            </td>
+                                            <td class="text-center">
+                                                @{{ item.toillette }}
                                             </td>
                                         </tr>
 
-                                        <tr align="center">
-                                            <td>DM0002</td>
-                                            <td>12/0Z/2020</td>
-                                            <td>Moussa Ndiaye</td>
-                                            <td>Dakr Senegal</td>
-                                            <td><span class="badge badge-success">PAYE</span></td>
-                                            <td>
-                                                <button href="detail-client.html" class="btn btn-primary btn-circle" data-toggle="modal" data-target=".bd-example-modal-lg">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr align="center">
-                                            <td>DM0021</td>
-                                            <td>12/03/2020</td>
-                                            <td>Sydi Ndiaye</td>
-                                            <td>Dakr Senegal</td>
-                                            <td><span class="badge badge-danger">NON PAYE</span></td>
-                                            <td>
-                                                <button href="detail-client.html" class="btn btn-primary btn-circle" data-toggle="modal" data-target=".bd-example-modal-lg">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
 
 
                                         </tbody>
@@ -196,53 +198,18 @@
                                         <thead>
                                         <tr align="center">
                                             <th>Code</th>
-                                            <th>Date</th>
-                                            <th>Client</th>
-                                            <th>Adresse </th>
-                                            <th>etat</th>
-                                            <th>Actions</th>
+                                            <th>Adresse</th>
+                                            <th>Description</th>
+                                            {{--<th>Actions</th>--}}
                                         </tr>
                                         </thead>
 
                                         <tbody>
-                                        <tr align="center">
-                                            <td>DM0001</td>
-                                            <td>12/01/2020</td>
-                                            <td>Khazim Ndiaye</td>
-                                            <td>Dakr Senegal</td>
-                                            <td><span class="badge badge-success">PAYE</span></td>
-                                            <td>
-                                                <button href="detail-client.html" class="btn btn-primary btn-circle" data-toggle="modal" data-target=".bd-example-modal-lg">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-
-                                        <tr align="center">
-                                            <td>DM0002</td>
-                                            <td>12/0Z/2020</td>
-                                            <td>Moussa Ndiaye</td>
-                                            <td>Dakr Senegal</td>
-                                            <td><span class="badge badge-success">PAYE</span></td>
-                                            <td>
-                                                <button href="detail-client.html" class="btn btn-primary btn-circle" data-toggle="modal" data-target=".bd-example-modal-lg">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr align="center">
-                                            <td>DM0021</td>
-                                            <td>12/03/2020</td>
-                                            <td>Sydi Ndiaye</td>
-                                            <td>Dakr Senegal</td>
-                                            <td><span class="badge badge-danger">NON PAYE</span></td>
-                                            <td>
-                                                <button href="detail-client.html" class="btn btn-primary btn-circle" data-toggle="modal" data-target=".bd-example-modal-lg">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-
+                                            <tr class="animated fadeIn" ng-repeat="item in projetview.remarques">
+                                                <td>@{{ item.projet.name }}</td>
+                                                <td>@{{ item.projet.adresse_terrain }}</td>
+                                                <td>@{{ item.demande_text }}</td>
+                                            </tr>
 
                                         </tbody>
                                     </table>

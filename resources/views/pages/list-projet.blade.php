@@ -80,7 +80,7 @@
                                     <span ng-if="item.active == 0"  class="badge badge-danger">en cour</span>
                                     <span ng-if="item.etat == 1" class="badge badge-success">validé</span>
                                 </td>
-                                <td>@{{item.adresse_complet}}</td>
+                                <td>@{{item.adresse_terrain}}</td>
 
                                  <td>@{{item.user.telephone}}</td>
 
@@ -91,9 +91,13 @@
                                     <a  class="btn btn-sm btn-success btn-circle"  href="#!/detail-projet/@{{ item.id }} ">
                                         <i class="fa fa-file-excel" title="generer le fichier excel"></i>
 </a>
-                                    <a  class="btn btn-sm btn-warning btn-circle"  href="#!/detail-projet/@{{ item.id }} ">
+
+                                    <button ng-click="deleteElement('projet',item.id)" class="btn btn-sm btn-danger btn-circle">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                   {{-- <a  class="btn btn-sm btn-warning btn-circle"  href="#!/detail-projet/@{{ item.id }} ">
                                         <i class="fa fa-file-pdf" title="generer le pdf"></i>
-</a>
+</a>--}}
                                 </td>
                             </tr>
 
