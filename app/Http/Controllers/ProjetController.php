@@ -99,9 +99,12 @@ class ProjetController extends Controller
 
                 $n = 0;
                 $array_level = array();
-                if(isset($request->data) && $request->data != null)
+              
+                if(isset($request->tab_niveau) && $request->tab_niveau != null)
                 {
-                    foreach ($request->data as  $key) {
+                    $data = json_decode($request->tab_niveau, true);
+                    foreach ($data as  $key) {
+                      
                         $n = $n + 1;
                         $niveau = new NiveauProjet();
                         if (empty($key['piece'])) {
@@ -122,24 +125,32 @@ class ProjetController extends Controller
                          if (empty($key['toillette'])) {
                             $errors = "Veuillez renseigner le nombre de toillette de ce niveau ligne n°". $n;
                          }
+                         if (empty($key['niveau'])) {
+                            $errors = "Veuillez renseigner le name du niveau ligne n°". $n;
+                         }
                          if (isset($errors))
                          {
                              throw new \Exception($errors);
                          }
-                        $all_piece = $key['chambre'] + $key['salon'] + $key['bureau'] + $key['cuisine'] + $key['toillette'];
+                        $all_piece = $key['chambre'] + $key['salon'] + $key['bureau'] + $key['cuisine'] + $key['toillette'] + $key['sdb'];
                         if ($all_piece != (int)$key['piece'])
                         {
                             $errors = "Erreur de décompte sur le nombre de pièces ligne n°{$n}";
                         }
-                        $niveau->niveau_name        = $key['niveau_name'];
+                       
+                        $niveau->niveau_name        = $key['niveau'];
                         $niveau->piece              = $key['piece'];
                         $niveau->chambre            = $key['chambre'];
+                       
                         $niveau->salon              = $key['salon'];
                         $niveau->bureau             = $key['bureau'];
                         $niveau->cuisine            = $key['cuisine'];
-                        $niveaux->sdb               = $key['sdb'];
                         $niveau->toillette          = $key['toillette'];
+                        $niveau->sdb               = $key['sdb'];
+                      
+                      
 
+                       
                         array_push($array_level, $niveau);
 
                     }
@@ -149,7 +160,7 @@ class ProjetController extends Controller
                 {
                     $item->active = false;
                     $item->etat = 0;
-
+                    //dd($array_level);
                     $item->save();
                     if(count($array_level) > 0)
                     {
