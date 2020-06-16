@@ -41,7 +41,7 @@ class Outil extends Model
 
         "niveauplans"                   => "id,niveau,piece,bureau,toillette,chambre,salon,cuisine",
 
-        "niveauprojets"                 => "id,niveau,piece,bureau,toillette,chambre,salon,cuisine",
+        "niveauprojets"                 => "id,niveau_name,sdb,piece,bureau,toillette,chambre,salon,cuisine",
 
         "projets"                       => "id,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,niveau_projets{id,piece,bureau,toillette,chambre,salon,cuisine},user_id,user{id,name},plan_projets{id,plan_id,plan{id,fichier,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage}}",
         

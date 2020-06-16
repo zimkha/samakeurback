@@ -142,7 +142,7 @@
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                         <tr align="center">
-                                            <th>Code</th>
+                                            
                                             <th>Niveau</th>
                                             <th>Piece</th>
                                             <th>Chbres Sple </th>
@@ -157,7 +157,7 @@
                                         <tbody>
                                         <tr class="animated fadeIn" ng-repeat="item in projetview.niveau_projets">
                                             <td class="text-center">
-                                                @{{ item.name }}
+                                                @{{ item.niveau_name }}
                                             </td>
                                             <td class="text-center">
                                                 @{{ item.piece }}

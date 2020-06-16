@@ -20,10 +20,13 @@ class NiveauProjetType extends GraphQLType
             'pieces'                 => ['type' => Type::int()],
             'chambre'                => ['type' => Type::int()],
             'salon'                  => ['type' => Type::int()],
+            'sdb'                    => ['type' => Type::int()],
             'cuisine'                => ['type' => Type::int()],
             'garage'                 => ['type' => Type::int()],
             'toillette'              => ['type' => Type::int()],
             'projet'                 => ['type' => GraphQL::type('Projet')],
+            'niveau_name'            => [ 'type' => Type::string(), 'description' => ''],
+
             'created_at'             => [ 'type' => Type::string(), 'description' => ''],
             'created_at_fr'          => [ 'type' => Type::string(), 'description' => ''],
             'updated_at'             => [ 'type' => Type::string(), 'description' => ''],
