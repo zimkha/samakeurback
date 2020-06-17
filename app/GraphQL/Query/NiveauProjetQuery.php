@@ -24,36 +24,29 @@ class NiveauProjetQuery extends Query
     {
         return
         [
-            'id'                     => ['type' => Type::id()],
-            'plan_id'                => ['type' => Type::int()],
-            'pieces'                 => ['type' => Type::int()],
-            'chambre'                => ['type' => Type::int()],
-            'salon'                  => ['type' => Type::int()],
-            'cuisine'                => ['type' => Type::int()],
-            'garage'                 => ['type' => Type::int()],
-            'toillette'              => ['type' => Type::int()],
+            'id'                     => [ 'type' => Type::id()],
+            'plan_id'                => [ 'type' => Type::int()],
+            'piece'                 => [ 'type' => Type::int()],
+            'chambre'                => [ 'type' => Type::int()],
+            'salon'                  => [ 'type' => Type::int()],
+            'cuisine'                => [ 'type' => Type::int()],
+            'bureau'                => ['type' => Type::int()],
+
+            'garage'                 => [ 'type' => Type::int()],
+            'toillette'              => [ 'type' => Type::int()],
             'niveau_name'            => [ 'type'=> Type::string()],
-            'sdb'                    => ['type' => Type::int()],
-
-
-           
-
+            'sdb'                    => [ 'type' => Type::int()],
             'created_at'             => [ 'type' => Type::string()],
             'created_at_fr'          => [ 'type' => Type::string()],
             'updated_at'             => [ 'type' => Type::string()],
             'updated_at_fr'          => [ 'type' => Type::string()],
             'deleted_at'             => [ 'type' => Type::string()],
-            'deleted_at_fr'          => [ 'type' => Type::string()],
-
-           
-        ];
-        
+            'deleted_at_fr'          => [ 'type' => Type::string()], 
+        ];   
     }
-
     public function resolve($root, $args)
     {
-       $query = NiveauProjet::with('plan');
-
+       $query = NiveauProjet::with('projet');
        if (isset($args['id']))
        {
           $query = $query->where('id', $args['id']);
@@ -75,6 +68,7 @@ class NiveauProjetQuery extends Query
             'chambre'               => $item->chambre,
             'salon'                 => $item->salon,
             'cusine'                => $item->cusine,
+            'bureau'                => $item->bureau,
             'garage'                => $item->garage,
             'niveau_name'           => $item->niveau_name,
             'sdb'                   => $item->sdb,

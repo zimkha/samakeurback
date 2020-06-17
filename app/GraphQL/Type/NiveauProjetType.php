@@ -15,24 +15,25 @@ class NiveauProjetType extends GraphQLType
     public function fields(): array
     {
         return [
-            'id'                     => ['type' => Type::id(), 'description' => ''],
+            'id'                     => ['type' => Type::id()],
             'projet_id'              => ['type' => Type::int()],
-            'pieces'                 => ['type' => Type::int()],
+            'piece'                 => ['type' => Type::int()],
             'chambre'                => ['type' => Type::int()],
             'salon'                  => ['type' => Type::int()],
             'sdb'                    => ['type' => Type::int()],
             'cuisine'                => ['type' => Type::int()],
+            'bureau'                => ['type' => Type::int()],
             'garage'                 => ['type' => Type::int()],
             'toillette'              => ['type' => Type::int()],
             'projet'                 => ['type' => GraphQL::type('Projet')],
-            'niveau_name'            => [ 'type' => Type::string(), 'description' => ''],
+            'niveau_name'            => [ 'type' => Type::string()],
 
-            'created_at'             => [ 'type' => Type::string(), 'description' => ''],
-            'created_at_fr'          => [ 'type' => Type::string(), 'description' => ''],
-            'updated_at'             => [ 'type' => Type::string(), 'description' => ''],
-            'updated_at_fr'          => [ 'type' => Type::string(), 'description' => ''],
-            'deleted_at'             => [ 'type' => Type::string(), 'description' => ''],
-            'deleted_at_fr'          => [ 'type' => Type::string(), 'description' => ''],
+            'created_at'             => [ 'type' => Type::string()],
+            'created_at_fr'          => [ 'type' => Type::string()],
+            'updated_at'             => [ 'type' => Type::string()],
+            'updated_at_fr'          => [ 'type' => Type::string()],
+            'deleted_at'             => [ 'type' => Type::string()],
+            'deleted_at_fr'          => [ 'type' => Type::string()],
         ];
     }
     protected function resolveCreatedAtField($root, $args)

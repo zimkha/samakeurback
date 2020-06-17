@@ -31,7 +31,7 @@ class ProjetType extends GraphQLType
             'active'                 => ['type'  => Type::boolean()],
             'etat'                   => ['type'  => Type::int()],
             'user'                   => ['type' => GraphQL::type('User')],
-            'niveau_projets'         => ['type' => Type::listOf(GraphQL::type('Niveauplan')), 'description' => ''],
+            'niveau_projets'         => ['type' => Type::listOf(GraphQL::type('Niveauprojet')), 'description' => ''],
             'remarques'              => ['type' => Type::listOf(GraphQL::type('Remarque')), 'description' => ''],
             'plan_projets'           => ['type' => Type::listOf(GraphQL::type('Planprojet')), 'description' => ''],
              
