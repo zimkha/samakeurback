@@ -99,13 +99,13 @@ class ClientController extends Controller
             ));
         }
 
-        if ($client->activ==false)
-        {
-            return  response()->json(array(
-                'data' => NULL,
-                'errors' => 'Votre compte n\'a pas encore été activé<br><br>Un lien d\'activation vous a été envoyé dans votre boite mail',
-            ));
-        }
+        //if ($client->activ==false)
+       // {
+         //   return  response()->json(array(
+           //     'data' => NULL,
+             //   'errors' => 'Votre compte n\'a pas encore été activé<br><br>Un lien d\'activation vous a été envoyé dans votre boite mail',
+            //));
+       // }
 
         $client = Outil::getOneItemWithGraphQl($this->queryName, $client->id, true);;
 

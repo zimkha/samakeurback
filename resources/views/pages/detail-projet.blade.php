@@ -142,7 +142,7 @@
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                         <tr align="center">
-                                            <th>Code</th>
+                                            <th>Num</th>
                                             <th>Niveau</th>
                                             <th>Piece</th>
                                             <th>Chbres Sple </th>
@@ -156,6 +156,9 @@
 
                                         <tbody>
                                         <tr class="animated fadeIn" ng-repeat="item in projetview.niveau_projets">
+                                            <td class="text-center">
+                                                @{{ $index + 1 }}
+                                            </td>
                                             <td class="text-center">
                                                 @{{ item.name }}
                                             </td>
@@ -198,8 +201,8 @@
                                         <thead>
                                         <tr align="center">
                                             <th>Code</th>
-                                            <th>Adresse</th>
                                             <th>Description</th>
+                                            <th>Adresse</th>
                                             {{--<th>Actions</th>--}}
                                         </tr>
                                         </thead>
@@ -207,8 +210,8 @@
                                         <tbody>
                                             <tr class="animated fadeIn" ng-repeat="item in projetview.remarques">
                                                 <td>@{{ item.projet.name }}</td>
-                                                <td>@{{ item.projet.adresse_terrain }}</td>
                                                 <td>@{{ item.demande_text }}</td>
+                                                <td><a href="@{{ base_url }}/{{ item.fichier }}"></a></td>
                                             </tr>
 
                                         </tbody>
