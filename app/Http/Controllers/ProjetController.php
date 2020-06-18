@@ -28,7 +28,7 @@ class ProjetController extends Controller
     }
     public function save(Request $request)
     {
-      //  dd($request->all());
+        //dd($request->all());
         try
         {
             return DB::transaction(function () use($request) {
@@ -37,8 +37,7 @@ class ProjetController extends Controller
                 $item  = new Projet();
                 $array = [
                          'user', 'longeur', 'largeur',
-                         'acces_voirie', 'electricite', 'courant_faible', 'assainissement', 'eaux_pluviable','bornes_visible',
-                        'necessite_bornage','geometre'];
+                       ];
                 // presence_mitoyen
                 if (isset($request->id)) {
                     $item = Projet::find($id);
@@ -46,6 +45,56 @@ class ProjetController extends Controller
                     NiveauProjet::where('projet_id', $request->id)->forceDelete();
                     $name = $item->name;
                 }
+                if(empty($request->acces_voirie) || $request->acces_voirie == 0)
+                {
+                    $item->acces_voirie = 0;
+                }
+                else
+                {
+                    $item->acces_voirie = $request->acces_voirie;
+                }
+                if(empty($request->electricite) || $request->electricite == 0)
+                {
+                    $item->electricite = 0;
+                }
+                else
+                    $item->electricite             = $request->electricite;
+                
+                if(empty($request->courant_faible) || $request->courant_faible == 0)
+                {
+                    $item->courant_faible = 0;
+                }
+                else
+                    $item->courant_faible             = $request->courant_faible;
+
+                if(empty($request->assainissement) || $request->assainissement == 0)
+                {
+                    $item->assainissement = 0;
+                }
+                else 
+                  $item->assainissement             = $request->assainissement;
+
+                
+                  if(empty($request->eaux_pluviable) || $request->eaux_pluviable == 0)
+                  {
+                      $item->eaux_pluvial = 0;
+                  }
+                  else 
+                    $item->eaux_pluvial      = $request->eaux_pluviable;
+                
+                if(empty($request->bornes_visible) || $request->bornes_visible == 0)
+                {
+                    $item->bornes_visible = 0;
+                }
+                else 
+                    $item->bornes_visible      = $request->bornes_visible;
+
+                if(empty($request->necessite_bornage) || $request->necessite_bornage == 0)
+                {
+                    $item->necessite_bornage = 0;
+                }
+                else 
+                  $item->necessite_bornage      = $request->necessite_bornage;
                 if(isset($request->adresse_terrain))
                 {
                     $item->adresse_terrain = $request->adresse_terrain;
@@ -85,13 +134,7 @@ class ProjetController extends Controller
                 $item->superficie              = $superficie;
                 $item->longeur                 = $request->longeur;
                 $item->largeur                 = $request->largeur;
-                $item->acces_voirie            = $request->acces_voirie;
-                $item->electricite             = $request->electricite;
-                $item->courant_faible          = $request->courant_faible;
-                $item->assainissement          = $request->assainissement;
-                $item->eaux_pluvial            = $request->eaux_pluviable;
-                $item->bornes_visible          = $request->bornes_visible;
-                $item->necessite_bornage       = $request->necessite_bornage;
+              
               //  $item->presence_mitoyen        = $request->presence_mitoyen;
                 $item->geometre                = $request->geometre;
                 $item->adresse_terrain         = $request->adresse_terrain;

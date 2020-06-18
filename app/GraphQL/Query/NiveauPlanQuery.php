@@ -69,7 +69,7 @@ class NiveauPlanQuery extends Query
            [
             'id'                    => $item->id,
             'plan_id'               => $item->plan_id,
-            'niveau'               => $item->niveau,
+            'niveau'                => $item->niveau,
             'plan'                  => $item->plan,
             'piece'                 => $item->piece,
             'chambre'               => $item->chambre,

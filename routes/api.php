@@ -14,6 +14,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::post('connexion', 'ClientController@connexion');
+Route::post('signup', 'UserController@store');
+Route::get('logout', 'UserController@logout');
+Route::get('user', 'UserController@user');
+
+Route::group([
+    'prefix' => 'auth'
+], function () {
+  
+    Route::group([
+      'middleware' => 'auth:api'
+    ], function() {
+       
+    });
+
+
+});
+
+
+Route::group([    
+    'namespace' => 'Auth',    
+    'middleware' => 'api',    
+    'prefix' => 'password'
+], function () {    
+    Route::post('create', 'PasswordResetController@create');
+    Route::get('find/{token}', 'PasswordResetController@find');
+    Route::post('reset', 'PasswordResetController@reset');
 });

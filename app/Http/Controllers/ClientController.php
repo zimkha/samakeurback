@@ -39,7 +39,7 @@ class ClientController extends Controller
                     {
                     $errors = "votre compte n'est pas encore activé";
                     return response()->json([
-                        'data' => $data,
+                        'data' => null,
                         'errors_debug' => $errors
                     ], 200);
                     }
@@ -48,7 +48,8 @@ class ClientController extends Controller
                 
                     return response()->json([
                         'data' => $user,
-                        'message' => ["connexion réussi"]
+                        'message' => ["connexion réussi"],
+                        'errors_debug' => null
                     ], 200);
                     }
                 }
@@ -83,7 +84,7 @@ class ClientController extends Controller
         $password = $request->password;
 
         $client = User::where('email', $email)->first();
-
+       
         if (!isset($client))
         {
             return response()->json(array(
@@ -98,14 +99,14 @@ class ClientController extends Controller
                 'errors' => 'login ou mot de passe incorrect',
             ));
         }
-
-        //if ($client->activ==false)
-       // {
-         //   return  response()->json(array(
-           //     'data' => NULL,
-             //   'errors' => 'Votre compte n\'a pas encore été activé<br><br>Un lien d\'activation vous a été envoyé dans votre boite mail',
-            //));
-       // }
+      
+        if ($client->active==false)
+        {
+            return  response()->json(array(
+                'data' => NULL,
+                'errors' => 'Votre compte n\'a pas encore été activé<br><br>Un lien d\'activation vous a été envoyé dans votre boite mail',
+            ));
+        }
 
         $client = Outil::getOneItemWithGraphQl($this->queryName, $client->id, true);;
 
