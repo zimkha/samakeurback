@@ -23,6 +23,7 @@ class ClientController extends Controller
     public function connexion(Request $request)
     {
 
+
        try
        {
             $errors = null;
@@ -30,6 +31,7 @@ class ClientController extends Controller
             $user_email = $request->email;
             $password   = $request->password;
             $user = User::where('email', $user_email)->first();
+           // dd($user);
             if(isset($user))
             {
                 if(Hash::check($password, $user->password))
@@ -37,7 +39,7 @@ class ClientController extends Controller
                     //Projetdd($user);
                     if($user->active == 0 || $user->active == false)
                     {
-                    $errors = "votre compte n'est pas encore activé";
+                    $errors = "Votre compte n'est pas encore activé";
                     return response()->json([
                         'data' => null,
                         'errors_debug' => $errors
@@ -45,20 +47,20 @@ class ClientController extends Controller
                     }
                     else
                     {
-                
+
                     return response()->json([
                         'data' => $user,
-                        'message' => ["connexion réussi"],
+                        'message' => "Connexion réussi",
                         'errors_debug' => null
                     ], 200);
                     }
                 }
-                
+
                 else
                 {
                     return response()->json([
                         'data'   => null,
-                        'errors_debug' => ["mot de passe incorrect"]
+                        'errors_debug' => ["Mot de passe incorrect"]
                     ], 200);
                 }
             }
@@ -66,10 +68,10 @@ class ClientController extends Controller
                 {
                     return response()->json([
                         'data' => null,
-                        'errors_debug' => ["email incorrecte"]
+                        'errors_debug' => ["Email incorrecte"]
                     ], 200);
                 }
-            
+
 
        }
        catch(\Exception $e)
@@ -84,7 +86,7 @@ class ClientController extends Controller
         $password = $request->password;
 
         $client = User::where('email', $email)->first();
-       
+
         if (!isset($client))
         {
             return response()->json(array(
@@ -99,7 +101,7 @@ class ClientController extends Controller
                 'errors' => 'login ou mot de passe incorrect',
             ));
         }
-      
+
         if ($client->active==false)
         {
             return  response()->json(array(
@@ -157,7 +159,7 @@ class ClientController extends Controller
                 return response()->json(['errors' => $errors]);
 
             });
-                    
+
         }
         catch(\Exception $e)
         {
