@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('connexion', 'ClientController@connexion');
 Route::post('signup', 'UserController@store');
-Route::get('logout', 'UserController@logout');
+Route::get('logout', 'ClientController@logout');
 Route::get('user', 'UserController@user');
 
 Route::group([
