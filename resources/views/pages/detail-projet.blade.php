@@ -18,19 +18,6 @@
                         <li class="nav-item">
                             <a class="nav-link" id="contact-tab" data-toggle="tab" target="_self" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Remarques Associés</a>
                         </li>
-                        {{--<li class="nav-item">
-                            <a class="nav-link" id="contact-tab" data-toggle="tab" target="_self" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Fichiers</a>
-                        </li>
-                        <li class="nav-item">
-                            <div class="float-right pt-0 mx-1">
-                                <button class="btn btn-primary btn-circle"  data-toggle="modal" data-target="#modalPlan" title="cloner le plan"><i class="fa fa-clone"></i></button>
-                            </div>
-                        </li>--}}
-                       {{-- <li class="nav-item">
-                            <div class="float-right pt-0 mx-1">
-                                <button class="btn btn-success btn-circle"   data-toggle="modal" data-target="#modalliaison" title="lier le plan a un projet"><i class="fa fa-magnet"></i></button>
-                            </div>
-                        </li>--}}
                     </ul>
                 </div>
 
@@ -121,18 +108,19 @@
                                         </div>
 
                                         <div class="row mt-30 animated px-2">
-                                            <div class="col-md-2 mb-10" ng-repeat="item in projetview.remarques">
+                                           {{-- <div class="col-md-2 mb-10" ng-repeat="item in projetview.remarques">
                                                 <a href="@{{link}}/@{{ item.demande_text }}">
                                                     <span class="fa fa-file-pdf"></span>
                                                 </a>
                                                 @{{ item.demande_text }}
-                                            </div>
+                                            </div>--}}
                                         </div>
 
                                     </div>
                                 </div>
 
                             </div>
+
                         </div>
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -142,7 +130,7 @@
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                         <tr align="center">
-                                            
+
                                             <th>Niveau</th>
                                             <th>Piece</th>
                                             <th>Chbres Sple </th>
@@ -198,18 +186,18 @@
                                         <thead>
                                         <tr align="center">
                                             <th>Code</th>
-                                            <th>Adresse</th>
                                             <th>Description</th>
+                                            <th>Adresse</th>
                                             {{--<th>Actions</th>--}}
                                         </tr>
                                         </thead>
 
                                         <tbody>
-                                            <tr class="animated fadeIn" ng-repeat="item in projetview.remarques">
+                                           {{-- <tr class="animated fadeIn" ng-repeat="item in projetview.remarques">
                                                 <td>@{{ item.projet.name }}</td>
-                                                <td>@{{ item.projet.adresse_terrain }}</td>
                                                 <td>@{{ item.demande_text }}</td>
-                                            </tr>
+                                                <td><a href="@{{ base_url }}/{{ item.fichier }}"></a></td>
+                                            </tr>--}}
 
                                         </tbody>
                                     </table>
