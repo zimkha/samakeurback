@@ -48,6 +48,16 @@ class ProjetQuery extends Query
             'adress_complet'         => ['type' => Type::string()],
             'telephone'              => ['type' => Type::string()],
             'code_postal'            => ['type' => Type::string()],
+
+            'electricite'            => ['type' => Type::boolean()],
+            'acces_voirie'           => ['type' => Type::boolean()],
+            'assainissement'         => ['type' => Type::boolean()],
+            'geometre'               => ['type' => Type::boolean()],
+            'courant_faible'         => ['type' => Type::boolean()],
+            'bornes_visible'         => ['type' => Type::boolean()],
+             'necessite_bornage'         => ['type' => Type::boolean()],
+
+            'eaux_pluviable'         => ['type' => Type::boolean()],
           
           
           
@@ -152,11 +162,21 @@ class ProjetQuery extends Query
             'fichier'                => $item->fichier,
             'etat'                   => $item->etat,
             'niveau_projets'         => $item->niveau_projets,
-            'plan_projets'            => $item->plan_projets,
+            'plan_projets'           => $item->plan_projets,
             'created_at'             => $item->created_at,
             'adresse_terrain'        => $item->adresse_terrain,
             'remarques'              => $item->remarques,
             'sdb'                    => $item->sdb,
+            'assainissement'         => $item->assainissement,
+            'electricte'             => $item->electricte, 
+            'eaux_pluvial'           => $item->eaux_pluvial,    
+            'bornes_visible'         => $item->bornes_visible,    
+            'necessite_bornage'      => $item->necessite_bornage,    
+            'courant_faible'         => $item->courant_faible,    
+            'acces_voirie'           => $item->acces_voirie,    
+            //'bornes_visible'         => $item->bornes_visible,  
+            'geometre'         => $item->geometre,    
+   
         ];
       });
     }

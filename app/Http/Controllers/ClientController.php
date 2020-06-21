@@ -27,7 +27,7 @@ class ClientController extends Controller
        {
             $errors = null;
             $data = null;
-            dd($request->all());
+          
             $user_email = $request->email;
             $password   = $request->password;
             $user = User::where('email', $user_email)->first();

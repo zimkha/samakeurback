@@ -35,6 +35,16 @@ class ProjetType extends GraphQLType
             'remarques'              => ['type' => Type::listOf(GraphQL::type('Remarque')), 'description' => ''],
             'plan_projets'           => ['type' => Type::listOf(GraphQL::type('Planprojet')), 'description' => ''],
              
+            'electricite'              => ['type' => Type::boolean()],
+            'acces_voirie'              => ['type' => Type::boolean()],
+            'assainissement'              => ['type' => Type::boolean()],
+            'geometre'              => ['type' => Type::boolean()],
+            'courant_faible'              => ['type' => Type::boolean()],
+            'bornes_visible'              => ['type' => Type::boolean()],
+            'eaux_pluviable'              => ['type' => Type::boolean()],
+            'necessite_bornage'         => ['type' => Type::boolean()],
+
+
             'nb_pieces'              => ['type' => Type::int()],
             'nb_chambre'             => ['type' => Type::int()],
             'nb_toillette'           => ['type' => Type::int()],

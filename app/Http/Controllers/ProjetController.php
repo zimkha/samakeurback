@@ -189,7 +189,24 @@ class ProjetController extends Controller
                         $niveau->bureau             = $key['bureau'];
                         $niveau->cuisine            = $key['cuisine'];
                         $niveau->toillette          = $key['toillette'];
-                        $niveau->sdb               = $key['sdb'];
+                        $niveau->sdb                = $key['sdb'];
+
+                        if (!isset($errors) && $request->hasFile('fichier') )
+                        {
+                             if ($item->fichier == null)
+                             {
+                                $fichier = $_FILES['fichier']['name'];
+                                $fichier_tmp = $_FILES['fichier']['tmp_name'];
+                                $k = rand(100, 9999);
+                                $ext = explode('.',$fichier);
+                                $rename = config('view.uploads')['projets']."/projes_".$k.".".end($ext);
+                                move_uploaded_file($fichier_tmp,$rename);
+                                //$path = $request->fichier->storeAs('uploads/plans', $rename);
+                                $item->fichier = $rename;
+                             }
+   
+   
+                        }
                       
                       
 
