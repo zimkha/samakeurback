@@ -174,8 +174,7 @@ class ProjetQuery extends Query
             'necessite_bornage'      => $item->necessite_bornage,    
             'courant_faible'         => $item->courant_faible,    
             'acces_voirie'           => $item->acces_voirie,    
-            //'bornes_visible'         => $item->bornes_visible,  
-            'geometre'         => $item->geometre,    
+            'geometre'               => $item->geometre,    
    
         ];
       });
