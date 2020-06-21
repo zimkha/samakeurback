@@ -31,6 +31,7 @@ Route::post('/remarque', 'RemarqueController@save');
 Route::post('/resave', 'UserController@resave');
 Route::post('/statut', 'UserController@statut');
 Route::post('/active_plan', 'ProjetController@active_plan');
+Route::post('/password-create', 'UserController@resetpassword');
 //Route::post('/connexion', 'ClientController@login');
 Route::post('/contrat', 'ContratController@save');
 Route::post('/link_plan_to_projet', 'ProjetController@linkPlanToProjet');

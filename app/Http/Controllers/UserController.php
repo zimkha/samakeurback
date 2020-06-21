@@ -310,4 +310,57 @@ class UserController extends Controller
        }
 
     }
+    public function resetpassword(Request $request)
+    {
+        try
+        {
+            return D
+            DB::transaction(function() use($request)
+            {
+                $errors = null;
+                if(isset($request->email))
+                {
+                    $user =  User::where('email', $request->email)->get();
+                    if(isset($user))
+                    {
+                        if(!empty($request->password) && !empty($request->confirmpaswword))
+                        {
+                            if($request->password == $request->confirmpassword)
+                            {
+                                $user->password = Hash::make($request->password);
+                               
+                            }
+                            else
+                            {
+                                $errors = "Les mots de pass ne sont pas identiques";
+                            }
+                        }
+                        else
+                        {
+                            $errors = "Veuillez renseigner les deux mots de passe";
+                        }
+                    }
+                    else
+                    {
+                        $errors = "Un utilsateur avec cette mot de passe n'existe pas dans la base de donnée";
+                    }
+                    
+                }
+                else
+                {
+                    $errors = "Veuillez renseigner l'email";
+                }
+                if(!isset($errors))
+                    {
+                        $user->save();
+                        return Outil::redirectgraphql($this->queryName, "id:{$user->id}", Outil::$queries[$this->queryName]);
+
+                    }
+                    throw new \Exception($errors);
+                });
+            }catch(\Exception $e)
+            {
+                return response()->json(['errors' => $e->getMessage()]);
+            }
+    }
 }
