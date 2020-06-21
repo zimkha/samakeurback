@@ -85,7 +85,7 @@
                                  <td>@{{item.user.telephone}}</td>
 
                                 <td class="text-center">
-                                    <a  class="btn btn-sm btn-success btn-circle text-white"  ng-click="activerProjet(item.id)">
+                                    <a  class="btn btn-sm btn-success btn-circle text-white" ng-if="item.etat == 0"  ng-click="activerProjet(item.id)">
                                         <i class="fa fa-check" title="Valider"></i>
 </a>
                                     <a href="#!/detail-projet/@{{ item.id }} " class="btn btn-sm btn-primary btn-circle">

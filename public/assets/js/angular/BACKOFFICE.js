@@ -2299,60 +2299,59 @@ $scope.get_Somme_daye = function ()
     //---FIN => Tester si la valeur est un entier ou pas---//
 
 
-    $scope.Valideaffiliation = function (e, idaff) {
-        e.preventDefault();
-        if ($scope.userConnected) {
-            var data = {
-                'id': idaff,
-                'statut': '1',
-            };
-            console.log(data)
 
-            $('body').blockUI_start();
-            $http({
-                url: BASE_URL + 'affiliation',
-                method: 'POST',
-                data: data,
+    $scope.activerProjet = function(id)
+    {
+
+        var data = {
+            'id': id,
+        };
+        console.log(data)
+
+        var deferred=$q.defer();
+        $.ajax
+        (
+            {
+                url: BASE_URL + 'activer-projet/'+id,
+                type:'GET',
+                contentType:false,
+                processData:false,
+                DataType:'text',
+                data:data,
                 headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(function (data) {
-                $('body').blockUI_stop();
-                data = data.data;
-                if (data.errors) {
-                    $scope.errors = data.errors;
-
-                    var msg = "";
-                    $.each($scope.errors, function (key, value) {
-                        msg = msg + "\n" + value;
-                    });
-
-                    iziToast.error({
-                        title: "",
-                        message: msg,
-                        position: 'topRight'
-                    });
-                } else {
-                    $('body').blockUI_stop();
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                },
+                beforeSend: function()
+                {
+                   // $('#modal_etatstock').blockUI_start();
+                },success:function(response)
+                {
+                  //  $('#modal_etatstock').blockUI_stop();
+                   // factory.data=response;
+                    //deferred.resolve(factory.data);
                     iziToast.success({
-                        title: '',
-                        message: 'Success',
+                        title: 'VALIDATION',
+                        message: "Succès",
                         position: 'topRight'
                     });
-
-                    $scope.pageChanged('projet');
-
+                    $scope.pageChanged('projet')
+                },
+                error:function (error)
+                {
+                    iziToast.error({
+                        title: 'VALIDATION',
+                        message: "Error",
+                        position: 'topRight'
+                    });
+                 //   $('#modal_etatstock').blockUI_stop();
+                    console.log('erreur serveur', error);
+                    deferred.reject(msg_erreur);
 
                 }
-            })
-        } else {
-            iziToast.info({
-                title: '',
-                message: 'Veuillez vous connecter erreur server',
-                position: 'topRight'
-            });
-        }
-    }
+            }
+        );
+        return deferred.promise;
+    };
 
     $scope.testSiUnElementEstDansTableau = function (tableau, idElement)
     {
