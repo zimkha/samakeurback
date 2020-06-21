@@ -38,6 +38,7 @@ Route::post('/link_plan_to_projet', 'ProjetController@linkPlanToProjet');
 Route::post('/inscription', 'UserController@save');
 Route::post('/joined', 'PlanController@joined');
 Route::get('/payment', 'ProjetController@payment');
+Route::get('/activer-projet/{id}', 'ProjetController@activeProjet');
 
 // les actions de suppressions
 Route::delete('/projet/{id}', 'ProjetController@delete');

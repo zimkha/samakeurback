@@ -460,6 +460,7 @@ class ProjetController extends Controller
                 if(isset($item))
                 {
                     $item->active = true;
+                    $item->etat = 1;
                     $item->save();
                     $data = 1;
                 }
