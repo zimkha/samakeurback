@@ -314,7 +314,7 @@ class UserController extends Controller
     {
         try
         {
-            return D
+            return 
             DB::transaction(function() use($request)
             {
                 $errors = null;
