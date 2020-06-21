@@ -113,11 +113,11 @@ class ProjetPaginatedQuery extends Query
        }
        if(isset($args['name']))
        {
-          $query = $query->where('name', $args['name']);
-       }
+        $query = $query->where('name',  Outil::getOperateurLikeDB(), '%'.$args['name']. '%');
+      }
        if(isset($args['adresse_terrain']))
        {
-          $query = $query->where('adresse_terrain',  Outil::getOperateurLikeDB(), '%'.$args['name']. '%');
+          $query = $query->where('adresse_terrain',  Outil::getOperateurLikeDB(), '%'.$args['adresse_terrain']. '%');
        }
         if (isset($args['telephone']))
        {

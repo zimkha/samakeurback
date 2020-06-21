@@ -33,7 +33,6 @@ class RemarqueController extends Controller
             $errors = "Veuillez renseigner vos remarques";
            }
            if (!isset($errors)) {
-               $item->type_remarque_id  = $request->type_remarque;
                $item->demande_text      = $request->demande_text;
                $item->projet_id         = $request->projet;
                if (!isset($errors) && $request->hasFile('fichier') )
