@@ -2298,6 +2298,62 @@ $scope.get_Somme_daye = function ()
     };
     //---FIN => Tester si la valeur est un entier ou pas---//
 
+
+    $scope.Valideaffiliation = function (e, idaff) {
+        e.preventDefault();
+        if ($scope.userConnected) {
+            var data = {
+                'id': idaff,
+                'statut': '1',
+            };
+            console.log(data)
+
+            $('body').blockUI_start();
+            $http({
+                url: BASE_URL + 'affiliation',
+                method: 'POST',
+                data: data,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function (data) {
+                $('body').blockUI_stop();
+                data = data.data;
+                if (data.errors) {
+                    $scope.errors = data.errors;
+
+                    var msg = "";
+                    $.each($scope.errors, function (key, value) {
+                        msg = msg + "\n" + value;
+                    });
+
+                    iziToast.error({
+                        title: "",
+                        message: msg,
+                        position: 'topRight'
+                    });
+                } else {
+                    $('body').blockUI_stop();
+                    iziToast.success({
+                        title: '',
+                        message: 'Success',
+                        position: 'topRight'
+                    });
+
+                    $scope.pageChanged('projet');
+
+
+                }
+            })
+        } else {
+            iziToast.info({
+                title: '',
+                message: 'Veuillez vous connecter erreur server',
+                position: 'topRight'
+            });
+        }
+    }
+
     $scope.testSiUnElementEstDansTableau = function (tableau, idElement)
     {
         var retour = false;

@@ -85,12 +85,12 @@
                                  <td>@{{item.user.telephone}}</td>
 
                                 <td class="text-center">
+                                    <a  class="btn btn-sm btn-success btn-circle text-white"  ng-click="activerProjet(item.id)">
+                                        <i class="fa fa-check" title="Valider"></i>
+</a>
                                     <a href="#!/detail-projet/@{{ item.id }} " class="btn btn-sm btn-primary btn-circle">
                                         <i class="fas fa-info"></i>
                                     </a>
-                                    <a  class="btn btn-sm btn-success btn-circle"  href="#!/detail-projet/@{{ item.id }} ">
-                                        <i class="fa fa-file-excel" title="generer le fichier excel"></i>
-</a>
 
                                     <button ng-click="deleteElement('projet',item.id)" class="btn btn-sm btn-danger btn-circle">
                                         <i class="fas fa-trash"></i>
@@ -112,7 +112,7 @@
                 <div class="row mt-10">
                     <div class="col-md-4">
                         <span>Affichage par</span>
-                        <select class="form-control-sm" ng-model="paginationentrestock.entryLimit" ng-change="pageChanged('entrestock')">
+                        <select class="form-control-sm" ng-model="paginationprojet.entryLimit" ng-change="pageChanged('projet')">
                             <option value="10" selected>10</option>
                             <option value="25">25</option>
                             <option value="50">50</option>
@@ -121,7 +121,7 @@
                     </div>
                     <div class="col-md-8 float-right">
                         <nav aria-label="Page navigation">
-                            <ul class="uk-pagination float-right" uib-pagination total-items="paginationentrestock.totalItems" ng-model="paginationentrestock.currentPage" max-size="paginationentrestock.maxSize" items-per-page="paginationentrestock.entryLimit" ng-change="pageChanged('entrestock')" previous-text="‹" next-text="›" first-text="«" last-text="»" boundary-link-numbers="true" rotate="false"></ul>
+                            <ul class="uk-pagination float-right" uib-pagination total-items="paginationprojet.totalItems" ng-model="paginationprojet.currentPage" max-size="paginationprojet.maxSize" items-per-page="paginationprojet.entryLimit" ng-change="pageChanged('projet')" previous-text="‹" next-text="›" first-text="«" last-text="»" boundary-link-numbers="true" rotate="false"></ul>
                         </nav>
                     </div>
                 </div>

@@ -26,18 +26,18 @@ class UserController extends Controller
                 {
                     $user = User::find($request->id);
                 }
-               
+
 
                if(empty($request->nom) || empty($request->prenom) || empty($request->telephone) ||  empty($request->email) || empty($request->confirmemail))
                {
                    $errors = "Veuillez remplire tous les champs du formulaire";
                }
-               
+
                     if (empty($request->password) || empty($request->confirmpassword))
                     {
                         $errors = "Veuillez remplir tous les mots de passe";
                     }
-                
+
 
                 if(!empty($request->password) && $request->password!= $request->confirmpassword)
                 {
@@ -59,7 +59,7 @@ class UserController extends Controller
                         $errors = "Ce numéro téléphone existe déja";
                     }
                 }
-                
+
 
                   $user->name               = $request->nom;
                   $user->nom                = $request->nom;
@@ -74,7 +74,7 @@ class UserController extends Controller
                 $role = Role::find($request->role);
                 if (!isset($errors) && $user->save())
                 {
-                    
+
                     $user->save();
                     $id = $user->id;
                     return response()->json(array(
@@ -99,11 +99,11 @@ class UserController extends Controller
             {
                 return DB::transaction(function () use($request){
                     $errors = null;
-                    if (empty($request->id)) 
+                    if (empty($request->id))
                     {
                         $errors = "veuillez contacter le service technique";
                     }
-                    
+
                     $item = User::find($request->id);
                     if(isset($item))
                     {
@@ -314,21 +314,21 @@ class UserController extends Controller
     {
         try
         {
-            return D
+            return
             DB::transaction(function() use($request)
             {
                 $errors = null;
                 if(isset($request->email))
                 {
-                    $user =  User::where('email', $request->email)->get();
+                    $user =  User::where('email', $request->email)->get()->first();
                     if(isset($user))
                     {
-                        if(!empty($request->password) && !empty($request->confirmpaswword))
+                        if(!empty($request->password) && !empty($request->confirmpassword))
                         {
                             if($request->password == $request->confirmpassword)
                             {
                                 $user->password = Hash::make($request->password);
-                               
+
                             }
                             else
                             {
@@ -344,7 +344,7 @@ class UserController extends Controller
                     {
                         $errors = "Un utilsateur avec cette mot de passe n'existe pas dans la base de donnée";
                     }
-                    
+
                 }
                 else
                 {
