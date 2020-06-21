@@ -2298,6 +2298,61 @@ $scope.get_Somme_daye = function ()
     };
     //---FIN => Tester si la valeur est un entier ou pas---//
 
+
+
+    $scope.activerProjet = function(id)
+    {
+
+        var data = {
+            'id': id,
+        };
+        console.log(data)
+
+        var deferred=$q.defer();
+        $.ajax
+        (
+            {
+                url: BASE_URL + 'activer-projet/'+id,
+                type:'GET',
+                contentType:false,
+                processData:false,
+                DataType:'text',
+                data:data,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                },
+                beforeSend: function()
+                {
+                   // $('#modal_etatstock').blockUI_start();
+                },success:function(response)
+                {
+                  //  $('#modal_etatstock').blockUI_stop();
+                   // factory.data=response;
+                    //deferred.resolve(factory.data);
+                    iziToast.success({
+                        title: 'VALIDATION',
+                        message: "Succès",
+                        position: 'topRight'
+                    });
+                    $scope.pageChanged('projet')
+                },
+                error:function (error)
+                {
+                    iziToast.error({
+                        title: 'VALIDATION',
+                        message: "Error",
+                        position: 'topRight'
+                    });
+                 //   $('#modal_etatstock').blockUI_stop();
+                    console.log('erreur serveur', error);
+                    deferred.reject(msg_erreur);
+
+                }
+            }
+        );
+        return deferred.promise;
+    };
+
     $scope.testSiUnElementEstDansTableau = function (tableau, idElement)
     {
         var retour = false;
