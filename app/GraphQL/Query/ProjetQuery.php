@@ -48,6 +48,8 @@ class ProjetQuery extends Query
             'adress_complet'         => ['type' => Type::string()],
             'telephone'              => ['type' => Type::string()],
             'code_postal'            => ['type' => Type::string()],
+            'id_user'                =>  ['type' => Type::int()],
+
 
             'electricite'            => ['type' => Type::boolean()],
             'acces_voirie'           => ['type' => Type::boolean()],
@@ -85,6 +87,10 @@ class ProjetQuery extends Query
        if (isset($args['user_id']))
        {
           $query = $query->where('user_id', $args['user_id']);
+       }
+       if(isset($args['id_user']))
+       {
+          $query = $query->where('id_user', $args['id_user']);
        }
        if (isset($args['active']))
        {

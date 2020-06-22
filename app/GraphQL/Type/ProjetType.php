@@ -43,6 +43,7 @@ class ProjetType extends GraphQLType
             'bornes_visible'              => ['type' => Type::boolean()],
             'eaux_pluviable'              => ['type' => Type::boolean()],
             'necessite_bornage'         => ['type' => Type::boolean()],
+            'id_user'                =>  ['type' => Type::int()],
 
 
             'nb_pieces'              => ['type' => Type::int()],

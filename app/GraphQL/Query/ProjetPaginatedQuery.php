@@ -33,6 +33,7 @@ class ProjetPaginatedQuery extends Query
             'text_projet'            => ['type'  => Type::string()],
             'adresse_terrain'        => ['type'  => Type::string()],
             'sdb'                    => ['type' => Type::int()],
+            'id_user'                =>  ['type' => Type::int()],
 
             'name'                   => ['type'  => Type::string()],
             'fichier'                => ['type'  => Type::string()],
@@ -90,6 +91,10 @@ class ProjetPaginatedQuery extends Query
        if (isset($args['etat']))
        {
           $query = $query->where('etat', $args['etat']);
+       }
+       if(isset($args['id_user']))
+       {
+          $query = $query->where('id_user', $args['id_user']);
        }
         if (isset($args['email']))
        {
