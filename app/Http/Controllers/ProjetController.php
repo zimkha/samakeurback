@@ -24,11 +24,13 @@ class ProjetController extends Controller
     protected $queryName = "projets";
     public function avalider()
     {
-        return Plan::SelecvByName("kh");
+        $attribt = "chambre";
+        return Projet::nb_attribut(4,$attribt );
+
     }
     public function save(Request $request)
     {
-        //dd($request->all());
+        // dd($request->all());
         try
         {
             return DB::transaction(function () use($request) {
@@ -143,9 +145,9 @@ class ProjetController extends Controller
                 $n = 0;
                 $array_level = array();
               
-                if(isset($request->tab_niveau) && $request->tab_niveau != null)
+                if(isset($request->tab_projet) && $request->tab_projet != null)
                 {
-                    $data = json_decode($request->tab_niveau, true);
+                    $data = json_decode($request->tab_projet, true);
                     foreach ($data as  $key) {
                       
                         $n = $n + 1;
@@ -215,6 +217,8 @@ class ProjetController extends Controller
 
                     }
                 }
+
+                // dd($array_level);
 
                 if (!isset($errors))
                 {
