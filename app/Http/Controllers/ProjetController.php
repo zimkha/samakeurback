@@ -30,12 +30,13 @@ class ProjetController extends Controller
     }
     public function save(Request $request)
     {
-        // dd($request->all());
+    
         try
         {
             return DB::transaction(function () use($request) {
                 $errors = null;
                 $name = Projet::makeCode();
+                $auth_user = Auth::user()->id;
                 $item  = new Projet();
                 $array = [
                          'user', 'longeur', 'largeur',
@@ -46,7 +47,9 @@ class ProjetController extends Controller
                     NiveauProjet::where('projet_id', $request->id)->delete();
                     NiveauProjet::where('projet_id', $request->id)->forceDelete();
                     $name = $item->name;
+                    $auth_user = $item->id_user;
                 }
+                $item->id_user = $auth_user;
                 if(empty($request->acces_voirie) || $request->acces_voirie == 0)
                 {
                     $item->acces_voirie = 0;
