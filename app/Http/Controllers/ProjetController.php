@@ -30,6 +30,7 @@ class ProjetController extends Controller
     }
     public function save(Request $request)
     {
+        dd($request->all());
 
         try
         {
@@ -115,7 +116,7 @@ class ProjetController extends Controller
                 {
                     if($User->is_client== 1)
                     {
-                        if(empty($request->tab_niveau))
+                        if(empty($request->tab_projet))
                         {
                             $errors = "Veuillez remplir les niveaux dans le formulaire";
                             throw new \Exception($errors);
