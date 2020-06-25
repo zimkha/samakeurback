@@ -1,6 +1,7 @@
 var app=angular.module('BackEnd',[ 'ngRoute' , 'ngSanitize' , 'ngLoadScript', 'ui.bootstrap' , 'angular.filter']);
 
 var BASE_URL='//'+location.host+'/samakeurback/public/';
+//var BASE_URL='//'+location.host+'/admin/';
 var imgupload = BASE_URL + '/assets/images/upload.jpg';
 var msg_erreur = 'Veuillez contacter le support technique';
 

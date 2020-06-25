@@ -30,7 +30,7 @@ class ProjetController extends Controller
     }
     public function save(Request $request)
     {
-    
+
         try
         {
             return DB::transaction(function () use($request) {
@@ -43,7 +43,7 @@ class ProjetController extends Controller
                        ];
                 // presence_mitoyen
                 if (isset($request->id)) {
-                    $item = Projet::find($id);
+                    $item = Projet::find($request->id);
                     NiveauProjet::where('projet_id', $request->id)->delete();
                     NiveauProjet::where('projet_id', $request->id)->forceDelete();
                     $name = $item->name;
@@ -64,7 +64,7 @@ class ProjetController extends Controller
                 }
                 else
                     $item->electricite             = $request->electricite;
-                
+
                 if(empty($request->courant_faible) || $request->courant_faible == 0)
                 {
                     $item->courant_faible = 0;
@@ -76,29 +76,29 @@ class ProjetController extends Controller
                 {
                     $item->assainissement = 0;
                 }
-                else 
+                else
                   $item->assainissement             = $request->assainissement;
 
-                
+
                   if(empty($request->eaux_pluviable) || $request->eaux_pluviable == 0)
                   {
                       $item->eaux_pluvial = 0;
                   }
-                  else 
+                  else
                     $item->eaux_pluvial      = $request->eaux_pluviable;
-                
+
                 if(empty($request->bornes_visible) || $request->bornes_visible == 0)
                 {
                     $item->bornes_visible = 0;
                 }
-                else 
+                else
                     $item->bornes_visible      = $request->bornes_visible;
 
                 if(empty($request->necessite_bornage) || $request->necessite_bornage == 0)
                 {
                     $item->necessite_bornage = 0;
                 }
-                else 
+                else
                   $item->necessite_bornage      = $request->necessite_bornage;
                 if(isset($request->adresse_terrain))
                 {
@@ -139,7 +139,7 @@ class ProjetController extends Controller
                 $item->superficie              = $superficie;
                 $item->longeur                 = $request->longeur;
                 $item->largeur                 = $request->largeur;
-              
+
               //  $item->presence_mitoyen        = $request->presence_mitoyen;
                 $item->geometre                = $request->geometre;
                 $item->adresse_terrain         = $request->adresse_terrain;
@@ -147,12 +147,12 @@ class ProjetController extends Controller
 
                 $n = 0;
                 $array_level = array();
-              
+
                 if(isset($request->tab_projet) && $request->tab_projet != null)
                 {
                     $data = json_decode($request->tab_projet, true);
                     foreach ($data as  $key) {
-                      
+
                         $n = $n + 1;
                         $niveau = new NiveauProjet();
                         if (empty($key['piece'])) {
@@ -185,11 +185,11 @@ class ProjetController extends Controller
                         {
                             $errors = "Erreur de décompte sur le nombre de pièces ligne n°{$n}";
                         }
-                       
+
                         $niveau->niveau_name        = $key['niveau'];
                         $niveau->piece              = $key['piece'];
                         $niveau->chambre            = $key['chambre'];
-                       
+
                         $niveau->salon              = $key['salon'];
                         $niveau->bureau             = $key['bureau'];
                         $niveau->cuisine            = $key['cuisine'];
@@ -209,13 +209,13 @@ class ProjetController extends Controller
                                 //$path = $request->fichier->storeAs('uploads/plans', $rename);
                                 $item->fichier = $rename;
                              }
-   
-   
-                        }
-                      
-                      
 
-                       
+
+                        }
+
+
+
+
                         array_push($array_level, $niveau);
 
                     }
