@@ -148,7 +148,7 @@ class ProjetController extends Controller
 
                 $n = 0;
                 $array_level = array();
-
+                // dd($request->tab_projet);
                 if(isset($request->tab_projet) && $request->tab_projet != null)
                 {
                     $data = json_decode($request->tab_projet, true);
@@ -159,22 +159,22 @@ class ProjetController extends Controller
                         if (empty($key['piece'])) {
                            $errors = "Veuillez renseigner le nombre de pieces de ce niveau ligne n°". $n;
                         }
-                        if (empty($key['chambre'])) {
+                        if (!isset($key['chambre'])) {
                             $errors = "Veuillez renseigner le nombre de chambre de ce niveau ligne n°". $n;
                           }
-                         if (empty($key['salon'])) {
+                         if (!isset($key['salon'])) {
                             $errors = "Veuillez renseigner le nombre de salon de ce niveau ligne n°". $n;
                          }
-                         if (empty($key['bureau'])) {
+                         if (!isset($key['bureau'])) {
                             $errors = "Veuillez renseigner le nombre de bureau de ce niveau ligne n°". $n;
                          }
-                         if (empty($key['cuisine'])) {
+                         if (!isset($key['cuisine'])) {
                             $errors = "Veuillez renseigner le nombre de cuisine de ce niveau ligne n°". $n;
                          }
-                         if (empty($key['toillette'])) {
+                         if (!isset($key['toillette'])) {
                             $errors = "Veuillez renseigner le nombre de toillette de ce niveau ligne n°". $n;
                          }
-                         if (empty($key['niveau'])) {
+                         if (!isset($key['niveau'])) {
                             $errors = "Veuillez renseigner le name du niveau ligne n°". $n;
                          }
                          if (isset($errors))
