@@ -1,10 +1,10 @@
 <?php return array (
   'app' => 
   array (
-    'name' => 'Laravel',
+    'name' => 'Samakeur',
     'env' => 'local',
     'debug' => true,
-    'url' => 'http://localhost/samakeurback/public/',
+    'url' => 'http://samakeur.sn/samakeurback/',
     'asset_url' => NULL,
     'timezone' => 'UTC',
     'locale' => 'en',
@@ -227,7 +227,7 @@
         'endpoint' => NULL,
       ),
     ),
-    'prefix' => 'laravel_cache',
+    'prefix' => 'samakeur_cache',
   ),
   'cors' => 
   array (
@@ -325,7 +325,7 @@
       'options' => 
       array (
         'cluster' => 'redis',
-        'prefix' => 'laravel_database_',
+        'prefix' => 'samakeur_database_',
       ),
       'default' => 
       array (
@@ -450,7 +450,7 @@
       array (
         'driver' => 'local',
         'root' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/app/public',
-        'url' => 'http://localhost/samakeurback/public//storage',
+        'url' => 'http://samakeur.sn/samakeurback//storage',
         'visibility' => 'public',
       ),
       's3' => 
@@ -708,7 +708,7 @@
     'from' => 
     array (
       'address' => NULL,
-      'name' => 'Laravel',
+      'name' => 'Samakeur',
     ),
     'markdown' => 
     array (
@@ -765,6 +765,7 @@
       'model_morph_key' => 'model_id',
     ),
     'display_permission_in_exception' => false,
+    'display_role_in_exception' => false,
     'enable_wildcard_permission' => false,
     'cache' => 
     array (
@@ -887,7 +888,7 @@
       0 => 2,
       1 => 100,
     ),
-    'cookie' => 'laravel_session',
+    'cookie' => 'samakeur_session',
     'path' => '/',
     'domain' => NULL,
     'secure' => NULL,
