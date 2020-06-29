@@ -76,6 +76,7 @@ class ProjetQuery extends Query
         
     }
 
+    
     public function resolve($root, $args)
     {
        $query = Projet::with('niveau_projets');

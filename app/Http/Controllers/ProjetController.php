@@ -14,10 +14,20 @@ use App\NiveauProjet;
 use PayPal\Rest\ApiContext;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Route;
 use Srmklive\PayPal\Services\ExpressCheckout;
 use Srmklive\PayPal\Services\AdaptivePayments;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use PayPal\Api\Amount;
+use PayPal\Api\Details;
+use PayPal\Api\Item;
+use PayPal\Api\ItemList;
+use PayPal\Api\Payer;
+use PayPal\Api\Payment;
+use PayPal\Api\RedirectUrls;
+use PayPal\Api\Transaction;
 
 class ProjetController extends Controller
 {
@@ -573,68 +583,149 @@ class ProjetController extends Controller
         ));
        }
     }
-    public function payment(Request $request)
+    public function paypalSuccess()
     {
-          $config = [
-             "id"  => "AYfR2ytBTo3K31b0hV7lIC3ioXz6cTuZusjKQE5XUVtyZ8E1FXikRuNQBVZfKpnqCE7Q-Jjza2y1F24c",
-             "secrete" => "EJFiXlkNOhlt3uokThwW8VOAe4S7DE_GaeEuEXZcx2hWYYx1RbNHSINVLpBok3QIft8Csf1V8vk2tt2_"
-         ];
-        $apiContext = new ApiContext(
-            new \PayPal\Auth\OAuthTokenCredential(
-                $config['id'],
-                $config['secrete']
-            )
-        );
-        $payment = new \PayPal\Api\Payment();
-        $payment->setIntent('sale');
-        $redirectUrls = (new  \PayPal\Api\RedirectUrls()) 
-        ->setReturnUrl('http://localhost/samakeurback/public/success.php')
-        ->setCancelUrl('http://localhost/samakeurback/public/');
-        $payment->setRedirectUrls($redirectUrls);
+       
+        // $config = [
+        //     "id"  => "AYfR2ytBTo3K31b0hV7lIC3ioXz6cTuZusjKQE5XUVtyZ8E1FXikRuNQBVZfKpnqCE7Q-Jjza2y1F24c",
+        //     "secrete" => "EJFiXlkNOhlt3uokThwW8VOAe4S7DE_GaeEuEXZcx2hWYYx1RbNHSINVLpBok3QIft8Csf1V8vk2tt2_"
+        // ];
+        $config = [
+            "id"  => "AQr5DXEvYR5O3cYNLkrQAMlhHifUUtuW1UmOg3O9U8Zjy7G83IqtAKTRkF3c7UjTw6fSnD5MFvv-tmeb",
+            "secrete" => "ENtF1eT4k760AvOoIh-jUqGFxbIMD-L0PdTrlCo0sG2zNhlTWfnBSPQNwdPRcYxsNPoI9_4zSxWjA8tG"
+        ];
+       $apiContext = new ApiContext(
+           new \PayPal\Auth\OAuthTokenCredential(
+               $config['id'],
+               $config['secrete']
+           )
+       );
+        $data = 0;
+        $errors = null;
         
-//      On definie le payeur
-        $payment->setPayer((new \PayPal\Api\Payer())
-             ->setPaymentMethod('paypal'));
-             $projet = Projet::find(2);
-             $list = new \PayPal\Api\ItemList();
-             $item_payment =  array();
-             $item = (new \PayPal\Api\Item())
-             ->setName($projet->name)
-             ->setPrice(10000)
-             ->setQuantity(1)
-             ->setCurrency('EUR')
-             ;
-            
-             $list->addItem($item);
-             $details =  (new \PayPal\Api\Details())
-                   ->setSubTotal(10000);
-                   
-             $amount = (new \PayPal\Api\Amount())
-               ->setTotal(10000)
-               ->setCurrency("EUR")
-               ->setDetails($details);
-            
-               $transactions = (new \PayPal\Api\Transaction())
-                   ->setItemList($list)
-                   ->setDescription("Payment des frais pour le projet")
-                   ->setInvoiceNumber(uniqid())
-                   ->setAmount($amount)
-                   ->setCustom($projet->id);
-                   dd($transactions);
-                   $payment->setTransactions($transactions);
+        $payment = Payment::get($_GET['paymentId'], $apiContext);
+        $execute =( new \PayPal\Api\PaymentExecution())
+                    ->setPayerId($_GET['PayerID'])
+                    ->setTransactions($payment->getTransactions());
+                   try {
+                    $payment->execute($execute, $apiContext);
+                  
+                    $id = $payment->getId();
+                    $projet = Projet::find($payment->getTransactions()[0]->getCustom());
 
-                   try{
-                    $payment->create($apiContext);
-                    header('Location:'. $payment->getApprovalLink());
+                    if(isset($id) && isset($projet))
+                    {
+                        $projet->etat = 2;
+                        $projet->save();
+                        return $projet;
+
+                    }
+                    else
+                      return "erreur de paiement";
                    }
                    catch(\PayPal\Exception\PayPalConnectionException $e)
-                   {
-                       var_dump(json_decode($e->getData()));
+                      {
+                        // var_dump(json_decode($e->getData()));
+                        return response()->json(array(
+                            'errors'          => config('app.debug') ? $e->getData() : Outil::getMsgError(),
+                            'errors_debug'    => [$e->getData()],
+                        ));
                    }
-       
-           
-      
     }
+    public function payment($id)
+    {
+        $errors = null;
+        try{
+            // $config = [
+            //     "id"  => "AYfR2ytBTo3K31b0hV7lIC3ioXz6cTuZusjKQE5XUVtyZ8E1FXikRuNQBVZfKpnqCE7Q-Jjza2y1F24c",
+            //     "secrete" => "EJFiXlkNOhlt3uokThwW8VOAe4S7DE_GaeEuEXZcx2hWYYx1RbNHSINVLpBok3QIft8Csf1V8vk2tt2_"
+            // ];
+
+            $config = [
+                "id"  => "AQr5DXEvYR5O3cYNLkrQAMlhHifUUtuW1UmOg3O9U8Zjy7G83IqtAKTRkF3c7UjTw6fSnD5MFvv-tmeb",
+                "secrete" => "ENtF1eT4k760AvOoIh-jUqGFxbIMD-L0PdTrlCo0sG2zNhlTWfnBSPQNwdPRcYxsNPoI9_4zSxWjA8tG"
+            ];
+           $apiContext = new ApiContext(
+               new \PayPal\Auth\OAuthTokenCredential(
+                   $config['id'],
+                   $config['secrete']
+               )
+           );
+          
+                $projet = Projet::find($id);
+                if(!isset($projet))
+                {
+                    $errors = "Impossible de trouver ce projet pour le payment";
+                    throw new \Exception($errors);
+
+                }
+               
+                $list = new \PayPal\Api\ItemList();
+                $item_payment =  array();
+                $item = (new \PayPal\Api\Item())
+                ->setName($projet->name)
+                ->setPrice(10000)
+                ->setQuantity(1)
+                ->setCurrency('EUR')
+                ;
+               
+                $list->addItem($item);
+                $details =  (new \PayPal\Api\Details())
+                      ->setSubTotal(10000);
+                      
+                $amount = (new \PayPal\Api\Amount())
+                  ->setTotal(10000)
+                  ->setCurrency("EUR")
+                  ->setDetails($details);
+               
+                  $transactions = (new \PayPal\Api\Transaction())
+                      ->setItemList($list)
+                      ->setDescription("Payment des frais pour le projet")
+                      ->setInvoiceNumber(uniqid())
+                      ->setAmount($amount)
+                      ->setCustom($projet->id);
+                   //    dd($transactions);
+                   $payment = new \PayPal\Api\Payment();
+                   //$payment->setIntent('sale');
+                   $payment->setIntent('authorize');
+                   $redirectUrls = (new  \PayPal\Api\RedirectUrls()) 
+                   ->setReturnUrl(route('payment-execute'))
+                   ->setCancelUrl('http://localhost/samakeurback/public/');
+                   $payment->setRedirectUrls($redirectUrls);
+                   
+           //      On definie le payeur
+                   $payment->setPayer((new \PayPal\Api\Payer())
+                        ->setPaymentMethod('paypal'));
+                      $payment->setTransactions([$transactions]);
+                    
+                      
+   
+                      try{
+
+                       $response    = $payment->create($apiContext);
+                       $redirectUrl = $response->links[1]->href;
+                       return $redirectUrl;
+
+                      }
+                      catch(\PayPal\Exception\PayPalConnectionException $e)
+                      {
+                        return response()->json(array(
+                            'errors'          => config('app.debug') ? $e->getData() : Outil::getMsgError(),
+                            'errors_debug'    => [$e->getData()],
+                        ));
+                      }
+        }catch(\Exception $e)
+        {
+            return response()->json(array(
+                'errors'          => config('app.debug') ? $e->getMessage() : Outil::getMsgError(),
+                'errors_debug'    => [$e->getMessage()],
+            ));             
+        }
+         
+     
+    }
+  
+
     public function makeMontant(Request $request)
     {
         try
