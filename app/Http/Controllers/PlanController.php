@@ -168,6 +168,7 @@ class PlanController extends Controller
                      throw new \Exception($errors);
                  }
 
+                
                  $data       = json_decode($request->tab_plan, true);
                  $tableau    = array();
                  $n = 0;
@@ -201,9 +202,9 @@ class PlanController extends Controller
                      $niveau->bureau         = $datum['bureau'];
                      $niveau->toillette      = $datum['toillette'];
                      $niveau->niveau         = $datum['niveau'];
-
-                     $total_pieces = $niveau->chambre + $niveau->salon + $niveau->cuisine + $niveau->bureau + $niveau->toillette;
-
+                    
+                     $total_pieces = $niveau->chambre + $niveau->salon + $niveau->cuisine + $niveau->bureau + $niveau->toillette + $niveau->sdb;
+                  
                      if ($total_pieces != (int) $datum['piece']) {
                          $errors = "Veuillez verifier si le total des pieces est repecter  à la ligne n°".$n;
                      }
@@ -217,6 +218,7 @@ class PlanController extends Controller
                      $item->longeur          = $request->longeur;
                      $item->largeur          = $request->largeur;
                      $item->unite_mesure_id  = $request->unite_mesure;
+                    
                      //dd($request->file('fichier'));
                      if (!isset($errors) && $request->hasFile('fichier') )
                      {
@@ -362,9 +364,10 @@ class PlanController extends Controller
                     $niveau->bureau         = $datum['bureau'];
                     $niveau->toillette      = $datum['toillette'];
                     $niveau->niveau         = $datum['niveau'];
+                    $niveau->sdb            = $datum['sdb'];
 
-                    $total_pieces = $niveau->chambre + $niveau->salon + $niveau->cuisine + $niveau->bureau + $niveau->toillette;
-
+                    $total_pieces = $niveau->chambre + $niveau->salon + $niveau->cuisine + $niveau->bureau + $niveau->toillette + $niveau->sdb;
+                   
                     if ($total_pieces != (int) $datum['piece']) {
                         $errors = "Veuillez verifier si le total des pieces est repecter  à la ligne n°".$n;
                     }

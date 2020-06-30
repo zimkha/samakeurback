@@ -24,6 +24,7 @@ class PlanType extends GraphQLType
             'code'                  => [ 'type' => Type::string(), 'description' => ''],
 
             'superficie'             => ['type' => Type::int()],
+            'sdb'             => ['type' => Type::int()],
             'longeur'                => ['type' => Type::int()],
             'largeur'                => ['type' => Type::int()],
             'piscine'                => ['type' => Type::int()],
