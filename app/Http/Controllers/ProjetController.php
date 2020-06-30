@@ -40,7 +40,7 @@ class ProjetController extends Controller
     }
     public function save(Request $request)
     {
-        dd($request->all());
+       // dd($request->all());
 
         try
         {
@@ -585,7 +585,7 @@ class ProjetController extends Controller
     }
     public function paypalSuccess()
     {
-       
+
         // $config = [
         //     "id"  => "AYfR2ytBTo3K31b0hV7lIC3ioXz6cTuZusjKQE5XUVtyZ8E1FXikRuNQBVZfKpnqCE7Q-Jjza2y1F24c",
         //     "secrete" => "EJFiXlkNOhlt3uokThwW8VOAe4S7DE_GaeEuEXZcx2hWYYx1RbNHSINVLpBok3QIft8Csf1V8vk2tt2_"
@@ -602,14 +602,14 @@ class ProjetController extends Controller
        );
         $data = 0;
         $errors = null;
-        
+
         $payment = Payment::get($_GET['paymentId'], $apiContext);
         $execute =( new \PayPal\Api\PaymentExecution())
                     ->setPayerId($_GET['PayerID'])
                     ->setTransactions($payment->getTransactions());
                    try {
                     $payment->execute($execute, $apiContext);
-                  
+
                     $id = $payment->getId();
                     $projet = Projet::find($payment->getTransactions()[0]->getCustom());
 
@@ -651,7 +651,7 @@ class ProjetController extends Controller
                    $config['secrete']
                )
            );
-          
+
                 $projet = Projet::find($id);
                 if(!isset($projet))
                 {
@@ -659,7 +659,7 @@ class ProjetController extends Controller
                     throw new \Exception($errors);
 
                 }
-               
+
                 $list = new \PayPal\Api\ItemList();
                 $item_payment =  array();
                 $item = (new \PayPal\Api\Item())
@@ -668,16 +668,16 @@ class ProjetController extends Controller
                 ->setQuantity(1)
                 ->setCurrency('EUR')
                 ;
-               
+
                 $list->addItem($item);
                 $details =  (new \PayPal\Api\Details())
                       ->setSubTotal(10000);
-                      
+
                 $amount = (new \PayPal\Api\Amount())
                   ->setTotal(10000)
                   ->setCurrency("EUR")
                   ->setDetails($details);
-               
+
                   $transactions = (new \PayPal\Api\Transaction())
                       ->setItemList($list)
                       ->setDescription("Payment des frais pour le projet")
@@ -688,18 +688,18 @@ class ProjetController extends Controller
                    $payment = new \PayPal\Api\Payment();
                    //$payment->setIntent('sale');
                    $payment->setIntent('authorize');
-                   $redirectUrls = (new  \PayPal\Api\RedirectUrls()) 
+                   $redirectUrls = (new  \PayPal\Api\RedirectUrls())
                    ->setReturnUrl(route('payment-execute'))
                    ->setCancelUrl('http://localhost/samakeurback/public/');
                    $payment->setRedirectUrls($redirectUrls);
-                   
+
            //      On definie le payeur
                    $payment->setPayer((new \PayPal\Api\Payer())
                         ->setPaymentMethod('paypal'));
                       $payment->setTransactions([$transactions]);
-                    
-                      
-   
+
+
+
                       try{
 
                        $response    = $payment->create($apiContext);
@@ -719,12 +719,12 @@ class ProjetController extends Controller
             return response()->json(array(
                 'errors'          => config('app.debug') ? $e->getMessage() : Outil::getMsgError(),
                 'errors_debug'    => [$e->getMessage()],
-            ));             
+            ));
         }
-         
-     
+
+
     }
-  
+
 
     public function makeMontant(Request $request)
     {
