@@ -30,6 +30,7 @@ class ProjetController extends Controller
     }
     public function save(Request $request)
     {
+        dd($request->all());
 
         try
         {
@@ -115,7 +116,7 @@ class ProjetController extends Controller
                 {
                     if($User->is_client== 1)
                     {
-                        if(empty($request->tab_niveau))
+                        if(empty($request->tab_projet))
                         {
                             $errors = "Veuillez remplir les niveaux dans le formulaire";
                             throw new \Exception($errors);
@@ -572,11 +573,11 @@ class ProjetController extends Controller
         ));
        }
     }
-    public function payment()
+    public function payment(Request $request)
     {
           $config = [
-             "id"  => "AcftOJdjG7Oa5OHrLQfzrMB8Bl2u27xdTMzbygvJX9B59200UAGQ05yGjwzn23z0Wy9EanSHZRLDtp6w",
-             "secrete" => "ENDRItY4jUMH9BBjH6IMxiLWHBk-GO9t7sCe7X4b9Es5Cuz2mqe995WJc7vuNj-IuJA-PkWa6c4gCSxo"
+             "id"  => "AYfR2ytBTo3K31b0hV7lIC3ioXz6cTuZusjKQE5XUVtyZ8E1FXikRuNQBVZfKpnqCE7Q-Jjza2y1F24c",
+             "secrete" => "EJFiXlkNOhlt3uokThwW8VOAe4S7DE_GaeEuEXZcx2hWYYx1RbNHSINVLpBok3QIft8Csf1V8vk2tt2_"
          ];
         $apiContext = new ApiContext(
             new \PayPal\Auth\OAuthTokenCredential(
@@ -585,25 +586,96 @@ class ProjetController extends Controller
             )
         );
         $payment = new \PayPal\Api\Payment();
-        $payment->create($apiContext);
+        $payment->setIntent('sale');
+        $redirectUrls = (new  \PayPal\Api\RedirectUrls()) 
+        ->setReturnUrl('http://localhost/samakeurback/public/success.php')
+        ->setCancelUrl('http://localhost/samakeurback/public/');
+        $payment->setRedirectUrls($redirectUrls);
+        
+//      On definie le payeur
+        $payment->setPayer((new \PayPal\Api\Payer())
+             ->setPaymentMethod('paypal'));
+             $projet = Projet::find(2);
+             $list = new \PayPal\Api\ItemList();
+             $item_payment =  array();
+             $item = (new \PayPal\Api\Item())
+             ->setName($projet->name)
+             ->setPrice(10000)
+             ->setQuantity(1)
+             ->setCurrency('EUR')
+             ;
+            
+             $list->addItem($item);
+             $details =  (new \PayPal\Api\Details())
+                   ->setSubTotal(10000);
+                   
+             $amount = (new \PayPal\Api\Amount())
+               ->setTotal(10000)
+               ->setCurrency("EUR")
+               ->setDetails($details);
+            
+               $transactions = (new \PayPal\Api\Transaction())
+                   ->setItemList($list)
+                   ->setDescription("Payment des frais pour le projet")
+                   ->setInvoiceNumber(uniqid())
+                   ->setAmount($amount)
+                   ->setCustom($projet->id);
+                   dd($transactions);
+                   $payment->setTransactions($transactions);
 
-        $payment->getApprovalLink();
-            dd($payment);
-        // $provider = new ExpressCheckout;      // To use express checkout.
-        // $provider = new AdaptivePayments;
-        // $provider = PayPal::setProvider('express_checkout');      // To use express checkout(used by default).
-        // $provider = PayPal::setProvider('adaptive_payments');
+                   try{
+                    $payment->create($apiContext);
+                    header('Location:'. $payment->getApprovalLink());
+                   }
+                   catch(\PayPal\Exception\PayPalConnectionException $e)
+                   {
+                       var_dump(json_decode($e->getData()));
+                   }
+       
+           
+      
+    }
+    public function makeMontant(Request $request)
+    {
+        try
+        {
+            return DB::transaction(function() use($request)
+            {
+                $errors = null;
+                if(empty($request->projet))
+                {
+                    $errors = "Données manquantes l'ID du projet";
+                }
+                if(empty($request->montant))
+                {
+                    $errors = "Données manquantes le montant du projet";
+                }
+                $item = Projet::find($request->projet);
+                if(!isset($item))
+                {
+                    $errors = "Un payment avec ces identifients n'existe pas dans la base de donnée";
+                }
+                if(empty($errors))
+                {
+                    $item->montant = $request->montant;
+                    $item->save();
+                 return Outil::redirectgraphql($this->queryName, "id:{$item->id}", Outil::$queries[$this->queryName]);
 
-        // $apiContext = new \Paypal\Rest\ApiContext(
-        //     new \PayPal\Auth\OAuthTokenCredential(
-        //         $config['id'],
-        //         $config['secrete']     // ClientSecret
-        //     )
-        // );
-        // $provider->setApiCredentials($config);
-        // $payment = new \Paypal\Rest\Payment($apiContext);
-        // dd($payment);
-
+                }
+                throw new Exception($errors);
+            });
+        }
+        catch(\Exception $e)
+        {
+            return response()->json(array(
+                'errors'          => config('app.debug') ? $e->getMessage() : Outil::getMsgError(),
+                'errors_debug'    => [$e->getMessage()],
+            ));
+        }
+    }
+    public function paypal()
+    {
+        return view("paypay");
     }
 
 }

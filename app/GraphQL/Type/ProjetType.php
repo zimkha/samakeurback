@@ -46,12 +46,14 @@ class ProjetType extends GraphQLType
             'id_user'                =>  ['type' => Type::int()],
 
 
+
             'nb_pieces'              => ['type' => Type::int()],
             'nb_chambre'             => ['type' => Type::int()],
             'nb_toillette'           => ['type' => Type::int()],
             'nb_salon'               => ['type' => Type::int()],
             'nb_cuisine'             => ['type' => Type::int()],
             'nb_etage'               => ['type' => Type::int()],
+            'nb_sdb'                 => ['type' => Type::int()],
             'a_valider'              => ['type' => Type::int()],
 
             'created_at'             => ['type'  => Type::string()],
@@ -107,6 +109,20 @@ class ProjetType extends GraphQLType
             $projet_id = $root['id'];
         }
         $attribut = "chambre";
+        $nbr =  Projet::nb_attribut($projet_id, $attribut);
+        return $nbr; 
+    }
+    public function resolveNbSdbField($root, $args)
+    {
+         if (!isset($root['id']))
+        {
+            $projet_id = $root->id;
+        }
+        else
+        {
+            $projet_id = $root['id'];
+        }
+        $attribut = "sdb";
         $nbr =  Projet::nb_attribut($projet_id, $attribut);
         return $nbr; 
     }
