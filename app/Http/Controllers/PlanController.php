@@ -357,6 +357,7 @@ class PlanController extends Controller
                     if (isset($datum['toillette']) && $datum['toillette'] < 0) {
                         $errors = "Veuillez verifier le nombre de toillettes  à la ligne n°".$n;
                     }
+                  
                     $niveau->piece          = $datum['piece'];
                     $niveau->chambre        = $datum['chambre'];
                     $niveau->salon          = $datum['salon'];
@@ -365,6 +366,7 @@ class PlanController extends Controller
                     $niveau->toillette      = $datum['toillette'];
                     $niveau->niveau         = $datum['niveau'];
                     $niveau->sdb            = $datum['sdb'];
+                    $niveau->niveau         = $datum['niveau'];
 
                     $total_pieces = $niveau->chambre + $niveau->salon + $niveau->cuisine + $niveau->bureau + $niveau->toillette + $niveau->sdb;
                    

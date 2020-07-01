@@ -40,7 +40,7 @@ class ProjetController extends Controller
     }
     public function save(Request $request)
     {
-       // dd($request->all());
+    //    dd($request->all());
 
         try
         {
@@ -134,16 +134,10 @@ class ProjetController extends Controller
 
                     }
                 }
-                else if(empty($request->description))
-                {
-                    $errors = "Veuillez compléter la description ";
-                    throw new \Exception($errors);
-                }
-                else
-                {
+               if(isset($request->description))
+               {
                     $item->text_projet = $request->description;
-                }
-
+               }
                 $superficie                    = $request->longeur * $request->largeur;
                 $item->name                    = $name;
                 $item->user_id                 = $request->user;

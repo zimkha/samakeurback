@@ -17,6 +17,7 @@ class RemarqueController extends Controller
         return DB::transaction(function () use($request) {
            $errors = null;
            $item = new Remarque();
+         
            if(isset($request->id))
            {
                $item = Remarque::find($request->id);
@@ -25,15 +26,12 @@ class RemarqueController extends Controller
            {
                $errors = "Une remarque concerne un projet client";
            }
-           if(empty($request->type_remarque))
-           {
-            $errors = "Veuillez renseigner le type de remarque";
-           }
-           if (empty($request->demande_text)) {
+          
+           if (empty($request->remarque_text)) {
             $errors = "Veuillez renseigner vos remarques";
            }
            if (!isset($errors)) {
-               $item->demande_text      = $request->demande_text;
+               $item->demande_text      = $request->remarque_text;
                $item->projet_id         = $request->projet;
                if (!isset($errors) && $request->hasFile('fichier') )
                     {

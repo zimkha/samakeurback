@@ -30,7 +30,7 @@ class PlanType extends GraphQLType
             'piscine'                => ['type' => Type::int()],
             'fichier'                => ['type' => Type::string()],
             'niveau_plans'           => ['type' => Type::listOf(GraphQL::type('Niveauplan'))],
-            'planprojets'            => ['type' => Type::listOf(GraphQL::type('Planprojet'))],
+            'plan_projets'            => ['type' => Type::listOf(GraphQL::type('Planprojet'))],
             'joineds'                => ['type' => Type::listOf(GraphQL::type('Joined'))],
             'unite_mesure'           => ['type' => GraphQL::type('Unitemesure')],
 

@@ -444,7 +444,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
            // unite_mesure_id,unite_mesure{id,name}
             "plans"                         : [
                                                             "id,code,created_at_fr,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,unite_mesure_id,unite_mesure{id,name},fichier,joineds{id,fichier,description,active}",
-                                                            ",niveau_plans{id,piece,niveau,bureau,toillette,chambre,salon,cuisine}"]
+                                                            ",niveau_plans{id,piece,niveau,bureau,toillette,chambre,salon,cuisine},plan_projets{id,projet_id}}}"]
                                                             ,
 
             "planprojets"                   : ["id,plan_id,projet_id,etat_active,message,etat,plan{id}",""],
@@ -1132,6 +1132,7 @@ $scope.get_Somme_daye = function ()
                    Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
                    {
                        $scope.planview = data[0];
+                       $scope.pageChanged('projet')
 
                        console.log("$scope.planview =>",$scope.planview)
                    },function (msg)
