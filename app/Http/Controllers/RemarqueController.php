@@ -21,14 +21,14 @@ class RemarqueController extends Controller
            {
                $item = Remarque::find($request->id);
            }
-           if(empty($request->projet))
+           if(empty($request->projet_id))
            {
                $errors = "Une remarque concerne un projet client";
            }
-           if(empty($request->type_remarque))
+          /* if(empty($request->type_remarque))
            {
             $errors = "Veuillez renseigner le type de remarque";
-           }
+           }*/
            if (empty($request->demande_text)) {
             $errors = "Veuillez renseigner vos remarques";
            }
@@ -50,15 +50,15 @@ class RemarqueController extends Controller
                             //$path = $request->fichier->storeAs('uploads/plans', $rename);
                             $item->fichier = $rename;
                          }
-                       
-                       
+
+
                     }
-                
+
                $item->save();
                 return Outil::redirectgraphql($this->queryName, "id:{$item->id}", Outil::$queries[$this->queryName]);
            }
            throw new \Exception($errors);
-           
+
         });
        }
        catch(\Exception $e)
@@ -82,7 +82,7 @@ class RemarqueController extends Controller
                          $item->forceDelete();
                          $data = 1;
                      }
-                     else 
+                     else
                         $errors = "Impossible de supprimer, la donnée est introuvable";
                 }
                 else
