@@ -38,7 +38,7 @@ Route::post('/link_plan_to_projet', 'ProjetController@linkPlanToProjet');
 Route::post('/inscription', 'UserController@save');
 Route::post('/joined', 'PlanController@joined');
 Route::get('/payment', 'ProjetController@payment');
-Route::get('/activer-projet/{id}', 'ProjetController@activeProjet');
+Route::post('/activer-projet', 'ProjetController@activeProjet');
 
 // les actions de suppressions
 Route::delete('/projet/{id}', 'ProjetController@delete');
@@ -57,6 +57,7 @@ Route::get('/plan/pdf/{id}', 'PdfController@pdf_plan');
 Route::get('/contrat/{id}', 'ProjetController@makeContrat');
 Route::get('/a_valider', 'ProjetController@avalider');
 Route::get('/paypal/{id}', 'ProjetController@payment');
+Route::post('/make-montant', 'ProjetController@makeMontant');
 
 Route::get('/success', 'ProjetController@paypalSuccess')->name('payment-execute');
 

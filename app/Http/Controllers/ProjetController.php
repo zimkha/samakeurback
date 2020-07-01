@@ -460,17 +460,27 @@ class ProjetController extends Controller
             ));
         }
     }
-    public function activeProjet($id)
+    public function activeProjet(Request $request)
     {
         try
         {
             $errors = null;
             $data = null;
-            if(isset($id))
+            if(isset($requet->id))
             {
+                if(empty($request->montant))
+                {
+                    $errors = "Veuillez definir le montant";
+                }
+                if(isset($request->montant) && $request->montant <= 0)
+                {
+                    $errors = "Veuillez renseigner un montant valide";
+
+                }
                 $item = Projet::find($id);
                 if(isset($item))
                 {
+                    $item->montant = $request->montant;
                     $item->active = true;
                     $item->etat = 1;
                     $item->save();
@@ -739,6 +749,10 @@ class ProjetController extends Controller
                 if(!isset($item))
                 {
                     $errors = "Un payment avec ces identifients n'existe pas dans la base de donnée";
+                }
+                if($item->active == 0)
+                {
+                    $errors = "Veuillez valider le projet avent de mettre un prix";
                 }
                 if(empty($errors))
                 {
