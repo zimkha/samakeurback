@@ -49,6 +49,8 @@ class ProjetQuery extends Query
             'telephone'              => ['type' => Type::string()],
             'code_postal'            => ['type' => Type::string()],
             'id_user'                =>  ['type' => Type::int()],
+            'garage'                 => ['type' => Type::boolean()],
+
 
 
             'electricite'            => ['type' => Type::boolean()],
@@ -182,6 +184,7 @@ class ProjetQuery extends Query
             'courant_faible'         => $item->courant_faible,    
             'acces_voirie'           => $item->acces_voirie,    
             'geometre'               => $item->geometre,    
+            'garage'                 => $item->garage,
    
         ];
       });

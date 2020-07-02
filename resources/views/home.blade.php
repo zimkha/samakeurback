@@ -110,6 +110,26 @@
                                 </div>
                             </div>
                         </div>
+                         <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="piscine_plan">Piscine</label>
+                                    <select class="form-control" id="piscine_plan" name="piscine">
+                                        <option value="0">NON</option>
+                                        <option value="1">OUI</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="garage_plan">Garage</label>
+                                    <select class="form-control" id="garage_plan" name="garage">
+                                        <option value="1">OUI</option>
+                                        <option value="0">NON</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
 
                             <div class="col-lg-12">
@@ -132,7 +152,7 @@
                                 </div>--}}
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-lg-3">
+                                        <!-- <div class="col-lg-3">
                                             <div class="form-group">
                                                 <label for="niveau_plan">Designation</label>
                                                 <input type="text" name="niveau" id="niveau_plan" class="form-control" >
@@ -143,7 +163,7 @@
                                                 <label for="piece_plan">Pièces</label>
                                                 <input type="number" name="piece" id="piece_plan" class="form-control" >
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="col-lg-3">
                                             <div class="form-group">
                                                 <label for="chambre_plan">Chambres simples</label>
@@ -202,7 +222,7 @@
                                         <thead>
                                         <th class="text-center">N°</th>
                                         <th class="text-center">Niveau</th>
-                                        <th class="text-center">Pièce</th>
+                                        <!-- <th class="text-center">Pièce</th> -->
                                         <th class="text-center">Chambre Simple</th>
                                         <th class="text-center">Chambre SDB</th>
                                         <th class="text-center">Bureau</th>
@@ -219,9 +239,9 @@
                                             <td class="text-center">
                                                 @{{ item.niveau }}
                                             </td>
-                                            <td class="text-center">
+                                            <!-- <td class="text-center">
                                                 @{{ item.piece }}
-                                            </td>
+                                            </td> -->
                                             <td class="text-center">
                                                 @{{ item.chambre }}
                                             </td>
@@ -483,34 +503,46 @@
                         </div>
                         <div class="row">
 
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <div class="form-group">
                                     <label for="longeur_projet">Longeur</label>
                                    <input type="number" class="form-control" id="longeur_projet" name="longeur">
                                 </div>
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <div class="form-group">
                                     <label for="largeur_projet">Largeur</label>
                                    <input type="number" class="form-control" id="largeur_projet" name="largeur">
                                 </div>
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <div class="form-group">
                                     <label for="adresse_terrain_projet">Adresse Terrain</label>
                                     <input type="text" class="form-control" id="adresse_terrain_projet" name="adresse_terrain">
                                 </div>
                             </div>
-                            <div class="col-lg-3">
+                           
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="superficie_projet">Piscine</label>
+                                    <label for="piscine_projet">Piscine</label>
                                     <select class="form-control" id="piscine_projet" name="piscine">
+                                        <option value="0">NON</option>
+                                        <option value="1">OUI</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="garage_projet">Garage</label>
+                                    <select class="form-control" id="garage_projet" name="garage">
                                         <option value="1">OUI</option>
                                         <option value="0">NON</option>
                                     </select>
                                 </div>
                             </div>
-
                         </div>
 
                         <div class="row">
@@ -569,7 +601,7 @@
                                 </div>--}}
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-lg-3">
+                                        <!-- <div class="col-lg-3">
                                             <div class="form-group">
                                                 <label for="niveau_projet">Designation</label>
                                                 <input type="text" name="niveau" id="niveau_projet" class="form-control" >
@@ -580,7 +612,7 @@
                                                 <label for="piece_projet">Pièces</label>
                                                 <input type="number" name="piece" id="piece_projet" class="form-control" >
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="col-lg-3">
                                             <div class="form-group">
                                                 <label for="chambre_projet">Chbres simples</label>
@@ -641,7 +673,7 @@
                                         <thead>
                                         <th class="text-center">N°</th>
                                         <th class="text-center">Niveau</th>
-                                        <th class="text-center">Pièce</th>
+                                        <!-- <th class="text-center">Pièce</th> -->
                                         <th class="text-center">Chbres Sple</th>
                                         <th class="text-center">Chbres SDB</th>
                                         <th class="text-center">Bureau</th>
@@ -658,9 +690,9 @@
                                             <td class="text-center">
                                                 @{{ item.niveau }}
                                             </td>
-                                            <td class="text-center">
+                                            <!-- <td class="text-center">
                                                 @{{ item.piece }}
-                                            </td>
+                                            </td> -->
                                             <td class="text-center">
                                                 @{{ item.chambre }}
                                             </td>

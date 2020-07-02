@@ -20,14 +20,15 @@ class PlanType extends GraphQLType
         return [
             'id'                     => ['type' => Type::id()],
             'unite_mesure_id'        => ['type' => Type::id()],
-            'fichier'                 => [ 'type' => Type::string(), 'description' => ''],
-            'code'                  => [ 'type' => Type::string(), 'description' => ''],
+            'fichier'                => [ 'type' => Type::string(), 'description' => ''],
+            'code'                   => [ 'type' => Type::string(), 'description' => ''],
 
             'superficie'             => ['type' => Type::int()],
-            'sdb'             => ['type' => Type::int()],
+            'sdb'                    => ['type' => Type::int()],
             'longeur'                => ['type' => Type::int()],
             'largeur'                => ['type' => Type::int()],
             'piscine'                => ['type' => Type::int()],
+            'garage'                 => ['type' => Type::boolean()],
             'fichier'                => ['type' => Type::string()],
             'niveau_plans'           => ['type' => Type::listOf(GraphQL::type('Niveauplan'))],
             'plan_projets'            => ['type' => Type::listOf(GraphQL::type('Planprojet'))],
@@ -35,11 +36,11 @@ class PlanType extends GraphQLType
             'unite_mesure'           => ['type' => GraphQL::type('Unitemesure')],
 
             // Resolve 
-            'nb_pieces'                => ['type' => Type::int()],
-            'nb_chambre'                => ['type' => Type::int()],
-            'nb_toillette'                => ['type' => Type::int()],
+            'nb_pieces'               => ['type' => Type::int()],
+            'nb_chambre'              => ['type' => Type::int()],
+            'nb_toillette'            => ['type' => Type::int()],
             'nb_salon'                => ['type' => Type::int()],
-            'nb_cuisine'                => ['type' => Type::int()],
+            'nb_cuisine'              => ['type' => Type::int()],
             'nb_etage'                => ['type' => Type::int()],
 
             'created_at'             => [ 'type' => Type::string()],

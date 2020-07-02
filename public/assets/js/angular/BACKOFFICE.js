@@ -444,8 +444,8 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
         {
            // unite_mesure_id,unite_mesure{id,name}
             "plans"                         : [
-                                                            "id,code,created_at_fr,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,unite_mesure_id,unite_mesure{id,name},fichier,joineds{id,fichier,description,active}",
-                                                            ",niveau_plans{id,piece,niveau,bureau,toillette,chambre,salon,cuisine},plan_projets{id,projet_id}}}"]
+                                                            "id,code,garage,created_at_fr,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,unite_mesure_id,unite_mesure{id,name},fichier,joineds{id,fichier,description,active}",
+                                                            ",niveau_plans{id,piece,niveau,bureau,toillette,chambre,salon,cuisine},plan_projets{id,projet_id}"]
                                                             ,
 
             "planprojets"                   : ["id,plan_id,projet_id,etat_active,message,etat,plan{id}",""],
@@ -455,7 +455,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
             "niveauprojets"                 :  ["id,piece,bureau,toillette,chambre,salon,cuisine,niveau_name",""],
 
             "projets"                       :  [
-                "id,adresse_terrain,name,etat,active,a_valider,created_at_fr,created_at,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_sdb,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adresse_complet,code_postal}",
+                "id,adresse_terrain,garage,name,etat,active,a_valider,created_at_fr,created_at,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_sdb,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adresse_complet,code_postal}",
                 ",niveau_projets{id,piece,bureau,toillette,chambre,sdb,niveau_name,salon,cuisine},remarques{id,demande_text,projet_id,projet{adresse_terrain,name},type_remarque_id},plan_projets{id,plan_id,plan{id,code,created_at_fr,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,unite_mesure_id,unite_mesure{id,name},fichier,niveau_plans{id,piece,niveau,bureau,toillette,chambre,salon,cuisine},joineds{id,fichier,description}}}"
             ],
 
@@ -2046,12 +2046,13 @@ $scope.get_Somme_daye = function ()
         $scope.produitsInTable = [];
         console.log("$scope.produitsInTable", $scope.produitsInTable);
     });
-
+$scope.index_plan = 0;
     $scope.actionSurPlan = function (action, selectedItem = null) {
         if (action == 'add')
         {
+            $scope.index_plan = $scope.index_plan + 1;
             //Ajouter un élément dans le tableau
-            var niveau = $("#niveau_plan").val();
+            var niveau =  $scope.index_plan;
             var piece_plan = $("#piece_plan").val();
             var chambre_plan = $("#chambre_plan").val();
             var chambre_sdb_plan = $("#chambre_sdb_plan").val();
@@ -2067,13 +2068,13 @@ $scope.get_Somme_daye = function ()
                 });
                 return false;
             }*/
-            if ($scope.estEntier(piece_plan) == false) {
-                iziToast.error({
-                    message: "Sélectionnez une piece",
-                    position: 'topRight'
-                });
-                return false;
-            }
+            // if ($scope.estEntier(piece_plan) == false) {
+            //     iziToast.error({
+            //         message: "Sélectionnez une piece",
+            //         position: 'topRight'
+            //     });
+            //     return false;
+            // }
             if ($scope.estEntier(chambre_plan) == false) {
                 iziToast.error({
                     message: "Sélectionnez une chambre",
@@ -2109,16 +2110,16 @@ $scope.get_Somme_daye = function ()
                 });
                 return false;
             }
-            else if ($scope.testSiUnElementEstDansTableau($scope.produitsInTable, niveau) == true) {
-                iziToast.error({
-                    message: "Le niveau est déja dans le tableau",
-                    position: 'topRight'
-                });
-                return false;
-            }
+            // else if ($scope.testSiUnElementEstDansTableau($scope.produitsInTable, niveau) == true) {
+            //     iziToast.error({
+            //         message: "Le niveau est déja dans le tableau",
+            //         position: 'topRight'
+            //     });
+            //     return false;
+            // }
 
             $scope.produitsInTable.unshift({
-                "niveau": niveau,
+                "niveau": "R +" + niveau,
                 "piece": piece_plan,
                 "chambre": chambre_plan,
                 "sdb": chambre_sdb_plan,
@@ -2131,7 +2132,7 @@ $scope.get_Somme_daye = function ()
             console.log("this.produitsInTable",$scope.produitsInTable)
 
             $("#niveau_plan").val('');
-            $("#piece_plan").val('');
+            // $("#piece_plan").val('');
             $("#chambre_plan").val('');
             $("#chambre_sdb_plan").val('');
             $("#salon_plan").val('');
@@ -2155,13 +2156,13 @@ $scope.get_Somme_daye = function ()
         }
     };
     // fin plan
-
-
+$scope.Ele = 0;
     $scope.actionSurProjet = function (action, selectedItem = null) {
         if (action == 'add')
         {
             //Ajouter un élément dans le tableau
-            var niveau = $("#niveau_projet").val();
+            $scope.Ele = $scope.Ele + 1;
+            var niveau =  $scope.Ele;
             var piece_projet = $("#piece_projet").val();
             var chambre_projet = $("#chambre_projet").val();
             var chambre_sdb_projet = $("#chambre_sdb_projet").val();
@@ -2222,7 +2223,7 @@ $scope.get_Somme_daye = function ()
             }
 
             $scope.produitsInTable.unshift({
-                "niveau": niveau,
+                "niveau": "R +" + niveau,
                 "piece": piece_projet,
                 "chambre": chambre_projet,
                 "sdb": chambre_sdb_projet,
@@ -2602,6 +2603,7 @@ $scope.get_Somme_daye = function ()
                 $('#superficie_' + type).val(item.superficie);
                 $('#longeur_' + type).val(item.longeur);
                 $('#largeur_' + type).val(item.largeur);
+                $('#garage_' + type).val(item.garage);
                 //   $('#fichier_' + type).val(item.fichier);
                 $('#unite_mesure_' + type).val(item.unite_mesure_id);
 
@@ -2619,6 +2621,7 @@ $scope.get_Somme_daye = function ()
                 $('#superficie_' + type).val(item.superficie);
                 $('#longeur_' + type).val(item.longeur);
                 $('#largeur_' + type).val(item.largeur);
+                $('#garage_' + type).val(item.garage);
                 $('#adresse_terrain_' + type).val(item.adresse_terrain);
 
                 var liste_ligneniveau = [];

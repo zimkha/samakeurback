@@ -28,8 +28,8 @@ class PlanPaginatedQuery extends Query
         [
             'id'                     => ['type' => Type::id()],
             'unite_mesure_id'        => ['type' => Type::id()],
-            'code'                  => [ 'type' => Type::string(), 'description' => ''],
-            'fichier'                 => [ 'type' => Type::string(), 'description' => ''],
+            'code'                   => [ 'type' => Type::string(), 'description' => ''],
+            'fichier'                => [ 'type' => Type::string(), 'description' => ''],
             'superficie'             => ['type' => Type::int()],
             'longeur'                => ['type' => Type::int()],
             'user_id'                => ['type' => Type::int()],
@@ -37,20 +37,22 @@ class PlanPaginatedQuery extends Query
             'largeur'                => ['type' => Type::int()],
             'fichier'                => ['type' => Type::string()],
             'piscine'                => ['type' => Type::int()],
-             'nb_pieces'                => ['type' => Type::int()],
-            'nb_chambre'                => ['type' => Type::int()],
-            'nb_toillette'                => ['type' => Type::int()],
-            'nb_salon'                => ['type' => Type::int()],
-            'nb_cuisine'                => ['type' => Type::int()],
-            'nb_etage'                => ['type' => Type::int()],
+            'garage'                 => ['type' => Type::boolean()],
+
+            'nb_pieces'              => ['type' => Type::int()],
+            'nb_chambre'             => ['type' => Type::int()],
+            'nb_toillette'           => ['type' => Type::int()],
+            'nb_salon'               => ['type' => Type::int()],
+            'nb_cuisine'             => ['type' => Type::int()],
+            'nb_etage'               => ['type' => Type::int()],
             'created_at'             => [ 'type' => Type::string()],
             'created_at_fr'          => [ 'type' => Type::string()],
             'updated_at'             => [ 'type' => Type::string()],
             'updated_at_fr'          => [ 'type' => Type::string()],
             'deleted_at'             => [ 'type' => Type::string()],
 
-            'page'                => ['type' => Type::int()],
-            'count'               => ['type' => Type::int()]
+            'page'                   => ['type' => Type::int()],
+            'count'                  => ['type' => Type::int()]
         ];
         
     }

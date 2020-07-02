@@ -40,6 +40,8 @@ class PlanQuery extends Query
             'nb_salon'               => ['type' => Type::int()],
             'nb_cuisine'             => ['type' => Type::int()],
             'nb_etage'               => ['type' => Type::int()],
+            'garage'                 => ['type' => Type::boolean()],
+
             
           
             'created_at'             => [ 'type' => Type::string()],
@@ -125,6 +127,7 @@ class PlanQuery extends Query
             'fichier'                => $item->fichier,
             'niveau_plans'           => $item->niveau_plans,
             'plan_projets'           => $item->plan_projets,
+            'garage'                 => $item->garage,
             'created_at'             => $item->created_at,
             'joineds'                => $item->joineds,
         ];

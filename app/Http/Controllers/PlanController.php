@@ -325,6 +325,7 @@ class PlanController extends Controller
                     $errors = "Veuillez preciser une bonne valeur pour la largeur";
 
                  }
+                 
                 if (isset($errors))
                 {
                     throw new \Exception($errors);
@@ -366,13 +367,13 @@ class PlanController extends Controller
                     $niveau->toillette      = $datum['toillette'];
                     $niveau->niveau         = $datum['niveau'];
                     $niveau->sdb            = $datum['sdb'];
-                    $niveau->niveau         = $datum['niveau'];
+                    $niveau->niveau         = "R +".$n;
 
-                    $total_pieces = $niveau->chambre + $niveau->salon + $niveau->cuisine + $niveau->bureau + $niveau->toillette + $niveau->sdb;
+                    // $total_pieces = $niveau->chambre + $niveau->salon + $niveau->cuisine + $niveau->bureau + $niveau->toillette + $niveau->sdb;
                    
-                    if ($total_pieces != (int) $datum['piece']) {
-                        $errors = "Veuillez verifier si le total des pieces est repecter  à la ligne n°".$n;
-                    }
+                    // if ($total_pieces != (int) $datum['piece']) {
+                    //     $errors = "Veuillez verifier si le total des pieces est repecter  à la ligne n°".$n;
+                    // }
                     if (isset($errors)) {
                         throw new \Exception($errors);
                     }
@@ -383,6 +384,8 @@ class PlanController extends Controller
                     $item->longeur          = $request->longeur;
                     $item->largeur          = $request->largeur;
                     $item->unite_mesure_id  = $request->unite_mesure;
+                    $item->garage           = $request->garage;
+
                     //dd($request->file('fichier'));
                     if (!isset($errors) && $request->hasFile('fichier') )
                     {

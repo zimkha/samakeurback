@@ -32,7 +32,7 @@ class PlanProjetQuery extends Query
             'message'                => ['type' => Type::string()],
             'etat_active'            => ['type' => Type::int()],
             'active'                 => ['type'   => Type::boolean()],
-
+ 
             'created_at'             => [ 'type' => Type::string()],
             'created_at_fr'          => [ 'type' => Type::string()],
             'updated_at'             => [ 'type' => Type::string()],

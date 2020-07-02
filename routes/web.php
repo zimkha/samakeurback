@@ -39,6 +39,7 @@ Route::post('/inscription', 'UserController@save');
 Route::post('/joined', 'PlanController@joined');
 Route::get('/payment', 'ProjetController@payment');
 Route::post('/activer-projet', 'ProjetController@activeProjet');
+Route::get('/payeprojet/{id}', 'ProjetController@payeProjet');
 
 // les actions de suppressions
 Route::delete('/projet/{id}', 'ProjetController@delete');

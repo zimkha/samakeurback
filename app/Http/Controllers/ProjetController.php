@@ -116,6 +116,8 @@ class ProjetController extends Controller
                     $item->adresse_terrain = $request->adresse_terrain;
                 }
 
+                $item->garage = $request->garage;
+
                 $errors = Outil::validation($request, $array);
 
                 $user_connected = Auth::user()->id;
@@ -160,9 +162,9 @@ class ProjetController extends Controller
 
                         $n = $n + 1;
                         $niveau = new NiveauProjet();
-                        if (empty($key['piece'])) {
-                           $errors = "Veuillez renseigner le nombre de pieces de ce niveau ligne n°". $n;
-                        }
+                        // if (empty($key['piece'])) {
+                        //    $errors = "Veuillez renseigner le nombre de pieces de ce niveau ligne n°". $n;
+                        // }
                         if (!isset($key['chambre'])) {
                             $errors = "Veuillez renseigner le nombre de chambre de ce niveau ligne n°". $n;
                           }
@@ -178,20 +180,19 @@ class ProjetController extends Controller
                          if (!isset($key['toillette'])) {
                             $errors = "Veuillez renseigner le nombre de toillette de ce niveau ligne n°". $n;
                          }
-                         if (!isset($key['niveau'])) {
-                            $errors = "Veuillez renseigner le name du niveau ligne n°". $n;
-                         }
+                        
                          if (isset($errors))
                          {
                              throw new \Exception($errors);
                          }
-                        $all_piece = $key['chambre'] + $key['salon'] + $key['bureau'] + $key['cuisine'] + $key['toillette'] + $key['sdb'];
-                        if ($all_piece != (int)$key['piece'])
-                        {
-                            $errors = "Erreur de décompte sur le nombre de pièces ligne n°{$n}";
-                        }
+                        // $all_piece = $key['chambre'] + $key['salon'] + $key['bureau'] + $key['cuisine'] + $key['toillette'] + $key['sdb'];
+                        // if ($all_piece != (int)$key['piece'])
+                        // {
+                        //     $errors = "Erreur de décompte sur le nombre de pièces ligne n°{$n}";
+                        // }
 
-                        $niveau->niveau_name        = $key['niveau'];
+                       
+                        $niveau->niveau_name        = "R +". $n;
                         $niveau->piece              = $key['piece'];
                         $niveau->chambre            = $key['chambre'];
 
@@ -772,9 +773,48 @@ class ProjetController extends Controller
             ));
         }
     }
-    public function paypal()
+    public function payeProjet($id)
     {
-        return view("paypay");
+       try
+       {
+            $errors = null;
+            $data = 0;
+            if(isset($id))
+            {
+                $item = Projet::find($id);
+                if(isset($item))
+                {
+                    $item->etat = 2;
+                    $item->save();
+                    $data = 1;
+                }
+                else
+                {
+                    $errors = "Projet introuvable";
+                }
+               
+            }
+            else
+            {
+                $errors = "Données manquantes";
+            }
+            if(!isset($errors))
+            {
+              $retour = array(
+                  'data'          => $data,
+              );
+              return response()->json($retour);
+            }
+            throw new \Exception($errors);
+  
+       }
+       catch(\Exception $e)
+       {
+        return response()->json(array(
+            'errors'          => config('app.debug') ? $e->getMessage() : Outil::getMsgError(),
+            'errors_debug'    => [$e->getMessage()],
+        ));
+       }
     }
 
 }
