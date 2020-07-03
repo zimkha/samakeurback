@@ -1,0 +1,23 @@
+[2020-07-03 20:43:52] local.ERROR: Command "config:cacahe" is not defined.
+
+Did you mean one of these?
+    config:cache
+    config:clear
+    event:cache
+    route:cache
+    view:cache {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"config:cacahe\" is not defined.
+
+Did you mean one of these?
+    config:cache
+    config:clear
+    event:cache
+    route:cache
+    view:cache at /Applications/XAMPP/xamppfiles/htdocs/samakeurback/vendor/symfony/console/Application.php:644)
+[stacktrace]
+#0 /Applications/XAMPP/xamppfiles/htdocs/samakeurback/vendor/symfony/console/Application.php(228): Symfony\\Component\\Console\\Application->find('config:cacahe')
+#1 /Applications/XAMPP/xamppfiles/htdocs/samakeurback/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 /Applications/XAMPP/xamppfiles/htdocs/samakeurback/vendor/laravel/framework/src/Illuminate/Console/Application.php(93): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 /Applications/XAMPP/xamppfiles/htdocs/samakeurback/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 /Applications/XAMPP/xamppfiles/htdocs/samakeurback/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 {main}
+"} 

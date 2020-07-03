@@ -73,7 +73,7 @@
                                         </div>
                                         <div class=" col-md-3 col-sm-12 mt-3">
                                             <div class="border-danger">
-                                                <h6>Nbre Chambre SDB :<strong><u>@{{ projetview.sdb }}</u></strong></h6>
+                                                <h6>Nbre Chambre SDB :<strong><u>@{{ projetview.nb_sdb }}</u></strong></h6>
 
                                             </div>
 
@@ -106,6 +106,13 @@
                                             </div>
 
                                         </div>
+                                        <div class=" col-md-12 col-sm-12 mt-3">
+                                            <div class="border-danger">
+                                                <h6>Description : @{{ projetview.text_projet }}</h6>
+
+                                            </div>
+
+                                        </div>
 
                                         <div class="row mt-30 animated px-2">
                                            {{-- <div class="col-md-2 mb-10" ng-repeat="item in projetview.remarques">
@@ -132,7 +139,6 @@
                                         <tr align="center">
 
                                             <th>Niveau</th>
-                                            <th>Piece</th>
                                             <th>Chbres Sple </th>
                                             <th>Chbres SDB</th>
                                             <th>Bureau</th>
@@ -146,9 +152,6 @@
                                         <tr class="animated fadeIn" ng-repeat="item in projetview.niveau_projets">
                                             <td class="text-center">
                                                 @{{ item.niveau_name }}
-                                            </td>
-                                            <td class="text-center">
-                                                @{{ item.piece }}
                                             </td>
                                             <td class="text-center">
                                                 @{{ item.chambre }}

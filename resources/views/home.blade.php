@@ -521,7 +521,7 @@
                                     <input type="text" class="form-control" id="adresse_terrain_projet" name="adresse_terrain">
                                 </div>
                             </div>
-                           
+
 
                         </div>
                         <div class="row">
@@ -538,8 +538,8 @@
                                 <div class="form-group">
                                     <label for="garage_projet">Garage</label>
                                     <select class="form-control" id="garage_projet" name="garage">
-                                        <option value="1">OUI</option>
                                         <option value="0">NON</option>
+                                        <option value="1">OUI</option>
                                     </select>
                                 </div>
                             </div>
@@ -613,25 +613,25 @@
                                                 <input type="number" name="piece" id="piece_projet" class="form-control" >
                                             </div>
                                         </div> -->
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="chambre_projet">Chbres simples</label>
                                                 <input type="number" name="chambre" id="chambre_projet" class="form-control" >
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="chambre_sdb_projet">Chbres SDB</label>
                                                 <input type="number" name="sdb" id="chambre_sdb_projet" class="form-control" >
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="bureau_projet">Bureau</label>
                                                 <input type="number" id="bureau_projet" class="form-control" >
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="salon_projet">Salon</label>
                                                 <input type="number" name="salon" id="salon_projet" class="form-control" >
@@ -649,7 +649,7 @@
                                                 <input type="number" name="toillette" class="form-control" id="toillette_projet">
                                             </div>
                                         </div>
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-4">
                                             <div class="form-group mt-4 text-lg-right">
                                                 <button class="btn btn-success mt-2" ng-click="actionSurProjet('add')" title="Ajouter un niveau" >
                                                     <i class="fa fa-plus"></i>
@@ -744,6 +744,38 @@
         </div>
     </div>
 
+    <div class="modal fade" id="modal_addprojet" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog modal-lg" role="document"  style="max-width: 54%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Valider le Projet</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body m-3">
+                    <form id="form_addpaye_projet" class="form" enctype="multipart/form-data" accept-charset="UTF-8">
+                        @csrf
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="montant_projet">Montant</label>
+                                    <input type="number" class="form-control" id="montant_projet" name="montant">
+                                </div>
+                            </div>
+                        </div>
 
-    
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" ng-click="activerProjet()">Enregistrer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
 @endsection

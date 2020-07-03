@@ -60,7 +60,7 @@ class ProjetController extends Controller
                     $name = $item->name;
                     $auth_user = $item->id_user;
                 }
-                $item->id_user = $auth_user;
+             //   $item->id_user = $auth_user;
                 if(empty($request->acces_voirie) || $request->acces_voirie == 0)
                 {
                     $item->acces_voirie = 0;
@@ -142,7 +142,7 @@ class ProjetController extends Controller
                }
                 $superficie                    = $request->longeur * $request->largeur;
                 $item->name                    = $name;
-                $item->user_id                 = $request->user;
+                $item->user_id                 = (int)$request->user;
                 $item->superficie              = $superficie;
                 $item->longeur                 = $request->longeur;
                 $item->largeur                 = $request->largeur;
@@ -154,7 +154,7 @@ class ProjetController extends Controller
 
                 $n = 0;
                 $array_level = array();
-               
+
                 //  dd($request->hasFile('fichier'), $request->all());
                 if (!isset($errors) && $request->hasFile('fichier') )
                 {
@@ -166,10 +166,10 @@ class ProjetController extends Controller
                     move_uploaded_file($fichier_tmp,$rename);
                     //$path = $request->fichier->storeAs('uploads/plans', $rename);
                     $item->fichier = $rename;
-                     
+
                 }
                 // dd($item->fichier);
-               
+
 
                 if(isset($request->tab_projet) && $request->tab_projet != null)
                 {
@@ -196,7 +196,7 @@ class ProjetController extends Controller
                          if (!isset($key['toillette'])) {
                             $errors = "Veuillez renseigner le nombre de toillette de ce niveau ligne n°". $n;
                          }
-                        
+
                          if (isset($errors))
                          {
                              throw new \Exception($errors);
@@ -207,7 +207,7 @@ class ProjetController extends Controller
                         //     $errors = "Erreur de décompte sur le nombre de pièces ligne n°{$n}";
                         // }
 
-                       
+
                         $niveau->niveau_name        = "R +". $n;
                         // $niveau->piece              = $key['piece'];
                         $niveau->chambre            = $key['chambre'];
@@ -222,7 +222,8 @@ class ProjetController extends Controller
                     }
                 }
 
-               
+
+                //dd($item);
 
                 if (!isset($errors))
                 {
@@ -787,7 +788,7 @@ class ProjetController extends Controller
                 {
                     $errors = "Projet introuvable";
                 }
-               
+
             }
             else
             {
@@ -801,7 +802,7 @@ class ProjetController extends Controller
               return response()->json($retour);
             }
             throw new \Exception($errors);
-  
+
        }
        catch(\Exception $e)
        {
