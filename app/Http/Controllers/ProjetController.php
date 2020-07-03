@@ -155,7 +155,7 @@ class ProjetController extends Controller
                 $n = 0;
                 $array_level = array();
                
-                 dd($request->hasFile('fichier'), $request->all());
+                //  dd($request->hasFile('fichier'), $request->all());
                 if (!isset($errors) && $request->hasFile('fichier') )
                 {
                     $fichier = $_FILES['fichier']['name'];
@@ -168,7 +168,7 @@ class ProjetController extends Controller
                     $item->fichier = $rename;
                      
                 }
-                dd($item->fichier);
+                // dd($item->fichier);
                
 
                 if(isset($request->tab_projet) && $request->tab_projet != null)
