@@ -2052,7 +2052,7 @@ $scope.index_plan = 0;
         {
             $scope.index_plan = $scope.index_plan + 1;
             //Ajouter un élément dans le tableau
-            var niveau =  $scope.index_plan;
+           // var niveau =  $scope.index_plan;
             var piece_plan = $("#piece_plan").val();
             var chambre_plan = $("#chambre_plan").val();
             var chambre_sdb_plan = $("#chambre_sdb_plan").val();

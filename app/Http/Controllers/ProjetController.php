@@ -227,7 +227,7 @@ class ProjetController extends Controller
                     }
                 }
 
-                // dd($array_level);
+                dd($item);
 
                 if (!isset($errors))
                 {
