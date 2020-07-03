@@ -154,7 +154,23 @@ class ProjetController extends Controller
 
                 $n = 0;
                 $array_level = array();
-                // dd($request->tab_projet);
+               
+                 dd($request->hasFile('fichier'), $request->all());
+                if (!isset($errors) && $request->hasFile('fichier') )
+                {
+                    $fichier = $_FILES['fichier']['name'];
+                    $fichier_tmp = $_FILES['fichier']['tmp_name'];
+                    $k = rand(100, 9999);
+                    $ext = explode('.',$fichier);
+                    $rename = config('view.uploads')['projets']."/projets_".$k.".".end($ext);
+                    move_uploaded_file($fichier_tmp,$rename);
+                    //$path = $request->fichier->storeAs('uploads/plans', $rename);
+                    $item->fichier = $rename;
+                     
+                }
+                dd($item->fichier);
+               
+
                 if(isset($request->tab_projet) && $request->tab_projet != null)
                 {
                     $data = json_decode($request->tab_projet, true);
@@ -193,7 +209,7 @@ class ProjetController extends Controller
 
                        
                         $niveau->niveau_name        = "R +". $n;
-                        $niveau->piece              = $key['piece'];
+                        // $niveau->piece              = $key['piece'];
                         $niveau->chambre            = $key['chambre'];
 
                         $niveau->salon              = $key['salon'];
@@ -201,33 +217,12 @@ class ProjetController extends Controller
                         $niveau->cuisine            = $key['cuisine'];
                         $niveau->toillette          = $key['toillette'];
                         $niveau->sdb                = $key['sdb'];
-
-                        if (!isset($errors) && $request->hasFile('fichier') )
-                        {
-                             if ($item->fichier == null)
-                             {
-                                $fichier = $_FILES['fichier']['name'];
-                                $fichier_tmp = $_FILES['fichier']['tmp_name'];
-                                $k = rand(100, 9999);
-                                $ext = explode('.',$fichier);
-                                $rename = config('view.uploads')['projets']."/projes_".$k.".".end($ext);
-                                move_uploaded_file($fichier_tmp,$rename);
-                                //$path = $request->fichier->storeAs('uploads/plans', $rename);
-                                $item->fichier = $rename;
-                             }
-
-
-                        }
-
-
-
-
                         array_push($array_level, $niveau);
 
                     }
                 }
 
-                dd($item);
+               
 
                 if (!isset($errors))
                 {

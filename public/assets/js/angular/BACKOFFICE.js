@@ -2172,55 +2172,126 @@ $scope.Ele = 0;
             var toillette_projet = $("#toillette_projet").val();
 
 
-            if ($scope.estEntier(piece_projet) == false) {
+            // if ($scope.estEntier(piece_projet) == false) {
+            //     iziToast.error({
+            //         message: "Sélectionnez une piece",
+            //         position: 'topRight'
+            //     });
+            //     return false;
+            // }
+            // if ($scope.estEntier(chambre_projet) == false) {
+            //     iziToast.error({
+            //         message: "Sélectionnez une chambre",
+            //         position: 'topRight'
+            //     });
+            //     return false;
+            // }
+            // if ($scope.estEntier(chambre_sdb_projet) == false) {
+            //     iziToast.error({
+            //         message: "Sélectionnez une chambre SDB",
+            //         position: 'topRight'
+            //     });
+            //     return false;
+            // }
+            // if ($scope.estEntier(salon_projet) == false) {
+            //     iziToast.error({
+            //         message: "Sélectionnez une salon",
+            //         position: 'topRight'
+            //     });
+            //     return false;
+            // }
+            // if ($scope.estEntier(cuisine_projet) == false) {
+            //     iziToast.error({
+            //         message: "Sélectionnez une cuisine",
+            //         position: 'topRight'
+            //     });
+            //     return false;
+            // }
+            // if ($scope.estEntier(toillette_projet) == false) {
+            //     iziToast.error({
+            //         message: "Sélectionnez une toillette",
+            //         position: 'topRight'
+            //     });
+            //     return false;
+            // }
+            // else if ($scope.testSiUnElementEstDansTableau($scope.produitsInTable, niveau) == true) {
+            //     iziToast.error({
+            //         message: "Le niveau est déja dans le tableau",
+            //         position: 'topRight'
+            //     });
+            //     return false;
+            // }
+            if(chambre_projet < 0)
+            {
                 iziToast.error({
-                    message: "Sélectionnez une piece",
+                    message: "Preciserle nombre de chambres",
                     position: 'topRight'
                 });
                 return false;
             }
-            if ($scope.estEntier(chambre_projet) == false) {
+            // if ($scope.estEntier(chambre_sdb_projet) == false) {
+            //     iziToast.error({
+            //         message: "Sélectionnez une chambre SDB",
+            //         position: 'topRight'
+            //     });
+            //     return false;
+            // }
+            if(chambre_sdb_projet < 0)
+            {
                 iziToast.error({
-                    message: "Sélectionnez une chambre",
+                    message: "Preciserle nombre de Chambre Salle de Bain",
                     position: 'topRight'
                 });
                 return false;
             }
-            if ($scope.estEntier(chambre_sdb_projet) == false) {
+            if(salon_projet < 0)
+            {
                 iziToast.error({
-                    message: "Sélectionnez une chambre SDB",
+                    message: "Preciserle nombre de salon",
                     position: 'topRight'
                 });
                 return false;
             }
-            if ($scope.estEntier(salon_projet) == false) {
+            // if ($scope.estEntier(salon_projet) == false) {
+               
+            // }
+            // if ($scope.estEntier(cuisine_projet) == false) {
+            //     iziToast.error({
+            //         message: "Sélectionnez une cuisine",
+            //         position: 'topRight'
+            //     });
+            //     return false;
+            // }
+            if(cuisine_projet < 0)
+            {
                 iziToast.error({
-                    message: "Sélectionnez une salon",
+                    message: "Preciserle nombre de cuisine",
                     position: 'topRight'
                 });
                 return false;
             }
-            if ($scope.estEntier(cuisine_projet) == false) {
+            // if ($scope.estEntier(toillette_projet) == false) {
+            //     iziToast.error({
+            //         message: "Sélectionnez une toillette",
+            //         position: 'topRight'
+            //     });
+            //     return false;
+            // }
+            if(toillette_projet < 0)
+            {
                 iziToast.error({
-                    message: "Sélectionnez une cuisine",
+                    message: "Preciserle nombre de Toillettes",
                     position: 'topRight'
                 });
                 return false;
             }
-            if ($scope.estEntier(toillette_projet) == false) {
-                iziToast.error({
-                    message: "Sélectionnez une toillette",
-                    position: 'topRight'
-                });
-                return false;
-            }
-            else if ($scope.testSiUnElementEstDansTableau($scope.produitsInTable, niveau) == true) {
-                iziToast.error({
-                    message: "Le niveau est déja dans le tableau",
-                    position: 'topRight'
-                });
-                return false;
-            }
+            // else if ($scope.testSiUnElementEstDansTableau($scope.produitsInTable, niveau) == true) {
+            //     iziToast.error({
+            //         message: "Le niveau est déja dans le tableau",
+            //         position: 'topRight'
+            //     });
+            //     return false;
+            // }
 
             $scope.produitsInTable.unshift({
                 "niveau": "R +" + niveau,
@@ -2247,6 +2318,7 @@ $scope.Ele = 0;
         }
         else if (action == 'delete') {
             //Supprimer un élément du tableau
+            $scope.Ele = $scope.Ele - 1;
             $.each($scope.produitsInTable, function (keyItem, oneItem) {
                 if (oneItem.id == selectedItem.id) {
                     $scope.produitsInTable.splice(keyItem, 1);
