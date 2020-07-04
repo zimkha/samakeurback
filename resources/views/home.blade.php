@@ -563,15 +563,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-2 pb-4 pt-4 text-center">
+                            <div class="col-md-2 pb-4 pt-4 text-center align-self-center">
                                 <label for="garage_projet">Choix Ouest </label>
                                 <select class="form-control" id="choix_ouest_projet" name="choix_ouest">
                                     <option value="0">Rue</option>
                                     <option value="1">Mitoyen</option>
                                 </select>
                             </div>
-                            <div class="col-md-5 border"></div>
-                            <div class="col-md-2 pb-4 pt-4 text-center">
+                            <div class="col-md-5 border">
+                                <div style="height: 200px"></div>
+                            </div>
+                            <div class="col-md-2 pb-4 pt-4 text-center align-self-center">
                                 <label for="garage_projet">Choix Est </label>
                                 <select class="form-control" id="choix_est_projet" name="choix_est">
                                     <option value="0">Rue</option>
