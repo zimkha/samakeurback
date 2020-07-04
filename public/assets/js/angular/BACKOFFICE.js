@@ -2059,7 +2059,7 @@ $scope.index_plan = 0;
             $scope.index_plan = $scope.index_plan + 1;
             //Ajouter un élément dans le tableau
            // var niveau =  $scope.index_plan;
-            var piece_plan = $("#piece_plan").val();
+            //var piece_plan = $("#piece_plan").val();
             var chambre_plan = $("#chambre_plan").val();
             var chambre_sdb_plan = $("#chambre_sdb_plan").val();
             var bureau_plan = $("#bureau_plan").val();
@@ -2125,8 +2125,9 @@ $scope.index_plan = 0;
             // }
 
             $scope.produitsInTable.unshift({
-                "niveau": "R +" + niveau,
-                "piece": piece_plan,
+               // "niveau": "R +" + niveau,
+                "niveau":  "R +" + $scope.index_plan,
+              //  "piece": piece_plan,
                 "chambre": chambre_plan,
                 "sdb": chambre_sdb_plan,
                 "bureau": bureau_plan,

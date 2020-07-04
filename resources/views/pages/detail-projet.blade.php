@@ -92,13 +92,13 @@
                                             </div>
 
                                         </div>
-                                        <div class=" col-md-3 col-sm-12 mt-3">
+                                        {{--<div class=" col-md-3 col-sm-12 mt-3">
                                             <div class="border-danger">
                                                 <h6> Nbre Piece :<strong><u> @{{ projetview.nb_pieces }}</u></strong></h6>
 
                                             </div>
 
-                                        </div>
+                                        </div>--}}
                                         <div class=" col-md-3 col-sm-12 mt-3">
                                             <div class="border-danger">
                                                 <h6> Nbre Salon :<strong><u> @{{ projetview.nb_salon }}</u></strong></h6>
@@ -188,17 +188,17 @@
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                         <tr align="center">
-                                            <th>Code</th>
+                                            {{--<th>Code</th>--}}
                                             <th>Description</th>
-                                            <th>Adresse</th>
+                                            <th>Fichier</th>
                                             {{--<th>Actions</th>--}}
                                         </tr>
                                         </thead>
 
                                         <tbody>
                                            {{-- <tr class="animated fadeIn" ng-repeat="item in projetview.remarques">
-                                                <td>@{{ item.projet.name }}</td>
                                                 <td>@{{ item.demande_text }}</td>
+                                                --}}{{--<td>@{{ item.demande_text }}</td>--}}{{--
                                                 <td><a href="@{{ base_url }}/{{ item.fichier }}"></a></td>
                                             </tr>--}}
 

@@ -93,7 +93,7 @@
                                         </thead>
 
                                         <tbody>
-                                        <tr align="center" ng-repeat="item in projets" ng-if="item.active==1 && item.etat==1">
+                                        <tr align="center" ng-repeat="item in projets" ng-if="item.etat==0">
                                             <td>@{{ $index + 1 }}</td>
                                            <td>@{{ item.adresse_terrain }}</td>
                                            <td>@{{ item.created_at_fr }}</td>
@@ -104,9 +104,9 @@
                                                 <a href="#!/detail-projet/@{{ item.id }}" class="btn btn-primary btn-circle">
                                                     <i class="fas fa-info"></i>
                                                 </a>
-                                                <button ng-click="DeleteElement('projet', item.id)" class="btn btn-danger btn-circle">
+                                               {{-- <button ng-click="DeleteElement('projet', item.id)" class="btn btn-danger btn-circle">
                                                     <i class="fas fa-info-circle"></i>
-                                                </button>
+                                                </button>--}}
                                             </td>
                                         </tr>
 
@@ -143,9 +143,9 @@
                                                     <a href="#!/detail-projet/@{{ item.id }}" class="btn btn-primary btn-circle">
                                                         <i class="fas fa-info"></i>
                                                     </a>
-                                                    <button ng-click="DeleteElement('projet', item.id)" class="btn btn-danger btn-circle">
+                                                   {{-- <button ng-click="DeleteElement('projet', item.id)" class="btn btn-danger btn-circle">
                                                         <i class="fas fa-info-circle"></i>
-                                                    </button>
+                                                    </button>--}}
                                                 </td>
                                             </tr>
 

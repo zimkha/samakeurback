@@ -164,25 +164,25 @@
                                                 <input type="number" name="piece" id="piece_plan" class="form-control" >
                                             </div>
                                         </div> -->
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="chambre_plan">Chambres simples</label>
                                                 <input type="number" name="chambre" id="chambre_plan" class="form-control" >
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="chambre_sdb_plan" title="Chambre avec salle de bain">Chambres SDB</label>
                                                 <input type="number" name="sdb" id="chambre_sdb_plan" class="form-control" >
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="bureau_plan">Bureau</label>
                                                 <input type="number" id="bureau_plan" class="form-control" >
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="salon_plan">Salon</label>
                                                 <input type="number" name="salon" id="salon_plan" class="form-control" >
@@ -200,7 +200,7 @@
                                                 <input type="number" name="toillette" class="form-control" id="toillette_plan">
                                             </div>
                                         </div>
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-4">
                                             <div class="form-group mt-4 text-lg-right">
                                                 <button class="btn btn-success mt-2" ng-click="actionSurPlan('add')" title="Ajouter un niveau" >
                                                     <i class="fa fa-plus"></i>
