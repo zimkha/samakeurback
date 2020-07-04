@@ -176,13 +176,13 @@ class PlanController extends Controller
                      $n = $n + 1;
                      $niveau = new NiveauPlan();
 
-                     if (empty($datum['piece']))
-                     {
-                         $errors = "Veuillez renseigner au moins le nombre de pièces pour ce niveau";
-                     }
-                     if (isset($datum['piece']) && $datum['piece'] <= 0) {
-                         $errors = "Veuillez verifier le nombre de pieces  à la ligne n°".$n;
-                     }
+                    //  if (empty($datum['piece']))
+                    //  {
+                    //      $errors = "Veuillez renseigner au moins le nombre de pièces pour ce niveau";
+                    //  }
+                    //  if (isset($datum['piece']) && $datum['piece'] <= 0) {
+                    //      $errors = "Veuillez verifier le nombre de pieces  à la ligne n°".$n;
+                    //  }
                      if (isset($datum['chambre']) && $datum['chambre'] < 0) {
                          $errors = "Veuillez verifier le nombre de chambre à la ligne n°".$n;
                      }
@@ -195,7 +195,7 @@ class PlanController extends Controller
                      if (isset($datum['toillette']) && $datum['toillette'] < 0) {
                          $errors = "Veuillez verifier le nombre de toillettes  à la ligne n°".$n;
                      }
-                     $niveau->piece          = $datum['piece'];
+                    //  $niveau->piece          = $datum['piece'];
                      $niveau->chambre        = $datum['chambre'];
                      $niveau->salon          = $datum['salon'];
                      $niveau->cuisine        = $datum['cuisine'];
@@ -203,11 +203,11 @@ class PlanController extends Controller
                      $niveau->toillette      = $datum['toillette'];
                      $niveau->niveau         = $datum['niveau'];
                     
-                     $total_pieces = $niveau->chambre + $niveau->salon + $niveau->cuisine + $niveau->bureau + $niveau->toillette + $niveau->sdb;
+                    //  $total_pieces = $niveau->chambre + $niveau->salon + $niveau->cuisine + $niveau->bureau + $niveau->toillette + $niveau->sdb;
                   
-                     if ($total_pieces != (int) $datum['piece']) {
-                         $errors = "Veuillez verifier si le total des pieces est repecter  à la ligne n°".$n;
-                     }
+                    //  if ($total_pieces != (int) $datum['piece']) {
+                    //      $errors = "Veuillez verifier si le total des pieces est repecter  à la ligne n°".$n;
+                    //  }
                      if (isset($errors)) {
                          throw new \Exception($errors);
                      }
@@ -339,13 +339,13 @@ class PlanController extends Controller
                     $n = $n + 1;
                     $niveau = new NiveauPlan();
 
-                    if (empty($datum['piece']))
-                    {
-                        $errors = "Veuillez renseigner au moins le nombre de pièces pour ce niveau";
-                    }
-                    if (isset($datum['piece']) && $datum['piece'] <= 0) {
-                        $errors = "Veuillez verifier le nombre de pieces  à la ligne n°".$n;
-                    }
+                    // if (empty($datum['piece']))
+                    // {
+                    //     $errors = "Veuillez renseigner au moins le nombre de pièces pour ce niveau";
+                    // }
+                    // if (isset($datum['piece']) && $datum['piece'] <= 0) {
+                    //     $errors = "Veuillez verifier le nombre de pieces  à la ligne n°".$n;
+                    // }
                     if (isset($datum['chambre']) && $datum['chambre'] < 0) {
                         $errors = "Veuillez verifier le nombre de chambre à la ligne n°".$n;
                     }
@@ -359,7 +359,7 @@ class PlanController extends Controller
                         $errors = "Veuillez verifier le nombre de toillettes  à la ligne n°".$n;
                     }
                   
-                    $niveau->piece          = $datum['piece'];
+                    // $niveau->piece          = $datum['piece'];
                     $niveau->chambre        = $datum['chambre'];
                     $niveau->salon          = $datum['salon'];
                     $niveau->cuisine        = $datum['cuisine'];
@@ -403,6 +403,7 @@ class PlanController extends Controller
 
 
                     }
+                    // dd($item);
                     if (!isset($request->piscine)) {
                         $item->piscine = 0;
                     }
