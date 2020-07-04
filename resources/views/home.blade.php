@@ -545,7 +545,54 @@
                             </div>
                         </div>
 
-                        <div class="row">
+
+                        <h4 class="form-section animated fadeInDown mb-3 mt-5 border-bottom border-alternate">
+                            <i class="fa fa-building"></i>
+                            Position
+                        </h4>
+
+                        <div class="row justify-content-center mb-4">
+                            <div class="col-md-12">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-2 mb-2 text-center">
+                                        <label for="garage_projet">Choix Nord </label>
+                                        <select class="form-control" id="choix_nord_projet" name="choix_nord">
+                                            <option value="0">Rue</option>
+                                            <option value="1">Mitoyen</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 pb-4 pt-4 text-center">
+                                <label for="garage_projet">Choix Ouest </label>
+                                <select class="form-control" id="choix_ouest_projet" name="choix_ouest">
+                                    <option value="0">Rue</option>
+                                    <option value="1">Mitoyen</option>
+                                </select>
+                            </div>
+                            <div class="col-md-5 border"></div>
+                            <div class="col-md-2 pb-4 pt-4 text-center">
+                                <label for="garage_projet">Choix Est </label>
+                                <select class="form-control" id="choix_est_projet" name="choix_est">
+                                    <option value="0">Rue</option>
+                                    <option value="1">Mitoyen</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-2 mt-2 text-center">
+                                        <label for="garage_projet">Choix Sud </label>
+                                        <select class="form-control" id="choix_sud_projet" name="choix_sud">
+                                            <option value="0">Rue</option>
+                                            <option value="1">Mitoyen</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
                             <div class="col-lg-3">
                                 <label class="checkbox-inline">
                                     <input type="checkbox" id="electricte_projet" value="true" name="electricite"> Electricté
