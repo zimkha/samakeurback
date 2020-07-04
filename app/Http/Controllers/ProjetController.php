@@ -740,9 +740,10 @@ class ProjetController extends Controller
                 }
                 if(empty($request->montant))
                 {
-                    $errors = "Données manquantes le montant du projet";
+                    $errors = "Données manquantes le montant du projet ";
                 }
                 $item = Projet::find($request->projet);
+                //dd();
                 if(!isset($item))
                 {
                     $errors = "Un payment avec ces identifients n'existe pas dans la base de donnée";

@@ -2384,9 +2384,6 @@ $scope.Ele = 0;
 
     $scope.activerProjet  = function()
     {
-
-
-
         var data = {
             'projet': $scope.idProjetUpdate,
             'montant' : $('#montant_projet').val()
