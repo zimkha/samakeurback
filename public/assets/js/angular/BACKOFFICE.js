@@ -2382,8 +2382,10 @@ $scope.Ele = 0;
 
 
 
-    $scope.activerProjet = function()
+    $scope.activerProjet  = function()
     {
+
+
 
         var data = {
             'projet': $scope.idProjetUpdate,
