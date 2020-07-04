@@ -744,6 +744,7 @@ class ProjetController extends Controller
                 }
                 $item = Projet::find($request->projet);
                 //dd();
+
                 if(!isset($item))
                 {
                     $errors = "Un payment avec ces identifients n'existe pas dans la base de donnée";
