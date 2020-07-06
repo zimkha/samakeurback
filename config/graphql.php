@@ -112,6 +112,7 @@ return [
                  \App\GraphQL\Query\PlanProjetQuery::class,
                   \App\GraphQL\Query\UniteMesureQuery::class,
                   \App\GraphQL\Query\JoinedQuery::class,
+                  \App\GraphQL\Query\PositionQuery::class,
 
             ],
             'mutation' => [
@@ -148,6 +149,7 @@ return [
         \App\GraphQL\Type\PlanProjetType::class,
         \App\GraphQL\Type\UniteMesureType::class,
         \App\GraphQL\Type\JoinedType::class,
+        \App\GraphQL\Type\PositionType::class,
 
     ],
 
