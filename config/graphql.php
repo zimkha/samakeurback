@@ -133,6 +133,7 @@ return [
     // ]
     //
     'types' => [
+        
         \App\GraphQL\Type\TypeRemarqueType::class,
         \App\GraphQL\Type\RemarqueType::class,
         \App\GraphQL\Type\NiveauPlanType::class,
