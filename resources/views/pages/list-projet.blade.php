@@ -14,7 +14,8 @@
             <div class="card-body">
                 <form>
                     <div class="form-row mt-4">
-                        <div class="col-md-12 col-sm-12 mb-3 uk-margin-small-top text-center text-md-center" id="etat">
+                        <div class="col-md-12 col-sm-12 mb-3 uk-margin-sma
+                        ll-top text-center text-md-center" id="etat">
                             <span class="uk-text-bold fsize-14 uk-text-uppercase uk-margin-small-right">Etat : </span>
                             <input type="radio" value="1" name="radioBtnComposition" ng-click="onRadioCompositionClick($event, '0')" class="uk-radio"> <span class="fsize-12 uk-margin-small-right">en cours</span>
                             <input type="radio" value="2" name="radioBtnComposition" ng-click="onRadioCompositionClick($event, '1')" class="uk-radio"> <span class="fsize-12 uk-margin-small-right">validé</span>
@@ -85,7 +86,7 @@
                                  <td>@{{item.user.telephone}}</td>
 
                                 <td class="text-center">
-                                    <a  class="btn btn-sm btn-success btn-circle text-white" ng-if="item.etat == 0"  ng-click="activerProjet(item.id)">
+                                    <a  class="btn btn-sm btn-success btn-circle text-white" ng-if="item.etat == 0"  ng-click="showModalUpdate('projet',item.id)">
                                         <i class="fa fa-check" title="Valider"></i>
 </a>
                                     <a href="#!/detail-projet/@{{ item.id }} " class="btn btn-sm btn-primary btn-circle">

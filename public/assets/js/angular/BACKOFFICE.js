@@ -371,10 +371,10 @@ app.factory('Init',function ($http, $q)
                     }
                   });
             },
-            getSommeYear:function()
+            getResulta:function()
             {
                 $.ajax({
-                    url: BASE_URL+ 'vente/getSommeYear',
+                    url: BASE_URL+ 'projets/get',
                     method: "GET",
                     success: function(data)
                     {
@@ -426,7 +426,7 @@ app.config(function($routeProvider) {
 
 
 // Spécification fonctionnelle du controller
-app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$route, $routeParams, $timeout)
+app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$route, $routeParams,$http, $timeout)
 {
 
     /*window.Echo.channel('chan-demo')
@@ -455,8 +455,8 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
             "niveauprojets"                 :  ["id,piece,bureau,toillette,chambre,salon,cuisine,niveau_name",""],
 
             "projets"                       :  [
-                "id,adresse_terrain,garage,name,etat,active,a_valider,created_at_fr,created_at,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_sdb,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adresse_complet,code_postal}",
-                ",niveau_projets{id,piece,bureau,toillette,chambre,sdb,niveau_name,salon,cuisine},remarques{id,demande_text,projet_id,projet{adresse_terrain,name},type_remarque_id},plan_projets{id,plan_id,plan{id,code,created_at_fr,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,unite_mesure_id,unite_mesure{id,name},fichier,niveau_plans{id,piece,niveau,bureau,toillette,chambre,salon,cuisine},joineds{id,fichier,description}}}"
+                "id,adresse_terrain,garage,name,etat,active,a_valider,text_projet,created_at_fr,created_at,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_sdb,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adresse_complet,code_postal}",
+                ",niveau_projets{id,piece,bureau,toillette,chambre,sdb,niveau_name,salon,cuisine},postions{id,position,nom_postion,projet_id},remarques{id,demande_text,projet_id,projet{adresse_terrain,name},type_remarque_id},plan_projets{id,plan_id,plan{id,code,created_at_fr,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,unite_mesure_id,unite_mesure{id,name},fichier,niveau_plans{id,piece,niveau,bureau,toillette,chambre,salon,cuisine},joineds{id,fichier,description}}}"
             ],
 
             "clients"                       :  ["id",""],
@@ -476,7 +476,9 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
             "id,nom,prenom,adresse_complet,pays,code_postal,is_client,telephone,name,email,active,password,image,roles{id,name,guard_name,permissions{id,name,display_name,guard_name}}", ",last_login,last_login_ip,created_at_fr"
         , ""],
 
-            "dashboards"                    : ["clients,assurances,ventes,fournisseurs"],
+            "dashboards"                    : ["projets,encours,finalise"],
+            
+            "positions" : ["id,position,nom_postion,projet_id",""]
 
 
         };
@@ -602,6 +604,19 @@ $scope.get_Somme_daye = function ()
         success: function(data)
         {
             console.log(data);
+        }, error: function (data) {
+            console.log(data)
+        }
+      });
+};
+$scope.getResultat = function()
+{
+    $.ajax({
+        url: BASE_URL+ 'projet/gerResultat',
+        method: "GET",
+        success: function(data)
+        {
+            console.log("fini");
         }, error: function (data) {
             console.log(data)
         }
@@ -752,14 +767,10 @@ $scope.get_Somme_daye = function ()
             }
             else if (type.indexOf("dashboards")!==-1)
             {
-                   //  $scope.dashboard_data = data;
-                   //  $scope.dashboard_data[0].ventes = JSON.parse(data[0].ventes);
-                   //   $scope.dashboard_data[0].assurances = JSON.parse(data[0].assurances);
-                   //   $scope.dashboard_data[0].clients = JSON.parse(data[0].clients);
-                   //   $scope.dashboard_data[0].fournisseurs = JSON.parse(data[0].fournisseurs);
-                    //$scope.dashboard_data[0].top_vente = JSON.parse(data[0].top_vente);
-                    //$scope.dashboard_data[0].fake_ventes = JSON.parse(data[0].fake_ventes);
-                console.log('infos du dashboards', data);
+                  
+                console.log('infos du dashboards');
+                data = $scope.getResultat();
+                console.log(data);
 
             }
             else if (type.indexOf("detailsinventaires")!==-1)
@@ -1340,24 +1351,30 @@ $scope.get_Somme_daye = function ()
         $('#aff' + idInput).attr('src',imgupload);
     };
 
-    function emptyform(type)
-    {
+    $scope.emptyForm = function (type) {
+
+        $scope.produitsInTable = [];
         let dfd = $.Deferred();
         $('.ws-number').val("");
-        $("input[id$=" + type + "], textarea[id$=" + type + "], select[id$=" + type + "], button[id$=" + type + "]").each(function ()
-        {
+        $("input[id$=" + type + "], textarea[id$=" + type + "], select[id$=" + type + "], button[id$=" + type + "]").each(function () {
             $(this).val("");
+            if ($(this).is("select")) {
+                $(this).val("").trigger('change');
+            }
             $(this).attr($(this).hasClass('btn') ? 'disabled' : 'readonly', false);
+
+            if ($(this).attr('type') === 'checkbox') {
+                $(this).prop('checked', false);
+            }
         });
+
 
         $('#img' + type)
             .val("");
-        $('#affimg' + type).attr('src',imgupload);
-
-        console.log('affichage du formulaire', $scope.factureproformaview);
+        $('#affimg' + type).attr('src', imgupload);
 
         return dfd.promise();
-    }
+    };
 
     // Permet de changer le statut du formulaire a editable ou non
     function changeStatusForm(type, status, disabled=false)
@@ -1451,7 +1468,7 @@ $scope.get_Somme_daye = function ()
         }, 500);
 
 
-        emptyform(type);
+        $scope.emptyForm(type);
         if (type.indexOf('role')!==-1)
         {
             $scope.roleview = null;
@@ -1567,7 +1584,7 @@ $scope.get_Somme_daye = function ()
         $scope.chstat.statut = statut;
         $scope.chstat.type = type;
         $scope.chstat.title = title;
-        emptyform('chstat');
+        $scope.emptyForm('chstat');
         $("#modal_changeStattus").modal('show');
     };
     $scope.showModalChangeStatut  = function(event,type, statut, obj= null, title = null)
@@ -1579,7 +1596,7 @@ $scope.get_Somme_daye = function ()
         $scope.chstat.statut = statut;
         $scope.chstat.type = type;
         $scope.chstat.title = title;
-        emptyform('changestatut');
+        $scope.emptyForm('changestatut');
         $("#modal_addchangestatut").modal('show');
     };
     $scope.showModalconfirme = function(event, title = null)
@@ -1591,7 +1608,7 @@ $scope.get_Somme_daye = function ()
         // $scope.chstat.type = type;
         $scope.chstat.title = title;
 
-        emptyform('chstat');
+        $scope.emptyForm('chstat');
         $("#modal_addchstat").modal('show');
     };
 
@@ -1837,7 +1854,7 @@ $scope.get_Somme_daye = function ()
                 //form.parent().parent().blockUI_stop();
                 if (data.data!=null && !data.errors_debug)
                 {
-                    emptyform(type);
+                    $scope.emptyForm(type);
                     getObj = data['data'][type + 's'][0];
 
 
@@ -2052,8 +2069,9 @@ $scope.index_plan = 0;
         {
             $scope.index_plan = $scope.index_plan + 1;
             //Ajouter un élément dans le tableau
-            var niveau =  $scope.index_plan;
-            var piece_plan = $("#piece_plan").val();
+
+           // var niveau =  $scope.index_plan;
+            //var piece_plan = $("#piece_plan").val();
             var chambre_plan = $("#chambre_plan").val();
             var chambre_sdb_plan = $("#chambre_sdb_plan").val();
             var bureau_plan = $("#bureau_plan").val();
@@ -2119,8 +2137,9 @@ $scope.index_plan = 0;
             // }
 
             $scope.produitsInTable.unshift({
-                "niveau": "R +" + niveau,
-                "piece": piece_plan,
+               // "niveau": "R +" + niveau,
+                "niveau":  "R +" + $scope.index_plan,
+              //  "piece": piece_plan,
                 "chambre": chambre_plan,
                 "sdb": chambre_sdb_plan,
                 "bureau": bureau_plan,
@@ -2253,7 +2272,7 @@ $scope.Ele = 0;
                 return false;
             }
             // if ($scope.estEntier(salon_projet) == false) {
-               
+
             // }
             // if ($scope.estEntier(cuisine_projet) == false) {
             //     iziToast.error({
@@ -2376,20 +2395,21 @@ $scope.Ele = 0;
 
 
 
-    $scope.activerProjet = function(id)
+    $scope.activerProjet  = function()
     {
-
         var data = {
-            'id': id,
+            'projet': $scope.idProjetUpdate,
+            'montant' : $('#montant_projet').val()
         };
         console.log(data)
 
-        var deferred=$q.defer();
+       /* var deferred=$q.defer();
         $.ajax
         (
             {
-                url: BASE_URL + 'activer-projet/'+id,
-                type:'GET',
+                url: BASE_URL + 'activer-projet/',
+                type:'POST',
+               // type:'GET',
                 contentType:false,
                 processData:false,
                 DataType:'text',
@@ -2426,7 +2446,40 @@ $scope.Ele = 0;
                 }
             }
         );
-        return deferred.promise;
+        return deferred.promise;*/
+        $http({
+            url: BASE_URL + 'activer-projet',
+            method: 'POST',
+            data: data,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (data) {
+            console.log(data)
+            // $('body').blockUI_stop();
+            if (data.data.errors) {
+                iziToast.error({
+                    title: '',
+                    message: 'Erreur de validation !',
+                    position: 'topRight'
+                });
+            }else{
+                // $('body').blockUI_stop();
+                iziToast.success({
+                    title: '',
+                  //  message: data.data.success,
+                    message: 'Votre demande a bien été valide avec success',
+                    position: 'topRight'
+                });
+
+
+                $scope.emptyForm('projet');
+
+                $("#modal_addprojet").modal('hide');
+                $scope.pageChanged('projet');
+
+            }
+        })
     };
 
     $scope.testSiUnElementEstDansTableau = function (tableau, idElement)
@@ -2644,6 +2697,7 @@ $scope.Ele = 0;
         window.location.reload();
     };
 
+    $scope.idProjetUpdate = null;
 
     $scope.assistedListe = false;
     $scope.showModalUpdate=function (type,itemId, forceChangeForm=false)
@@ -2690,6 +2744,7 @@ $scope.Ele = 0;
             }
             else if (type.indexOf("projet")!==1)
             {
+                $scope.idProjetUpdate = itemId;
                 $('#superficie_' + type).val(item.superficie);
                 $('#longeur_' + type).val(item.longeur);
                 $('#largeur_' + type).val(item.largeur);

@@ -18,6 +18,10 @@ class Projet extends Model
     {
         return $this->hasMany(NiveauProjet::class);
     }
+    public function positions()
+    {
+        return $this->hasMany(Position::class);
+    }
     public function remarques()
     {
          return $this->hasMany(Remarque::class);

@@ -10,6 +10,7 @@ use App\Projet;
 use App\Remarque;
 use Carbon\Carbon;
 use App\PlanProjet;
+use App\Position;
 use App\NiveauProjet;
 use PayPal\Rest\ApiContext;
 use Illuminate\Http\Request;
@@ -57,10 +58,12 @@ class ProjetController extends Controller
                     $item = Projet::find($request->id);
                     NiveauProjet::where('projet_id', $request->id)->delete();
                     NiveauProjet::where('projet_id', $request->id)->forceDelete();
+                    Position::where('projet_id', $request->id)->delete();
+                    Position::where('projet_id', $request->id)->forceDelete();
                     $name = $item->name;
                     $auth_user = $item->id_user;
                 }
-                $item->id_user = $auth_user;
+             //   $item->id_user = $auth_user;
                 if(empty($request->acces_voirie) || $request->acces_voirie == 0)
                 {
                     $item->acces_voirie = 0;
@@ -142,7 +145,7 @@ class ProjetController extends Controller
                }
                 $superficie                    = $request->longeur * $request->largeur;
                 $item->name                    = $name;
-                $item->user_id                 = $request->user;
+                $item->user_id                 = (int)$request->user;
                 $item->superficie              = $superficie;
                 $item->longeur                 = $request->longeur;
                 $item->largeur                 = $request->largeur;
@@ -154,7 +157,7 @@ class ProjetController extends Controller
 
                 $n = 0;
                 $array_level = array();
-               
+
                 //  dd($request->hasFile('fichier'), $request->all());
                 if (!isset($errors) && $request->hasFile('fichier') )
                 {
@@ -166,11 +169,22 @@ class ProjetController extends Controller
                     move_uploaded_file($fichier_tmp,$rename);
                     //$path = $request->fichier->storeAs('uploads/plans', $rename);
                     $item->fichier = $rename;
-                     
+
                 }
                 // dd($item->fichier);
-               
 
+                $tab_position = array();
+                if(isset($request->positions) && $request->positions!= null)
+                {
+                    $positions = json_decode($request->positions, true);
+                    foreach($positions as $position)
+                    {
+                        $pt_ref = new Postion();
+                        $pt_ref->position = $position['ref'];
+                        $pt_ref->nom_position = $position['position'];
+                        array_push($tab_position , $pt_ref);
+                    }
+                }
                 if(isset($request->tab_projet) && $request->tab_projet != null)
                 {
                     $data = json_decode($request->tab_projet, true);
@@ -196,7 +210,7 @@ class ProjetController extends Controller
                          if (!isset($key['toillette'])) {
                             $errors = "Veuillez renseigner le nombre de toillette de ce niveau ligne n°". $n;
                          }
-                        
+
                          if (isset($errors))
                          {
                              throw new \Exception($errors);
@@ -207,7 +221,7 @@ class ProjetController extends Controller
                         //     $errors = "Erreur de décompte sur le nombre de pièces ligne n°{$n}";
                         // }
 
-                       
+
                         $niveau->niveau_name        = "R +". $n;
                         // $niveau->piece              = $key['piece'];
                         $niveau->chambre            = $key['chambre'];
@@ -222,7 +236,8 @@ class ProjetController extends Controller
                     }
                 }
 
-               
+
+                //dd($item);
 
                 if (!isset($errors))
                 {
@@ -236,6 +251,14 @@ class ProjetController extends Controller
                          {
                             $level->projet_id    = $item->id;
                             $level->save();
+                        }
+                    }
+                    if(count( $tab_position) > 0)
+                    {
+                        foreach( $tab_position as $pos)
+                        {
+                            $pos->projet_id = $item->id;
+                            $pos->save();
                         }
                     }
 
@@ -739,9 +762,10 @@ class ProjetController extends Controller
                 }
                 if(empty($request->montant))
                 {
-                    $errors = "Données manquantes le montant du projet";
+                    $errors = "Données manquantes le montant du projet ";
                 }
                 $item = Projet::find($request->projet);
+                //dd($request->projet);
                 if(!isset($item))
                 {
                     $errors = "Un payment avec ces identifients n'existe pas dans la base de donnée";
@@ -787,7 +811,7 @@ class ProjetController extends Controller
                 {
                     $errors = "Projet introuvable";
                 }
-               
+
             }
             else
             {
@@ -801,7 +825,7 @@ class ProjetController extends Controller
               return response()->json($retour);
             }
             throw new \Exception($errors);
-  
+
        }
        catch(\Exception $e)
        {
@@ -812,4 +836,33 @@ class ProjetController extends Controller
        }
     }
 
+    public function getResult()
+    {
+        try{
+                $errors = null;
+                $tab_resultat = array();
+                $one = Projet::all()->count();
+                // $one = count($one);
+                $prime = Projet::where('etat', 0)->count();
+                $two = Projet::where('etat', 1)->count();
+                $three =  Projet::where('etat', 2)->count();
+
+                array_push($tab_resultat, [
+                    "total"=> $one,
+                    "en_attente"=> $prime,
+                    "encours"=> $two,
+                    "finalise"=> $three
+                ]);
+
+                return $tab_resultat;
+        }catch(\Exception $e)
+        {
+            return response()->json(array(
+                'errors'          => config('app.debug') ? $e->getMessage() : Outil::getMsgError(),
+                'errors_debug'    => [$e->getMessage()],
+            )); 
+        }
+    }
+
 }
+

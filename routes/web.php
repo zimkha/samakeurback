@@ -40,6 +40,7 @@ Route::post('/joined', 'PlanController@joined');
 Route::get('/payment', 'ProjetController@payment');
 Route::post('/activer-projet', 'ProjetController@activeProjet');
 Route::get('/payeprojet/{id}', 'ProjetController@payeProjet');
+Route::get('/projet/gerResultat', 'ProjetController@getResult');
 
 // les actions de suppressions
 Route::delete('/projet/{id}', 'ProjetController@delete');

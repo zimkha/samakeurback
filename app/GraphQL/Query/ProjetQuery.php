@@ -185,6 +185,7 @@ class ProjetQuery extends Query
             'acces_voirie'           => $item->acces_voirie,    
             'geometre'               => $item->geometre,    
             'garage'                 => $item->garage,
+            'positions'              => $item->positions,
    
         ];
       });

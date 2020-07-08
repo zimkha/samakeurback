@@ -164,25 +164,25 @@
                                                 <input type="number" name="piece" id="piece_plan" class="form-control" >
                                             </div>
                                         </div> -->
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="chambre_plan">Chambres simples</label>
                                                 <input type="number" name="chambre" id="chambre_plan" class="form-control" >
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="chambre_sdb_plan" title="Chambre avec salle de bain">Chambres SDB</label>
                                                 <input type="number" name="sdb" id="chambre_sdb_plan" class="form-control" >
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="bureau_plan">Bureau</label>
                                                 <input type="number" id="bureau_plan" class="form-control" >
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="salon_plan">Salon</label>
                                                 <input type="number" name="salon" id="salon_plan" class="form-control" >
@@ -200,7 +200,7 @@
                                                 <input type="number" name="toillette" class="form-control" id="toillette_plan">
                                             </div>
                                         </div>
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-4">
                                             <div class="form-group mt-4 text-lg-right">
                                                 <button class="btn btn-success mt-2" ng-click="actionSurPlan('add')" title="Ajouter un niveau" >
                                                     <i class="fa fa-plus"></i>
@@ -521,7 +521,7 @@
                                     <input type="text" class="form-control" id="adresse_terrain_projet" name="adresse_terrain">
                                 </div>
                             </div>
-                           
+
 
                         </div>
                         <div class="row">
@@ -538,14 +538,63 @@
                                 <div class="form-group">
                                     <label for="garage_projet">Garage</label>
                                     <select class="form-control" id="garage_projet" name="garage">
-                                        <option value="1">OUI</option>
                                         <option value="0">NON</option>
+                                        <option value="1">OUI</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row">
+
+                        <h4 class="form-section animated fadeInDown mb-3 mt-5 border-bottom border-alternate">
+                            <i class="fa fa-building"></i>
+                            Position
+                        </h4>
+
+                        <div class="row justify-content-center mb-4">
+                            <div class="col-md-12">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-2 mb-2 text-center">
+                                        <label for="garage_projet">Choix Nord </label>
+                                        <select class="form-control" id="choix_nord_projet" name="choix_nord">
+                                            <option value="0">Rue</option>
+                                            <option value="1">Mitoyen</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 pb-4 pt-4 text-center align-self-center">
+                                <label for="garage_projet">Choix Ouest </label>
+                                <select class="form-control" id="choix_ouest_projet" name="choix_ouest">
+                                    <option value="0">Rue</option>
+                                    <option value="1">Mitoyen</option>
+                                </select>
+                            </div>
+                            <div class="col-md-5 border">
+                                <div style="height: 200px"></div>
+                            </div>
+                            <div class="col-md-2 pb-4 pt-4 text-center align-self-center">
+                                <label for="garage_projet">Choix Est </label>
+                                <select class="form-control" id="choix_est_projet" name="choix_est">
+                                    <option value="0">Rue</option>
+                                    <option value="1">Mitoyen</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-2 mt-2 text-center">
+                                        <label for="garage_projet">Choix Sud </label>
+                                        <select class="form-control" id="choix_sud_projet" name="choix_sud">
+                                            <option value="0">Rue</option>
+                                            <option value="1">Mitoyen</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
                             <div class="col-lg-3">
                                 <label class="checkbox-inline">
                                     <input type="checkbox" id="electricte_projet" value="true" name="electricite"> Electricté
@@ -613,25 +662,25 @@
                                                 <input type="number" name="piece" id="piece_projet" class="form-control" >
                                             </div>
                                         </div> -->
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="chambre_projet">Chbres simples</label>
                                                 <input type="number" name="chambre" id="chambre_projet" class="form-control" >
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="chambre_sdb_projet">Chbres SDB</label>
                                                 <input type="number" name="sdb" id="chambre_sdb_projet" class="form-control" >
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="bureau_projet">Bureau</label>
                                                 <input type="number" id="bureau_projet" class="form-control" >
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="salon_projet">Salon</label>
                                                 <input type="number" name="salon" id="salon_projet" class="form-control" >
@@ -649,7 +698,7 @@
                                                 <input type="number" name="toillette" class="form-control" id="toillette_projet">
                                             </div>
                                         </div>
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-4">
                                             <div class="form-group mt-4 text-lg-right">
                                                 <button class="btn btn-success mt-2" ng-click="actionSurProjet('add')" title="Ajouter un niveau" >
                                                     <i class="fa fa-plus"></i>
@@ -744,6 +793,38 @@
         </div>
     </div>
 
+    <div class="modal fade" id="modal_addprojet" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog modal-lg" role="document"  style="max-width: 54%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Valider le Projet</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body m-3">
+                    <form id="form_addpaye_projet" class="form" enctype="multipart/form-data" accept-charset="UTF-8">
+                        @csrf
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="montant_projet">Montant</label>
+                                    <input type="number" class="form-control" id="montant_projet" name="montant">
+                                </div>
+                            </div>
+                        </div>
 
-    
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" ng-click="activerProjet()">Enregistrer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
 @endsection
