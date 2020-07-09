@@ -59,6 +59,7 @@ class ProjetPaginatedQuery extends Query
             'eaux_pluviable'         => ['type' => Type::boolean()],
             'necessite_bornage'      => ['type' => Type::boolean()],
             'garage'                 => ['type' => Type::boolean()],
+            'montant'              => ['type' => Type::int()],
 
           
             'created_at'             => ['type'  => Type::string()],
