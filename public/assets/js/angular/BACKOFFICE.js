@@ -478,7 +478,11 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
 
             "dashboards"                    : ["projets,encours,finalise"],
             
-            "positions" : ["id,position,nom_postion,projet_id",""]
+            "positions" : ["id,position,nom_postion,projet_id",""],
+
+            "joineds" : ["id,fichier,description,active",""]
+
+            
 
 
         };
@@ -498,6 +502,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
             var rewriteReq = typeAvecS
                 + "(id:" + idclient
                 + ")";
+                $add_to_req =  (listofrequests_assoc[type].length > 1 && !nullableAddToReq) ? listofrequests_assoc[type][1] : null;
 
             Init.getElement(rewriteReq, "assurance_id,matricule,pourcentage,souscripteur,affiles{id,nomcomplet}").then(function (data) {
 
@@ -1144,7 +1149,8 @@ $scope.getResultat = function()
                    Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
                    {
                        $scope.planview = data[0];
-                       $scope.pageChanged('projet')
+                       $scope.pageChanged('projet');
+                       $scope.getelements('joineds');
 
                        console.log("$scope.planview =>",$scope.planview)
                    },function (msg)
@@ -2093,41 +2099,41 @@ $scope.index_plan = 0;
             //     });
             //     return false;
             // }
-            if ($scope.estEntier(chambre_plan) == false) {
-                iziToast.error({
-                    message: "Sélectionnez une chambre",
-                    position: 'topRight'
-                });
-                return false;
-            }
-            if ($scope.estEntier(chambre_sdb_plan) == false) {
-                iziToast.error({
-                    message: "Sélectionnez une chambre avec SDB",
-                    position: 'topRight'
-                });
-                return false;
-            }
-            if ($scope.estEntier(salon_plan) == false) {
-                iziToast.error({
-                    message: "Sélectionnez une salon",
-                    position: 'topRight'
-                });
-                return false;
-            }
-            if ($scope.estEntier(cuisine_plan) == false) {
-                iziToast.error({
-                    message: "Sélectionnez une cuisine",
-                    position: 'topRight'
-                });
-                return false;
-            }
-            if ($scope.estEntier(toillette_plan) == false) {
-                iziToast.error({
-                    message: "Sélectionnez une toillette",
-                    position: 'topRight'
-                });
-                return false;
-            }
+            // if ($scope.estEntier(chambre_plan) == false) {
+            //     iziToast.error({
+            //         message: "Sélectionnez une chambre",
+            //         position: 'topRight'
+            //     });
+            //     return false;
+            // }
+            // if ($scope.estEntier(chambre_sdb_plan) == false) {
+            //     iziToast.error({
+            //         message: "Sélectionnez une chambre avec SDB",
+            //         position: 'topRight'
+            //     });
+            //     return false;
+            // }
+            // if ($scope.estEntier(salon_plan) == false) {
+            //     iziToast.error({
+            //         message: "Sélectionnez une salon",
+            //         position: 'topRight'
+            //     });
+            //     return false;
+            // }
+            // if ($scope.estEntier(cuisine_plan) == false) {
+            //     iziToast.error({
+            //         message: "Sélectionnez une cuisine",
+            //         position: 'topRight'
+            //     });
+            //     return false;
+            // }
+            // if ($scope.estEntier(toillette_plan) == false) {
+            //     iziToast.error({
+            //         message: "Sélectionnez une toillette",
+            //         position: 'topRight'
+            //     });
+            //     return false;
+            // }
             // else if ($scope.testSiUnElementEstDansTableau($scope.produitsInTable, niveau) == true) {
             //     iziToast.error({
             //         message: "Le niveau est déja dans le tableau",
@@ -2135,6 +2141,57 @@ $scope.index_plan = 0;
             //     });
             //     return false;
             // }
+            if(chambre_plan < 0)
+            {
+                iziToast.error({
+                    message: "Preciserle nombre de chambres",
+                    position: 'topRight'
+                });
+                return false;
+            }
+           
+            if(chambre_sdb_plan < 0)
+            {
+                iziToast.error({
+                    message: "Preciserle nombre de Chambre Salle de Bain",
+                    position: 'topRight'
+                });
+                return false;
+            }
+            if(salon_plan < 0)
+            {
+                iziToast.error({
+                    message: "Preciserle nombre de salon",
+                    position: 'topRight'
+                });
+                return false;
+            }
+            if(bureau_plan < 0)
+            {
+                iziToast.error({
+                    message: "Preciserle nombre de bureau",
+                    position: 'topRight'
+                });
+                return false;
+            }
+           
+            if(cuisine_plan < 0)
+            {
+                iziToast.error({
+                    message: "Preciserle nombre de cuisine",
+                    position: 'topRight'
+                });
+                return false;
+            }
+          
+            if(toillette_plan < 0)
+            {
+                iziToast.error({
+                    message: "Preciserle nombre de Toillettes",
+                    position: 'topRight'
+                });
+                return false;
+            }
 
             $scope.produitsInTable.unshift({
                // "niveau": "R +" + niveau,

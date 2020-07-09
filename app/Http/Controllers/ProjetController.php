@@ -546,8 +546,8 @@ class ProjetController extends Controller
                                     }
                                     //dd($client);
                     $created_at = Carbon::parse($item->created_at)->format('d/m/Y');
-                    $pdf = PDF::loadView('pdf.contrat', ['projet' => $item, 'created_at' => $created_at, 'client' => $client, 'niveaux' => $niveaux]);
-                    return $pdf->setPaper( 'orientation')->stream();
+                    $pdf        = PDF::loadView('pdf.contrat', ['projet' => $item, 'created_at' => $created_at, 'client' => $client, 'niveaux' => $niveaux]);
+                    return $pdf->setPaper('orientation')->stream();
                 }
                 else
                 {
