@@ -1711,6 +1711,12 @@ $scope.getResultat = function()
 
     $scope.positions = [];
 
+    $scope.actionSurPosition = function()
+    {
+        $scope.positions =  [{position : 'Nord',ref:  parseInt($('#choix_nord_projet').val())}, {position : 'Sud',ref: parseInt($('#choix_sud_projet').val())}, {position : 'Ouest',ref: parseInt($('#choix_ouest_projet').val())}, {position : 'Est',ref: parseInt($('#choix_ouest_projet').val())}];
+
+    }
+
     // Add element in database and in scope
     $scope.addElement = function(e,type,from='modal')
     {
@@ -1774,7 +1780,7 @@ $scope.getResultat = function()
         }
         else if (type == 'projet' || type == 'projets') {
 
-            $scope.positions =  [{position : 'Nord',ref:  parseInt($('#choix_nord_projet').val())}, {position : 'Sud',ref: parseInt($('#choix_sud_projet').val())}, {position : 'Ouest',ref: parseInt($('#choix_ouest_projet').val())}, {position : 'Est',ref: parseInt($('#choix_ouest_projet').val())}];
+            console.log("ici les senddatas ",$scope.positions)
 
             if ($scope.produitsInTable.length > 0) {
 

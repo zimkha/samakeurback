@@ -482,6 +482,7 @@
                         @csrf
                         <input type="hidden" id="id_plan" name="id">
                         <input type="hidden" name="tab_niveau" id="tab_niveau" value="@{{produitsInTable}}">
+                        <input type="hidden" name="positions" id="tab_position" value="@{{positions}}">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -605,7 +606,7 @@
                                     </div>
                                     <div class="col-md-2 mb-2 text-center">
                                         <label for="choix_nord_projet">Choix Nord </label>
-                                        <select class="form-control" id="choix_nord_projet" name="choix_nord">
+                                        <select class="form-control" id="choix_nord_projet" name="choix_nord" ng-click="actionSurPosition()">
                                             <option value="1">Mitoyen</option>
                                             <option value="0">Rue</option>
                                         </select>
@@ -623,7 +624,7 @@
                                     </div>
                                     <div class="col-md-6 pb-4 text-center align-self-center">
                                         <label for="choix_ouest_projet">Choix Ouest </label>
-                                        <select class="form-control" id="choix_ouest_projet" name="choix_ouest">
+                                        <select class="form-control" id="choix_ouest_projet" name="choix_ouest"  ng-click="actionSurPosition()">
                                             <option value="1">Mitoyen</option>
                                             <option value="0">Rue</option>
                                         </select>
@@ -637,7 +638,7 @@
                                 <div class="row ">
                                     <div class="col-md-6 pb-4 pt-4 text-center align-self-center">
                                         <label for="choix_est_projet">Choix Est </label>
-                                        <select class="form-control" id="choix_est_projet" name="choix_est">
+                                        <select class="form-control" id="choix_est_projet" name="choix_est"  ng-click="actionSurPosition()">
                                             <option value="1">Mitoyen</option>
                                             <option value="0">Rue</option>
                                         </select>
@@ -649,7 +650,7 @@
                                 <div class="row justify-content-center">
                                     <div class="col-md-2 mt-2 text-center">
                                         <label for="choix_sud_projet">Choix Sud </label>
-                                        <select class="form-control" id="choix_sud_projet" name="choix_sud">
+                                        <select class="form-control" id="choix_sud_projet" name="choix_sud"  ng-click="actionSurPosition()">
                                             <option value="1">Mitoyen</option>
                                             <option value="0">Rue</option>
                                         </select>
