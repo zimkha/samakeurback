@@ -48,6 +48,7 @@ class ProjetType extends GraphQLType
             'id_user'                =>  ['type' => Type::int()],
 
 
+            'montant'              => ['type' => Type::int()],
 
             'nb_pieces'              => ['type' => Type::int()],
             'nb_chambre'             => ['type' => Type::int()],
