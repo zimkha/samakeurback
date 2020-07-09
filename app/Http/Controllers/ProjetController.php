@@ -485,18 +485,25 @@ class ProjetController extends Controller
         {
             $errors = null;
             $data = null;
-            if(isset($requet->id))
+           
+            if(isset($request->projet))
             {
                 if(empty($request->montant))
                 {
                     $errors = "Veuillez definir le montant";
+                    throw new \Exception($errors);
+
                 }
                 if(isset($request->montant) && $request->montant <= 0)
                 {
                     $errors = "Veuillez renseigner un montant valide";
+                    throw new \Exception($errors);
+
 
                 }
+                $id = (int)$request->projet;
                 $item = Projet::find($id);
+               
                 if(isset($item))
                 {
                     $item->montant = $request->montant;
@@ -504,16 +511,21 @@ class ProjetController extends Controller
                     $item->etat = 1;
                     $item->save();
                     $data = 1;
+                   
                 }
                 else
                 {
                     $errors = "Erreur veuillez contacter le service technique";
+                    throw new \Exception($errors);
+
                 }
             }
             else
             {
                 $errors = "Données manquantes";
+                throw new \Exception($errors);
             }
+          
             if($errors!=null)
             {
                 $retour = array(
