@@ -477,12 +477,12 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
         , ""],
 
             "dashboards"                    : ["projets,encours,finalise"],
-            
+
             "positions" : ["id,position,nom_postion,projet_id",""],
 
             "joineds" : ["id,fichier,description,active",""]
 
-            
+
 
 
         };
@@ -772,7 +772,7 @@ $scope.getResultat = function()
             }
             else if (type.indexOf("dashboards")!==-1)
             {
-                  
+
                 console.log('infos du dashboards');
                 data = $scope.getResultat();
                 console.log(data);
@@ -1709,6 +1709,8 @@ $scope.getResultat = function()
     $scope.bornes_visible = 0;
     $scope.necessite_bornage = 0;
 
+    $scope.positions = [];
+
     // Add element in database and in scope
     $scope.addElement = function(e,type,from='modal')
     {
@@ -1772,6 +1774,8 @@ $scope.getResultat = function()
         }
         else if (type == 'projet' || type == 'projets') {
 
+            $scope.positions =  [{position : 'Nord',ref:  parseInt($('#choix_nord_projet').val())}, {position : 'Sud',ref: parseInt($('#choix_sud_projet').val())}, {position : 'Ouest',ref: parseInt($('#choix_ouest_projet').val())}, {position : 'Est',ref: parseInt($('#choix_ouest_projet').val())}];
+
             if ($scope.produitsInTable.length > 0) {
 
                 if($('#electricte_projet').prop('checked') == true){
@@ -1832,6 +1836,7 @@ $scope.getResultat = function()
                 }
 
                 send_data.append('tab_projet', JSON.stringify($scope.produitsInTable));
+                send_data.append('positions', $scope.positions);
                 send_data.append('electricite', $scope.electricite);
                 send_data.append('acces_voirie', $scope.acces_voirie);
                 send_data.append('assainissement', $scope.assainissement);
@@ -2149,7 +2154,7 @@ $scope.index_plan = 0;
                 });
                 return false;
             }
-           
+
             if(chambre_sdb_plan < 0)
             {
                 iziToast.error({
@@ -2174,7 +2179,7 @@ $scope.index_plan = 0;
                 });
                 return false;
             }
-           
+
             if(cuisine_plan < 0)
             {
                 iziToast.error({
@@ -2183,7 +2188,7 @@ $scope.index_plan = 0;
                 });
                 return false;
             }
-          
+
             if(toillette_plan < 0)
             {
                 iziToast.error({

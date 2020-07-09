@@ -551,14 +551,14 @@
                             Position
                         </h4>
 
-                        <div class="row justify-content-center mb-4">
+                        {{--<div class="row justify-content-center mb-4">
                             <div class="col-md-12">
                                 <div class="row justify-content-center">
                                     <div class="col-md-2 mb-2 text-center">
                                         <label for="garage_projet">Choix Nord </label>
                                         <select class="form-control" id="choix_nord_projet" name="choix_nord">
-                                            <option value="0">Rue</option>
                                             <option value="1">Mitoyen</option>
+                                            <option value="0">Rue</option>
                                         </select>
                                     </div>
                                 </div>
@@ -566,8 +566,8 @@
                             <div class="col-md-2 pb-4 pt-4 text-center align-self-center">
                                 <label for="garage_projet">Choix Ouest </label>
                                 <select class="form-control" id="choix_ouest_projet" name="choix_ouest">
-                                    <option value="0">Rue</option>
                                     <option value="1">Mitoyen</option>
+                                    <option value="0">Rue</option>
                                 </select>
                             </div>
                             <div class="col-md-5 border">
@@ -576,8 +576,8 @@
                             <div class="col-md-2 pb-4 pt-4 text-center align-self-center">
                                 <label for="garage_projet">Choix Est </label>
                                 <select class="form-control" id="choix_est_projet" name="choix_est">
-                                    <option value="0">Rue</option>
                                     <option value="1">Mitoyen</option>
+                                    <option value="0">Rue</option>
                                 </select>
                             </div>
                             <div class="col-md-12">
@@ -585,8 +585,73 @@
                                     <div class="col-md-2 mt-2 text-center">
                                         <label for="garage_projet">Choix Sud </label>
                                         <select class="form-control" id="choix_sud_projet" name="choix_sud">
-                                            <option value="0">Rue</option>
                                             <option value="1">Mitoyen</option>
+                                            <option value="0">Rue</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>--}}
+
+                        <div class="row justify-content-center mb-3">
+                            <div class="col-md-12">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-2  text-center">
+                                        <div class="form-group">
+                                            <label for="longeur_projet">Longeur(m)</label>
+                                            <input type="number" id="longeur_projet" name="longeur" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 mb-2 text-center">
+                                        <label for="garage_projet">Choix Nord </label>
+                                        <select class="form-control" id="choix_nord_projet" name="choix_nord">
+                                            <option value="1">Mitoyen</option>
+                                            <option value="0">Rue</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 align-self-center">
+                                <div class="row ">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="largeur_projet">Largeur(m)</label>
+                                            <input type="number" id="largeur_projet" name="largeur" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 pb-4 text-center align-self-center">
+                                        <label for="garage_projet">Choix Ouest </label>
+                                        <select class="form-control" id="choix_ouest_projet" name="choix_ouest">
+                                            <option value="1">Mitoyen</option>
+                                            <option value="0">Rue</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5 border">
+                                <div style="height: 200px"></div>
+                            </div>
+                            <div class="col-md-3 align-self-center">
+                                <div class="row ">
+                                    <div class="col-md-6 pb-4 pt-4 text-center align-self-center">
+                                        <label for="garage_projet">Choix Est </label>
+                                        <select class="form-control" id="choix_est_projet" name="choix_est">
+                                            <option value="1">Mitoyen</option>
+                                            <option value="0">Rue</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-2 mt-2 text-center">
+                                        <label for="garage_projet">Choix Sud </label>
+                                        <select class="form-control" id="choix_sud_projet" name="choix_sud">
+                                            <option value="1">Mitoyen</option>
+                                            <option value="0">Rue</option>
                                         </select>
                                     </div>
                                 </div>
@@ -720,7 +785,7 @@
                                 <div class="table-responsive">
                                     <table class="table table-responsive-sm table-bordered mb-0 text-center dataTable dtr-inline" id="tabNiveau" role="grid">
                                         <thead>
-                                        <th class="text-center">N°</th>
+                                       {{-- <th class="text-center">N°</th>--}}
                                         <th class="text-center">Niveau</th>
                                         <!-- <th class="text-center">Pièce</th> -->
                                         <th class="text-center">Chbres Sple</th>
@@ -733,9 +798,9 @@
                                         </thead>
                                         <tbody>
                                         <tr class="animated fadeIn" ng-repeat="item in produitsInTable">
-                                            <td class="text-center">
+                                         {{--   <td class="text-center">
                                                 1
-                                            </td>
+                                            </td>--}}
                                             <td class="text-center">
                                                 @{{ item.niveau }}
                                             </td>

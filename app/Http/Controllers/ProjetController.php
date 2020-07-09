@@ -41,7 +41,7 @@ class ProjetController extends Controller
     }
     public function save(Request $request)
     {
-    //    dd($request->all());
+      // dd($request->all());
 
         try
         {
@@ -485,7 +485,7 @@ class ProjetController extends Controller
         {
             $errors = null;
             $data = null;
-           
+
             if(isset($request->projet))
             {
                 if(empty($request->montant))
@@ -503,7 +503,7 @@ class ProjetController extends Controller
                 }
                 $id = (int)$request->projet;
                 $item = Projet::find($id);
-               
+
                 if(isset($item))
                 {
                     $item->montant = $request->montant;
@@ -511,7 +511,7 @@ class ProjetController extends Controller
                     $item->etat = 1;
                     $item->save();
                     $data = 1;
-                   
+
                 }
                 else
                 {
@@ -525,7 +525,7 @@ class ProjetController extends Controller
                 $errors = "Données manquantes";
                 throw new \Exception($errors);
             }
-          
+
             if($errors!=null)
             {
                 $retour = array(
@@ -872,7 +872,7 @@ class ProjetController extends Controller
             return response()->json(array(
                 'errors'          => config('app.debug') ? $e->getMessage() : Outil::getMsgError(),
                 'errors_debug'    => [$e->getMessage()],
-            )); 
+            ));
         }
     }
 
