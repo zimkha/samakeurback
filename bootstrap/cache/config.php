@@ -1,16 +1,16 @@
 <?php return array (
   'app' => 
   array (
-    'name' => 'Laravel',
+    'name' => 'Samakeur',
     'env' => 'local',
     'debug' => true,
-    'url' => 'http://localhost',
+    'url' => 'http://samakeur.sn/samakeurback/',
     'asset_url' => NULL,
     'timezone' => 'UTC',
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:9ZWBJhc1TATS2pMWIfiNtCd8Q/oGN4E2eUU8LaJwym0=',
+    'key' => 'base64:i6Ik6bb0bEph4yuoRuynsoF3pYy+2W72kfaykZ6a9iA=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -135,7 +135,7 @@
   ),
   'broadcasting' => 
   array (
-    'default' => 'redis',
+    'default' => 'log',
     'connections' => 
     array (
       'pusher' => 
@@ -188,7 +188,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\framework/cache/data',
+        'path' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -227,7 +227,7 @@
         'endpoint' => NULL,
       ),
     ),
-    'prefix' => 'laravel_cache',
+    'prefix' => 'samakeur_cache',
   ),
   'cors' => 
   array (
@@ -265,7 +265,7 @@
       array (
         'driver' => 'sqlite',
         'url' => NULL,
-        'database' => 'samakeur',
+        'database' => 'crgfjemb_base',
         'prefix' => '',
         'foreign_key_constraints' => true,
       ),
@@ -275,7 +275,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'samakeur',
+        'database' => 'crgfjemb_base',
         'username' => 'root',
         'password' => '',
         'unix_socket' => '',
@@ -295,7 +295,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'samakeur',
+        'database' => 'crgfjemb_base',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -310,7 +310,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'samakeur',
+        'database' => 'crgfjemb_base',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -325,7 +325,7 @@
       'options' => 
       array (
         'cluster' => 'redis',
-        'prefix' => 'laravel_database_',
+        'prefix' => 'samakeur_database_',
       ),
       'default' => 
       array (
@@ -351,10 +351,10 @@
     'orientation' => 'portrait',
     'defines' => 
     array (
-      'font_dir' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\fonts/',
-      'font_cache' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\fonts/',
-      'temp_dir' => 'C:\\Users\\mou\\AppData\\Local\\Temp',
-      'chroot' => 'C:\\xampp\\htdocs\\samakeurback',
+      'font_dir' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/fonts/',
+      'font_cache' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/fonts/',
+      'temp_dir' => '/var/folders/zs/nt1ktc7s0k110789ywrq2sym0000gn/T',
+      'chroot' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback',
       'enable_font_subsetting' => false,
       'pdf_backend' => 'CPDF',
       'default_media_type' => 'screen',
@@ -430,7 +430,7 @@
     ),
     'temporary_files' => 
     array (
-      'local_path' => 'C:\\Users\\mou\\AppData\\Local\\Temp',
+      'local_path' => '/var/folders/zs/nt1ktc7s0k110789ywrq2sym0000gn/T',
       'remote_disk' => NULL,
       'remote_prefix' => NULL,
     ),
@@ -444,13 +444,13 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\app',
+        'root' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\app/public',
-        'url' => 'http://localhost/storage',
+        'root' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/app/public',
+        'url' => 'http://samakeur.sn/samakeurback//storage',
         'visibility' => 'public',
       ),
       's3' => 
@@ -465,7 +465,7 @@
     ),
     'links' => 
     array (
-      'C:\\xampp\\htdocs\\samakeurback\\public\\storage' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\app/public',
+      '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/public/storage' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/app/public',
     ),
   ),
   'graphql' => 
@@ -605,13 +605,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\logs/laravel.log',
+        'path' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\logs/laravel.log',
+        'path' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -661,7 +661,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\logs/laravel.log',
+        'path' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/logs/laravel.log',
       ),
     ),
   ),
@@ -673,11 +673,11 @@
       'smtp' => 
       array (
         'transport' => 'smtp',
-        'host' => 'smtp.gmail.com',
-        'port' => '587',
-        'encryption' => 'tls',
-        'username' => 'zimkhandiaye@gmail.com',
-        'password' => 'lilakamara',
+        'host' => 'smtp.mailtrap.io',
+        'port' => '2525',
+        'encryption' => NULL,
+        'username' => NULL,
+        'password' => NULL,
         'timeout' => NULL,
       ),
       'ses' => 
@@ -709,15 +709,15 @@
     ),
     'from' => 
     array (
-      'address' => 'zimkhandiaye@gmail.com',
-      'name' => 'Example',
+      'address' => NULL,
+      'name' => 'Samakeur',
     ),
     'markdown' => 
     array (
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\xampp\\htdocs\\samakeurback\\resources\\views/vendor/mail',
+        0 => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/resources/views/vendor/mail',
       ),
     ),
   ),
@@ -767,6 +767,7 @@
       'model_morph_key' => 'model_id',
     ),
     'display_permission_in_exception' => false,
+    'display_role_in_exception' => false,
     'enable_wildcard_permission' => false,
     'cache' => 
     array (
@@ -877,10 +878,10 @@
   'session' => 
   array (
     'driver' => 'file',
-    'lifetime' => '1440',
+    'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\framework/sessions',
+    'files' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -889,7 +890,7 @@
       0 => 2,
       1 => 100,
     ),
-    'cookie' => 'laravel_session',
+    'cookie' => 'samakeur_session',
     'path' => '/',
     'domain' => NULL,
     'secure' => NULL,
@@ -900,7 +901,7 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\samakeurback\\resources\\views',
+      0 => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/resources/views',
     ),
     'uploads' => 
     array (
@@ -910,7 +911,7 @@
       'remarques' => 'uploads/remarques',
       'fichierplans' => 'uploads/fichierplans',
     ),
-    'compiled' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\framework\\views',
+    'compiled' => '/Applications/XAMPP/xamppfiles/htdocs/samakeurback/storage/framework/views',
   ),
   'flare' => 
   array (
