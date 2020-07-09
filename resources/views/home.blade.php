@@ -604,7 +604,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-2 mb-2 text-center">
-                                        <label for="garage_projet">Choix Nord </label>
+                                        <label for="choix_nord_projet">Choix Nord </label>
                                         <select class="form-control" id="choix_nord_projet" name="choix_nord">
                                             <option value="1">Mitoyen</option>
                                             <option value="0">Rue</option>
@@ -622,7 +622,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 pb-4 text-center align-self-center">
-                                        <label for="garage_projet">Choix Ouest </label>
+                                        <label for="choix_ouest_projet">Choix Ouest </label>
                                         <select class="form-control" id="choix_ouest_projet" name="choix_ouest">
                                             <option value="1">Mitoyen</option>
                                             <option value="0">Rue</option>
@@ -636,7 +636,7 @@
                             <div class="col-md-3 align-self-center">
                                 <div class="row ">
                                     <div class="col-md-6 pb-4 pt-4 text-center align-self-center">
-                                        <label for="garage_projet">Choix Est </label>
+                                        <label for="choix_est_projet">Choix Est </label>
                                         <select class="form-control" id="choix_est_projet" name="choix_est">
                                             <option value="1">Mitoyen</option>
                                             <option value="0">Rue</option>
@@ -648,7 +648,7 @@
                             <div class="col-md-12">
                                 <div class="row justify-content-center">
                                     <div class="col-md-2 mt-2 text-center">
-                                        <label for="garage_projet">Choix Sud </label>
+                                        <label for="choix_sud_projet">Choix Sud </label>
                                         <select class="form-control" id="choix_sud_projet" name="choix_sud">
                                             <option value="1">Mitoyen</option>
                                             <option value="0">Rue</option>
