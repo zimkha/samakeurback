@@ -1,243 +1,374 @@
-<!-- <html>
-    <head>
-        <style>
-            #titre{
-                font-size: 20px;
-                color: blue;
-            }
-            .para
-            {
-                color: red;
-            }
-        </style>
-    </head>
-    <body>
-        <p align="center" class="para" id=titre>CONTRAT SAMAKEUR </p>
+<!DOCTYPE html>
+<html lang="zxx" ng-app="samakeur">
+<head>
+    <!-- Meta Tag -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name='copyright' content=''>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Sama keur</title>
+    <link rel="icon" type="image/png" href="images/">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
-<p  class="para"> 1 ) 1 PARTIES CONTRACTANTES</p>
-    </body>
-   <span style="font-size:12; color:blue"> Le client</span>
-    <br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; M / Mmm : Khazim Ndiaye contractant en leur nom personnel <br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Adresse:  Adresse Client <br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Telephone : 77 196 73 00 <br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Courier <br><br>
-   <div class="droite">
-    <span style="font-size:12; color:blue">Samakeur</span>
-    <br><br>
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; La Société:  Samakeur, Réepreésenté par Moussa DANFAKHA gérant de la société
-       <br>
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Adresse:  Adresse 16 mail albert jacquard 94600 Choisy le roi
-       <br>
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Telephone : +33(0)782133856 <br>
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Courier: admin@samakeur.sn <br><br>
-   </div>
-   
-   <p>Conformément aux dispositions, qui font obligation de recourir à une convention écrite préalable à
-    tout engagement professionnel, il est convenu ce qui suit </p>
-   <br>
-   <p class="para">2 ) DESIGNATION DE L’OPERATION</p>
-   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Adresse du terrain:  Adresse Client <br>
-   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Référence Cadastral:  Texte du référence <br>
-   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Surface foncière du terrain : 200 m2<br>
+    <style>
 
-   <
+        .body-1 {
+            padding: 20px;
+        }
+        .titre-1 {
+            font-size: 20px;
+            text-align: center;
 
+        }
 
+        .display-flex {
+            display: inline-flex;
+        }
 
+        .display-flex-1 {
+            background-color: #F7941D!important;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            color: white;
+            text-align: center;
+            margin-right: 10px;
+        }
 
-</html> -->
-<html>
-<title>CONTRAT</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    /* body {
-      padding: 0;
-      margin: 0;
-      font-family: "Times New Roman", Times, serif;
-    } */
+        .display-flex-1-1 {
+            background-color: #999C9F!important;
+            width: 30px;
+            height: 20px;
+            line-height: 20px;
+            color: white;
+            text-align: center;
+            margin-right: 10px;
+        }
 
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 50px;
-      padding: 10px 50px;
-     
-      z-index: 1000;
-    }
+        .display-flex-2 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #F7941D;
+        }
+    </style>
 
-    /* .text-center {
-      text-align: center;
-    }
+</head>
+<body class="body-1">
 
-    .phone {
-      float: right;
-      margin-bottom: 10px;
-      margin-right: 150px;
-    }
+    <div class="titre-1">Contrat SAMAKEUR</div>
 
-    .phone h4 {
-      text-align: center;
-      right: 50px;
-    } */
+    <div class="display-flex">
+        <div class="display-flex-1">1</div>
+        <div class="display-flex-2">PARTIES CONTRACTANTES</div>
+    </div>
 
-    /* main {
-      margin-top: 50px;
-      padding: 10px 50px;
-    }
+    <div style="color: #F7941D;font-size: 16px;margin-top: 30px">Le client</div>
 
-    .after-header {
-      height: 30px;
-      padding: 10px 0;
-    }
-
-    .patient-id {
-      
-    }
-
-    .date-day {
-      float: right;
-    }
-
-    .page-header {
-      margin-top: 5px;
-      padding: 5px;
-      background-color: aqua;
-    } */
-
-    /* .page-header h2 {
-      font-family: monospace;
-      font-size: 20px;
-      text-align: center;
-    } */
-
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 50px;
-      border-bottom: 1px solid #1f1f1f;
-      border-top: 1px solid #1f1f1f;
-      z-index: 1000;
-    }
-
-    footer h3 {
-      padding-left: 50px;
-    }
-
-    .details {
-      margin-top: 0;
-      padding: 2px 0;
-    }
-
-    table {
-      margin: 5px 0;
-      width: 100%;
-      border-top: 1px dotted #1f1f1f;
-      border-right: 1px dotted #1f1f1f;
-    }
-
-    td {
-      text-align: justify;
-      padding: 10px;
-      border-bottom: 1px dotted #1f1f1f;
-      border-left: 1px dotted #1f1f1f;
-    }
-
-    table tr>td:first-child {
-      border-left: none;
-    }
-
-    label {
-      font-weight: bold;
-      font-size: 15px;
-    }
-    .my-class{
-      border:2px dashed red;
-      background-color: lightskyblue;
-      color: #000000;
-      width: 50;
-      height: 30px;;
-    }
-    .cadre{
-      width: 600px;
-      height: 20px;
-      background-color: lightskyblue;
-    }
-  </style>
-<meta charset="UTF-8"></head>
-
-<body>
-  <header>
-    <div class="text-center">
-      <h1>SAMAKEUR</h1>
-  </header>
-  <footer>
-    <h6>Ce document est la propriété de SAMAKEUR. Il ne peut être reproduit, même partiellement, sans autorisation</h6>
-  </footer>
- 
-      
-        <h2 > 1 ) PARTIES CONTRACTANTES</h2>
-        <h3 >  Le client</h3>
-        <h3 > M / Mme: <label class="my-class">{{ $client->nom}} {{ $client->prenom}}</label> &nbsp;contractant en leur nom personnel</h3>
-        @if($client->is_client==0)
-        <h3 > Societe <label class="my-class">{{ $client->nom}} {{ $client->prenom}}</label> &nbsp;contractant en leur nom personnel</h3>
-        @endif
-        <br>
-        <h3>Adresse: &nbsp;&nbsp;&nbsp;&nbsp; {{ $client->adresse_complet }}</h3>
-        <h3>Telephone: &nbsp;&nbsp;&nbsp;&nbsp; {{ $client->telephone }}</h3>
-        <h3>Couriel: &nbsp;&nbsp;&nbsp;&nbsp; {{ $client->email }}</h3>
-        <br>
-        <h3 >Samakeur</h3>
-        <div class="cadre">
-          SAMAKEUR,
-          représenté par Moussa DANFAKHA gérant de la société
+    <div class="row mt-3">
+        <div class="col-md-2">
+            <div class="display-flex">
+                <span class="fa fa-check-square"></span>
+                <span>M / Mme</span>
+            </div>
         </div>
-        <br>
-        <h3>Adresse:  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;16 mail albert jacquard 94600 Choisy le roi</h3>
-        <h3>Tel/portable:&nbsp;&nbsp; +33(0)782133856</h3>
-        <h3>Couriel:  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;samakeuradmine.sn221@gmail.com</h3>
-        <p>
-          Conformément aux dispositions, qui font obligation de recourir à une convention écrite préalable à
-tout engagement professionnel, il est convenu ce qui suit :
-        </p>
-        <h2 > 2 ) DESIGNATION DE L'OPRATION </h2>
-        <h3>Adresse du terrain  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; {{ $projet->adresse }}</h3>
-        <h3>Reference Cadastral  :&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; La référence cadastral</h3>
-        <h3>Surface fonciere du terrain: &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; {{ $projet->surface }} m2</h3>
-        <br><br><br> <br><br><br> <br><br><br
-        <h3>Description du projet</h3>
-        <table>
-          <tr>
-            <td>Code</td>
-            <td>nb pieces</td>
-            <td>nb chambres</td>
-            <td>nb toillettes</td>
-            <td>nb salons</td>
-            <td>nb cuisines</td>
-            <td>nb SBD</td>
-          </tr>
-          <tr>
-          </tr>
-        </table>
-        @if($niveaux != null)
-        <table>
-          <tr>
-            <td>Code</td>
-            <td>Code</td>
-            <td>Code</td>
-            <td>Code</td>
-          </tr>
-        </table>
-        @endif
+        <div class="col-md-5">
+            <div style="color: #F7941D;font-weight: bold">{{ $client->nom}} -- {{ $client->prenom}}</div>
+        </div>
+        <div class="col-md-4">
+            contractant en leur nom personnel.
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-2">
+            <div class="display-flex">
+                <span class="fa fa-check-square"></span>
+                <span>La société</span>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div style="color: #F7941D;font-weight: bold">Socite_du_client</div>
+        </div>
+        <div class="col-md-4">
+            n° RCS <span style="color: #F7941D;font-weight: bold">data_du_client</span>
+        </div>
+    </div>
+
+    <div class="font-italic" style="margin: 20px 0px">
+        (préciser les prénom, nom et qualité du représentant de la société)
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-2">
+            <div class="display-flex">
+                <span class="fa fa-check-square"></span>
+                <span>Adresse</span>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div style="color: #F7941D;font-weight: bold">{{$client->adresse}}</div>
+        </div>
+    </div>
 
 
+    <div class="row mt-3">
+        <div class="col-md-2">
+            <div class="display-flex">
+                <span class="fa fa-check-square"></span>
+                <span>Telephone</span>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div style="color: #F7941D;font-weight: bold">{{$client->telephone}}</div>
+        </div>
+        <div class="col-md-4">
+            Portable <span style="color: #F7941D;font-weight: bold">{{$client->telephone}}</span>
+        </div>
+    </div>
 
-  
+
+    <div class="row mt-3">
+        <div class="col-md-2">
+            <div class="display-flex">
+                <span class="fa fa-check-square"></span>
+                <span>Couriel</span>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div style="color: #F7941D;font-weight: bold">{{$client->email}}</div>
+        </div>
+    </div>
+
+
+    <div style="color: #F7941D;font-size: 16px;margin-top: 30px">Samakeur</div>
+
+    <div class="row mt-3">
+        <div class="col-md-2">
+            <div class="display-flex">
+                <span class="fa fa-check-square"></span>
+                <span>La societe</span>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div> <span style="color: #F7941D;font-weight: bold">SAMAKEUR, </span> <span>représenté par Moussa DANFAKHA gérant de la société</span></div>
+        </div>
+    </div>
+
+    <div class="font-italic" style="margin: 20px 0px">
+        (préciser les prénom, nom et qualité du représentant de la société)
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-2">
+            <div class="display-flex">
+                <span class="fa fa-check-square"></span>
+                <span>Adresse</span>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div style="color: #F7941D;font-weight: bold">Socite_du_client</div>
+        </div>
+    </div>
+
+
+    <div class="row mt-3">
+        <div class="col-md-2">
+            <div class="display-flex">
+                <span class="fa fa-check-square"></span>
+                <span>Telephone</span>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div style="color: #F7941D;font-weight: bold">Telephone Moussa</div>
+        </div>
+        <div class="col-md-4">
+            Portable <span style="color: #F7941D;font-weight: bold">Telephone Moussa</span>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-2">
+            <div class="display-flex">
+                <span class="fa fa-check-square"></span>
+                <span>Couriel</span>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div style="color: #F7941D;font-weight: bold">admin@samakeur.sn</div>
+        </div>
+    </div>
+
+    <div style="margin: 20px 0px">
+        Conformément aux dispositions, qui font obligation de recourir à une convention écrite préalable à <br>
+        tout engagement professionnel, il est convenu ce qui suit :
+    </div>
+
+    <div class="display-flex">
+        <div class="display-flex-1">2</div>
+        <div class="display-flex-2">DESIGNATION DE L’OPERATION</div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <div class="display-flex">
+                <span class="fa fa-check-square"></span>
+                <span>Adresse du terrain : </span>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div style="color: #F7941D;font-weight: bold">{{$projet->adresse_terrain}}</div>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <div class="display-flex">
+                <span class="fa fa-check-square"></span>
+                <span>Références cadastrales : </span>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div style="color: #F7941D;font-weight: bold">Refe</div>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <div class="display-flex">
+                <span class="fa fa-check-square"></span>
+                <span>Surface foncière du terrain : </span>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div style="color: #F7941D;font-weight: bold">{{$projet->superficie}}</div>
+        </div>
+    </div>
+
+    <div style="color: #F7941D;font-size: 16px;margin-top: 30px">Samakeur</div>
+
+    <div>les informations </div>
+
+    <div class="mt-3">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable">
+                <thead>
+                <tr class="text-center" style="background-color: #F7941D;color: #fff">
+                    <th>Code Projet</th>
+                    <th>Nom Complet</th>
+                    <th>Date creation</th>
+                    <th>A valider dans</th>
+                    <th>Etat</th>
+                    <th>Adresse</th>
+                    <th>N° telephone</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="text-center">
+                    <td>Code</td>
+                    <td>Designation</td>
+                    <td>12-12-2020</td>
+                    <td>Validation</td>
+                    <td>Etat</td>
+                    <td>Adresse</td>
+                    <td>Telephone</td>
+
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="display-flex">
+        <div class="display-flex-1">3</div>
+        <div class="display-flex-2">CONDITIONS DE REALISATION DE LA MISSION</div>
+    </div>
+
+    <div style="margin-top: 30px">Cette mission est établie sur la base des éléments de programmation du client.</div>
+
+    <div style="margin-top: 30px">
+        Le client dispose d'une enveloppe financière pour les travaux. <br>
+        Il est informé que ce montant est indépendant du montant des honoraires de Samakeur, et que <br>
+        d’autres dépenses, dont la liste figure en annexe dans le programme, seront à sa charge. <br>
+    </div>
+
+    <div style="color: #F7941D;font-size: 16px;margin-top: 30px">Contenu de la mission</div>
+
+    <div style="margin-top: 30px">
+        Samakeur analyse le programme fourni par le client, visite les lieux s’il le juge nécessaire et prend
+        connaissance des données juridiques, techniques et financières qui lui sont communiquées par le
+        client. Ces données comprennent notamment les titres de propriété, les levés de géomètre et les
+        relevés des existants, le cas échéant. Samakeur émet toutes les observations et propositions qui lui
+        semblent utiles
+    </div>
+
+    <div style="margin-top: 30px">
+        Il établit les études préliminaires qui ont pour objet de vérifier la constructibilité de l’opération au
+        regard des règles d’urbanisme, de vérifier sa faisabilité, d’établir une esquisse, ou au maximum deux
+        esquisses du projet répondant au programme
+    </div>
+
+    <div style="margin-top: 30px">
+        Le niveau de définition de l’esquisse correspond généralement à des documents graphiques établis à
+        l’échelle de 1/100 (1cm/m) ou  1/200 (½ cm/m).
+    </div>
+
+    <div style="margin-top: 30px">
+        Les documents graphiques sont établis : <br>
+        sur support informatique modifiable (3 fois au maximum) par samakeur : Les requêtes du client sont
+        à transmettre dans son espace client sous un délai de 15 jours à partir de la date de dépôt du plan
+        avec le dernier indice. Il est clairement précisé que l’ajout de pièces correspond à un nouveau
+        programme et ne peut en aucun cas être considéré comme une modification.
+    </div>
+
+    <div style="color: #F7941D;font-size: 16px;margin-top: 30px">Délai de réalisation de la mission</div>
+
+    <div style="margin-top: 30px">
+        <div class="display-flex">
+            <div class="display-flex-1-1">20</div>
+            <div class="">jours ouvrables à compter de la date de signature du présent contrat</div>
+        </div>
+    </div>
+
+    <div style="margin-top: 10px">
+        <div class="display-flex">
+            <div class="display-flex-1-1">5</div>
+            <div class="">jours ouvrables à compter de la demande de modification du plan.</div>
+        </div>
+    </div>
+
+    <div style="margin-top: 30px">
+        <div class="display-flex">
+            <div class="display-flex-1">4</div>
+            <div class="display-flex-2">REMUNERATION </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 30px">
+        Pour la mission qui lui est confiée, samakeur perçoit une rémunération forfaitaire de
+        <span style="color: #F7941D;font-size: 16px;margin-top: 30px"> charger la somme rentrée par l’administrateur lors de la validation de la demande </span> . XXXXX Fcfa
+    </div>
+
+
+    <div style="margin-top: 30px">
+        <div class="display-flex">
+            <div class="display-flex-1">5</div>
+            <div class="display-flex-2">RÉALISATION DU PROJET - POURSUITE DE LA MISSION </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 30px">
+        Si le client donne suite au projet établi par Samakeur, un nouveau contrat contractuel est passé entre
+        eux pour la poursuite de la mission en suivi de chantier ou réalisation des travaux. Le contenu des
+        études préliminaires est alors intégré dans ce nouveau contrat et son coût est déduit du montant
+        global des honoraires prévus pour la mission confiée
+    </div>
+
+    <div style="margin-top: 30px">
+        Dans tous les cas, Samakeur conserve la propriété intellectuelle et artistique de son œuvre,
+        conformément aux articles L111-1 et suivants du code de la propriété intellectuelle.
+    </div>
+
+
 </body>
-
 </html>
