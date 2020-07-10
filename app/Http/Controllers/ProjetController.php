@@ -139,6 +139,21 @@ class ProjetController extends Controller
 
                     }
                 }
+                if(empty($request->longeur))
+                {
+                    $errors = "Veuillez definir la longeur";
+                    throw new \Exception($errors);
+                }
+                if(empty($request->largeur))
+                {
+                    $errors = "Veuillez définir la largeur";
+                    throw new \Exception($errors);
+                }
+                if(empty($request->adresse_terrain))
+                {
+                    $errors = "Veuillez définir l'adresse du terrain";
+                    throw new \Exception($errors);
+                }
                if(isset($request->description))
                {
                     $item->text_projet = $request->description;
@@ -382,6 +397,8 @@ class ProjetController extends Controller
                           {
                               NiveauProjet::where('projet_id', $item->id)->delete();
                               NiveauProjet::where('projet_id', $item->id)->forceDelete();
+                              Positions::where('projet_id', $item->id)->delete();
+                              Positions::where('projet_id', $item->id)->forceDelete();
                               $item->delete();
                               $item->forceDelete();
                               $data = 1;
