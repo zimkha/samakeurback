@@ -41,7 +41,7 @@ class ProjetController extends Controller
     }
     public function save(Request $request)
     {
-    //    dd($request->all());
+        // dd($request->all());
 
         try
         {
@@ -174,12 +174,14 @@ class ProjetController extends Controller
                 // dd($item->fichier);
 
                 $tab_position = array();
+                
                 if(isset($request->positions) && $request->positions!= null)
                 {
-                    $positions = json_decode($request->positions, true);
+                    $positions = $request->positions;
+                    //dd($positions);
                     foreach($positions as $position)
                     {
-                        $pt_ref = new Postion();
+                        $pt_ref = new Position();
                         $pt_ref->position = $position['ref'];
                         $pt_ref->nom_position = $position['position'];
                         array_push($tab_position , $pt_ref);
@@ -263,11 +265,12 @@ class ProjetController extends Controller
                     }
                     if(isset($item->id) && !isset($request->id))
                     {
+                        $user = User::find($item->user_id);
                         $tableau = [
                             'title' => "Message de confirmation",
                             'body'  => "Votre demande de création de projet a été bien prise en charge. Veuillez vous connecter sur votre espace personnelle pour procéder au paiment"
                         ];
-                        \Mail::to($item->email)->send(new \App\Mail\SendMessageConfirm($tableau));
+                        \Mail::to($user->email)->send(new \App\Mail\SendMessageConfirm($tableau));
                     }
                   return Outil::redirectgraphql($this->queryName, "id:{$item->id}", Outil::$queries[$this->queryName]);
                 }
@@ -492,7 +495,7 @@ class ProjetController extends Controller
         {
             $errors = null;
             $data = null;
-           
+
             if(isset($request->projet))
             {
                 if(empty($request->montant))
@@ -510,7 +513,7 @@ class ProjetController extends Controller
                 }
                 $id = (int)$request->projet;
                 $item = Projet::find($id);
-               
+
                 if(isset($item))
                 {
                     $item->montant = $request->montant;
@@ -518,7 +521,7 @@ class ProjetController extends Controller
                     $item->etat = 1;
                     $item->save();
                     $data = 1;
-                   
+
                 }
                 else
                 {
@@ -532,7 +535,7 @@ class ProjetController extends Controller
                 $errors = "Données manquantes";
                 throw new \Exception($errors);
             }
-          
+
             if($errors!=null)
             {
                 $retour = array(
@@ -879,7 +882,7 @@ class ProjetController extends Controller
             return response()->json(array(
                 'errors'          => config('app.debug') ? $e->getMessage() : Outil::getMsgError(),
                 'errors_debug'    => [$e->getMessage()],
-            )); 
+            ));
         }
     }
 

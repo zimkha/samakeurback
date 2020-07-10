@@ -51,10 +51,10 @@ class UserController extends Controller
 
                 if (empty($request->id))
                 {
-                    // if(!Outil::isUnique(['email'], [$request->email], $request->id, User::class))
-                    // {
-                    //     $errors = "Cet email existe déja";
-                    // }
+                    if(!Outil::isUnique(['email'], [$request->email], $request->id, User::class))
+                    {
+                        $errors = "Cet email existe déja";
+                    }
                     if(!Outil::isUnique(['telephone'], [$request->telephone], $request->id, User::class))
                     {
                         $errors = "Ce numéro téléphone existe déja";
@@ -83,7 +83,12 @@ class UserController extends Controller
                         'success' => "inscription réussi",
                     ));
 
-                    // return Outil::redirectgraphql($this->queryName, "id:{$id}", Outil::$queries[$this->queryName]);
+                    $tableau = [
+                        'title' => "Message de confirmation",
+                        'body'  => "Votre demande de création de projet a été bien prise en charge. Veuillez vous connecter sur votre espace personnelle pour procéder au paiment"
+                    ];
+                    \Mail::to($user->email)->send(new \App\Mail\SendSubscritionConfirm($tableau));
+                     return Outil::redirectgraphql($this->queryName, "id:{$id}", Outil::$queries[$this->queryName]);
                 }
                 return response()->json(['errors' => $errors]);
             });

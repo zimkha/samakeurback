@@ -675,9 +675,9 @@
       'smtp' => 
       array (
         'transport' => 'smtp',
-        'host' => 'smtp.gmailmail.com',
+        'host' => 'smtp.gmail.com',
         'port' => '587',
-        'encryption' => 'ssl',
+        'encryption' => 'tls',
         'username' => 'zimkhandiaye@gmail.com',
         'password' => 'lilakamara',
         'timeout' => NULL,
@@ -948,5 +948,18 @@
   array (
     'proxies' => NULL,
     'headers' => 30,
+  ),
+  'tinker' => 
+  array (
+    'commands' => 
+    array (
+    ),
+    'alias' => 
+    array (
+    ),
+    'dont_alias' => 
+    array (
+      0 => 'App\\Nova',
+    ),
   ),
 );
