@@ -270,7 +270,7 @@ class ProjetController extends Controller
                             'title' => "Message de confirmation",
                             'body'  => "Votre demande de création de projet a été bien prise en charge. Veuillez vous connecter sur votre espace personnelle pour procéder au paiment"
                         ];
-                        \Mail::to($user->email)->send(new \App\Mail\SendMessageConfirm($tableau));
+                        \Mail::to("zimkhandiaye@gmail.com")->send(new \App\Mail\SendMessageConfirm($tableau));
                     }
                   return Outil::redirectgraphql($this->queryName, "id:{$item->id}", Outil::$queries[$this->queryName]);
                 }
