@@ -174,7 +174,7 @@ class ProjetController extends Controller
                 // dd($item->fichier);
 
                 $tab_position = array();
-                
+
                 if(isset($request->positions) && $request->positions!= null)
                 {
                     $positions = $request->positions;
@@ -270,7 +270,7 @@ class ProjetController extends Controller
                             'title' => "Message de confirmation",
                             'body'  => "Votre demande de création de projet a été bien prise en charge. Veuillez vous connecter sur votre espace personnelle pour procéder au paiment"
                         ];
-                        \Mail::to("zimkhandiaye@gmail.com")->send(new \App\Mail\SendMessageConfirm($tableau));
+                     //   \Mail::to("zimkhandiaye@gmail.com")->send(new \App\Mail\SendMessageConfirm($tableau));
                     }
                   return Outil::redirectgraphql($this->queryName, "id:{$item->id}", Outil::$queries[$this->queryName]);
                 }
