@@ -139,6 +139,21 @@ class ProjetController extends Controller
 
                     }
                 }
+                if(empty($request->longeur))
+                {
+                    $errors = "Veuillez definir la longeur";
+                    throw new \Exception($errors);
+                }
+                if(empty($request->largeur))
+                {
+                    $errors = "Veuillez définir la largeur";
+                    throw new \Exception($errors);
+                }
+                if(empty($request->adresse_terrain))
+                {
+                    $errors = "Veuillez définir l'adresse du terrain";
+                    throw new \Exception($errors);
+                }
                if(isset($request->description))
                {
                     $item->text_projet = $request->description;
