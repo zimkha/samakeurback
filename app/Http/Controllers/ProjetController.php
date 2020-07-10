@@ -261,7 +261,14 @@ class ProjetController extends Controller
                             $pos->save();
                         }
                     }
-
+                    if(isset($item->id) && !isset($request->id))
+                    {
+                        $tableau = [
+                            'title' => "Message de confirmation",
+                            'body'  => "Votre demande de création de projet a été bien prise en charge. Veuillez vous connecter sur votre espace personnelle pour procéder au paiment"
+                        ];
+                        \Mail::to($item->email)->send(new \App\Mail\SendMessageConfirm($tableau));
+                    }
                   return Outil::redirectgraphql($this->queryName, "id:{$item->id}", Outil::$queries[$this->queryName]);
                 }
                  throw new \Exception($errors);
@@ -699,17 +706,17 @@ class ProjetController extends Controller
                 $item_payment =  array();
                 $item = (new \PayPal\Api\Item())
                 ->setName($projet->name)
-                ->setPrice(10000)
+                ->setPrice($projet->montant)
                 ->setQuantity(1)
                 ->setCurrency('EUR')
                 ;
 
                 $list->addItem($item);
                 $details =  (new \PayPal\Api\Details())
-                      ->setSubTotal(10000);
+                      ->setSubTotal($projet->montant);
 
                 $amount = (new \PayPal\Api\Amount())
-                  ->setTotal(10000)
+                  ->setTotal($projet->montant)
                   ->setCurrency("EUR")
                   ->setDetails($details);
 
@@ -725,7 +732,7 @@ class ProjetController extends Controller
                    $payment->setIntent('authorize');
                    $redirectUrls = (new  \PayPal\Api\RedirectUrls())
                    ->setReturnUrl(route('payment-execute'))
-                   ->setCancelUrl('http://localhost/samakeurback/public/');
+                   ->setCancelUrl('http://www.samakeur/profil/mon-profil.html');
                    $payment->setRedirectUrls($redirectUrls);
 
            //      On definie le payeur

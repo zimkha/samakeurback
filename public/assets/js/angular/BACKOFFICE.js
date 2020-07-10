@@ -480,7 +480,10 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
             
             "positions" : ["id,position,nom_postion,projet_id",""],
 
-            "joineds" : ["id,fichier,description,active",""]
+            "joineds" : ["id,fichier,description,active",""],
+
+            "messagesends"  : ["id,objet,message,telephone,email,nom",""]
+
 
             
 

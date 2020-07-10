@@ -503,6 +503,7 @@
           14 => 'App\\GraphQL\\Query\\UniteMesureQuery',
           15 => 'App\\GraphQL\\Query\\JoinedQuery',
           16 => 'App\\GraphQL\\Query\\PositionQuery',
+          17 => 'App\\GraphQL\\Query\\MessageSendQuery',
         ),
         'mutation' => 
         array (
@@ -537,6 +538,7 @@
       14 => 'App\\GraphQL\\Type\\UniteMesureType',
       15 => 'App\\GraphQL\\Type\\JoinedType',
       16 => 'App\\GraphQL\\Type\\PositionType',
+      17 => 'App\\GraphQL\\Type\\MessageSendType',
     ),
     'lazyload_types' => false,
     'error_formatter' => 
@@ -673,9 +675,9 @@
       'smtp' => 
       array (
         'transport' => 'smtp',
-        'host' => 'smtp.gmail.com',
+        'host' => 'smtp.gmailmail.com',
         'port' => '587',
-        'encryption' => 'tls',
+        'encryption' => 'ssl',
         'username' => 'zimkhandiaye@gmail.com',
         'password' => 'lilakamara',
         'timeout' => NULL,
@@ -946,18 +948,5 @@
   array (
     'proxies' => NULL,
     'headers' => 30,
-  ),
-  'tinker' => 
-  array (
-    'commands' => 
-    array (
-    ),
-    'alias' => 
-    array (
-    ),
-    'dont_alias' => 
-    array (
-      0 => 'App\\Nova',
-    ),
   ),
 );

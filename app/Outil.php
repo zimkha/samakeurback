@@ -53,7 +53,9 @@ class Outil extends Model
 
         "roles"                         => "id,name,guard_name,permissions{id,name,display_name,guard_name}",
 
-        "unitemesures"                  => "id,name"
+        "unitemesures"                  => "id,name",
+        
+        "messagesends"                      => "id,objet,message,telephone,email,nom"
 
        
     );

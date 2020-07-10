@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Pays;
 use App\User;
 use App\Outil;
+use App\MessageSend;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
@@ -50,10 +51,10 @@ class UserController extends Controller
 
                 if (empty($request->id))
                 {
-                    if(!Outil::isUnique(['email'], [$request->email], $request->id, User::class))
-                    {
-                        $errors = "Cet email existe déja";
-                    }
+                    // if(!Outil::isUnique(['email'], [$request->email], $request->id, User::class))
+                    // {
+                    //     $errors = "Cet email existe déja";
+                    // }
                     if(!Outil::isUnique(['telephone'], [$request->telephone], $request->id, User::class))
                     {
                         $errors = "Ce numéro téléphone existe déja";
@@ -139,6 +140,11 @@ class UserController extends Controller
                     if(!isset($errors))
                     {
                         $item->save();
+                        $tableau = [
+                            'title' => "Message de confirmation",
+                            'body'  => "Votre compte client chez samakeur a été bien creer. Merci de votre confiance à SAMAKEUR"
+                        ];
+                        \Mail::to($item->email)->send(new \App\Mail\SendMessageConfirm($tableau));
                         return Outil::redirectgraphql($this->queryName, "id:{$item->id}", Outil::$queries[$this->queryName]);
 
                     }
@@ -362,5 +368,36 @@ class UserController extends Controller
             {
                 return response()->json(['errors' => $e->getMessage()]);
             }
+    }
+    public function getMessage(Request $request)
+    {
+        try
+        {
+            return DB::transaction(function() use($request){
+                $errors =  null;
+                if(empty($request->message) || empty($request->nom) || empty($request->telephone) || empty($request->objet) || empty($request->email))
+                {
+                    $errors = "Veuillez precisez tous les champs du formulaire";
+                }
+                if(!isset($errors))
+                {
+                    $item = new MessageSend();
+                    $item->message      = $request->message;
+                    $item->nom          = $request->nom;
+                    $item->email        = $request->email;
+                    $item->objet        = $request->objet;
+                    $item->telephone    = $request->telephone;
+                    $item->save();
+                    return Outil::redirectgraphql("messages", "id:{$item->id}", Outil::$queries[$this->queryName]);
+
+
+                }
+            });
+        }
+        catch(\Exception $e)
+        {
+            return response()->json(['errors' => $e->getMessage()]);
+
+        }
     }
 }
