@@ -397,6 +397,8 @@ class ProjetController extends Controller
                           {
                               NiveauProjet::where('projet_id', $item->id)->delete();
                               NiveauProjet::where('projet_id', $item->id)->forceDelete();
+                              Positions::where('projet_id', $item->id)->delete();
+                              Positions::where('projet_id', $item->id)->forceDelete();
                               $item->delete();
                               $item->forceDelete();
                               $data = 1;
