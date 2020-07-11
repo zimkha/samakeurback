@@ -58,7 +58,19 @@
             </div>
         </div>
     </li>
-
+    <li class="nav-item">
+        <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseTwo2" aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-info"></i>
+            <span>Préférence</span>
+        </a>
+        <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Informations</h6>
+                <a class="collapse-item" href="#!/contact">Contacts</a>
+                <a class="collapse-item" href="#!/pub">Publications</a>
+            </div>
+        </div>
+    </li>
     <hr class="sidebar-divider d-none d-md-block">
 {{--
 
