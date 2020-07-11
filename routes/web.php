@@ -37,6 +37,7 @@ Route::post('/contrat', 'ContratController@save');
 Route::post('/link_plan_to_projet', 'ProjetController@linkPlanToProjet');
 Route::post('/inscription', 'UserController@save');
 Route::post('/joined', 'PlanController@joined');
+Route::post('/pub', 'PostController@save');
 Route::get('/payment', 'ProjetController@payment');
 Route::post('/activer-projet', 'ProjetController@activeProjet');
 Route::get('/payeprojet/{id}', 'ProjetController@payeProjet');
@@ -47,6 +48,7 @@ Route::delete('/projet/{id}', 'ProjetController@delete');
 Route::delete('/user/{id}', 'UserController@delete');
 Route::delete('/plan/{id}', 'PlanController@delete');
 Route::delete('/remarque/{id}', 'RemarqueController@delete');
+Route::delete('/pub/{id}', 'PostController@delete');
 
 // les action de recuperations de modification
 Route::get('/active_fichier/{id}', 'ProjetController@activeFichier');

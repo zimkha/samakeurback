@@ -420,6 +420,12 @@ app.config(function($routeProvider) {
         .when("/detail-plan/:itemId", {
             templateUrl : "page/detail-plan",
         })
+        .when("/contact", {
+            templateUrl : "page/contact",
+        })
+        .when("/pub", {
+            templateUrl : "page/pub",
+        })
 
 });
 
@@ -482,10 +488,9 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
 
             "joineds" : ["id,fichier,description,active",""],
 
-            "messagesends"  : ["id,objet,message,telephone,email,nom",""]
+            "messagesends"  : ["id,objet,message,telephone,email,nom",""],
 
-
-
+            "publications"  : ["id",""]
 
 
         };
@@ -560,6 +565,9 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
     $scope.typeremarques = [];
     $scope.remarques = [];
     $scope.users = [];
+
+    $scope.publications = [];
+    $scope.messagesends = [];
 
     $scope.client_id = null;
 
@@ -772,6 +780,14 @@ $scope.getResultat = function()
             else if (type.indexOf("users")!==-1)
             {
                 $scope.users = data;
+            }
+            else if (type.indexOf("messagesends")!==-1)
+            {
+                $scope.messagesends = data;
+            }
+            else if (type.indexOf("publications")!==-1)
+            {
+                $scope.publications = data;
             }
             else if (type.indexOf("dashboards")!==-1)
             {
@@ -1169,6 +1185,14 @@ $scope.getResultat = function()
          else if(angular.lowercase(current.templateUrl).indexOf('list-a-confirme')!==-1)
          {
              $scope.pageChanged('user');
+         }
+         else if(angular.lowercase(current.templateUrl).indexOf('contact')!==-1)
+         {
+             $scope.getelements('messagesends');
+         }
+         else if(angular.lowercase(current.templateUrl).indexOf('pub')!==-1)
+         {
+             $scope.getelements('publications');
          }
          else if(angular.lowercase(current.templateUrl).indexOf('list-projet')!==-1)
          {
@@ -1897,6 +1921,25 @@ $scope.getResultat = function()
                             });
                         }
                     }
+                    else if (type.indexOf('pub')!==-1)
+                    {
+                        if (!send_dataObj.id)
+                        {
+                            $scope.publications.push(getObj);
+                            console.log($scope.publications);
+                        }
+                        else
+                        {
+                            $.each($scope.publications, function (keyItem, oneItem)
+                            {
+                                if (oneItem.id===getObj.id)
+                                {
+                                    $scope.publications[keyItem] = getObj;
+                                    return false;
+                                }
+                            });
+                        }
+                    }
                     else if (type.indexOf('client')!==-1)
                     {
                         console.log('from', from);
@@ -2158,7 +2201,7 @@ $scope.index_plan = 0;
             if(chambre_plan < 0)
             {
                 iziToast.error({
-                    message: "Preciserle nombre de chambres",
+                    message: "Preciser le nombre de chambres",
                     position: 'topRight'
                 });
                 return false;
@@ -2167,7 +2210,7 @@ $scope.index_plan = 0;
             if(chambre_sdb_plan < 0)
             {
                 iziToast.error({
-                    message: "Preciserle nombre de Chambre Salle de Bain",
+                    message: "Preciser le nombre de Chambre Salle de Bain",
                     position: 'topRight'
                 });
                 return false;
@@ -2175,7 +2218,7 @@ $scope.index_plan = 0;
             if(salon_plan < 0)
             {
                 iziToast.error({
-                    message: "Preciserle nombre de salon",
+                    message: "Preciser le nombre de salon",
                     position: 'topRight'
                 });
                 return false;
@@ -2183,7 +2226,7 @@ $scope.index_plan = 0;
             if(bureau_plan < 0)
             {
                 iziToast.error({
-                    message: "Preciserle nombre de bureau",
+                    message: "Preciser le nombre de bureau",
                     position: 'topRight'
                 });
                 return false;
@@ -2192,7 +2235,7 @@ $scope.index_plan = 0;
             if(cuisine_plan < 0)
             {
                 iziToast.error({
-                    message: "Preciserle nombre de cuisine",
+                    message: "Preciser le nombre de cuisine",
                     position: 'topRight'
                 });
                 return false;
@@ -2201,7 +2244,7 @@ $scope.index_plan = 0;
             if(toillette_plan < 0)
             {
                 iziToast.error({
-                    message: "Preciserle nombre de Toillettes",
+                    message: "Precise le nombre de Toillettes",
                     position: 'topRight'
                 });
                 return false;
@@ -3402,6 +3445,17 @@ $scope.Ele = 0;
                                     if (oneItem.id===itemId)
                                     {
                                         $scope.typeclients.splice(keyItem, 1);
+                                        return false;
+                                    }
+                                });
+                            }
+                            else if (type.indexOf('pub')!==-1)
+                            {
+                                $.each($scope.publications, function (keyItem, oneItem)
+                                {
+                                    if (oneItem.id===itemId)
+                                    {
+                                        $scope.publications.splice(keyItem, 1);
                                         return false;
                                     }
                                 });

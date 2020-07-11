@@ -22,7 +22,8 @@ return [
         'projets'         => 'uploads/projets',
         'remarques'       => 'uploads/remarques',
         'projets'       => 'uploads/projets',
-        'fichierplans'    => 'uploads/fichierplans'
+        'fichierplans'    => 'uploads/fichierplans',
+        'posts'             => 'uploads/posts'
     ],
     /*
     |--------------------------------------------------------------------------

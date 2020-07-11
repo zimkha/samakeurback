@@ -55,7 +55,9 @@ class Outil extends Model
 
         "unitemesures"                  => "id,name",
         
-        "messagesends"                  => "id,objet,message,telephone,email,nom"
+        "messagesends"                  => "id,objet,message,telephone,email,nom",
+
+        "posts"                         => "id,fichier,description",
 
        
     );

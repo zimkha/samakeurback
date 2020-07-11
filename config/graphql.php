@@ -114,6 +114,7 @@ return [
                   \App\GraphQL\Query\JoinedQuery::class,
                   \App\GraphQL\Query\PositionQuery::class,
                   \App\GraphQL\Query\MessageSendQuery::class,
+                  \App\GraphQL\Query\PostQuery::class,
 
             ],
             'mutation' => [
@@ -153,6 +154,7 @@ return [
         \App\GraphQL\Type\JoinedType::class,
         \App\GraphQL\Type\PositionType::class,
         \App\GraphQL\Type\MessageSendType::class,
+        \App\GraphQL\Type\PostType::class,
 
 
     ],

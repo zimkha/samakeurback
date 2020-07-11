@@ -504,6 +504,7 @@
           15 => 'App\\GraphQL\\Query\\JoinedQuery',
           16 => 'App\\GraphQL\\Query\\PositionQuery',
           17 => 'App\\GraphQL\\Query\\MessageSendQuery',
+          18 => 'App\\GraphQL\\Query\\PostQuery',
         ),
         'mutation' => 
         array (
@@ -539,6 +540,7 @@
       15 => 'App\\GraphQL\\Type\\JoinedType',
       16 => 'App\\GraphQL\\Type\\PositionType',
       17 => 'App\\GraphQL\\Type\\MessageSendType',
+      18 => 'App\\GraphQL\\Type\\PostType',
     ),
     'lazyload_types' => false,
     'error_formatter' => 
@@ -911,6 +913,7 @@
       'projets' => 'uploads/projets',
       'remarques' => 'uploads/remarques',
       'fichierplans' => 'uploads/fichierplans',
+      'posts' => 'uploads/posts',
     ),
     'compiled' => 'C:\\xampp\\htdocs\\samakeurback\\storage\\framework\\views',
   ),
