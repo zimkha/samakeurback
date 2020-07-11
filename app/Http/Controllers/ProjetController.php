@@ -673,8 +673,8 @@ class ProjetController extends Controller
                     $payment->execute($execute, $apiContext);
 
                     $id = $payment->getId();
-                    $projet = Projet::find($payment->getTransactions()[0]->getCustom());
-                    dd($id, $payment->getTransactions()->getCustome());
+                    $projet = Projet::find($payment->getTransactions()[0]->custom);
+                    // dd($id,(int) $payment->getTransactions()[0]->custom);
                     if(isset($id) && isset($projet))
                     {
                         $projet->etat = 2;
