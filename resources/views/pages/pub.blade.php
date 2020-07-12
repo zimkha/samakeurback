@@ -1,7 +1,7 @@
 
 <div class="">
     <div class="float-right pt-0">
-        <button class="btn btn-primary"  ng-click="viderTab();showModalAdd('pub')" title="ajouter une demande"><i class="fa fa-plus"></i></button>
+        <button class="btn btn-primary"  ng-click="viderTab();showModalAdd('pub')" title="ajouter une punb"><i class="fa fa-plus"></i></button>
     </div>
     <h1 class="h3 mb-4 text-gray-800">Liste des publications</h1>
 
@@ -63,9 +63,9 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr align="center">
-                               <td>ici image</td>
-                               <td>description 1</td>
+                            <tr align="center" ng-repeat="item in posts">
+                               <td><img style="width: 40px;height: 40px;border-radius: 50%" src="@{{ item.fichier }}" alt=""></td>
+                               <td>@{{ item.description }}</td>
                                 <td class="text-center">
                                     {{--<button class="btn btn-sm btn-circle btn-primary"   ng-click="showModalUpdate('pub',item.id)" title="Modifier">
                                         <span class="fa fa-edit"></span>

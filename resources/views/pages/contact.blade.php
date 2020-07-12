@@ -63,12 +63,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <tr align="center">
-                                <td>Papa thiam</td>
-                                <td>demande pour creation</td>
-                                <td>papa@gmail.com</td>
-                                <td>44354343434</td>
-                                <td>message ici</td>
+                            <tr align="center" ng-repeat="item in messagesends">
+                                <td>@{{ item.nom }}/td>
+                                <td>@{{ item.objet }}</td>
+                                <td>@{{ item.email }}</td>
+                                <td>@{{ item.telephone }}</td>
+                                <td>@{{ item.message }}</td>
                             </tr>
 
                             </tbody>

@@ -490,7 +490,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
 
             "messagesends"  : ["id,objet,message,telephone,email,nom",""],
 
-            "publications"  : ["id",""]
+            "posts"  : ["id,description,fichier",""]
 
 
         };
@@ -566,7 +566,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
     $scope.remarques = [];
     $scope.users = [];
 
-    $scope.publications = [];
+    $scope.posts = [];
     $scope.messagesends = [];
 
     $scope.client_id = null;
@@ -785,9 +785,9 @@ $scope.getResultat = function()
             {
                 $scope.messagesends = data;
             }
-            else if (type.indexOf("publications")!==-1)
+            else if (type.indexOf("posts")!==-1)
             {
-                $scope.publications = data;
+                $scope.posts = data;
             }
             else if (type.indexOf("dashboards")!==-1)
             {
@@ -1192,7 +1192,7 @@ $scope.getResultat = function()
          }
          else if(angular.lowercase(current.templateUrl).indexOf('pub')!==-1)
          {
-             $scope.getelements('publications');
+             $scope.getelements('posts');
          }
          else if(angular.lowercase(current.templateUrl).indexOf('list-projet')!==-1)
          {
@@ -1899,7 +1899,17 @@ $scope.getResultat = function()
                 if (data.data!=null && !data.errors_debug)
                 {
                     $scope.emptyForm(type);
-                    getObj = data['data'][type + 's'][0];
+                    if (type == "pub")
+                    {
+
+                        console.log('ici datass',data)
+                        getObj = data['data']['posts'][0];
+                    }
+                    else
+                    {
+
+                        getObj = data['data'][type + 's'][0];
+                    }
 
 
                     if (type.indexOf('typeclient')!==-1)
@@ -1925,16 +1935,16 @@ $scope.getResultat = function()
                     {
                         if (!send_dataObj.id)
                         {
-                            $scope.publications.push(getObj);
-                            console.log($scope.publications);
+                            $scope.posts.push(getObj);
+                            console.log($scope.posts);
                         }
                         else
                         {
-                            $.each($scope.publications, function (keyItem, oneItem)
+                            $.each($scope.posts, function (keyItem, oneItem)
                             {
                                 if (oneItem.id===getObj.id)
                                 {
-                                    $scope.publications[keyItem] = getObj;
+                                    $scope.posts[keyItem] = getObj;
                                     return false;
                                 }
                             });
@@ -2088,7 +2098,14 @@ $scope.getResultat = function()
                         message: "succès",
                         position: 'topRight'
                     });
-                    $("#modal_add" + type).modal('hide');
+                    if (type == "pub")
+                    {
+                        $("#modal_addpub").modal('hide');
+                    }
+                    else
+                    {
+                        $("#modal_add" + type).modal('hide');
+                    }
 
 
                     // Dans tous les cas, on réinitiliase
@@ -3451,11 +3468,11 @@ $scope.Ele = 0;
                             }
                             else if (type.indexOf('pub')!==-1)
                             {
-                                $.each($scope.publications, function (keyItem, oneItem)
+                                $.each($scope.posts, function (keyItem, oneItem)
                                 {
                                     if (oneItem.id===itemId)
                                     {
-                                        $scope.publications.splice(keyItem, 1);
+                                        $scope.posts.splice(keyItem, 1);
                                         return false;
                                     }
                                 });
