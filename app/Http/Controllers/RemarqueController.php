@@ -17,12 +17,12 @@ class RemarqueController extends Controller
         return DB::transaction(function () use($request) {
            $errors = null;
            $item = new Remarque();
-                    
+                    // dd($request->all());
            if(isset($request->id))
            {
                $item = Remarque::find($request->id);
            }
-           if(empty($request->projet_id))
+           if(empty($request->projet))
            {
                $errors = "Une remarque concerne un projet client";
            }
