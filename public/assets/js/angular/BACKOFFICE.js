@@ -1146,7 +1146,7 @@ $scope.getResultat = function()
         $scope.getelements("permissions");
         //console.log("angular je suis la ",(angular.lowercase(current.templateUrl)));
 
-         if(angular.lowercase(current.templateUrl).indexOf('plan')!==-1)
+         if(current.templateUrl == 'plan')
          {
                // $scope.pageChanged("plan");
                 console.log("angular je suis la ",(angular.lowercase(current.templateUrl)));
@@ -2160,72 +2160,17 @@ $scope.index_plan = 0;
             var cuisine_plan = $("#cuisine_plan").val();
             var toillette_plan = $("#toillette_plan").val();
 
-            /*if (niveau == false) {
-                iziToast.error({
-                    message: "Sélectionnez un niveau",
-                    position: 'topRight'
-                });
-                return false;
-            }*/
-            // if ($scope.estEntier(piece_plan) == false) {
-            //     iziToast.error({
-            //         message: "Sélectionnez une piece",
-            //         position: 'topRight'
-            //     });
-            //     return false;
-            // }
-            // if ($scope.estEntier(chambre_plan) == false) {
-            //     iziToast.error({
-            //         message: "Sélectionnez une chambre",
-            //         position: 'topRight'
-            //     });
-            //     return false;
-            // }
-            // if ($scope.estEntier(chambre_sdb_plan) == false) {
-            //     iziToast.error({
-            //         message: "Sélectionnez une chambre avec SDB",
-            //         position: 'topRight'
-            //     });
-            //     return false;
-            // }
-            // if ($scope.estEntier(salon_plan) == false) {
-            //     iziToast.error({
-            //         message: "Sélectionnez une salon",
-            //         position: 'topRight'
-            //     });
-            //     return false;
-            // }
-            // if ($scope.estEntier(cuisine_plan) == false) {
-            //     iziToast.error({
-            //         message: "Sélectionnez une cuisine",
-            //         position: 'topRight'
-            //     });
-            //     return false;
-            // }
-            // if ($scope.estEntier(toillette_plan) == false) {
-            //     iziToast.error({
-            //         message: "Sélectionnez une toillette",
-            //         position: 'topRight'
-            //     });
-            //     return false;
-            // }
-            // else if ($scope.testSiUnElementEstDansTableau($scope.produitsInTable, niveau) == true) {
-            //     iziToast.error({
-            //         message: "Le niveau est déja dans le tableau",
-            //         position: 'topRight'
-            //     });
-            //     return false;
-            // }
-            if(chambre_plan < 0)
+            console.log("ici le value de ", $("#chambre_plan").val())
+            if($("#chambre_plan").val() == '' || parseInt($("#chambre_plan").val()) < 0)
             {
                 iziToast.error({
-                    message: "Preciser le nombre de chambres",
+                    message: "Preciser le nombre de chambres simple",
                     position: 'topRight'
                 });
                 return false;
             }
 
-            if(chambre_sdb_plan < 0)
+            if($("#chambre_sdb_plan").val() == '' || parseInt($("#chambre_sdb_plan").val()) < 0)
             {
                 iziToast.error({
                     message: "Preciser le nombre de Chambre Salle de Bain",
@@ -2233,7 +2178,7 @@ $scope.index_plan = 0;
                 });
                 return false;
             }
-            if(salon_plan < 0)
+            if($("#salon_plan").val() == '' || parseInt($("#salon_plan").val()) < 0)
             {
                 iziToast.error({
                     message: "Preciser le nombre de salon",
@@ -2241,7 +2186,7 @@ $scope.index_plan = 0;
                 });
                 return false;
             }
-            if(bureau_plan < 0)
+            if($("#bureau_plan").val() == '' || parseInt($("#bureau_plan").val()) < 0)
             {
                 iziToast.error({
                     message: "Preciser le nombre de bureau",
@@ -2250,7 +2195,7 @@ $scope.index_plan = 0;
                 return false;
             }
 
-            if(cuisine_plan < 0)
+            if($("#cuisine_plan").val() == '' || parseInt($("#cuisine_plan").val()) < 0)
             {
                 iziToast.error({
                     message: "Preciser le nombre de cuisine",
@@ -2259,7 +2204,7 @@ $scope.index_plan = 0;
                 return false;
             }
 
-            if(toillette_plan < 0)
+            if($("#toillette_plan").val() == '' || parseInt($("#toillette_plan").val()) < 0)
             {
                 iziToast.error({
                     message: "Precise le nombre de Toillettes",
@@ -2307,14 +2252,14 @@ $scope.index_plan = 0;
         }
     };
     // fin plan
-$scope.Ele = 0;
+    $scope.Ele = 0;
     $scope.actionSurProjet = function (action, selectedItem = null) {
         if (action == 'add')
         {
             //Ajouter un élément dans le tableau
             $scope.Ele = $scope.Ele + 1;
             var niveau =  $scope.Ele;
-            var piece_projet = $("#piece_projet").val();
+           // var piece_projet = $("#piece_projet").val();
             var chambre_projet = $("#chambre_projet").val();
             var chambre_sdb_projet = $("#chambre_sdb_projet").val();
             var bureau_projet = $("#bureau_projet").val();
@@ -2322,72 +2267,17 @@ $scope.Ele = 0;
             var cuisine_projet = $("#cuisine_projet").val();
             var toillette_projet = $("#toillette_projet").val();
 
+            console.log("ici le value", $("#chambre_projet").val())
 
-            // if ($scope.estEntier(piece_projet) == false) {
-            //     iziToast.error({
-            //         message: "Sélectionnez une piece",
-            //         position: 'topRight'
-            //     });
-            //     return false;
-            // }
-            // if ($scope.estEntier(chambre_projet) == false) {
-            //     iziToast.error({
-            //         message: "Sélectionnez une chambre",
-            //         position: 'topRight'
-            //     });
-            //     return false;
-            // }
-            // if ($scope.estEntier(chambre_sdb_projet) == false) {
-            //     iziToast.error({
-            //         message: "Sélectionnez une chambre SDB",
-            //         position: 'topRight'
-            //     });
-            //     return false;
-            // }
-            // if ($scope.estEntier(salon_projet) == false) {
-            //     iziToast.error({
-            //         message: "Sélectionnez une salon",
-            //         position: 'topRight'
-            //     });
-            //     return false;
-            // }
-            // if ($scope.estEntier(cuisine_projet) == false) {
-            //     iziToast.error({
-            //         message: "Sélectionnez une cuisine",
-            //         position: 'topRight'
-            //     });
-            //     return false;
-            // }
-            // if ($scope.estEntier(toillette_projet) == false) {
-            //     iziToast.error({
-            //         message: "Sélectionnez une toillette",
-            //         position: 'topRight'
-            //     });
-            //     return false;
-            // }
-            // else if ($scope.testSiUnElementEstDansTableau($scope.produitsInTable, niveau) == true) {
-            //     iziToast.error({
-            //         message: "Le niveau est déja dans le tableau",
-            //         position: 'topRight'
-            //     });
-            //     return false;
-            // }
-            if(chambre_projet < 0)
+            if($("#chambre_projet").val() == '' || parseInt($("#chambre_projet").val()) < 0)
             {
                 iziToast.error({
-                    message: "Preciserle nombre de chambres",
+                    message: "Preciser le nombre de chambres simple",
                     position: 'topRight'
                 });
                 return false;
             }
-            // if ($scope.estEntier(chambre_sdb_projet) == false) {
-            //     iziToast.error({
-            //         message: "Sélectionnez une chambre SDB",
-            //         position: 'topRight'
-            //     });
-            //     return false;
-            // }
-            if(chambre_sdb_projet < 0)
+            if($("#chambre_sdb_projet").val() == '' || parseInt($("#chambre_sdb_projet").val()) < 0)
             {
                 iziToast.error({
                     message: "Preciserle nombre de Chambre Salle de Bain",
@@ -2395,25 +2285,23 @@ $scope.Ele = 0;
                 });
                 return false;
             }
-            if(salon_projet < 0)
+            if($("#bureau_projet").val() == '' || parseInt($("#bureau_projet").val()) < 0)
             {
                 iziToast.error({
-                    message: "Preciserle nombre de salon",
+                    message: "Preciser le nombre de bureau",
                     position: 'topRight'
                 });
                 return false;
             }
-            // if ($scope.estEntier(salon_projet) == false) {
-
-            // }
-            // if ($scope.estEntier(cuisine_projet) == false) {
-            //     iziToast.error({
-            //         message: "Sélectionnez une cuisine",
-            //         position: 'topRight'
-            //     });
-            //     return false;
-            // }
-            if(cuisine_projet < 0)
+            if($("#salon_projet").val() == '' || parseInt($("#salon_projet").val()) < 0)
+            {
+                iziToast.error({
+                    message: "Preciser le nombre de salon",
+                    position: 'topRight'
+                });
+                return false;
+            }
+            if($("#cuisine_projet").val() == '' || parseInt($("#cuisine_projet").val()) < 0)
             {
                 iziToast.error({
                     message: "Preciserle nombre de cuisine",
@@ -2421,32 +2309,25 @@ $scope.Ele = 0;
                 });
                 return false;
             }
-            // if ($scope.estEntier(toillette_projet) == false) {
-            //     iziToast.error({
-            //         message: "Sélectionnez une toillette",
-            //         position: 'topRight'
-            //     });
-            //     return false;
-            // }
-            if(toillette_projet < 0)
+            if($("#toillette_projet").val() == '' || parseInt($("#toillette_projet").val()) < 0)
             {
                 iziToast.error({
-                    message: "Preciserle nombre de Toillettes",
+                    message: "Preciser le nombre de Toillettes",
                     position: 'topRight'
                 });
                 return false;
             }
-            // else if ($scope.testSiUnElementEstDansTableau($scope.produitsInTable, niveau) == true) {
-            //     iziToast.error({
-            //         message: "Le niveau est déja dans le tableau",
-            //         position: 'topRight'
-            //     });
-            //     return false;
-            // }
+            else if ($scope.testSiUnElementEstDansTableau($scope.produitsInTable, niveau) == true) {
+                iziToast.error({
+                   message: "Le niveau est déja dans le tableau",
+                     position: 'topRight'
+                 });
+                 return false;
+             }
 
             $scope.produitsInTable.unshift({
                 "niveau": "R +" + niveau,
-                "piece": piece_projet,
+             //   "piece": piece_projet,
                 "chambre": chambre_projet,
                 "sdb": chambre_sdb_projet,
                 "bureau": bureau_projet,
@@ -2458,7 +2339,7 @@ $scope.Ele = 0;
             console.log("this.produitsInTable",$scope.produitsInTable)
 
             $("#niveau_projet").val('');
-            $("#piece_projet").val('');
+          //  $("#piece_projet").val('');
             $("#chambre_projet").val('');
             $("#chambre_sdb_projet").val('');
             $("#salon_projet").val('');
