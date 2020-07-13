@@ -1800,9 +1800,17 @@ $scope.getResultat = function()
         }
         else if (type == 'lier_plan' || type == 'lierplan') {
             console.log("bonjour $scope.planview", $scope.planview)
-            send_data.append('plan_id', parseInt($scope.planview.id));
            // send_data.append('projet_id', JSON.stringify($scope.projet_id));
+            send_data.append('plan_id', $scope.planview.id);
             continuer = true;
+            iziToast.success({
+                message: "Liaison bien effectué",
+                position: 'topRight'
+            });
+            $("#modal_addlier_plan").modal('hide');
+            setTimeout(function () {
+            //    $scope.pageChanged("plan");
+            },1500);
         }
         else if (type == 'joined' || type == 'joined') {
             console.log("bonjour $scope.planview",parseInt($scope.planview.id))

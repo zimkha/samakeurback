@@ -34,7 +34,7 @@ Route::post('/active_plan', 'ProjetController@active_plan');
 Route::post('/password-create', 'UserController@resetpassword');
 Route::post('/contact-send', 'UserController@getMessage');
 Route::post('/contrat', 'ContratController@save');
-Route::post('/link_plan_to_projet', 'ProjetController@linkPlanToProjet');
+Route::post('/lier_plan', 'ProjetController@linkPlanToProjet');
 Route::post('/inscription', 'UserController@save');
 Route::post('/joined', 'PlanController@joined');
 Route::post('/pub', 'PostController@save');
