@@ -490,7 +490,8 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
 
             "messagesends"  : ["id,objet,message,telephone,email,nom",""],
 
-            "posts"  : ["id","fichier","description"]
+
+            "posts"  : ["id,description,fichier",""]
 
 
         };
@@ -785,7 +786,7 @@ $scope.getResultat = function()
             {
                 $scope.messagesends = data;
             }
-            else if (type.indexOf("publications")!==-1)
+            else if (type.indexOf("posts")!==-1)
             {
                 $scope.posts = data;
             }
@@ -1899,7 +1900,17 @@ $scope.getResultat = function()
                 if (data.data!=null && !data.errors_debug)
                 {
                     $scope.emptyForm(type);
-                    getObj = data['data'][type + 's'][0];
+                    if (type == "pub")
+                    {
+
+                        console.log('ici datass',data)
+                        getObj = data['data']['posts'][0];
+                    }
+                    else
+                    {
+
+                        getObj = data['data'][type + 's'][0];
+                    }
 
 
                     if (type.indexOf('typeclient')!==-1)
@@ -2088,7 +2099,14 @@ $scope.getResultat = function()
                         message: "succès",
                         position: 'topRight'
                     });
-                    $("#modal_add" + type).modal('hide');
+                    if (type == "pub")
+                    {
+                        $("#modal_addpub").modal('hide');
+                    }
+                    else
+                    {
+                        $("#modal_add" + type).modal('hide');
+                    }
 
 
                     // Dans tous les cas, on réinitiliase

@@ -48,7 +48,7 @@ class ProjetController extends Controller
             return DB::transaction(function () use($request) {
                 $errors = null;
                 $name = Projet::makeCode();
-                $auth_user = Auth::user()->id;
+                // $auth_user = Auth::user()->id;
                 $item  = new Projet();
                 $array = [
                          'user', 'longeur', 'largeur',
@@ -61,7 +61,7 @@ class ProjetController extends Controller
                     Position::where('projet_id', $request->id)->delete();
                     Position::where('projet_id', $request->id)->forceDelete();
                     $name = $item->name;
-                    $auth_user = $item->id_user;
+                    // $auth_user = $item->id_user;
                 }
              //   $item->id_user = $auth_user;
                 if(empty($request->acces_voirie) || $request->acces_voirie == 0)
@@ -123,22 +123,22 @@ class ProjetController extends Controller
 
                 $errors = Outil::validation($request, $array);
 
-                $user_connected = Auth::user()->id;
+                // $user_connected = Auth::user()->id;
 
-                $User = User::find($user_connected);
+                // $User = User::find($user_connected);
 
-                if(isset($User))
-                {
-                    if($User->is_client== 1)
-                    {
-                        if(empty($request->tab_projet))
-                        {
-                            $errors = "Veuillez remplir les niveaux dans le formulaire";
-                            throw new \Exception($errors);
-                        }
+                // if(isset($User))
+                // {
+                //     if($User->is_client== 1)
+                //     {
+                //         if(empty($request->tab_projet))
+                //         {
+                //             $errors = "Veuillez remplir les niveaux dans le formulaire";
+                //             throw new \Exception($errors);
+                //         }
 
-                    }
-                }
+                //     }
+                // }
                 if(empty($request->longeur))
                 {
                     $errors = "Veuillez definir la longeur";
@@ -679,7 +679,7 @@ class ProjetController extends Controller
                     {
                         $projet->etat = 2;
                         $projet->save();
-                        return $projet;
+                        return "Votre paiement s'est éffectuer avec success, veuillez retourner dans votre espace client";
 
                     }
                     else

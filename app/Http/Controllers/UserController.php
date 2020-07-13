@@ -87,7 +87,7 @@ class UserController extends Controller
                         'title' => "Message de confirmation",
                         'body'  => "Votre demande de création de projet a été bien prise en charge. Veuillez vous connecter sur votre espace personnelle pour procéder au paiment"
                     ];
-                    \Mail::to($user->email)->send(new \App\Mail\SendSubscritionConfirm($tableau));
+                    \Mail::to("zimkhandiaye@gmail.com")->send(new \App\Mail\SendSubscritionConfirm($tableau));
                      return Outil::redirectgraphql($this->queryName, "id:{$id}", Outil::$queries[$this->queryName]);
                 }
                 return response()->json(['errors' => $errors]);
