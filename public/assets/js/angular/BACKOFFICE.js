@@ -889,7 +889,7 @@ $scope.getResultat = function()
             console.log("icic search $('#searchoption_projet').val() => ", $('#searchoption_projet').val())
             rewriteelement = 'projetspaginated(page:'+ $scope.paginationprojet.currentPage +',count:'+ $scope.paginationprojet.entryLimit
             + ($scope.projetview ? ',projet_id:' + $scope.projetview.id : "" )
-            + ($scope.planview ? ',plan_id:' + $scope.planview.id : "" )
+          //  + ($scope.planview ? ',plan_id:' + $scope.planview.id : "" )
             + ($scope.clientview ? ',user_id:' + $scope.clientview.id : "" )
            // + ($scope.client_id != 0 ? (',' + 'user_id:' + $scope.client_id + '') : "")
             + ($scope.radioBtnComposition ? ',etat:' + $scope.radioBtnComposition : "")
@@ -1161,6 +1161,7 @@ $scope.getResultat = function()
                    },1000);*/
 
                    $scope.getelements('users');
+                   $scope.pageChanged('projet');
 
                    var req = "plans";
                    $scope.planview = {};
@@ -1171,7 +1172,7 @@ $scope.getResultat = function()
                        $scope.pageChanged('projet');
                        $scope.getelements('joineds');
 
-                       console.log("$scope.planview =>",$scope.planview)
+                       console.log("$scope.planview 1 =>",$scope.planview)
                    },function (msg)
                    {
                        toastr.error(msg);
