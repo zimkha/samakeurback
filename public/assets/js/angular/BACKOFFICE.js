@@ -1146,7 +1146,7 @@ $scope.getResultat = function()
         $scope.getelements("permissions");
         //console.log("angular je suis la ",(angular.lowercase(current.templateUrl)));
 
-         if(current.templateUrl == 'plan')
+         if(angular.lowercase(current.templateUrl).indexOf('plan')!==-1)
          {
                // $scope.pageChanged("plan");
                 console.log("angular je suis la ",(angular.lowercase(current.templateUrl)));
@@ -1154,7 +1154,6 @@ $scope.getResultat = function()
                $scope.planview = null;
                if(current.params.itemId)
                {
-
                    var idElmtplan = current.params.itemId;
                   /* setTimeout(function ()
                    {
@@ -1737,11 +1736,18 @@ $scope.getResultat = function()
     $scope.bornes_visible = 0;
     $scope.necessite_bornage = 0;
 
-    $scope.positions = [];
+    $scope.positions = []
 
-    $scope.actionSurPosition = function()
-    {
-        $scope.positions =  [{position : 'Nord',ref:  parseInt($('#choix_nord_projet').val())}, {position : 'Sud',ref: parseInt($('#choix_sud_projet').val())}, {position : 'Ouest',ref: parseInt($('#choix_ouest_projet').val())}, {position : 'Est',ref: parseInt($('#choix_ouest_projet').val())}];
+    $scope.actionSurPosition = function () {
+
+        $scope.positions = [
+            {position : 'Nord',ref:  parseInt($('#choix_nord_projet').val())},
+            {position : 'Sud',ref: parseInt($('#choix_sud_projet').val())},
+            {position : 'Ouest',ref: parseInt($('#choix_ouest_projet').val())},
+            {position : 'Est',ref: parseInt($('#choix_est_projet').val())},
+        ];
+
+        console.log("ici le tabs positions", $scope.positions)
 
     }
 
@@ -1808,7 +1814,6 @@ $scope.getResultat = function()
         }
         else if (type == 'projet' || type == 'projets') {
 
-            console.log("ici les senddatas ",$scope.positions)
 
             if ($scope.produitsInTable.length > 0) {
 
@@ -1869,8 +1874,11 @@ $scope.getResultat = function()
                     $scope.necessite_bornage = 0;
                 }
 
+                console.log("ici les senddatas ",$scope.positions, JSON.stringify($scope.positions))
+
+                send_data.append('positions', JSON.stringify($scope.positions));
                 send_data.append('tab_projet', JSON.stringify($scope.produitsInTable));
-                send_data.append('positions', $scope.positions);
+                //send_data.append('positions', [{position : 'Nord',ref:  parseInt($('#choix_nord_projet').val())}, {position : 'Sud',ref: parseInt($('#choix_sud_projet').val())}, {position : 'Ouest',ref: parseInt($('#choix_ouest_projet').val())}, {position : 'Est',ref: parseInt($('#choix_ouest_projet').val())}]);
                 send_data.append('electricite', $scope.electricite);
                 send_data.append('acces_voirie', $scope.acces_voirie);
                 send_data.append('assainissement', $scope.assainissement);

@@ -1,5 +1,5 @@
 
-<div class="">
+<div class="" ng-init="actionSurPosition()">
     <div class="float-right pt-0">
         <button class="btn btn-primary"  ng-click="viderTab();showModalAdd('demande')" title="ajouter une demande"><i class="fa fa-plus"></i></button>
     </div>

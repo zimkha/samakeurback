@@ -504,7 +504,7 @@
                         </div>
                         <div class="row">
 
-                            <div class="col-lg-4">
+                           {{-- <div class="col-lg-4">
                                 <div class="form-group">
                                     <label for="longeur_projet">Longeur</label>
                                    <input type="number" class="form-control" id="longeur_projet" name="longeur">
@@ -515,18 +515,18 @@
                                     <label for="largeur_projet">Largeur</label>
                                    <input type="number" class="form-control" id="largeur_projet" name="largeur">
                                 </div>
-                            </div>
+                            </div>--}}
+
+
+                        </div>
+                        <div class="row">
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <label for="adresse_terrain_projet">Adresse Terrain</label>
                                     <input type="text" class="form-control" id="adresse_terrain_projet" name="adresse_terrain">
                                 </div>
                             </div>
-
-
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <div class="form-group">
                                     <label for="piscine_projet">Piscine</label>
                                     <select class="form-control" id="piscine_projet" name="piscine">
@@ -535,7 +535,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <div class="form-group">
                                     <label for="garage_projet">Garage</label>
                                     <select class="form-control" id="garage_projet" name="garage">
