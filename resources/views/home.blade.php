@@ -842,7 +842,7 @@
                         <div class="row mt-2">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="description_proje">Desciption</label>
+                                    <label for="description_projet">Desciption</label>
                                     <textarea rows="4" class="form-control" id="description_projet" name="description"></textarea>
                                 </div>
                             </div>

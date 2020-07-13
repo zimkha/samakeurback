@@ -462,7 +462,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
 
             "projets"                       :  [
                 "id,adresse_terrain,garage,name,etat,active,a_valider,text_projet,created_at_fr,created_at,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_sdb,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adresse_complet,code_postal}",
-                ",niveau_projets{id,piece,bureau,toillette,chambre,sdb,niveau_name,salon,cuisine},positions{id,position,nom_position,projet_id},remarques{id,demande_text,projet_id,projet{adresse_terrain,name},type_remarque_id},plan_projets{id,plan_id,plan{id,code,created_at_fr,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,unite_mesure_id,unite_mesure{id,name},fichier,niveau_plans{id,piece,niveau,bureau,toillette,chambre,salon,cuisine},joineds{id,fichier,description}}}"
+                ",niveau_projets{id,piece,bureau,toillette,chambre,sdb,niveau_name,salon,cuisine},positions{id,position,nom_position,projet_id},remarques{id,demande_text,projet_id},plan_projets{id,plan_id,plan{id,code,created_at_fr,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,unite_mesure_id,unite_mesure{id,name},fichier,niveau_plans{id,piece,niveau,bureau,toillette,chambre,salon,cuisine},joineds{id,fichier,description}}}"
             ],
 
             "clients"                       :  ["id",""],
@@ -472,7 +472,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
              "niveauprojets"                 : ["id,name,piece,bureau,toillette,chambre,salon,cuisine",""],
 
             "remarques"                     : [
-            "id,demande_text,projet_id,type_remarque_id",""],
+            "id,demande_text,projet_id",""],
 
             'permissions'                   : ['id,name,display_name,guard_name', ""],
 
@@ -1211,14 +1211,15 @@ $scope.getResultat = function()
                    {
                        Init.getStatElement('projet', idElmtprojet);
                    },1000);*/
-                   $scope.getelements('projets');
+                  // $scope.getelements('projets');
                    var req = "projets";
                    $scope.projetview = {};
                    rewriteReq = req + "(id:" + current.params.itemId + ")";
                    Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
                    {
                        $scope.projetview = data[0];
-                       $scope.getelement("niveauprojets");
+                      // $scope.getelement("projets");
+                       console.log("ici le $scope.projetview" ,$scope.projetview)
                    },function (msg)
                    {
                        toastr.error(msg);
@@ -2772,6 +2773,7 @@ $scope.index_plan = 0;
                 $('#largeur_' + type).val(item.largeur);
                 $('#garage_' + type).val(item.garage);
                 $('#adresse_terrain_' + type).val(item.adresse_terrain);
+                $('#description_' + type).val(item.text_projet);
 
                 var liste_ligneniveau = [];
                 $.each(item.niveau_projets, function (keyItem, valueItem) {

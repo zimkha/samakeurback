@@ -190,17 +190,16 @@
                                         <tr align="center">
                                             {{--<th>Code</th>--}}
                                             <th>Description</th>
-                                            <th>Fichier</th>
+                                            {{--<th>Fichier</th>--}}
                                             {{--<th>Actions</th>--}}
                                         </tr>
                                         </thead>
 
                                         <tbody>
-                                           {{-- <tr class="animated fadeIn" ng-repeat="item in projetview.remarques">
-                                                <td>@{{ item.demande_text }}</td>
-                                                --}}{{--<td>@{{ item.demande_text }}</td>--}}{{--
-                                                <td><a href="@{{ base_url }}/{{ item.fichier }}"></a></td>
-                                            </tr>--}}
+                                            <tr class="animated fadeIn" ng-repeat="item in projetview.remarques">
+                                                <td> <u>Remarque  @{{ item.id }} :</u>  @{{ item.demande_text }}</td>
+                                               {{-- <td><a href="@{{ base_url }}/{{ item.id }}"></a></td>--}}
+                                            </tr>
 
                                         </tbody>
                                     </table>
