@@ -41,7 +41,7 @@ class ProjetController extends Controller
     }
     public function save(Request $request)
     {
-        // dd($request->all());
+        //  dd($request->all());
 
         try
         {
@@ -192,7 +192,7 @@ class ProjetController extends Controller
 
                 if(isset($request->positions) && $request->positions!= null)
                 {
-                    $positions = $request->positions;
+                    $positions = json_decode($request->positions, true);
                     //dd($positions);
                     foreach($positions as $position)
                     {
