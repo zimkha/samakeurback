@@ -1799,7 +1799,7 @@ $scope.getResultat = function()
         }
         else if (type == 'lier_plan' || type == 'lierplan') {
             console.log("bonjour $scope.planview", $scope.planview)
-            send_data.append('plan_id', JSON.stringify($scope.planview.id));
+            send_data.append('plan_id', parseInt($scope.planview.id));
            // send_data.append('projet_id', JSON.stringify($scope.projet_id));
             continuer = true;
         }
