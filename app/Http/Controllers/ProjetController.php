@@ -314,47 +314,50 @@ class ProjetController extends Controller
         {
             return DB::transaction(function()use($request)
             {
+                //  dd($request->all());
                 $errors = null;
                 $item = new PlanProjet();
                 if(isset($request->id))
                 {
                     $item = PlanProjet::find($request->id);
                 }
-                if(empty($request->plan))
+                if(empty($request->plan_id))
                 {
                     $errors = "Veuillez définir le plan à lier à ce projet";
                 }
-                if(empty($request->projet))
+                if(empty($request->projet_id))
                 {
                     $errors = "Données manquantes pour cette opération, veuillez contacter le service technique";
                 }
-                if(isset($request->projet))
+                if(isset($request->projet_id))
                 {
-                    $count = PlanProjet::where('projet_id', $request->projet)->count();
+                    $count = PlanProjet::where('projet_id', $request->projet_id)->count();
                     if($count == 3)
                     {
                         throw new \Exception("Impossible d'effectuer cette action, le nombre maximal de demandes de modifications  de plan est atteint");
                     }
                 }
-                if(isset($request->plan))
+                if(isset($request->plan_id))
                 {
-                    $plan = Plan::find($request->plan);
+                    $plan = Plan::find($request->plan_id);
+                    // dd($plan);
                     if(!isset($plan) || empty($plan->fichier))
                     {
                         $errors = "Pour ce plan il n'existe plus de fichier de plan";
                     }
                     else
                     $item->fichier   = $plan->fichier;
-                  $plan_projet = PlanProjet::where('plan_id', $request->plan)->where('projet_id', $request->projet)->get();
+                  $plan_projet = PlanProjet::where('plan_id', $request->plan_id)->where('projet_id', $request->projet_id)->get();
                   if(count($plan_projet)> 0)
                   {
                       $errors = "Ce projet est déjà lier à ce plan";
                   }
                 }
                 $item->plan_id          = $plan->id;
-                $item->projet_id        = $request->projet;
+                $item->projet_id        = $request->projet_id;
                 $item->etat_active      = 0;
                 $item->active           = 0; // Par defaut le plan rataché au projet est a false de ce faite c'est au client de la passée a true
+            //    dd($item);
                 if (!isset($errors))
                 {
                     $item->save();
