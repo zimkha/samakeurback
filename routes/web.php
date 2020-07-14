@@ -41,7 +41,7 @@ Route::post('/pub', 'PostController@save');
 Route::get('/payment', 'ProjetController@payment');
 Route::post('/activer-projet', 'ProjetController@activeProjet');
 Route::get('/payeprojet/{id}', 'ProjetController@payeProjet');
-Route::get('/projet/gerResultat', 'ProjetController@getResult');
+Route::get('/getResultat', 'ProjetController@getResult');
 
 // les actions de suppressions
 Route::delete('/projet/{id}', 'ProjetController@delete');

@@ -920,6 +920,7 @@ class ProjetController extends Controller
 
     public function getResult()
     {
+       
         try{
                 $errors = null;
                 $tab_resultat = array();
@@ -928,12 +929,15 @@ class ProjetController extends Controller
                 $prime = Projet::where('etat', 0)->count();
                 $two = Projet::where('etat', 1)->count();
                 $three =  Projet::where('etat', 2)->count();
-
+                $projets = array();
+                $items = Projet::where('etat', 0)->limit(5)->get();
+               
                 array_push($tab_resultat, [
                     "total"=> $one,
                     "en_attente"=> $prime,
                     "encours"=> $two,
-                    "finalise"=> $three
+                    "finalise"=> $three,
+                    "projets" => $items
                 ]);
 
                 return $tab_resultat;

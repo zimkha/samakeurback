@@ -812,7 +812,21 @@ $scope.getResultat = function()
         });
 
     };
-
+    $scope.dataDashboard = []; 
+$scope.getAllDashboard = function()
+{
+    $.ajax({
+        url: BASE_URL+ 'getResultat',
+        method: "GET",
+        success: function(data)
+        {
+           $scope.dataDashboard = data;
+           console.log($scope.dataDashboard)
+        }, error: function (data) {
+            console.log(data)
+        }
+      });
+};
     $scope.searchtexte_client = "";
     $scope.pageChanged = function(currentpage)
     {
@@ -1232,7 +1246,7 @@ $scope.getResultat = function()
         }
          else if(angular.lowercase(current.templateUrl).indexOf('dashboards')!==-1 || angular.lowercase(current.templateUrl).indexOf('')!==-1)
          {
-             alert("ici")
+           
              $scope.pageChanged('projet');
          }
 
