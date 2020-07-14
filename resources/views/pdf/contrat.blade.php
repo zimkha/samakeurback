@@ -86,12 +86,12 @@
                 <span>La société</span>
             </div>
         </div>
-        <div class="col-md-5">
+        <!-- <div class="col-md-5">
             <div style="color: #F7941D;font-weight: bold">Socite_du_client</div>
-        </div>
-        <div class="col-md-4">
+        </div> -->
+        <!-- <div class="col-md-4">
             n° RCS <span style="color: #F7941D;font-weight: bold">data_du_client</span>
-        </div>
+        </div> -->
     </div>
 
     <div class="font-italic" style="margin: 20px 0px">
@@ -165,9 +165,9 @@
                 <span>Adresse</span>
             </div>
         </div>
-        <div class="col-md-10">
+        <!-- <div class="col-md-10">
             <div style="color: #F7941D;font-weight: bold">Socite_du_client</div>
-        </div>
+        </div> -->
     </div>
 
 
@@ -254,27 +254,61 @@
                 <thead>
                 <tr class="text-center" style="background-color: #F7941D;color: #fff">
                     <th>Code Projet</th>
-                    <th>Nom Complet</th>
                     <th>Date creation</th>
-                    <th>A valider dans</th>
                     <th>Etat</th>
                     <th>Adresse</th>
-                    <th>N° telephone</th>
+                    <th>Superficie</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr class="text-center">
-                    <td>Code</td>
-                    <td>Designation</td>
-                    <td>12-12-2020</td>
-                    <td>Validation</td>
-                    <td>Etat</td>
-                    <td>Adresse</td>
-                    <td>Telephone</td>
+                    <td>{{ $projet->code }}</td>
+                    <td>{{ $projet->created_at }}</td>
+                    <td>
+                            @if($projet->etat == 0)
+                             <span>En attente de validation</span>
+                            @endif
+
+                           @if($projet->etat == 0)
+                                 <span>Validé</span>
+                            @endif
+                    </td>
+                    <td>{{ $projet->adresse_terrain }}</td>
+                    <td>{{$projet->superficie}}</td>
 
                 </tr>
 
                 </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="mt-3">
+        <div class="table-responsive">
+            <table class="table table-responsive-bordered" >
+                <tr>
+                <td>
+                    Etages
+                </td>
+                <td>nbr Chambre</td>
+                <td>nbr Salon</td>
+                <td>nbr Bureau</td>
+                <td>nbr SDB</td>
+                <td>nbr Cuisine</td>
+                <td>nbr toillette</td>
+
+                </tr>
+               
+                    <tr>
+                        <td>{{ $tableau[0]["etage"] }}</td>
+                        <td>{{ $tableau[0]["chambre"]}}</td>
+                        <td>{{ $tableau[0]["salon"]}}</td>
+                        <td>{{ $tableau[0]["bureau"]}}</td>
+                        <td>{{ $tableau[0]["sdb"]}}</td>
+                        <td>{{ $tableau[0]["cuisine"]}}</td>
+                        <td>{{ $tableau[0]["toillette"]}}</td>
+
+                    </tr>
+               
             </table>
         </div>
     </div>

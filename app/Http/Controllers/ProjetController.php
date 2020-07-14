@@ -474,7 +474,7 @@ class ProjetController extends Controller
             {
                 $projet = Projet::find($item->projet_id);
 
-                //dd($projet);
+             
                 if(isset($projet))
                 {
 
@@ -482,15 +482,14 @@ class ProjetController extends Controller
 
                     if(isset($plan_active) && count($plan_active) > 0)
                     {
-                      //  dd("je suis la");
+                    
                         foreach($plan_active as $key)
                         {
 
                             $key->active = 0;
                             $key->save();
-                        }
+                       }
                     }
-
                 }
                 else
                 {
@@ -597,7 +596,35 @@ class ProjetController extends Controller
                                     }
                                     //dd($client);
                     $created_at = Carbon::parse($item->created_at)->format('d/m/Y');
-                    $pdf        = PDF::loadView('pdf.contrat', ['projet' => $item, 'created_at' => $created_at, 'client' => $client, 'niveaux' => $niveaux]);
+                    $array_info = array();
+                    $nb_chambre = Projet::nb_attribut($item->id, "chambre");
+                    $nb_bureau  = Projet::nb_attribut($item->id, "bureau");
+                    $nb_salon   = Projet::nb_attribut($item->id, "salon");
+                    $nb_cuisine = Projet::nb_attribut($item->id, "cuisine");
+                    $nb_toillette = Projet::nb_attribut($item->id, "toillette");
+                    $nb_sdb     = Projet::nb_attribut($item->id, "sdb");
+                    $etages = NiveauProjet::where('projet_id', $item->id)->count();
+
+                    array_push($array_info, [
+                        "etage"     => $etages,
+                        "chambre"   => $nb_chambre,
+                        "salon"     => $nb_salon,
+                        "sdb"       => $nb_sdb,
+                        "cuisine"    => $nb_cuisine,
+                        "bureau"    => $nb_bureau,
+                        "toillette" => $nb_toillette,
+                        "garage"    => $item->garage,
+                        "piscine"   => $item->piscine,
+                      
+                    ]);
+// dd($array_info);
+
+                    $pdf        = PDF::loadView('pdf.contrat', 
+                    ['projet'  => $item,
+                     'created_at' => $created_at,
+                     'client' => $client, 
+                     'niveaux' => $niveaux, 
+                     'tableau' => $array_info]);
                     header('Content-Type: application/pdf');
                     header('Content-disposition: attachment; filename=projet_contrat.pdf');
                     flush();
