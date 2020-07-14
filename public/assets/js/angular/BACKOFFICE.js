@@ -1230,6 +1230,11 @@ $scope.getResultat = function()
                    $scope.pageChanged('projet');
                }
         }
+         else if(angular.lowercase(current.templateUrl).indexOf('dashboards')!==-1 || angular.lowercase(current.templateUrl).indexOf('')!==-1)
+         {
+             alert("ici")
+             $scope.pageChanged('projet');
+         }
 
          else if(angular.lowercase(current.templateUrl).indexOf('client')!==-1)
          {
