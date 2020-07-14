@@ -1232,7 +1232,6 @@ $scope.getResultat = function()
         }
          else if(angular.lowercase(current.templateUrl).indexOf('dashboards')!==-1 || angular.lowercase(current.templateUrl).indexOf('')!==-1)
          {
-             alert("ici")
              $scope.pageChanged('projet');
          }
 
