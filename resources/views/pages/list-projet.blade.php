@@ -78,8 +78,9 @@
 
                                 </td>
                                 <td>
-                                    <span ng-if="item.active == 0"  class="badge badge-danger">en cour</span>
-                                    <span ng-if="item.etat == 2" class="badge badge-success">validé</span>
+                                    <span ng-if="item.active == 0"  class="badge badge-danger">En cour</span>
+                                    <span ng-if="item.etat == 1" class="badge badge-warning">En validation</span>
+                                    <span ng-if="item.etat == 2" class="badge badge-success">Validé</span>
                                 </td>
                                 <td>@{{item.adresse_terrain}}</td>
 
