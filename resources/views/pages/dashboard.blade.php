@@ -103,7 +103,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr align="center" ng-repeat="item in projets">
+                                <tr align="center" ng-repeat="item in projets"  ng-if="projets.length < 6">
                                     <td>@{{ item.name}}</td>
                                     <td>@{{ item.user.name}}</td>
                                     <td>@{{ item.created_at_fr }}</td>
@@ -122,16 +122,16 @@
                                     <td>@{{item.user.telephone}}</td>
 
                                     <td class="text-center">
-                                        <a  class="btn btn-sm btn-success btn-circle text-white" ng-if="item.etat == 0"  ng-click="showModalUpdate('projet',item.id)">
+                                        {{--<a  class="btn btn-sm btn-success btn-circle text-white" ng-if="item.etat == 0"  ng-click="showModalUpdate('projet',item.id)">
                                             <i class="fa fa-check" title="Valider"></i>
-                                        </a>
+                                        </a>--}}
                                         <a href="#!/detail-projet/@{{ item.id }} " class="btn btn-sm btn-primary btn-circle">
                                             <i class="fas fa-info"></i>
                                         </a>
 
-                                        <button ng-click="deleteElement('projet',item.id)" class="btn btn-sm btn-danger btn-circle">
+                                       {{-- <button ng-click="deleteElement('projet',item.id)" class="btn btn-sm btn-danger btn-circle">
                                             <i class="fas fa-trash"></i>
-                                        </button>
+                                        </button>--}}
                                         {{-- <a  class="btn btn-sm btn-warning btn-circle"  href="#!/detail-projet/@{{ item.id }} ">
                                              <i class="fa fa-file-pdf" title="generer le pdf"></i>
      </a>--}}
