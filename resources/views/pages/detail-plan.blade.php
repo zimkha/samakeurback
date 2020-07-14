@@ -157,8 +157,6 @@
                                             <th>Date</th>
                                             <th>Client</th>
                                             <th>Adresse </th>
-
-                                            <th>Actions</th>
                                         </tr>
                                         </thead>
 
@@ -166,14 +164,8 @@
                                         <tr align="center" ng-repeat="item in projets" ng-if="item.etat==2">
                                             <td>@{{ item.name }}</td>
                                             <td>@{{ item.created_at_fr }}</td>
-                                            <td>@{{ item.user.prenom }} -- @{{ item.nom }}</td>
+                                            <td>@{{ item.user.prenom }}  @{{ item.user.nom }}</td>
                                             <td>@{{ item.adresse_terrain }}</td>
-
-                                            <td>
-                                                <button href="detail-client.html" class="btn btn-primary btn-circle" data-toggle="modal" data-target=".bd-example-modal-lg">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </button>
-                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
