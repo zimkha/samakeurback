@@ -33,12 +33,7 @@ use PayPal\Api\Transaction;
 class ProjetController extends Controller
 {
     protected $queryName = "projets";
-    public function avalider()
-    {
-        $attribt = "chambre";
-        return Projet::nb_attribut(4,$attribt );
-
-    }
+   
     public function save(Request $request)
     {
         //  dd($request->all());
@@ -119,7 +114,21 @@ class ProjetController extends Controller
                     $item->adresse_terrain = $request->adresse_terrain;
                 }
 
-                $item->garage = $request->garage;
+                if(isset($request->garage))
+                {
+                    $item->garage = $request->garage;
+                }
+                else
+                $item->garage = 0;
+
+                if(isset($request->piscine))
+                {
+                    $item->piscine = $request->piscine;
+                }
+                else
+                $item->piscine = 0;
+               
+               
 
                 $errors = Outil::validation($request, $array);
 
@@ -589,6 +598,10 @@ class ProjetController extends Controller
                                     //dd($client);
                     $created_at = Carbon::parse($item->created_at)->format('d/m/Y');
                     $pdf        = PDF::loadView('pdf.contrat', ['projet' => $item, 'created_at' => $created_at, 'client' => $client, 'niveaux' => $niveaux]);
+                    header('Content-Type: application/pdf');
+                    header('Content-disposition: attachment; filename=projet_contrat.pdf');
+                    flush();
+                    ob_clean();
                     return $pdf->setPaper('orientation')->stream();
                 }
                 else

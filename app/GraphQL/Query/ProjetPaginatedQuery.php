@@ -58,6 +58,7 @@ class ProjetPaginatedQuery extends Query
             'bornes_visible'         => ['type' => Type::boolean()],
             'eaux_pluviable'         => ['type' => Type::boolean()],
             'necessite_bornage'      => ['type' => Type::boolean()],
+            'piscine'                => ['type' => Type::boolean()],
             'garage'                 => ['type' => Type::boolean()],
             'montant'              => ['type' => Type::int()],
 

@@ -60,7 +60,9 @@ class ProjetQuery extends Query
             'geometre'               => ['type' => Type::boolean()],
             'courant_faible'         => ['type' => Type::boolean()],
             'bornes_visible'         => ['type' => Type::boolean()],
-             'necessite_bornage'         => ['type' => Type::boolean()],
+            'necessite_bornage'      => ['type' => Type::boolean()],
+            'piscine'                => ['type' => Type::boolean()],
+            'garage'                 => ['type' => Type::boolean()],
 
             'eaux_pluviable'         => ['type' => Type::boolean()],
           
@@ -186,6 +188,7 @@ class ProjetQuery extends Query
             'acces_voirie'           => $item->acces_voirie,    
             'geometre'               => $item->geometre,    
             'garage'                 => $item->garage,
+            'piscine'                => $item->piscine,
             'positions'              => $item->positions,
             'montant'                => $item->montant,
    
