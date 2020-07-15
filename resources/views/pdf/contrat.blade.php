@@ -9,17 +9,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Sama keur</title>
     <link rel="icon" type="image/png" href="images/">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+{{--
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/sb-admin-2.min.css') }}">
+--}}
+
 
     <style>
 
+
         .body-1 {
-            padding: 20px;
+           /* padding: 20px;*/
         }
         .titre-1 {
-            font-size: 20px;
+            font-size: 25px;
             text-align: center;
-
         }
 
         .display-flex {
@@ -27,30 +30,40 @@
         }
 
         .display-flex-1 {
-            background-color: #F7941D!important;
-            width: 20px;
-            height: 20px;
-            line-height: 20px;
-            color: white;
-            text-align: center;
-            margin-right: 10px;
+            background-color: #F7941D!important;width: 20px;height: 20px;line-height: 20px;color: white;text-align: center;margin-right: 10px;
         }
 
         .display-flex-1-1 {
-            background-color: #999C9F!important;
-            width: 30px;
-            height: 20px;
-            line-height: 20px;
-            color: white;
-            text-align: center;
-            margin-right: 10px;
+            background-color: #999C9F!important;width: 30px;height: 20px;line-height: 20px;color: white;text-align: center;margin-right: 10px;
         }
 
         .display-flex-2 {
-            font-size: 16px;
-            font-weight: 600;
-            color: #F7941D;
+            font-size: 16px;font-weight: 600;color: #F7941D;
         }
+
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            background-color: #F7941D;
+            text-align: center;
+            color: white;}
     </style>
 
 </head>
@@ -58,144 +71,77 @@
 
     <div class="titre-1">Contrat SAMAKEUR</div>
 
-    <div class="display-flex">
-        <div class="display-flex-1">1</div>
-        <div class="display-flex-2">PARTIES CONTRACTANTES</div>
+    <div style="display: inline-flex!important;margin-top: 20px">
+        <div style="background-color: #F7941D!important;width: 20px;height: 20px;line-height: 20px;color: white;text-align: center;margin-right: 10px;">1</div>
+        <span style="font-size: 16px;font-weight: 600;color: #F7941D;margin-left: 30px">PARTIES CONTRACTANTES</span>
     </div>
 
     <div style="color: #F7941D;font-size: 16px;margin-top: 30px">Le client</div>
 
-    <div class="row mt-3">
-        <div class="col-md-2">
-            <div class="display-flex">
-                <span class="fa fa-check-square"></span>
-                <span>M / Mme</span>
-            </div>
-        </div>
-        <div class="col-md-5">
-            <div style="color: #F7941D;font-weight: bold">{{ $client->nom}} -- {{ $client->prenom}}</div>
-        </div>
-        <div class="col-md-4">
-            contractant en leur nom personnel.
+    <div style="margin-top: 10px">
+        <div class="">
+            <span>M / Mme</span>
+
+            <span style="color: #F7941D;font-weight: bold;margin-left: 30px">{{ $client->prenom}} {{ $client->nom}}</span>
+
+            <span style="margin-left: 20px"> contractant en leur nom personnel.</span>
         </div>
     </div>
-    <div class="row mt-3">
-        <div class="col-md-2">
-            <div class="display-flex">
-                <span class="fa fa-check-square"></span>
-                <span>La société</span>
-            </div>
+    <div style="margin-top: 10px">
+        <div>
+            <span>La société</span>
+
+            <span style="color: #F7941D;font-weight: bold;margin-left: 30px">Socite_du_client</span>
+
+            <span style="margin-left: 20px">n° RCS <span style="color: #F7941D;font-weight: bold">data_du_client</span></span>
         </div>
-        <!-- <div class="col-md-5">
-            <div style="color: #F7941D;font-weight: bold">Socite_du_client</div>
-        </div> -->
-        <!-- <div class="col-md-4">
-            n° RCS <span style="color: #F7941D;font-weight: bold">data_du_client</span>
-        </div> -->
     </div>
 
-    <div class="font-italic" style="margin: 20px 0px">
+    <div class="font-italic" style="margin: 20px 0px;font-size: 15px;font-style: italic">
         (préciser les prénom, nom et qualité du représentant de la société)
     </div>
 
-    <div class="row mt-3">
-        <div class="col-md-2">
-            <div class="display-flex">
-                <span class="fa fa-check-square"></span>
-                <span>Adresse</span>
-            </div>
-        </div>
-        <div class="col-md-10">
-            <div style="color: #F7941D;font-weight: bold">{{$client->adresse}}</div>
-        </div>
+    <div style="margin-top: 10px">
+        <span>Adresse</span>
+
+        <span style="color: #F7941D;font-weight: bold;margin-left: 30px">{{$client->adresse}}</span>
+
+        <span style="margin-left: 20px">Telephone</span>
+
+        <span style="color: #F7941D;font-weight: bold;margin-left: 30px">{{$client->telephone}}</span>
+
+        <span style="margin-left: 30px">Couriel</span>
+
+        <span style="color: #F7941D;font-weight: bold;margin-left: 20px">{{$client->email}}</span>
     </div>
 
 
-    <div class="row mt-3">
-        <div class="col-md-2">
-            <div class="display-flex">
-                <span class="fa fa-check-square"></span>
-                <span>Telephone</span>
-            </div>
-        </div>
-        <div class="col-md-5">
-            <div style="color: #F7941D;font-weight: bold">{{$client->telephone}}</div>
-        </div>
-        <div class="col-md-4">
-            Portable <span style="color: #F7941D;font-weight: bold">{{$client->telephone}}</span>
-        </div>
+    <div style="color: #F7941D;font-size: 20px;margin-top: 30px">Samakeur</div>
+
+    <div style="margin-top: 10px">
+        <span>La societe</span>
+
+        <span style="color: #F7941D;font-weight: bold;margin-left: 30px">SAMAKEUR, </span> <span>représenté par Moussa DANFAKHA gérant de la société</span>
     </div>
 
-
-    <div class="row mt-3">
-        <div class="col-md-2">
-            <div class="display-flex">
-                <span class="fa fa-check-square"></span>
-                <span>Couriel</span>
-            </div>
-        </div>
-        <div class="col-md-10">
-            <div style="color: #F7941D;font-weight: bold">{{$client->email}}</div>
-        </div>
-    </div>
-
-
-    <div style="color: #F7941D;font-size: 16px;margin-top: 30px">Samakeur</div>
-
-    <div class="row mt-3">
-        <div class="col-md-2">
-            <div class="display-flex">
-                <span class="fa fa-check-square"></span>
-                <span>La societe</span>
-            </div>
-        </div>
-        <div class="col-md-10">
-            <div> <span style="color: #F7941D;font-weight: bold">SAMAKEUR, </span> <span>représenté par Moussa DANFAKHA gérant de la société</span></div>
-        </div>
-    </div>
-
-    <div class="font-italic" style="margin: 20px 0px">
+    <div class="font-italic" style="margin: 20px 0px;font-size: 15px;font-style: italic">
         (préciser les prénom, nom et qualité du représentant de la société)
     </div>
 
-    <div class="row mt-3">
-        <div class="col-md-2">
-            <div class="display-flex">
-                <span class="fa fa-check-square"></span>
-                <span>Adresse</span>
-            </div>
-        </div>
-        <!-- <div class="col-md-10">
-            <div style="color: #F7941D;font-weight: bold">Socite_du_client</div>
-        </div> -->
-    </div>
+    <div style="margin-top: 10px">
+        <span>Adresse</span>
 
+        <span style="color: #F7941D;font-weight: bold;margin-left: 30px">Socite_du_client</span>
 
-    <div class="row mt-3">
-        <div class="col-md-2">
-            <div class="display-flex">
-                <span class="fa fa-check-square"></span>
-                <span>Telephone</span>
-            </div>
-        </div>
-        <div class="col-md-5">
-            <div style="color: #F7941D;font-weight: bold">Telephone Moussa</div>
-        </div>
-        <div class="col-md-4">
-            Portable <span style="color: #F7941D;font-weight: bold">Telephone Moussa</span>
-        </div>
-    </div>
+        <span style="margin-left: 20px">Telephone</span>
 
-    <div class="row mt-3">
-        <div class="col-md-2">
-            <div class="display-flex">
-                <span class="fa fa-check-square"></span>
-                <span>Couriel</span>
-            </div>
-        </div>
-        <div class="col-md-10">
-            <div style="color: #F7941D;font-weight: bold">admin@samakeur.sn</div>
-        </div>
+        <span style="color: #F7941D;font-weight: bold;margin-left: 30px">Telephone Moussa</span>
+
+        {{--<span style="margin-left: 20px">Portable <span style="color: #F7941D;font-weight: bold">Telephone Moussa</span></span>--}}
+
+        <span style="margin-left: 20px">Couriel</span>
+
+        <span style="color: #F7941D;font-weight: bold;margin-left: 30px">admin@samakeur.sn</span>
     </div>
 
     <div style="margin: 20px 0px">
@@ -203,76 +149,44 @@
         tout engagement professionnel, il est convenu ce qui suit :
     </div>
 
-    <div class="display-flex">
-        <div class="display-flex-1">2</div>
-        <div class="display-flex-2">DESIGNATION DE L’OPERATION</div>
+    <div style="display: inline-flex;margin-top: 20px">
+        <div style="background-color: #F7941D!important;width: 20px;height: 20px;line-height: 20px;color: white;text-align: center;margin-right: 10px;">2</div>
+        <span style="font-size: 16px;font-weight: 600;color: #F7941D;margin-left: 30px">DESIGNATION DE L’OPERATION</span>
     </div>
 
-    <div class="row mt-3">
-        <div class="col-md-3">
-            <div class="display-flex">
-                <span class="fa fa-check-square"></span>
-                <span>Adresse du terrain : </span>
-            </div>
-        </div>
-        <div class="col-md-9">
-            <div style="color: #F7941D;font-weight: bold">{{$projet->adresse_terrain}}</div>
-        </div>
+    <div style="margin-top: 10px">
+        <span>Adresse du terrain : </span>
+
+        <span style="color: #F7941D;font-weight: bold;margin-left: 20px">{{$projet->adresse_terrain}}</span>
+
+        <span style="margin-left: 20px">Références cadastrales : </span>
+
+        <span style="color: #F7941D;font-weight: bold;margin-left: 20px">Refe</span>
+
+        <span style="margin-left: 20px">Surface foncière du terrain : </span>
+
+        <span style="color: #F7941D;font-weight: bold;margin-left: 20px">{{$projet->superficie}}</span>
     </div>
 
-    <div class="row mt-3">
-        <div class="col-md-3">
-            <div class="display-flex">
-                <span class="fa fa-check-square"></span>
-                <span>Références cadastrales : </span>
-            </div>
-        </div>
-        <div class="col-md-9">
-            <div style="color: #F7941D;font-weight: bold">Refe</div>
-        </div>
-    </div>
-
-    <div class="row mt-3">
-        <div class="col-md-3">
-            <div class="display-flex">
-                <span class="fa fa-check-square"></span>
-                <span>Surface foncière du terrain : </span>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div style="color: #F7941D;font-weight: bold">{{$projet->superficie}}</div>
-        </div>
-    </div>
-
-    <div style="color: #F7941D;font-size: 16px;margin-top: 30px">Samakeur</div>
+    <div style="color: #F7941D;font-size: 16px;margin-top: 20px">Samakeur</div>
 
     <div>les informations </div>
 
-    <div class="mt-3">
+    <div style="margin-top: 20px">
         <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable">
+            <table class="table table-bordered" id="customers">
                 <thead>
                 <tr class="text-center" style="background-color: #F7941D;color: #fff">
                     <th>Code Projet</th>
                     <th>Date creation</th>
-                    <th>Etat</th>
                     <th>Adresse</th>
                     <th>Superficie</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr class="text-center">
-                    <td>{{ $projet->code }}</td>
+                    <td>{{ $projet->name }}</td>
                     <td>{{ $projet->created_at }}</td>
-                    <td>
-                            @if($projet->etat == 0)
-                             <span>En attente de validation</span>
-                            @endif
-
-                           @if($projet->etat == 0)
-                                 <span>Validé</span>
-                            @endif
-                    </td>
                     <td>{{ $projet->adresse_terrain }}</td>
                     <td>{{$projet->superficie}}</td>
 
@@ -282,10 +196,10 @@
             </table>
         </div>
     </div>
-    <div class="mt-3">
+    <div style="margin-top: 20px">
         <div class="table-responsive">
-            <table class="table table-responsive-bordered" >
-                <tr>
+            <table class="table table-bordered" id="customers">
+                <tr class="text-center" style="background-color: #F7941D;color: #fff">
                 <td>
                     Etages
                 </td>
@@ -297,7 +211,7 @@
                 <td>nbr toillette</td>
 
                 </tr>
-               
+
                     <tr>
                         <td>{{ $tableau[0]["etage"] }}</td>
                         <td>{{ $tableau[0]["chambre"]}}</td>
@@ -308,14 +222,14 @@
                         <td>{{ $tableau[0]["toillette"]}}</td>
 
                     </tr>
-               
+
             </table>
         </div>
     </div>
 
-    <div class="display-flex">
-        <div class="display-flex-1">3</div>
-        <div class="display-flex-2">CONDITIONS DE REALISATION DE LA MISSION</div>
+    <div style="display: inline-flex;margin-top: 30px">
+        <div style="background-color: #F7941D!important;width: 20px;height: 20px;line-height: 20px;color: white;text-align: center;margin-right: 10px;">3</div>
+        <div style="font-size: 16px;font-weight: 600;color: #F7941D;margin-left: 30px">CONDITIONS DE REALISATION DE LA MISSION</div>
     </div>
 
     <div style="margin-top: 30px">Cette mission est établie sur la base des éléments de programmation du client.</div>
@@ -358,23 +272,23 @@
     <div style="color: #F7941D;font-size: 16px;margin-top: 30px">Délai de réalisation de la mission</div>
 
     <div style="margin-top: 30px">
-        <div class="display-flex">
-            <div class="display-flex-1-1">20</div>
-            <div class="">jours ouvrables à compter de la date de signature du présent contrat</div>
+        <div style="display: inline-flex;">
+            <div style="background-color: #999C9F!important;width: 30px;height: 20px;line-height: 20px;color: white;text-align: center;margin-right: 10px;">20</div>
+            <div class="" style="margin-left: 40px">jours ouvrables à compter de la date de signature du présent contrat</div>
         </div>
     </div>
 
     <div style="margin-top: 10px">
-        <div class="display-flex">
-            <div class="display-flex-1-1">5</div>
-            <div class="">jours ouvrables à compter de la demande de modification du plan.</div>
+        <div style="display: inline-flex;">
+            <div style="background-color: #999C9F!important;width: 30px;height: 20px;line-height: 20px;color: white;text-align: center;margin-right: 10px;">5</div>
+            <div class="" style="margin-left: 40px">jours ouvrables à compter de la demande de modification du plan.</div>
         </div>
     </div>
 
     <div style="margin-top: 30px">
-        <div class="display-flex">
-            <div class="display-flex-1">4</div>
-            <div class="display-flex-2">REMUNERATION </div>
+        <div style="display: inline-flex;">
+            <div style="background-color: #F7941D!important;width: 20px;height: 20px;line-height: 20px;color: white;text-align: center;margin-right: 10px;">4</div>
+            <div style="font-size: 16px;font-weight: 600;color: #F7941D;margin-left: 30px">REMUNERATION </div>
         </div>
     </div>
 
@@ -385,9 +299,9 @@
 
 
     <div style="margin-top: 30px">
-        <div class="display-flex">
-            <div class="display-flex-1">5</div>
-            <div class="display-flex-2">RÉALISATION DU PROJET - POURSUITE DE LA MISSION </div>
+        <div style="display: inline-flex;">
+            <div style="background-color: #F7941D!important;width: 20px;height: 20px;line-height: 20px;color: white;text-align: center;margin-right: 10px;">5</div>
+            <div style="font-size: 16px;font-weight: 600;color: #F7941D;margin-left: 30px">RÉALISATION DU PROJET - POURSUITE DE LA MISSION </div>
         </div>
     </div>
 

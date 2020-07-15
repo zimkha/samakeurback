@@ -91,6 +91,21 @@ app.factory('Init',function ($http, $q)
                 });
                 return deferred.promise;
             },
+            getResultats:function()
+            {
+                var deferred=$q.defer();
+                $http({
+                    method: 'GET',
+                    url: BASE_URL + 'getResultat'
+                }).then(function successCallback(response) {
+                    factory.data=response.data;
+                    deferred.resolve(factory.data);
+                }, function errorCallback(error) {
+                    console.log('erreur serveur', error);
+                    deferred.reject(msg_erreur);
+                });
+                return deferred.promise;
+            },
             getElementPaginated:function (element,listeattributs)
             {
                 var deferred=$q.defer();
@@ -1135,6 +1150,8 @@ $scope.getAllDashboard = function()
             totalItems: 0
         };
 
+    $scope.AllProjet = [];
+
         $scope.paginationrole = {
             currentPage: 1,
             maxSize: 10,
@@ -1246,9 +1263,29 @@ $scope.getAllDashboard = function()
         }
          else if(angular.lowercase(current.templateUrl).indexOf('dashboards')!==-1 || angular.lowercase(current.templateUrl).indexOf('')!==-1)
          {
+            $scope.pageChanged('projet');
+            $scope.mydata = [];
+              $http({
+                method: 'GET',
+                url: BASE_URL + 'getResultat'
+            }).then(function successCallback(response) {
+                console.log("je suis la factory",response.data)
+                data = response.data;
+                document.getElementById("encour").innerHTML = data[0].en_attente;
+                document.getElementById("total").innerHTML = data[0].encours;
+                document.getElementById("final").innerHTML = data[0].finalise;
+
+                // $scope.AllProjet   = data[0].projets;  
+                deferred.resolve(mydata);
+            }, function errorCallback(error) {
+                console.log('erreur serveur', error);
+                deferred.reject(msg_erreur);
+            });
+            // console.log(, mydata);
            
-             $scope.pageChanged('projet');
-         }
+        }
+           
+         
 
          else if(angular.lowercase(current.templateUrl).indexOf('client')!==-1)
          {
