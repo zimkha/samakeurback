@@ -25,7 +25,7 @@ class MessageSendQuery extends Query
         [
             'id'                     => ['type' => Type::id()],
             'nom'                    => [ 'type' => Type::string()],
-            'objet'                  => ['type' => Type::boolean()], 
+            'objet'                  => ['type' => Type::string()], 
             'message'                => [ 'type' => Type::string()],
             'email'                  => [ 'type' => Type::string()],
             'telephone'              => [ 'type' => Type::string()],

@@ -386,6 +386,7 @@ class UserController extends Controller
                 }
                 if(!isset($errors))
                 {
+                    dd($request->all());
                     $item = new MessageSend();
                     $item->message      = $request->message;
                     $item->nom          = $request->nom;
@@ -393,8 +394,10 @@ class UserController extends Controller
                     $item->objet        = $request->objet;
                     $item->telephone    = $request->telephone;
                     $item->save();
-                    return Outil::redirectgraphql("messages", "id:{$item->id}", Outil::$queries[$this->queryName]);
-
+                    $retour = array(
+                        'success'          => 1,
+                    );
+                    return response()->json($retour);
 
                 }
             });

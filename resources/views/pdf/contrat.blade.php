@@ -88,13 +88,13 @@
         </div>
     </div>
     <div style="margin-top: 10px">
-        <div>
+        <!-- <div>
             <span>La société</span>
 
             <span style="color: #F7941D;font-weight: bold;margin-left: 30px">Socite_du_client</span>
 
             <span style="margin-left: 20px">n° RCS <span style="color: #F7941D;font-weight: bold">data_du_client</span></span>
-        </div>
+        </div> -->
     </div>
 
     <div class="font-italic" style="margin: 20px 0px;font-size: 15px;font-style: italic">
@@ -131,13 +131,13 @@
     <div style="margin-top: 10px">
         <span>Adresse</span>
 
-        <span style="color: #F7941D;font-weight: bold;margin-left: 30px">Socite_du_client</span>
+        <span style="color: #F7941D;font-weight: bold;margin-left: 30px">Villa n° 66, Rue HS18 quartier Hersent Thiès (SENEGAL)</span>
 
         <span style="margin-left: 20px">Telephone</span>
 
-        <span style="color: #F7941D;font-weight: bold;margin-left: 30px">Telephone Moussa</span>
+        <!-- <span style="color: #F7941D;font-weight: bold;margin-left: 30px">Telephone </span> -->
 
-        {{--<span style="margin-left: 20px">Portable <span style="color: #F7941D;font-weight: bold">Telephone Moussa</span></span>--}}
+      <span style="margin-left: 20px">Portable <span style="color: #F7941D;font-weight: bold">78 179 93 83</span></span>
 
         <span style="margin-left: 20px">Couriel</span>
 
@@ -257,7 +257,7 @@
     </div>
 
     <div style="margin-top: 30px">
-        Le niveau de définition de l’esquisse correspond généralement à des documents graphiques établis à
+        Le niveau de définition de l’esquisse correspond généralement à des vues en plan établis à
         l’échelle de 1/100 (1cm/m) ou  1/200 (½ cm/m).
     </div>
 
@@ -294,7 +294,7 @@
 
     <div style="margin-top: 30px">
         Pour la mission qui lui est confiée, samakeur perçoit une rémunération forfaitaire de
-        <span style="color: #F7941D;font-size: 16px;margin-top: 30px"> charger la somme rentrée par l’administrateur lors de la validation de la demande </span> . XXXXX Fcfa
+        <span style="color: #F7941D;font-size: 16px;margin-top: 30px"> charger la somme rentrée par l’administrateur lors de la validation de la demande </span> . {{ $projet->montant }} Fcfa
     </div>
 
 

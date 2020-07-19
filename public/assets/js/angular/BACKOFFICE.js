@@ -1271,12 +1271,10 @@ $scope.getAllDashboard = function()
             }).then(function successCallback(response) {
                 console.log("je suis la factory",response.data)
                 data = response.data;
-                document.getElementById("encour").innerHTML = data[0].en_attente;
-                document.getElementById("total").innerHTML = data[0].encours;
+                document.getElementById("encour").innerHTML = data[0].encours;
+                document.getElementById("total").innerHTML = data[0].total;
+                 document.getElementById("en_attente").innerHTML = data[0].en_attente;
                 document.getElementById("final").innerHTML = data[0].finalise;
-
-                // $scope.AllProjet   = data[0].projets;  
-                deferred.resolve(mydata);
             }, function errorCallback(error) {
                 console.log('erreur serveur', error);
                 deferred.reject(msg_erreur);
