@@ -741,11 +741,7 @@ class ProjetController extends Controller
     {
         $errors = null;
         try{
-            // $config = [
-            //     "id"  => "AYfR2ytBTo3K31b0hV7lIC3ioXz6cTuZusjKQE5XUVtyZ8E1FXikRuNQBVZfKpnqCE7Q-Jjza2y1F24c",
-            //     "secrete" => "EJFiXlkNOhlt3uokThwW8VOAe4S7DE_GaeEuEXZcx2hWYYx1RbNHSINVLpBok3QIft8Csf1V8vk2tt2_"
-            // ];
-
+           
             $config = [
                 "id"  => "AQr5DXEvYR5O3cYNLkrQAMlhHifUUtuW1UmOg3O9U8Zjy7G83IqtAKTRkF3c7UjTw6fSnD5MFvv-tmeb",
                 "secrete" => "ENtF1eT4k760AvOoIh-jUqGFxbIMD-L0PdTrlCo0sG2zNhlTWfnBSPQNwdPRcYxsNPoI9_4zSxWjA8tG"
@@ -771,16 +767,14 @@ class ProjetController extends Controller
                 ->setName($projet->name)
                 ->setPrice($projet->montant)
                 ->setQuantity(1)
-                ->setCurrency('EUR')
-                ;
-
+                ->setCurrency('USD');
                 $list->addItem($item);
                 $details =  (new \PayPal\Api\Details())
                       ->setSubTotal($projet->montant);
 
                 $amount = (new \PayPal\Api\Amount())
                   ->setTotal($projet->montant)
-                  ->setCurrency("EUR")
+                  ->setCurrency("USD")
                   ->setDetails($details);
 
                   $transactions = (new \PayPal\Api\Transaction())
