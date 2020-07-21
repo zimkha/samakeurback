@@ -23,6 +23,7 @@ class UserType extends GraphQLType
            'active'                        => ['type' => Type::boolean(), 'description' => ''],
            'email'                         => ['type' => Type::string()],
            'password'                      => ['type' => Type::string()],
+           'nci'                           => ['type' => Type::string()],
            'last_login'                    => ['type' => Type::string(), 'description' => ''],
            'last_login_ip'                 => ['type' => Type::string(), 'description' => ''],
            'image'                         => ['type' => Type::string(), 'description' => ''],

@@ -494,7 +494,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
             "roles"                         : ["id,name,guard_name,permissions{id,name,display_name,guard_name}", ""],
 
             "users"                         : [
-            "id,nom,prenom,adresse_complet,pays,code_postal,is_client,telephone,name,email,active,password,image,roles{id,name,guard_name,permissions{id,name,display_name,guard_name}}", ",last_login,last_login_ip,created_at_fr"
+            "id,nci,nom,prenom,adresse_complet,pays,code_postal,is_client,telephone,name,email,active,password,image,roles{id,name,guard_name,permissions{id,name,display_name,guard_name}}", ",last_login,last_login_ip,created_at_fr"
         , ""],
 
             "dashboards"                    : ["projets,encours,finalise"],

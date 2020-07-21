@@ -178,7 +178,8 @@
 
             <span style="color: #F7941D;font-weight: bold;margin-left: 30px">{{ $client->prenom}} {{ $client->nom}}</span>
 
-            <span style="margin-left: 20px"> contractant en leur nom personnel.</span>
+            <span style="margin-left: 20px"> Numéro carte d'identité.</span>
+            <span style="margin-left: 20px"> {{ $client->nci}}</span>
         </div>
     </div>
     <div style="margin-top: 10px">

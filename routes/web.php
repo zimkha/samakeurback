@@ -38,6 +38,7 @@ Route::post('/lier_plan', 'ProjetController@linkPlanToProjet');
 Route::post('/inscription', 'UserController@save');
 Route::post('/joined', 'PlanController@joined');
 Route::post('/pub', 'PostController@save');
+Route::post('/user-nci', 'UserController@saveNci');
 Route::get('/payment', 'ProjetController@payment');
 Route::post('/activer-projet', 'ProjetController@activeProjet');
 Route::get('/payeprojet/{id}', 'ProjetController@payeProjet');

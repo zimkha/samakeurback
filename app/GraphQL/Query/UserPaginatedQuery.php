@@ -30,6 +30,7 @@ class UserPaginatedQuery extends Query
                 'email'                        => ['type' => Type::string()],
                 'search'                       => ['type' => Type::string()],
                 'role_id'                      => ['type' => Type::int()],
+                'nci'                   => ['type' => Type::string()],
                 'is_client'                    => ['type' => Type::boolean(), 'description' => ''],
                 'nom'                          => ['type' => Type::string(), 'description' => ''],
                 'prenom'                       => ['type' => Type::string(), 'description' => ''],

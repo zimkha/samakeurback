@@ -408,4 +408,35 @@ class UserController extends Controller
 
         }
     }
+
+    public function saveNci(Request $request)
+    {
+        try {
+            return DB::transaction(function() use($request)
+            {
+                $errors = null;
+                if(empty($request->user_id))
+                {
+                    $errors = "Données manquantes";
+                }
+                if(empty($request->nci))
+                {
+                    $errors = "Veuillez précisez le numéro de la carte d'identité";
+                }
+
+                if(empty($errors))
+                {
+                    $user = User::find($request->user_id);
+                    if(isset($user))
+                    {
+                        $user->nci  = $request->nci;
+                        $user->save();
+                        return Outil::redirectgraphql($this->queryName, "id:{$user->id}", Outil::$queries[$this->queryName]);
+                    }
+                }
+            });
+        } catch (\Exception $e) {
+            return response()->json(['errors' => $e->getMessage()]);
+        }
+    }
 }

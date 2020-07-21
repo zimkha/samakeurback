@@ -183,9 +183,10 @@ class ProjetController extends Controller
                 $array_level = array();
 
                 //  dd($request->hasFile('fichier'), $request->all());
-                if (!isset($errors) && $request->hasFile('fichier') )
+                if (!isset($errors))
                 {
                     $fichier = $_FILES['fichier']['name'];
+                   
                     $fichier_tmp = $_FILES['fichier']['tmp_name'];
                     $k = rand(100, 9999);
                     $ext = explode('.',$fichier);
@@ -618,7 +619,10 @@ class ProjetController extends Controller
                       
                     ]);
 // dd($array_info);
-
+                        if(empty($client->nci) || $client->nci == null)
+                        {
+                            $errors = "Vous ne pouvez pas accerder au contrat tant que vous n'avez pas completer vos informations ";
+                        }
                     $pdf        = PDF::loadView('pdf.contrat', 
                     ['projet'  => $item,
                      'created_at' => $created_at,
@@ -758,8 +762,19 @@ class ProjetController extends Controller
                 {
                     $errors = "Impossible de trouver ce projet pour le payment";
                     throw new \Exception($errors);
-
                 }
+                $client = User::find($projet->user_id);
+                if(isset($client))
+                {
+                    if(empty($client->nci) || $client->nci == null)
+                    {
+                        $errors = "Vous ne pouvez pas accerder au payment tant que vous n'avez pas completer vos informations ";
+                    }
+                }
+                else{
+                    throw new \Exception("erreur sur les données du projet");
+                }
+
 
                 $list = new \PayPal\Api\ItemList();
                 $item_payment =  array();
