@@ -183,7 +183,7 @@ class ProjetController extends Controller
                 $array_level = array();
 
                 //  dd($request->hasFile('fichier'), $request->all());
-                if (!isset($errors))
+                if (!isset($errors) && $request->hasFile('fichier'))
                 {
                     $fichier = $_FILES['fichier']['name'];
                    
@@ -584,6 +584,7 @@ class ProjetController extends Controller
     }
     public function makeContrat($id)
     {
+       
         try
         {
                 $item = Projet::find($id);
@@ -619,17 +620,20 @@ class ProjetController extends Controller
                       
                     ]);
 // dd($array_info);
-                        if(empty($client->nci) || $client->nci == null)
+
+                        if(empty($client->nci) || $client->nci == "")
                         {
-                            $errors = "Vous ne pouvez pas accerder au contrat tant que vous n'avez pas completer vos informations ";
+                            $errors = "Vous ne pouvez pas accerder au contrat tant que vous n'avez pas completer vos informations, retourner pour completer vos informations ";
+                            throw new \Exception($errors);
                         }
+                       
                     $pdf        = PDF::loadView('pdf.contrat', 
                     ['projet'  => $item,
                      'created_at' => $created_at,
                      'client' => $client, 
                      'niveaux' => $niveaux, 
                      'tableau' => $array_info]);
-                    header('Content-Type: application/pdf');
+                    header("Content-Type:  x/y\n");
                     header('Content-disposition: attachment; filename=projet_contrat.pdf');
                     flush();
                     ob_clean();
@@ -638,6 +642,7 @@ class ProjetController extends Controller
                 else
                 {
                     $errors = "Impossible de trouver ces données pour un contrat";
+                    throw new \Exception($errors);
                 }
         }
         catch(\Exception $e)
@@ -766,9 +771,10 @@ class ProjetController extends Controller
                 $client = User::find($projet->user_id);
                 if(isset($client))
                 {
-                    if(empty($client->nci) || $client->nci == null)
+                    if(empty($client->nci) || $client->nci == "")
                     {
                         $errors = "Vous ne pouvez pas accerder au payment tant que vous n'avez pas completer vos informations ";
+                        throw new \Exception($errors);
                     }
                 }
                 else{
