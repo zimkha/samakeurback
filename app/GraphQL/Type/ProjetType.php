@@ -41,6 +41,7 @@ class ProjetType extends GraphQLType
             'acces_voirie'           => ['type' => Type::boolean()],
             'assainissement'         => ['type' => Type::boolean()],
             'geometre'               => ['type' => Type::boolean()],
+            'contrat'                => ['type' => Type::boolean()],
             'piscine'                => ['type' => Type::boolean()],
             'garage'                 => ['type' => Type::boolean()],
             'courant_faible'         => ['type' => Type::boolean()],

@@ -60,6 +60,8 @@ class ProjetPaginatedQuery extends Query
             'necessite_bornage'      => ['type' => Type::boolean()],
             'piscine'                => ['type' => Type::boolean()],
             'garage'                 => ['type' => Type::boolean()],
+            'contrat'                => ['type' => Type::boolean()],
+
             'montant'              => ['type' => Type::int()],
 
           

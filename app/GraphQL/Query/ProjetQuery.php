@@ -53,6 +53,7 @@ class ProjetQuery extends Query
 
 
             'montant'              => ['type' => Type::int()],
+            'contrat'                => ['type' => Type::boolean()],
 
             'electricite'            => ['type' => Type::boolean()],
             'acces_voirie'           => ['type' => Type::boolean()],
@@ -189,6 +190,7 @@ class ProjetQuery extends Query
             'geometre'               => $item->geometre,    
             'garage'                 => $item->garage,
             'piscine'                => $item->piscine,
+            'contrat'                => $item->contrat,
             'positions'              => $item->positions,
             'montant'                => $item->montant,
    

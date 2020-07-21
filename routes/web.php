@@ -57,7 +57,7 @@ Route::get('/plan-pdf/{id}', 'PlanController@getpdf');
 Route::get('/projet-pdf/{id}', 'ProjetController@getpdf');
 Route::get('/plan-pdfs/{id}', 'PlanController@getAllFiles');
 Route::get('/status/{id}/{model}', 'ValidationController@status');
-
+Route::get('/signe-contrat/{id}', 'ProjetController@SigneContrat');
 Route::get('/plan/pdf/{id}', 'PdfController@pdf_plan');
 Route::get('/contrat/{id}', 'ProjetController@makeContrat');
 Route::get('/a_valider', 'ProjetController@avalider');

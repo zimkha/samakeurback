@@ -965,5 +965,53 @@ class ProjetController extends Controller
         }
     }
 
+    public function SigneContrat($id)
+    {
+        try
+        {
+            $errors = null;
+            $data = 0;
+            if(isset($id))
+            {
+                $item = Projet::find($id);
+                if(isset($item))
+                {
+                    $user = User::find($item->user_id);
+                    if(isset($user) && $user->nci == "")
+                    {
+                        $errors = "Veuillez remplir vos informations complementaire afin de pouvoir signer votre contrat";
+                        throw new \Exception($errors);
+                    }
+                    $item->contrat = 1;
+                    $data = 1;
+                }
+                else
+                {
+                    $errors = "Impossible de trouver ces données";
+                }
+            }
+            else
+            {
+                $errors = "Données manquantes";
+            }
+            if(!isset($errors))
+            {
+                $retour = array(
+                    'data'          => $data,
+                );
+                return response()->json($retour);   
+            }
+            throw new \Exception($errors);
+           
+        }
+        catch(\Exception $e)
+        {
+            return response()->json(array(
+                'errors'          => config('app.debug') ? $e->getMessage() : Outil::getMsgError(),
+                'errors_debug'    => [$e->getMessage()],
+            ));
+        }
+    }
+
 }
 
