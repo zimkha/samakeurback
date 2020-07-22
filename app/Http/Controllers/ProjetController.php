@@ -248,9 +248,15 @@ class ProjetController extends Controller
                         //     $errors = "Erreur de décompte sur le nombre de pièces ligne n°{$n}";
                         // }
 
-
-                        $niveau->niveau_name        = "R +". $n;
-                        // $niveau->piece              = $key['piece'];
+                        if($n == 1)
+                        {
+                            $niveau->niveau_name = "Rez de Chaussée";
+                        }
+                        else if ($n > 1)
+                            {
+                                $niveau->niveau_name        = "R +". $n -1;
+                            }
+                       
                         $niveau->chambre            = $key['chambre'];
 
                         $niveau->salon              = $key['salon'];
@@ -633,11 +639,8 @@ class ProjetController extends Controller
                      'client' => $client, 
                      'niveaux' => $niveaux, 
                      'tableau' => $array_info]);
-                    header("Content-Type:  x/y\n");
-                    header('Content-disposition: attachment; filename=projet_contrat.pdf');
-                    flush();
-                    ob_clean();
-                    return $pdf->setPaper('orientation')->stream();
+                      return  $pdf->setPaper('orientation')->stream();
+                    
                 }
                 else
                 {
@@ -984,6 +987,7 @@ class ProjetController extends Controller
                     }
                     $item->contrat = 1;
                     $data = 1;
+                    $item->save();
                 }
                 else
                 {
