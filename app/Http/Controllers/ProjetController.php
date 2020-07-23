@@ -49,6 +49,7 @@ class ProjetController extends Controller
                          'user', 'longeur', 'largeur',
                        ];
                 // presence_mitoyen
+               // dd($request->all());
                 if (isset($request->id)) {
                     $item = Projet::find($request->id);
                     NiveauProjet::where('projet_id', $request->id)->delete();
@@ -182,21 +183,41 @@ class ProjetController extends Controller
                 $n = 0;
                 $array_level = array();
 
-                //  dd($request->hasFile('fichier'), $request->all());
+                  dd($request->all());
                 if (!isset($errors) && $request->hasFile('fichier'))
                 {
-                    $fichier = $_FILES['fichier']['name'];
-                   
+                    $fichier = $_FILES['fichier']['name'];  
                     $fichier_tmp = $_FILES['fichier']['tmp_name'];
                     $k = rand(100, 9999);
                     $ext = explode('.',$fichier);
                     $rename = config('view.uploads')['projets']."/projets_".$k.".".end($ext);
                     move_uploaded_file($fichier_tmp,$rename);
-                    //$path = $request->fichier->storeAs('uploads/plans', $rename);
                     $item->fichier = $rename;
 
                 }
-                // dd($item->fichier);
+                else if(isset($request->fichier))
+                {
+                    if (end($ext) == "pdf" || end($ext) == "xlsx"  || end($ext) == "xls" || end($ext) == "docx" || end($ext) == "odt" || end($ext) == "jpg" || end($ext) == "png") 
+                   {
+                    $fichier = $_FILES['fichier']['name'];  
+                    $fichier_tmp = $_FILES['fichier']['tmp_name'];
+                    $k = rand(100, 9999);
+                    $ext = explode('.',$fichier);
+                    $rename = config('view.uploads')['projets']."/projets_".$k.".".end($ext);
+                    move_uploaded_file($fichier_tmp, $rename);
+
+                    if ($object['objet_id'] == "Devis") {
+                        $$item->fichier_recu = $rename;
+                    }
+
+                   
+
+                    return Outils::redirectgraphql($this->queryName, "id:{$object['id']}", Outils::$queries[$this->queryName]);
+                } else {
+                    return response()->json(array('errors' => ["Ce type de fichier n'est pas pris en charge."]));
+                }
+                }
+                dd("non je suis la");
 
                 $tab_position = array();
 
