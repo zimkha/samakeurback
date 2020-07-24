@@ -36,7 +36,7 @@ class ProjetController extends Controller
    
     public function save(Request $request)
     {
-        //  dd($request->all());
+         dd($request->all());
 
         try
         {
@@ -115,22 +115,23 @@ class ProjetController extends Controller
                     $item->adresse_terrain = $request->adresse_terrain;
                 }
 
-                if(isset($request->garage))
+                if(isset($request->garage) && $request->garage == 1)
                 {
-                    $item->garage = $request->garage;
+                    
+                    $item->garage = 1;
                 }
                 else
-                $item->garage = 0;
+                    $item->garage = 0;
 
-                if(isset($request->piscine))
+                if(isset($request->piscine) && $request->piscine == 1)
                 {
-                    $item->piscine = $request->piscine;
+                    $item->piscine = 1;
                 }
                 else
-                $item->piscine = 0;
+                    $item->piscine = 0;
                
                
-
+                // dd($request->garage, $request->piscine, "l'objet =>", $item->piscine, $item->garage,"item => ", $item);
                 $errors = Outil::validation($request, $array);
 
                 // $user_connected = Auth::user()->id;
@@ -183,7 +184,7 @@ class ProjetController extends Controller
                 $n = 0;
                 $array_level = array();
 
-                  dd($request->all());
+                //   dd($request->all());
                 if (!isset($errors) && $request->hasFile('fichier'))
                 {
                     $fichier = $_FILES['fichier']['name'];  
@@ -195,7 +196,7 @@ class ProjetController extends Controller
                     $item->fichier = $rename;
 
                 }
-                else if(isset($request->fichier))
+                else if(isset($request->fichier) && $request->fichier != [])
                 {
                     if (end($ext) == "pdf" || end($ext) == "xlsx"  || end($ext) == "xls" || end($ext) == "docx" || end($ext) == "odt" || end($ext) == "jpg" || end($ext) == "png") 
                    {
@@ -205,19 +206,15 @@ class ProjetController extends Controller
                     $ext = explode('.',$fichier);
                     $rename = config('view.uploads')['projets']."/projets_".$k.".".end($ext);
                     move_uploaded_file($fichier_tmp, $rename);
-
-                    if ($object['objet_id'] == "Devis") {
-                        $$item->fichier_recu = $rename;
-                    }
-
-                   
-
-                    return Outils::redirectgraphql($this->queryName, "id:{$object['id']}", Outils::$queries[$this->queryName]);
-                } else {
+                    $item->fichier = $rename;
+                    
+                }
+                 else 
+                 {
                     return response()->json(array('errors' => ["Ce type de fichier n'est pas pris en charge."]));
+                 }
                 }
-                }
-                dd("non je suis la");
+                // dd("non je suis la");
 
                 $tab_position = array();
 
