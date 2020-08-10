@@ -1354,7 +1354,32 @@ $scope.getAllDashboard = function()
          //}
     });
 
+  $scope.deteleLiaison = function(plan_id, projet_id)
+  {
+    console.log("je suis la mes gars", plan_id, projet_id);
+    $.ajax({
+        url: BASE_URL + 'rompre_liaison/' + projet_id + '/' + plan_id,
+        method : 'GET', 
+        success: function(data)
+        {
+           
+            iziToast.success({
+                title: "Liaison supprimer",
+                message: 'succés',
+                position: 'topRight'
+            });
+            
+             $scope.pageChanged('projet');
+        }, error: function (data) {
+            iziToast.error({
+                title: "",
+                message: '<span class="h4">' + data.errors_debug + '</span>',
+                position: 'topRight'
+            });  
+        }
+      });
 
+  };
     $scope.infosDahboardBy = null;
     $scope.getInfosDahboard = function(byType)
     {
@@ -1840,7 +1865,7 @@ $scope.getAllDashboard = function()
                 continuer = false;
             }
         }
-        else if (type == 'plan' || type == 'plans') {
+        else if (type == 'ticket' || type == 'tickets') {
             if ($scope.produitsInTable.length > 0) {
                 send_data.append('tab_plan', JSON.stringify($scope.produitsInTable));
                 continuer = true;
@@ -1983,6 +2008,7 @@ $scope.getAllDashboard = function()
 
                         getObj = data['data'][type + 's'][0];
                     }
+                    
 
 
                     if (type.indexOf('typeclient')!==-1)
@@ -2099,7 +2125,6 @@ $scope.getAllDashboard = function()
                     else if (type.indexOf('projet')!==-1)
                     {
 
-                       // getObj = data['data'][type + 's'][0];
                         if (!send_dataObj.id)
                         {
                             $scope.projets.push(getObj);

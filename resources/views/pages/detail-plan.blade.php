@@ -129,7 +129,7 @@
 
                                         <tbody>
                                         <tr align="center" ng-repeat="item in projets" ng-if="item.active==1 && item.etat==1">
-                                            <td>@{{ item.name }}</td>
+                                            <td>@{{ item.id }}</td>
                                             <td>@{{ item.created_at_fr }}</td>
                                             <td>@{{ item.user.prenom }} -- @{{ item.nom }}</td>
                                             <td>@{{ item.adresse_terrain }}</td>
@@ -137,6 +137,9 @@
                                             <td>
                                                 <button href="detail-client.html" class="btn btn-primary btn-circle" data-toggle="modal" data-target=".bd-example-modal-lg">
                                                     <i class="fas fa-info-circle"></i>
+                                                </button>
+                                                <button href="#" ng-click="deteleLiaison(planview.id,item.id)" class="btn btn-danger btn-circle" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                                    <i class="fa fa-trash"></i>
                                                 </button>
                                             </td>
                                         </tr>

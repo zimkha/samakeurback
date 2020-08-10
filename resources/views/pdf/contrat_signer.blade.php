@@ -618,10 +618,14 @@
             <div style="width:600px;border-bottom:.5px  dashed black;"> Le client : </div>
             <div style="width:600px;border-bottom:.5px  dashed black;margin-left:350px">La date : </div>
         </div>
+
+        <div style="border: 1px solid black;padding : 5px 10px;margin-top: 30px">
+        J'ai lu et j'accepte les termes du présent contrat.        </div>
     </div>
 
-<br>
+
     <div id="footer" class="footer" >
+  
 <br>
         <div style="border: 1px solid black;padding : 5px 10px;margin-top: 30px">
             Ce document est la propriété de SAMAKEUR. Il ne peut être reproduit, même partiellement, sans autorisation.

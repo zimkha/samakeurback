@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('home');
 //Route::get('/test', 'ContratController@test');
-Auth::routes();
+// Auth::routes();
 
 Route::get('/page/{namepage}', function ($namepage)
 {
@@ -50,6 +50,7 @@ Route::delete('/user/{id}', 'UserController@delete');
 Route::delete('/plan/{id}', 'PlanController@delete');
 Route::delete('/remarque/{id}', 'RemarqueController@delete');
 Route::delete('/pub/{id}', 'PostController@delete');
+Route::get('/rompre_liaison/{projet_id}/{plan_id}', 'ProjetController@rompre_liaison');
 
 // les action de recuperations de modification
 Route::get('/active_fichier/{id}', 'ProjetController@activeFichier');

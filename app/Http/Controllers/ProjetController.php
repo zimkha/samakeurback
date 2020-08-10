@@ -36,7 +36,7 @@ class ProjetController extends Controller
    
     public function save(Request $request)
     {
-         dd($request->all());
+        //  //dd($request->all());
 
         try
         {
@@ -606,6 +606,74 @@ class ProjetController extends Controller
             ));
         }
     }
+
+    public function signedContrat($id)
+    {
+        try
+        {
+                $item = Projet::find($id);
+                if(isset($item))
+                {
+                                    $client = $item->user;
+                                    $niveaux = $item->niveau_projets;
+                                    if(count($niveaux) == 0)
+                                    {
+                                        $niveaux = null;
+                                    }
+                                    //dd($client);
+                    $created_at = Carbon::parse($item->created_at)->format('d/m/Y');
+                    $array_info = array();
+                    $nb_chambre = Projet::nb_attribut($item->id, "chambre");
+                    $nb_bureau  = Projet::nb_attribut($item->id, "bureau");
+                    $nb_salon   = Projet::nb_attribut($item->id, "salon");
+                    $nb_cuisine = Projet::nb_attribut($item->id, "cuisine");
+                    $nb_toillette = Projet::nb_attribut($item->id, "toillette");
+                    $nb_sdb     = Projet::nb_attribut($item->id, "sdb");
+                    $etages = NiveauProjet::where('projet_id', $item->id)->count();
+
+                    array_push($array_info, [
+                        "etage"     => $etages,
+                        "chambre"   => $nb_chambre,
+                        "salon"     => $nb_salon,
+                        "sdb"       => $nb_sdb,
+                        "cuisine"    => $nb_cuisine,
+                        "bureau"    => $nb_bureau,
+                        "toillette" => $nb_toillette,
+                        "garage"    => $item->garage,
+                        "piscine"   => $item->piscine,
+                      
+                    ]);
+
+
+                        if(empty($client->nci) || $client->nci == "")
+                        {
+                            $errors = "Vous ne pouvez pas accerder au contrat tant que vous n'avez pas completer vos informations, retourner pour completer vos informations ";
+                            throw new \Exception($errors);
+                        }
+                       
+                    $pdf        = PDF::loadView('pdf.contrat_signer', 
+                    ['projet'  => $item,
+                     'created_at' => $created_at,
+                     'client' => $client, 
+                     'niveaux' => $niveaux, 
+                     'tableau' => $array_info]);
+                      return  $pdf->setPaper('orientation')->stream();
+                    
+                }
+                else
+                {
+                    $errors = "Impossible de trouver ces données pour un contrat";
+                    throw new \Exception($errors);
+                }
+        }
+        catch(\Exception $e)
+        {
+            return response()->json(array(
+                'errors'          => config('app.debug') ? $e->getMessage() : Outil::getMsgError(),
+                'errors_debug'    => [$e->getMessage()],
+            ));
+        }
+    }
     public function makeContrat($id)
     {
        
@@ -643,7 +711,7 @@ class ProjetController extends Controller
                         "piscine"   => $item->piscine,
                       
                     ]);
-// dd($array_info);
+
 
                         if(empty($client->nci) || $client->nci == "")
                         {
@@ -1025,6 +1093,48 @@ class ProjetController extends Controller
             }
             throw new \Exception($errors);
            
+        }
+        catch(\Exception $e)
+        {
+            return response()->json(array(
+                'errors'          => config('app.debug') ? $e->getMessage() : Outil::getMsgError(),
+                'errors_debug'    => [$e->getMessage()],
+            ));
+        }
+    }
+    public function rompre_liaison($projet_id, $plan_id)
+    {
+        try
+        {
+            $errors = null;
+            $data   = 0;
+
+            if(isset($projet_id) && isset($plan_id))
+            {
+                $item = PlanProjet::where('projet_id', $projet_id)->where('paln_id', $plan_id)->get();
+                if(isset($item))
+                {
+                    $item->delete();
+                    $item->forceDetelet();
+                    $data = 1;
+                }
+                else
+                {
+                    $errors = "Unexpected data from request";
+                }
+            }
+            else
+            {
+                $errors = "Donnees manquantes";
+            }
+            if(!isset($errors))
+            {
+                $retour = array(
+                    'data'          => $data,
+                );
+                return response()->json($retour);   
+            }
+            throw new \Exception($errors);
         }
         catch(\Exception $e)
         {
