@@ -37,7 +37,8 @@ class UserType extends GraphQLType
 
            'roles'                         => ['type' =>Type::listOf(GraphQL::type('Role')), 'description' => ''],
            'projets'                       => ['type'  => Type::listOf(GraphQL::type('Projet'))],
-        
+           'plan_chantiers'                => ['type'  => Type::listOf(GraphQL::type('Planchantier'))],
+
 
            'created_at'                    => [ 'type' => Type::string(), 'description' => ''],
            'created_at_fr'                 => [ 'type' => Type::string(), 'description' => ''],

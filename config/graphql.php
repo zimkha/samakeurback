@@ -115,6 +115,25 @@ return [
                   \App\GraphQL\Query\PositionQuery::class,
                   \App\GraphQL\Query\MessageSendQuery::class,
                   \App\GraphQL\Query\PostQuery::class,
+                //   \App\GraphQL\Query\PlanChantierQuery::class,
+                //   \App\GraphQL\Query\PlanChantierPaginatedQuery::class,
+                  \App\GraphQL\Query\ChantierQuery::class,
+                  \App\GraphQL\Query\ChantierPaginatedQuery::class,
+                  \App\GraphQL\Query\ContratExecutionQuery::class,
+                  \App\GraphQL\Query\DeviseEstimeQuery::class,
+                  \App\GraphQL\Query\DeviseFinanceQuery::class,
+                  \App\GraphQL\Query\PayedQuery::class,
+                  \App\GraphQL\Query\PlanningFondQuery::class,
+                  \App\GraphQL\Query\PlanningPrevisionnelQuery::class,
+
+
+
+
+
+
+
+
+
 
             ],
             'mutation' => [
@@ -155,6 +174,16 @@ return [
         \App\GraphQL\Type\PositionType::class,
         \App\GraphQL\Type\MessageSendType::class,
         \App\GraphQL\Type\PostType::class,
+        // \App\GraphQL\Type\PlanChantierType::class,
+        // \App\GraphQL\Type\PlanChantierPaginatedtype::class,
+        \App\GraphQL\Type\ChantierType::class,
+        \App\GraphQL\Type\ChantierPaginatedType::class,
+        \App\GraphQL\Type\ContratExecutiontype::class,
+        \App\GraphQL\Type\DeviseEstimeType::class,
+        \App\GraphQL\Type\DeviseFinanceType::class,
+        \App\GraphQL\Type\PayedType::class,
+        \App\GraphQL\Type\PlanningFondType::class,
+        \App\GraphQL\Type\PlanningPrevisionnelType::class,
 
 
     ],

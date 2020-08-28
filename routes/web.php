@@ -78,3 +78,15 @@ Route::get('/debug-sentry', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+// Ajout de new Routes
+
+
+Route::post('/payed', 'PayedController@save');
+Route::post('/planningprevisionnel', 'PlanningPrevisionnelConntroller@save');
+Route::post('/planningfond', 'PlanningFondConntroller@save');
+Route::post('/planchantier', 'PlanChantierController@save');
+Route::post('/chantier', 'ChantierController@save');
+Route::post('/deviseestime', 'DeviseEstimeController@save');
+Route::post('/devisefinance', 'DeviseFinanceController@save');

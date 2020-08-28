@@ -21,9 +21,10 @@ return [
         'plans'           => 'uploads/plans',
         'projets'         => 'uploads/projets',
         'remarques'       => 'uploads/remarques',
-        'projets'       => 'uploads/projets',
+        'projets'         => 'uploads/projets',
         'fichierplans'    => 'uploads/fichierplans',
-        'posts'             => 'uploads/posts'
+        'posts'           => 'uploads/posts',
+        'piecejointes'    => 'uploads/piecejointes'
     ],
     /*
     |--------------------------------------------------------------------------

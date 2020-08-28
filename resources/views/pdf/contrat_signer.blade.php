@@ -615,11 +615,11 @@
         Le présent Contrat prendra effet à compter de la signature des parties en présence.
         Fait en deux exemplaires, à :
         <div style="display : inline-flex;">
-            <div style="width:600px;border-bottom:.5px  dashed black;"> Le client : </div>
-            <div style="width:600px;border-bottom:.5px  dashed black;margin-left:350px">La date : </div>
+            <div style="width:600px;border-bottom:.5px  dashed black;"> Le client : {{ $client->prenom}} {{ $client->nom}} </div>
+            <div style="width:600px;border-bottom:.5px  dashed black;margin-left:350px">La date : @if($projet->contrat!=null) {{ $projet->update_at}} @endif  </div>
         </div>
 
-        <div style="border: 1px solid black;padding : 5px 10px;margin-top: 30px">
+        <div style="padding : 5px 10px;margin-top: 30px">
         J'ai lu et j'accepte les termes du présent contrat.        </div>
     </div>
 

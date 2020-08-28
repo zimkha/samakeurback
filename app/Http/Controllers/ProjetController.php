@@ -36,8 +36,8 @@ class ProjetController extends Controller
    
     public function save(Request $request)
     {
-        //  //dd($request->all());
 
+       // dd($request->fichier);
         try
         {
             return DB::transaction(function () use($request) {
@@ -49,7 +49,6 @@ class ProjetController extends Controller
                          'user', 'longeur', 'largeur',
                        ];
                 // presence_mitoyen
-               // dd($request->all());
                 if (isset($request->id)) {
                     $item = Projet::find($request->id);
                     NiveauProjet::where('projet_id', $request->id)->delete();
@@ -115,23 +114,22 @@ class ProjetController extends Controller
                     $item->adresse_terrain = $request->adresse_terrain;
                 }
 
-                if(isset($request->garage) && $request->garage == 1)
+                if(isset($request->garage) && (($request->garage == 1) || $request->garage == true))
                 {
-                    
                     $item->garage = 1;
                 }
                 else
-                    $item->garage = 0;
+                $item->garage = 0;
 
-                if(isset($request->piscine) && $request->piscine == 1)
+                if(isset($request->piscine)  && (($request->piscine == 1) || $request->piscine == true))
                 {
                     $item->piscine = 1;
                 }
                 else
-                    $item->piscine = 0;
+                $item->piscine = 0;
                
                
-                // dd($request->garage, $request->piscine, "l'objet =>", $item->piscine, $item->garage,"item => ", $item);
+
                 $errors = Outil::validation($request, $array);
 
                 // $user_connected = Auth::user()->id;
@@ -184,117 +182,162 @@ class ProjetController extends Controller
                 $n = 0;
                 $array_level = array();
 
-                //   dd($request->all());
                 if (!isset($errors) && $request->hasFile('fichier'))
                 {
-                    $fichier = $_FILES['fichier']['name'];  
+                    $fichier = $_FILES['fichier']['name'];
+                   
                     $fichier_tmp = $_FILES['fichier']['tmp_name'];
                     $k = rand(100, 9999);
                     $ext = explode('.',$fichier);
                     $rename = config('view.uploads')['projets']."/projets_".$k.".".end($ext);
                     move_uploaded_file($fichier_tmp,$rename);
+                    //$path = $request->fichier->storeAs('uploads/plans', $rename);
                     $item->fichier = $rename;
 
                 }
-                else if(isset($request->fichier) && $request->fichier != [])
-                {
-                    if (end($ext) == "pdf" || end($ext) == "xlsx"  || end($ext) == "xls" || end($ext) == "docx" || end($ext) == "odt" || end($ext) == "jpg" || end($ext) == "png") 
-                   {
-                    $fichier = $_FILES['fichier']['name'];  
-                    $fichier_tmp = $_FILES['fichier']['tmp_name'];
-                    $k = rand(100, 9999);
-                    $ext = explode('.',$fichier);
-                    $rename = config('view.uploads')['projets']."/projets_".$k.".".end($ext);
-                    move_uploaded_file($fichier_tmp, $rename);
-                    $item->fichier = $rename;
-                    
-                }
-                 else 
-                 {
-                    return response()->json(array('errors' => ["Ce type de fichier n'est pas pris en charge."]));
-                 }
-                }
-                // dd("non je suis la");
 
                 $tab_position = array();
-
-                if(isset($request->positions) && $request->positions!= null)
-                {
+                
+               
+                    
                     $positions = json_decode($request->positions, true);
-                    //dd($positions);
+                    //  dd($positions);
                     foreach($positions as $position)
                     {
-                        $pt_ref = new Position();
-                        $pt_ref->position = $position['ref'];
-                        $pt_ref->nom_position = $position['position'];
-                        array_push($tab_position , $pt_ref);
+                        if(!is_numeric($position['ref']) )
+                        {
+                            $errors = "Veuillez faire un choix entre Mitoyen et Rue pour la position ". $position['position'];
+                            throw new \Exception($errors);
+                        }
+                       
+                        if(is_numeric($position['ref']))
+                        {
+                             $pt_ref               = new Position();
+                             $pt_ref->position     = $position['ref'];
+                             $pt_ref->nom_position = $position['position'];
+                             array_push($tab_position , $pt_ref);   
+                        }
+                      
                     }
-                }
+                
                 if(isset($request->tab_projet) && $request->tab_projet != null)
                 {
                     $data = json_decode($request->tab_projet, true);
+                
                     foreach ($data as  $key) {
-
+                       
                         $n = $n + 1;
                         $niveau = new NiveauProjet();
-                        // if (empty($key['piece'])) {
-                        //    $errors = "Veuillez renseigner le nombre de pieces de ce niveau ligne n°". $n;
-                        // }
-                        if (!isset($key['chambre'])) {
+                        
+                        if (!isset($key['chambre']) || (int)$key['chambre'] < 0) {
                             $errors = "Veuillez renseigner le nombre de chambre de ce niveau ligne n°". $n;
                           }
-                         if (!isset($key['salon'])) {
+                         if (!isset($key['salon']) || (int)$key['salon'] < 0) {
                             $errors = "Veuillez renseigner le nombre de salon de ce niveau ligne n°". $n;
                          }
-                         if (!isset($key['bureau'])) {
+                         if (!isset($key['bureau']) || (int)$key['bureau'] < 0) {
                             $errors = "Veuillez renseigner le nombre de bureau de ce niveau ligne n°". $n;
                          }
-                         if (!isset($key['cuisine'])) {
+                         if (!isset($key['cuisine']) || (int)$key['cuisine'] < 0) {
                             $errors = "Veuillez renseigner le nombre de cuisine de ce niveau ligne n°". $n;
                          }
-                         if (!isset($key['toillette'])) {
+                         if (!isset($key['toillette']) || (int)$key['toillette'] < 0) {
                             $errors = "Veuillez renseigner le nombre de toillette de ce niveau ligne n°". $n;
                          }
-
+               
                          if (isset($errors))
                          {
                              throw new \Exception($errors);
                          }
-                        // $all_piece = $key['chambre'] + $key['salon'] + $key['bureau'] + $key['cuisine'] + $key['toillette'] + $key['sdb'];
-                        // if ($all_piece != (int)$key['piece'])
-                        // {
-                        //     $errors = "Erreur de décompte sur le nombre de pièces ligne n°{$n}";
-                        // }
-
+                        
+                            $chambre   = (int)$key['chambre'];
+                            $salon     = (int)$key['salon'];
+                            $sdb        = (int)$key['sdb'];
+                            $cuisine    = (int)$key['cuisine'];
+                            $bureau    = (int)$key['bureau'];
+                            $toillette  = (int)$key['toillette'];
+                         
+                           
                         if($n == 1)
                         {
                             $niveau->niveau_name = "Rez de Chaussée";
                         }
                         else if ($n > 1)
                             {
-                                $niveau->niveau_name        = "R +". $n -1;
+                                $a = $n -1 ;
+                                $niveau->niveau_name        = "R +".$a ;
                             }
+                       if(is_numeric($key['chambre']) && $key['chambre'] >= 0)
+                       {
+                          $niveau->chambre            =  $chambre;   
+                       }
+                       else
+                       {
+                           $errors = "saisir une valeur pour la chambre ligne numero " +$n;
+                       }
+                        if(is_numeric($key['salon']) && $key['salon'] >= 0)
+                       {
+                         $niveau->salon              =$salon;   
+                       }
+                        else
+                       {
+                           $errors = "saisir une valeur pour l e salon ligne numero " +$n ;
+                       }
+                        if(is_numeric($key['bureau']) && $key['bureau'] >= 0)
+                       {
+                          $niveau->bureau             = $bureau;
+                       }
+                        else
+                       {
+                           $errors = "saisir une valeur pour la bureau ligne numero " +$n;
+                       }
+                        if(is_numeric($key['cuisine']) && $key['cuisine'] >= 0)
+                       {
+                          $niveau->cuisine            =$cuisine; 
+                       }
+                        else
+                       {
+                           $errors = "saisir une valeur pour la cusine ligne numero " +$n;
+                       }
+                        if(is_numeric($key['toillette']) && $key['toillette'] >= 0)
+                       {
+                           $niveau->toillette          = $toillette;  
+                       }
+                        else
+                       {
+                           $errors = "saisir une valeur pour les toillette ligne numero " +$n;
+                       }
+                        if(is_numeric($key['sdb']) && $key['sdb'] >= 0)
+                       {
+                           $niveau->sdb                = $sdb;   
+                       }
+                        else
+                       {
+                           $errors = "saisir une valeur pour le salle de bain ligne numero " +$n;
+                       }
+                      
+                       if(isset($errors))
+                         {
+                           
+                            throw new \Exception($errors);
+                         }
                        
-                        $niveau->chambre            = $key['chambre'];
-
-                        $niveau->salon              = $key['salon'];
-                        $niveau->bureau             = $key['bureau'];
-                        $niveau->cuisine            = $key['cuisine'];
-                        $niveau->toillette          = $key['toillette'];
-                        $niveau->sdb                = $key['sdb'];
                         array_push($array_level, $niveau);
-
+                       
+                        
                     }
+                    
                 }
+                
+               
 
 
-              //  dd($item);
 
                 if (!isset($errors))
                 {
+                   
                     $item->active = false;
                     $item->etat = 0;
-                    //dd($array_level);
                     $item->save();
                     if(count($array_level) > 0)
                     {
@@ -348,7 +391,6 @@ class ProjetController extends Controller
         {
             return DB::transaction(function()use($request)
             {
-                //  dd($request->all());
                 $errors = null;
                 $item = new PlanProjet();
                 if(isset($request->id))
@@ -606,82 +648,21 @@ class ProjetController extends Controller
             ));
         }
     }
-
-    public function signedContrat($id)
-    {
-        try
-        {
-                $item = Projet::find($id);
-                if(isset($item))
-                {
-                                    $client = $item->user;
-                                    $niveaux = $item->niveau_projets;
-                                    if(count($niveaux) == 0)
-                                    {
-                                        $niveaux = null;
-                                    }
-                                    //dd($client);
-                    $created_at = Carbon::parse($item->created_at)->format('d/m/Y');
-                    $array_info = array();
-                    $nb_chambre = Projet::nb_attribut($item->id, "chambre");
-                    $nb_bureau  = Projet::nb_attribut($item->id, "bureau");
-                    $nb_salon   = Projet::nb_attribut($item->id, "salon");
-                    $nb_cuisine = Projet::nb_attribut($item->id, "cuisine");
-                    $nb_toillette = Projet::nb_attribut($item->id, "toillette");
-                    $nb_sdb     = Projet::nb_attribut($item->id, "sdb");
-                    $etages = NiveauProjet::where('projet_id', $item->id)->count();
-
-                    array_push($array_info, [
-                        "etage"     => $etages,
-                        "chambre"   => $nb_chambre,
-                        "salon"     => $nb_salon,
-                        "sdb"       => $nb_sdb,
-                        "cuisine"    => $nb_cuisine,
-                        "bureau"    => $nb_bureau,
-                        "toillette" => $nb_toillette,
-                        "garage"    => $item->garage,
-                        "piscine"   => $item->piscine,
-                      
-                    ]);
-
-
-                        if(empty($client->nci) || $client->nci == "")
-                        {
-                            $errors = "Vous ne pouvez pas accerder au contrat tant que vous n'avez pas completer vos informations, retourner pour completer vos informations ";
-                            throw new \Exception($errors);
-                        }
-                       
-                    $pdf        = PDF::loadView('pdf.contrat_signer', 
-                    ['projet'  => $item,
-                     'created_at' => $created_at,
-                     'client' => $client, 
-                     'niveaux' => $niveaux, 
-                     'tableau' => $array_info]);
-                      return  $pdf->setPaper('orientation')->stream();
-                    
-                }
-                else
-                {
-                    $errors = "Impossible de trouver ces données pour un contrat";
-                    throw new \Exception($errors);
-                }
-        }
-        catch(\Exception $e)
-        {
-            return response()->json(array(
-                'errors'          => config('app.debug') ? $e->getMessage() : Outil::getMsgError(),
-                'errors_debug'    => [$e->getMessage()],
-            ));
-        }
-    }
     public function makeContrat($id)
     {
-       
+      
         try
         {
                 $item = Projet::find($id);
+                $message = null;
+                
+                
                 if(isset($item))
                 {
+                    if($item->contrat== 1)
+                    {
+                                      $message = "J'ai lu et j'accepte les termes du présent contrat.";
+                    }
                                     $client = $item->user;
                                     $niveaux = $item->niveau_projets;
                                     if(count($niveaux) == 0)
@@ -711,19 +692,60 @@ class ProjetController extends Controller
                         "piscine"   => $item->piscine,
                       
                     ]);
-
+// dd($array_info);
 
                         if(empty($client->nci) || $client->nci == "")
                         {
                             $errors = "Vous ne pouvez pas accerder au contrat tant que vous n'avez pas completer vos informations, retourner pour completer vos informations ";
                             throw new \Exception($errors);
                         }
+                       $positions = $item->positions;
+                     
+                    //   dd($positions);
+                       $pos_nor = null;
+                       $pos_sud = null;
+                       $pos_est = null;
+                       $pos_ouest = null;
                        
+                     if($positions!= null)
+                     {
+                          foreach($positions as $pos)
+                              {
+                                  
+                                        if($pos->nom_position == "Nord")
+                                         {
+                                              $pos_nor = $pos->position;
+                                         }
+                                    
+                                       if($pos->nom_position == "Sud")
+                                        {
+                                            $pos_sud = $pos->position;
+                                        }
+                                  
+                                         if($pos->nom_position == "Est")
+                                         {
+                                              $pos_nest = $pos->position;
+                                         }
+                                  
+                                       if($pos->nom_position == "Ouest")
+                                        {
+                                             $pos_ouest = $pos->position;
+                                        }
+                              }
+                     }
+                     
                     $pdf        = PDF::loadView('pdf.contrat', 
-                    ['projet'  => $item,
+                    [
+                      'projet'  => $item,
                      'created_at' => $created_at,
                      'client' => $client, 
-                     'niveaux' => $niveaux, 
+                     'niveaux' => $niveaux,
+                     'message' => $message,
+                     'positions' => $positions,
+                     'Nord'      => $pos_nor,
+                     'Sud'       => $pos_sud,
+                     'Est'       => $pos_est,
+                     'Ouest'     => $pos_ouest,    
                      'tableau' => $array_info]);
                       return  $pdf->setPaper('orientation')->stream();
                     
@@ -794,8 +816,8 @@ class ProjetController extends Controller
         //     "secrete" => "EJFiXlkNOhlt3uokThwW8VOAe4S7DE_GaeEuEXZcx2hWYYx1RbNHSINVLpBok3QIft8Csf1V8vk2tt2_"
         // ];
         $config = [
-            "id"  => "AQr5DXEvYR5O3cYNLkrQAMlhHifUUtuW1UmOg3O9U8Zjy7G83IqtAKTRkF3c7UjTw6fSnD5MFvv-tmeb",
-            "secrete" => "ENtF1eT4k760AvOoIh-jUqGFxbIMD-L0PdTrlCo0sG2zNhlTWfnBSPQNwdPRcYxsNPoI9_4zSxWjA8tG"
+            "id"  => "ARRvds_Lfxr0QvzpeuvXO9ZA2Doeazna-nCVvUbcnWKrRo0O29XmO2BnKBtjx5b1lmE2uCs7U26wmQWU",
+            "secrete" => "EOaBCqI9BNIlSHM35yv5U8M0L__zbX-uKtvDhjmKd1-a41mKdAEFIBkcYn3YwbX1f_FBrCPmWQ8WB_ob"
         ];
        $apiContext = new ApiContext(
            new \PayPal\Auth\OAuthTokenCredential(
@@ -841,8 +863,8 @@ class ProjetController extends Controller
         try{
            
             $config = [
-                "id"  => "AQr5DXEvYR5O3cYNLkrQAMlhHifUUtuW1UmOg3O9U8Zjy7G83IqtAKTRkF3c7UjTw6fSnD5MFvv-tmeb",
-                "secrete" => "ENtF1eT4k760AvOoIh-jUqGFxbIMD-L0PdTrlCo0sG2zNhlTWfnBSPQNwdPRcYxsNPoI9_4zSxWjA8tG"
+                "id"  => "ARRvds_Lfxr0QvzpeuvXO9ZA2Doeazna-nCVvUbcnWKrRo0O29XmO2BnKBtjx5b1lmE2uCs7U26wmQWU",
+                 "secrete" => "EOaBCqI9BNIlSHM35yv5U8M0L__zbX-uKtvDhjmKd1-a41mKdAEFIBkcYn3YwbX1f_FBrCPmWQ8WB_ob"
             ];
            $apiContext = new ApiContext(
                new \PayPal\Auth\OAuthTokenCredential(
@@ -869,22 +891,24 @@ class ProjetController extends Controller
                 else{
                     throw new \Exception("erreur sur les données du projet");
                 }
-
-
+    
+                $montant_ = $projet->montant;
+                $montant_ = $montant_ / 655;
+                $montant_ = number_format($montant_,2,'.',' ');
                 $list = new \PayPal\Api\ItemList();
                 $item_payment =  array();
                 $item = (new \PayPal\Api\Item())
                 ->setName($projet->name)
-                ->setPrice($projet->montant)
+                ->setPrice($montant_)
                 ->setQuantity(1)
-                ->setCurrency('USD');
+                ->setCurrency('EUR');
                 $list->addItem($item);
                 $details =  (new \PayPal\Api\Details())
-                      ->setSubTotal($projet->montant);
-
+                      ->setSubTotal( $montant_);
+                
                 $amount = (new \PayPal\Api\Amount())
-                  ->setTotal($projet->montant)
-                  ->setCurrency("USD")
+                  ->setTotal( $montant_)
+                  ->setCurrency("EUR")
                   ->setDetails($details);
 
                   $transactions = (new \PayPal\Api\Transaction())
@@ -1093,48 +1117,6 @@ class ProjetController extends Controller
             }
             throw new \Exception($errors);
            
-        }
-        catch(\Exception $e)
-        {
-            return response()->json(array(
-                'errors'          => config('app.debug') ? $e->getMessage() : Outil::getMsgError(),
-                'errors_debug'    => [$e->getMessage()],
-            ));
-        }
-    }
-    public function rompre_liaison($projet_id, $plan_id)
-    {
-        try
-        {
-            $errors = null;
-            $data   = 0;
-
-            if(isset($projet_id) && isset($plan_id))
-            {
-                $item = PlanProjet::where('projet_id', $projet_id)->where('paln_id', $plan_id)->get();
-                if(isset($item))
-                {
-                    $item->delete();
-                    $item->forceDetelet();
-                    $data = 1;
-                }
-                else
-                {
-                    $errors = "Unexpected data from request";
-                }
-            }
-            else
-            {
-                $errors = "Donnees manquantes";
-            }
-            if(!isset($errors))
-            {
-                $retour = array(
-                    'data'          => $data,
-                );
-                return response()->json($retour);   
-            }
-            throw new \Exception($errors);
         }
         catch(\Exception $e)
         {

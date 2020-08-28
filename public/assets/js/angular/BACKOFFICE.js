@@ -506,7 +506,11 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
             "messagesends"  : ["id,objet,message,telephone,email,nom",""],
 
 
-            "posts"  : ["id,description,fichier",""]
+            "posts"  : ["id,description,fichier",""],
+
+            "chantiers"                     : ["",""],
+
+            "planchantiers"                 : ["",""]
 
 
         };
@@ -1854,7 +1858,6 @@ $scope.getAllDashboard = function()
         if (type.indexOf('role')!==-1)
         {
             send_data.append("permissions", $scope.role_permissions);
-            console.log('role_permissions', $scope.role_permissions, '...', send_data.get('role_permissions') );
             if ($scope.role_permissions.length==0)
             {
                 iziToast.error({
@@ -3639,6 +3642,5 @@ function reCompile(element)
     });
     console.log('arrive dans la liaison');
 }
-
 
 
