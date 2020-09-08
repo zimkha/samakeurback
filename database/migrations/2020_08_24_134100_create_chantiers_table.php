@@ -44,7 +44,7 @@ class CreateChantiersTable extends Migration
             $table->foreign('chantier_id')->references('id')->on('chantiers');
             $table->timestamps();
         });
-        Schema::create('devise_finance', function (Blueprint $table) {
+        Schema::create('devise_finances', function (Blueprint $table) {
             $table->increments('id');
             $table->string('fichier');
             $table->boolean('etat')->default(false);

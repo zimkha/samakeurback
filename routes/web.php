@@ -86,7 +86,22 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/payed', 'PayedController@save');
 Route::post('/planningprevisionnel', 'PlanningPrevisionnelConntroller@save');
 Route::post('/planningfond', 'PlanningFondConntroller@save');
-Route::post('/planchantier', 'PlanChantierController@save');
 Route::post('/chantier', 'ChantierController@save');
 Route::post('/deviseestime', 'DeviseEstimeController@save');
 Route::post('/devisefinance', 'DeviseFinanceController@save');
+Route::post('/contratexecution', 'ContratExecutionController@save');
+Route::post('/chantier_date', 'ChantierController@makeDate');
+
+Route::delete('/chantier/{id}',  'ChantierController@delete');
+Route::delete('/deviseestime/{id}', 'DeviseEstimeController@delete');
+Route::delete('/devisefinance/{id}', 'DeviseFinanceController@delete');
+Route::delete('/contratexecution/{id}', 'ContratExecutionController@delete');
+
+Route::get('/chantier_enable/{id}', 'ChantierController@enableChantier');
+Route::get('/estime_enable/{id}', 'DeviseEstimeController@enable');
+Route::get('/finance_enable/{id}', 'DeviseFinanceController@enable');
+Route::get('/contrat_execution_enable/{id}', 'ContratExecutionController@enable');
+
+Route::get('/finance_pdf/{id}', 'DeviseFinanceController@getpdf');
+Route::get('/estime_pdf/{id}', 'DeviseEstimeController@getpdf');
+Route::get('/contratexecution_pdf/{id}', 'ContratExecutionController@getpdf');

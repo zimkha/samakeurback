@@ -23,9 +23,10 @@ class ChantierQuery extends Query
     {
         return [
 
-            'id'                     => [ 'type' => Type::id()],
+            'id'                     => [ 'type' => Type::int()],
             'etat'                   => [ 'type' => Type::int()],
             'user_id'                => [ 'type' => Type::int()],
+            'date_begin'             => [ 'type' => Type::string()],
             'fichier'                => [ 'type' => Type::string(),],
             'created_at'             => [ 'type' => Type::string()],
             'created_at_fr'          => [ 'type' => Type::string()],
@@ -63,6 +64,7 @@ class ChantierQuery extends Query
             'etat'                   => $item->etat,
             'user_id'                => $item->user_id,
             'user'                   => $item->user,
+            'date_begin'             => $item->date_begin,
         ];
       });
     }

@@ -13,7 +13,7 @@ class PlanChantierController extends Controller
     protected  $queryName = "planchantiers";
     public function save(Request $request)
     {
-        dd($request->all());
+        
         return DB::transaction(function() use($request)
         {
             try
@@ -63,7 +63,7 @@ class PlanChantierController extends Controller
         {
             try
             {
-                $errors = null;
+            $errors = null;
             $data = 0;
             if(!isset($id))
             {

@@ -1,8 +1,10 @@
 var app=angular.module('BackEnd',[ 'ngRoute' , 'ngSanitize' , 'ngLoadScript', 'ui.bootstrap' , 'angular.filter']);
 
-var BASE_URL='//'+location.host+'/samakeurback/public/';
+// var BASE_URL = 'http://samakeur.sn/back/';
 // en ligne
-//var BASE_URL='//'+location.host+'/admin/';
+// var BASE_URL='//'+location.host+'/admin/';
+var BASE_URL = 'http://localhost/samakeurback/public/';
+
 var imgupload = BASE_URL + '/assets/images/upload.jpg';
 var msg_erreur = 'Veuillez contacter le support technique';
 
@@ -465,18 +467,18 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
         {
            // unite_mesure_id,unite_mesure{id,name}
             "plans"                         : [
-                                                            "id,code,garage,created_at_fr,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,unite_mesure_id,unite_mesure{id,name},fichier,joineds{id,fichier,description,active}",
+                                                            "id,code,piscine,garage,created_at_fr,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,unite_mesure_id,unite_mesure{id,name},fichier,joineds{id,fichier,description,active}",
                                                             ",niveau_plans{id,piece,niveau,bureau,toillette,chambre,salon,cuisine},plan_projets{id,projet_id}"]
                                                             ,
 
             "planprojets"                   : ["id,plan_id,projet_id,etat_active,message,etat,plan{id}",""],
 
-            "niveauplans"                   : ["id,piece,bureau,toillette,chambre,salon,cuisine,niveau",""],
+            "niveauplans"                   : ["id,sdb,piece,bureau,toillette,chambre,salon,cuisine,niveau",""],
 
-            "niveauprojets"                 :  ["id,piece,bureau,toillette,chambre,salon,cuisine,niveau_name",""],
+            "niveauprojets"                 :  ["id,sdb,piece,bureau,toillette,chambre,salon,cuisine,niveau_name",""],
 
             "projets"                       :  [
-                "id,adresse_terrain,garage,name,etat,active,a_valider,text_projet,created_at_fr,created_at,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_sdb,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adresse_complet,code_postal}",
+                "id,adresse_terrain,name,etat,active,a_valider,text_projet,created_at_fr,created_at,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_sdb,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adresse_complet,code_postal}",
                 ",niveau_projets{id,piece,bureau,toillette,chambre,sdb,niveau_name,salon,cuisine},positions{id,position,nom_position,projet_id},remarques{id,demande_text,projet_id},plan_projets{id,plan_id,plan{id,code,created_at_fr,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,unite_mesure_id,unite_mesure{id,name},fichier,niveau_plans{id,piece,niveau,bureau,toillette,chambre,salon,cuisine},joineds{id,fichier,description}}}"
             ],
 
@@ -506,11 +508,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
             "messagesends"  : ["id,objet,message,telephone,email,nom",""],
 
 
-            "posts"  : ["id,description,fichier",""],
-
-            "chantiers"                     : ["",""],
-
-            "planchantiers"                 : ["",""]
+            "posts"  : ["id,description,fichier",""]
 
 
         };
@@ -2848,8 +2846,8 @@ $scope.index_plan = 0;
 
                 var liste_ligneniveau = [];
                 $.each(item.niveau_plans, function (keyItem, valueItem) {
-                    console.log("le produit en question",valueItem)
-                    liste_ligneniveau.push({"id":valueItem.id, "niveau":valueItem.niveau,"piece":valueItem.piece, "chambre" : valueItem.chambre, "bureau" : valueItem.bureau, "salon" : valueItem.salon, "cuisine" : valueItem.cuisine, "toillette" : valueItem.toillette});
+                    console.log("les ligne de niveau du plan ",valueItem)
+                    liste_ligneniveau.push({"id":valueItem.id, "niveau":valueItem.niveau,"sdb":valueItem.sdb, "chambre" : valueItem.chambre, "bureau" : valueItem.bureau, "salon" : valueItem.salon, "cuisine" : valueItem.cuisine, "toillette" : valueItem.toillette});
                 });
                 $scope.produitsInTable = [];
                 $scope.produitsInTable = liste_ligneniveau;

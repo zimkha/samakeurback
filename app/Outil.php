@@ -59,6 +59,8 @@ class Outil extends Model
 
         "posts"                         => "id,fichier,description",
 
+        "chantiers"                     => "id,user_id,fichier,user{nom,prenom,email},estime,finance,contrat",
+
        
     );
 

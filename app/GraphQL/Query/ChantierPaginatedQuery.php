@@ -25,10 +25,11 @@ class ChantierPaginatedQuery extends Query
     {
         return
         [
-            'id'                     => [ 'type' => Type::id()],
+            'id'                     => [ 'type' => Type::int()],
             'etat'                   => [ 'type' => Type::int()],
             'user_id'                => [ 'type' => Type::int()],
             'fichier'                => [ 'type' => Type::string(),],
+            'date_begin'             => [ 'type' => Type::string()],
             'created_at'             => [ 'type' => Type::string()],
             'created_at_fr'          => [ 'type' => Type::string()],
             'updated_at'             => [ 'type' => Type::string()],
