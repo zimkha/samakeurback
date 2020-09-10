@@ -35,10 +35,11 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Clients / Plans:</h6>
-                {{--<a class="collapse-item" href="#!/list-client">Liste des clients</a>
-                <a class="collapse-item" href="#!/list-a-confirme">A confirmés</a>--}}
+                
                 <a class="collapse-item" href="#!/list-a-confirme">Liste des clients</a>
                 <a class="collapse-item" href="#!/list-plan">Liste des plans</a>
+                <a class="collapse-item" href="#!/list-chantiers">Liste des chantiers</a>
+
             </div>
         </div>
     </li>

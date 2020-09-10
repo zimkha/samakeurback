@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Outil;
 use App\Remarque;
+use App\Projet;
 
 class RemarqueController extends Controller
 {
@@ -17,7 +18,7 @@ class RemarqueController extends Controller
         return DB::transaction(function () use($request) {
            $errors = null;
            $item = new Remarque();
-                    // dd($request->all());
+                  
            if(isset($request->id))
            {
                $item = Remarque::find($request->id);
@@ -31,6 +32,11 @@ class RemarqueController extends Controller
            if (empty($request->remarque_text)) {
 
             $errors = "Veuillez renseigner vos remarques";
+           }
+           $count = Projet::getNumberRemarque($request->projet);
+           if($count == 3)
+           {
+               $errors = "Votre nombre maximum de remarques est atteint";
            }
            if (!isset($errors)) {
                $item->demande_text      = $request->remarque_text;

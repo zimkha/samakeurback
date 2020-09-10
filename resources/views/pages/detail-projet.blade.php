@@ -183,15 +183,16 @@
                     </div>
                     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                         <div class="card">
+                            <span class="badge badge-primary"> @{{ projetview.remarques.length }}</span>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                         <tr align="center">
-                                            {{--<th>Code</th>--}}
+                                           
                                             <th>Description</th>
-                                            {{--<th>Fichier</th>--}}
-                                            {{--<th>Actions</th>--}}
+                                            <th>Fichier</th>
+                                            <th>Actions</th>
                                         </tr>
                                         </thead>
 

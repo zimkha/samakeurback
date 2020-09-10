@@ -37,7 +37,7 @@ class ProjetController extends Controller
     public function save(Request $request)
     {
 
-       dd($request->all());
+       
         try
         {
             return DB::transaction(function () use($request) {

@@ -67,6 +67,10 @@ class Projet extends Model
         }
         return $nb_attribut;
     }
+    public static function getNumbeeremarque($id)
+    {
+        return Remarque::where('projet_id', $id)->count();
+    }
     public static function makeCode()
     {
         $last = Projet::all()->last();

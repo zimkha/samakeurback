@@ -508,7 +508,9 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
             "messagesends"  : ["id,objet,message,telephone,email,nom",""],
 
 
-            "posts"  : ["id,description,fichier",""]
+            "posts"  : ["id,description,fichier",""],
+
+            "chantiers" : ["id,fichier,created_at_fr,user{id,nom,prenom,email},devisefinance{id}",""]
 
 
         };
