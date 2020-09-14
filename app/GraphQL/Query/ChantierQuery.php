@@ -32,6 +32,7 @@ class ChantierQuery extends Query
             'created_at_fr'          => [ 'type' => Type::string()],
             'updated_at'             => [ 'type' => Type::string()],
             'updated_at_fr'          => [ 'type' => Type::string()],
+
                      
         ];
     }

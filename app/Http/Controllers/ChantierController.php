@@ -51,7 +51,8 @@ class ChantierController extends Controller
                             // return response()->json(array(
                             //     "data"  => 1
                             // ));
-                         return Outil::redirectgraphql($this->queryName, "id:{$item['id']}", Outil::$queries[$this->queryName]);
+
+                         return response()->json($item);
                     }
                     else
                     {
@@ -72,7 +73,6 @@ class ChantierController extends Controller
 
     public function delete($id)
     {
-        // dd("je suis la");
         return DB::transaction(function() use($id)
         {
             try
