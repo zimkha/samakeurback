@@ -1989,8 +1989,8 @@ $scope.getAllDashboard = function()
             }
         }
 
-        if (form.validate() && continuer)
-        {
+        // if (form.validate() && continuer)
+        // {
 
            // form.parent().parent().blockUI_start();
             Init.saveElementAjax(type, send_data).then(function(data)
@@ -2231,7 +2231,7 @@ $scope.getAllDashboard = function()
                 });
                 console.log('Erreur serveur ici = ' + msg);
             });
-        }
+      //  }
     };
 
     $scope.viderTab = function () {
