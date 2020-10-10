@@ -69,8 +69,35 @@ class ProjetType extends GraphQLType
             'updated_at'             => ['type'  => Type::string()],
             'updated_at_fr'          => ['type'  => Type::string()],
             'deleted_at'             => ['type'  => Type::string()],
+            'grg'                    => ['type'  => Type::string()],
+            'psc'                    => ['type'  => Type::string()],
            
         ];
+    }
+    public function resolvePscField($root, $args)
+    {
+        if(!isset($root['id']))
+        {
+            $projet_id = $root->id;  
+        }
+         else
+        {
+            $projet_id = $root['id'];
+        }
+        return $res = Projet::get_piscine($projet_id);
+        
+    }
+     public function resolveGrgField($root, $args)
+    {
+        if(!isset($root['id']))
+        {
+            $projet_id = $root->id;  
+        }
+         else
+        {
+            $projet_id = $root['id'];
+        }
+        return $res = Projet::get_garage($projet_id);
     }
     public function resolveAValiderField($root, $args)
     {
@@ -78,7 +105,8 @@ class ProjetType extends GraphQLType
         {
             $projet_id = $root->id;
         
-}        else
+        }
+        else
         {
             $projet_id = $root['id'];
         }

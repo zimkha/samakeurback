@@ -139,6 +139,32 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="residence_location_plan" value="true" name="residence_location"> 
+                                    Résidence pour location
+                                </label>
+                            </div>
+                            <div class="col-lg-3">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="residence_personnel_plan" value="true" name="residence_personnel">
+                                     Résidence personnelle
+                                </label>
+                            </div>
+                             <div class="col-lg-3">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="zone_assainie_plan" value="true" name="zone_assainie">
+                                    Zone assainie
+                                </label>
+                            </div>
+                             <div class="col-lg-3">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="zone_electrifie_plan" value="true" name="zone_electrifie"> 
+                                    Zone éléctrifiée
+                                </label>
+                            </div>
+                        </div>
 
                        {{-- <hr>--}}
                         <h4 class="form-section animated fadeInDown mb-3 mt-5 border-bottom border-alternate">
@@ -147,9 +173,7 @@
                         </h4>
                         <div class="row">
                             <div class="card col-lg-12">
-                                {{--<div class="card-header-tab card-header" align="center">
-                                    Ajouter un niveau
-                                </div>--}}
+                               
                                 <div class="card-body">
                                     <div class="row">
                                         <!-- <div class="col-lg-3">
@@ -660,48 +684,52 @@
                             </div>
                         </div>
 
-                        <div class="row mt-2">
+                        <!-- <div class="row mt-2">
                             <div class="col-lg-3">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="electricte_projet" value="true" name="electricite"> Electricté
+                                    <input type="checkbox" id="electricte_projet" value="true" name="electricite"> Résidence pour location
                                   </label>
                             </div>
                             <div class="col-lg-3">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="accesvoirie_projet" value="true" name="acces_voirie"> Accés voirie
+                                    <input type="checkbox" id="accesvoirie_projet" value="true" name="acces_voirie"> Résidence personnelle
                                   </label>
                             </div>
                             <div class="col-lg-3">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="ass_projet" value="true" name="assainissement"> Assainissement
+                                    <input type="checkbox" id="ass_projet" value="true" name="assainissement"> Zone assainie
                                   </label>
                             </div>
                             <div class="col-lg-3">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="cadastre_projet" value="true" name="geometre"> Cadastre
+                                    <input type="checkbox" id="cadastre_projet" value="true" name="geometre"> Zone éléctrifiée
                                   </label>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row">
                             <div class="col-lg-3">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="courant_faible_projet" value="true" name="courant_faible"> Courant Faible
-                                  </label>
+                                    <input type="checkbox" id="ass_projet" value="true" name="assainissement"> 
+                                    Résidence pour location
+                                </label>
                             </div>
                             <div class="col-lg-3">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="eaux_pluviable_projet" value="true" name="eaux_pluviable"> Eaux pliviale
-                                  </label>
+                                    <input type="checkbox" id="cadastre_projet" value="true" name="geometre">
+                                     Résidence personnelle
+                                </label>
                             </div>
-                            <div class="col-lg-3">
+                             <div class="col-lg-3">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="bornes_visible_projet" value="true" name="bornes_visible"> Bornez Visible
-                                  </label>
+                                    <input type="checkbox" id="eaux_pluviable_projet" value="true" name="eaux_pluviable">
+                                    Zone assainie
+                                </label>
                             </div>
-                            <div class="col-lg-3">
+                             <div class="col-lg-3">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="necessite_bornage_projet" value="true" name="necessite_bornage"> Necessite bornage
-                                  </label>
+                                    <input type="checkbox" id="courant_faible_projet" value="true" name="courant_faible"> 
+                                    Zone éléctrifiée
+                                </label>
                             </div>
                         </div>
 

@@ -325,6 +325,40 @@ class PlanController extends Controller
                     $errors = "Veuillez preciser une bonne valeur pour la largeur";
 
                  }
+                 if(isset( $request->residence_location))
+                 {
+                    $item->residence_location = 1;
+                 }
+                 else{
+                    $item->residence_location = 0;
+
+                 }
+                 if(isset( $request->residence_personnel))
+                 {
+                    $item->residence_personnel = 1;
+  
+                 }
+                 else{
+                    $item->residence_personnel = 0;
+  
+                 }
+                 if(isset( $request->zone_assainie))
+                 {
+                    $item->zone_assainie = 1;
+ 
+                 }
+                 else{
+                    $item->zone_assainie = 0;
+
+                 }
+                 if(isset( $request->zone_electrifie))
+                 {
+                    $item->zone_electrifie = 1;
+                 }
+                 else{
+                    $item->zone_electrifie = 0;
+                     
+                 }
                  
                 if (isset($errors))
                 {
@@ -339,13 +373,7 @@ class PlanController extends Controller
                     $n = $n + 1;
                     $niveau = new NiveauPlan();
 
-                    // if (empty($datum['piece']))
-                    // {
-                    //     $errors = "Veuillez renseigner au moins le nombre de pièces pour ce niveau";
-                    // }
-                    // if (isset($datum['piece']) && $datum['piece'] <= 0) {
-                    //     $errors = "Veuillez verifier le nombre de pieces  à la ligne n°".$n;
-                    // }
+                   
                     if (isset($datum['chambre']) && $datum['chambre'] < 0) {
                         $errors = "Veuillez verifier le nombre de chambre à la ligne n°".$n;
                     }
@@ -369,11 +397,7 @@ class PlanController extends Controller
                     $niveau->sdb            = $datum['sdb'];
                     $niveau->niveau         = "R +".$n;
 
-                    // $total_pieces = $niveau->chambre + $niveau->salon + $niveau->cuisine + $niveau->bureau + $niveau->toillette + $niveau->sdb;
-                   
-                    // if ($total_pieces != (int) $datum['piece']) {
-                    //     $errors = "Veuillez verifier si le total des pieces est repecter  à la ligne n°".$n;
-                    // }
+                  
                     if (isset($errors)) {
                         throw new \Exception($errors);
                     }

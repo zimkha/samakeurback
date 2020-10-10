@@ -30,6 +30,35 @@ class Projet extends Model
     {
         return $this->hasMany(PlanProjet::class);
     }
+    public static function get_garage($id)
+    {
+        $res ="NON";
+        if(isset($id))
+        {
+            $item  = Projet::find($id);
+            if(isset($item))
+            {
+                if($item->garage == true || $item->garage == 1) $res = "OUI";
+                return $res;
+            }
+        }
+        return false;
+    }
+
+    public static function get_piscine($id)
+    {
+        $res ="NON";
+        if(isset($id))
+        {
+            $item  = Projet::find($id);
+            if(isset($item))
+            {
+                if($item->piscine == true || $item->piscine == 1) $res = "OUI";
+                return $res;
+            }
+        }
+        return false;
+    }
     public static function a_valider($id)
     {
          $item = Projet::find($id);

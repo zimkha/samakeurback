@@ -478,7 +478,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
             "niveauprojets"                 :  ["id,sdb,piece,bureau,toillette,chambre,salon,cuisine,niveau_name",""],
 
             "projets"                       :  [
-                "id,adresse_terrain,name,etat,active,a_valider,text_projet,created_at_fr,created_at,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_sdb,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adresse_complet,code_postal}",
+                "id,adresse_terrain,name,etat,active,a_valider,psc,grg,text_projet,created_at_fr,created_at,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_sdb,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adresse_complet,code_postal}",
                 ",niveau_projets{id,piece,bureau,toillette,chambre,sdb,niveau_name,salon,cuisine},positions{id,position,nom_position,projet_id},remarques{id,demande_text,projet_id},plan_projets{id,plan_id,plan{id,code,created_at_fr,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,unite_mesure_id,unite_mesure{id,name},fichier,niveau_plans{id,piece,niveau,bureau,toillette,chambre,salon,cuisine},joineds{id,fichier,description}}}"
             ],
 
@@ -2245,7 +2245,9 @@ $scope.getAllDashboard = function()
         console.log("$scope.produitsInTable", $scope.produitsInTable);
     });
 $scope.index_plan = 0;
+$scope.index_niveau = "";
     $scope.actionSurPlan = function (action, selectedItem = null) {
+        
         if (action == 'add')
         {
             $scope.index_plan = $scope.index_plan + 1;
@@ -2312,11 +2314,17 @@ $scope.index_plan = 0;
                 });
                 return false;
             }
-
+              
+               if($scope.produitsInTable.length > 1)
+               {
+                $scope.index_niveau = "R +"+$scope.index_plan
+               }
+               else if($scope.produitsInTable.length === 0 || $scope.produitsInTable.length === 1)
+               {
+                $scope.index_niveau = "Rez de chaussez"
+               }
             $scope.produitsInTable.unshift({
-               // "niveau": "R +" + niveau,
-                "niveau":  "R +" + $scope.index_plan,
-              //  "piece": piece_plan,
+                "niveau":   $scope.index_niveau,
                 "chambre": chambre_plan,
                 "sdb": chambre_sdb_plan,
                 "bureau": bureau_plan,
@@ -2353,6 +2361,7 @@ $scope.index_plan = 0;
     };
     // fin plan
     $scope.Ele = 0;
+    $scope.index_niveau = "";
     $scope.actionSurProjet = function (action, selectedItem = null) {
         if (action == 'add')
         {
@@ -2425,9 +2434,17 @@ $scope.index_plan = 0;
                  return false;
              }
 
+             if($scope.produitsInTable.length > 1)
+             {
+              $scope.index_niveau = "R +"+$scope.Ele
+             }
+             else if($scope.produitsInTable.length === 0 || $scope.produitsInTable.length === 1)
+             {
+              $scope.index_niveau = "Rez de chaussez"
+             }
+
             $scope.produitsInTable.unshift({
-                "niveau": "R +" + niveau,
-             //   "piece": piece_projet,
+                "niveau":$scope.index_niveau,
                 "chambre": chambre_projet,
                 "sdb": chambre_sdb_projet,
                 "bureau": bureau_projet,
@@ -2439,7 +2456,6 @@ $scope.index_plan = 0;
             console.log("this.produitsInTable",$scope.produitsInTable)
 
             $("#niveau_projet").val('');
-          //  $("#piece_projet").val('');
             $("#chambre_projet").val('');
             $("#chambre_sdb_projet").val('');
             $("#salon_projet").val('');
