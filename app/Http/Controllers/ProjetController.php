@@ -29,7 +29,7 @@ use PayPal\Api\Payer;
 use PayPal\Api\Payment;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
-
+use Illuminate\Support\Arr;
 class ProjetController extends Controller
 {
     protected $queryName = "projets";
@@ -1125,6 +1125,12 @@ class ProjetController extends Controller
                 'errors_debug'    => [$e->getMessage()],
             ));
         }
+    }
+
+    public function getTest()
+    {
+        $projets = DB::table('projets')->simplePaginate(2);
+        dd(Projet::paginate(10, ['*'], 'page', 1));
     }
 
 }

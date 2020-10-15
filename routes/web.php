@@ -105,3 +105,4 @@ Route::get('/contrat_execution_enable/{id}', 'ContratExecutionController@enable'
 Route::get('/finance_pdf/{id}', 'DeviseFinanceController@getpdf');
 Route::get('/estime_pdf/{id}', 'DeviseEstimeController@getpdf');
 Route::get('/contratexecution_pdf/{id}', 'ContratExecutionController@getpdf');
+Route::get('/getTest', 'ProjetController@getTest');
