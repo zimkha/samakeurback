@@ -21,6 +21,7 @@ class UserController extends Controller
         {
             return DB::transaction(function () use ($request)
             {
+                // dd($request->all());
                 $errors=null;
                 $user = new User();
                 if (!empty($request->id))
@@ -37,6 +38,10 @@ class UserController extends Controller
                     if (empty($request->password) || empty($request->confirmpassword))
                     {
                         $errors = "Veuillez remplir tous les mots de passe";
+                    }
+                    if(empty($request->nci))
+                    {
+                        $errors = "Veuillez renseigner votre numéro de carte identitite national";
                     }
 
 
@@ -59,11 +64,17 @@ class UserController extends Controller
                     {
                         $errors = "Ce numéro téléphone existe déja";
                     }
+                    if(!Outil::isUnique(['nci'], [$request->nci], $request->id, User::class))
+                    {
+                        $errors = "Ce numéro de carte d'identité existe déja";
+                    }
                 }
+               
 
 
                   $user->name               = $request->nom;
                   $user->nom                = $request->nom;
+                  $user->nci                = $request->nci;
                   $user->prenom             = $request->prenom;
                   $user->telephone          = $request->telephone;
                   $user->email              = $request->email;

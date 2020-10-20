@@ -300,7 +300,7 @@
 
                         <div class="modal-footer">
                             <button type="reset" class="btn btn-danger" data-dismiss="modal">Fermer</button>
-                            <button type="submit" class="btn btn-primary" ng-click="addElement($event,'ticket')">Enregistrer</button>
+                            <button type="submit" class="btn btn-primary" ng-click="addElement($event,'plan')">Enregistrer</button>
                         </div>
                     </form>
                 </div>
