@@ -311,7 +311,7 @@
 
 
     <div class="modal fade" id="modal_addlier_plan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog modal-md" role="document">
+        <div class="modal-dialog modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-gradient-dark text-white">
                     <h5 class="modal-title" id="exampleModalLongTitle">Lier Plan</h5>
@@ -322,13 +322,12 @@
                 <div class="modal-body m-3">
                     <form id="form_addlier_plan" class="form" enctype="multipart/form-data" accept-charset="UTF-8">
                         @csrf
-
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label for="client_lier_plan">Client</label>
-                                    <select class="form-control select2" id="client_lier_plan" name="client">
-                                        <option ng-repeat="item in users" value="@{{item.id}}">@{{item.prenom}} @{{ item.nom}} </option>
+                                    <select class="form-control select2" id="client_lier_plan" name="client"  >
+                                        <option ng-repeat="item in users" value="@{{item.id}}" ng-change="getElementsProjets(item.id)">@{{item.prenom}} @{{ item.nom}} </option>
                                     </select>
                                 </div>
                             </div>
@@ -336,7 +335,7 @@
                                 <div class="form-group">
                                     <label for="projet_lier_plan">Projets</label>
                                     <select class="form-control" id="projet_lier_plan" name="projet_id">
-                                        <option ng-repeat="item in projets" value="@{{item.id}}">@{{item.name}} </option>
+                                        <option ng-repeat="item in elementProjets" value="@{{item.id}}">@{{item.name}} </option>
                                     </select>
                                 </div>
                             </div>
@@ -955,6 +954,35 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+    <div class="modal bd-example-modal-lg  fade" id="modal_projet_valider" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true" style="background-color: rgba(43, 43, 43, .69);">
+    <div class="modal-dialog modal-dialog modal-lg" role="document"  style="max-width: 54%">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <div class="modal-title">VALIDATION PROJET</div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body m-3">
+                    <div>
+                                            <h4> @{{projet_a_Valide.title}}</h4>
+                    </div>
+                    <form id="form_modal_projet_valider" class="form" accept-charset="UTF-8" ng-submit="projet_a_Valide($event,projet_a_Valide.id)">
+                        @csrf
+                        <div class="uk-margin">
+                        </div>
+                        <div class="text-right">
+                            <div class="mt-30">
+                                <button class="btn btn-danger" type="reset" data-dismiss="modal"><span class="psuedo-text"><i class="fa fa-times"></i> Non</span> </button>
+                                <button class="btn btn-success" type="submit"> <span class="psuedo-text"><i class="fa fa-check"></i> Oui</span></button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
         </div>
     </div>
 

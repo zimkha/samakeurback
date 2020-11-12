@@ -125,7 +125,6 @@ class UserQuery extends Query
                     'deleted_at'          => empty($item->deleted_at) ? $item->deleted_at : $item->deleted_at->format(Outil::formatdate()),
 
                     'roles'               => $item->roles,
-                    'plan_chantiers'      => $item->plan_chantiers,
 
                    
                 ];

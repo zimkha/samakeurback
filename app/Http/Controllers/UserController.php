@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Mail;
 
 class UserController extends Controller
 {
@@ -74,7 +75,7 @@ class UserController extends Controller
 
                   $user->name               = $request->nom;
                   $user->nom                = $request->nom;
-                  $user->nci                = $request->nci;
+                 if($request->nci)  $user->nci                = $request->nci;
                   $user->prenom             = $request->prenom;
                   $user->telephone          = $request->telephone;
                   $user->email              = $request->email;
@@ -385,8 +386,9 @@ class UserController extends Controller
                 return response()->json(['errors' => $e->getMessage()]);
             }
     }
-    public function getMessage(Request $request)
+    public function sendMessage(Request $request)
     {
+      
         try
         {
             return DB::transaction(function() use($request){
@@ -394,11 +396,16 @@ class UserController extends Controller
                 if(empty($request->message) || empty($request->nom) || empty($request->telephone) || empty($request->objet) || empty($request->email))
                 {
                     $errors = "Veuillez precisez tous les champs du formulaire";
+                
+                }
+                if (!filter_var($request->email, FILTER_VALIDATE_EMAIL)) 
+                {
+                    $errors = "Email invalide";
                 }
                 if(!isset($errors))
                 {
-                    dd($request->all());
-                    $item = new MessageSend();
+                    
+                    $item               = new MessageSend();
                     $item->message      = $request->message;
                     $item->nom          = $request->nom;
                     $item->email        = $request->email;
@@ -408,9 +415,22 @@ class UserController extends Controller
                     $retour = array(
                         'success'          => 1,
                     );
+                    //         \Mail::send(['page' => 'mails.contact_email'],
+                    // array(
+                    //     'nom' => $request->nom,
+                    //     'email' => $request->email,
+                    //     'objet' => $request->objet,
+                    //     'telephone' => $request->telephone,
+                    //     'message' => $request->message,
+                    // ), function($message) use ($item)
+                    // {
+                    //     $message->from($item->email);
+                    //     $message->to('zimkhandiaye@gmail.com.com');
+                    // });
                     return response()->json($retour);
 
                 }
+                throw new \Exception($errors);
             });
         }
         catch(\Exception $e)
@@ -418,6 +438,50 @@ class UserController extends Controller
             return response()->json(['errors' => $e->getMessage()]);
 
         }
+    }
+    public function deleteMessage($id)
+    {
+       try
+       {
+        DB::transaction(function() use($id){
+            // Pour supprimer un message ou email
+            $errors = null;
+            $data = 1;
+            if(isset($id))
+            {
+                $item_message = MessageSend::find($id);
+                if(isset($item_message))
+                {
+                    $item_message->forceDelete();
+                    $item_message->delete();
+                    $data = 1;
+                    $retour = array(
+                        'success'          => $data,
+                    );
+                return response()->json($retour);
+                }
+                else
+                {
+                    $errors = "Impossible de trouver les données";
+                }
+            }
+            else
+            {
+                $errors = "Données manquantes";
+            }
+             if(isset($errors))
+             {
+                throw new \Exception($errors);
+             }
+        });
+       } 
+       catch(\Exception $e)
+       {
+        return response()->json(array(
+            'errors'          => config('app.debug') ? $e->getMessage() : Outil::getMsgError(),
+            'errors_debug'    => [$e->getMessage()],
+        ));
+       }
     }
 
     public function saveNci(Request $request)

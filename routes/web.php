@@ -32,7 +32,7 @@ Route::post('/resave', 'UserController@resave');
 Route::post('/statut', 'UserController@statut');
 Route::post('/active_plan', 'ProjetController@active_plan');
 Route::post('/password-create', 'UserController@resetpassword');
-Route::post('/contact-send', 'UserController@getMessage');
+Route::post('/contact-send', 'UserController@sendMessage');
 Route::post('/contrat', 'ContratController@save');
 Route::post('/lier_plan', 'ProjetController@linkPlanToProjet');
 Route::post('/inscription', 'UserController@save');
@@ -46,6 +46,7 @@ Route::get('/getResultat', 'ProjetController@getResult');
 
 // les actions de suppressions
 Route::delete('/projet/{id}', 'ProjetController@delete');
+Route::delete('/contact/{id}', 'UserController@deletemessage');
 Route::delete('/user/{id}', 'UserController@delete');
 Route::delete('/plan/{id}', 'PlanController@delete');
 Route::delete('/remarque/{id}', 'RemarqueController@delete');
@@ -105,4 +106,4 @@ Route::get('/contrat_execution_enable/{id}', 'ContratExecutionController@enable'
 Route::get('/finance_pdf/{id}', 'DeviseFinanceController@getpdf');
 Route::get('/estime_pdf/{id}', 'DeviseEstimeController@getpdf');
 Route::get('/contratexecution_pdf/{id}', 'ContratExecutionController@getpdf');
-Route::get('/getTest', 'ProjetController@getTest');
+Route::get('/getelementsByUser/{id}', 'ProjetController@getElementsByUser');

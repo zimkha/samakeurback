@@ -87,19 +87,27 @@
                                  <td>@{{item.user.telephone}}</td>
 
                                 <td class="text-center">
-                                    <a  class="btn btn-sm btn-success btn-circle text-white" ng-if="item.etat == 0"  ng-click="showModalUpdate('projet',item.id)">
+                                <nav class="menu-leftToRight uk-flex uk-position-center ">
+                                    <input type="checkbox" href="#" class="menu-open" name="menu-open"  id="menu-open_i_@{{item.id}}">
+                                    <label class="menu-open-button back-dark-50" for="menu-open_i_@{{item.id}}">
+                                        <span class="hamburger bg-template-1 hamburger-1"></span>
+                                        <span class="hamburger bg-template-1 hamburger-2"></span>
+                                        <span class="hamburger bg-template-1 hamburger-3"></span>
+                                    </label>
+                                    <a  class=" menu-item uk-icon-button  border-0x btn btn-sm btn-success btn-circle text-white" ng-if="item.etat == 0"  ng-click="showModalUpdate('projet',item.id)">
                                         <i class="fa fa-check" title="Valider"></i>
-</a>
-                                    <a href="#!/detail-projet/@{{ item.id }} " class="btn btn-sm btn-primary btn-circle">
+                                    </a>
+                                    <a href="#!/detail-projet/@{{ item.id }} " class="menu-item uk-icon-button text-white  border-0 btn btn-sm btn-primary btn-circle">
                                         <i class="fas fa-info"></i>
                                     </a>
 
-                                    <button ng-click="deleteElement('projet',item.id)" class="btn btn-sm btn-danger btn-circle">
+                                    <button ng-click="deleteElement('projet',item.id)" class="menu-item btn btn-sm btn-danger btn-circle">
                                         <i class="fas fa-trash"></i>
                                     </button>
-                                   {{-- <a  class="btn btn-sm btn-warning btn-circle"  href="#!/detail-projet/@{{ item.id }} ">
-                                        <i class="fa fa-file-pdf" title="generer le pdf"></i>
-</a>--}}
+                                    <button title="valider le paiement"  ng-click="showModalValidated($event,item.id, 'êtes-vous sûr de vouloir confirmé le paiement du projet ?')" class="menu-item btn btn-sm btn-warning btn-circle">
+                                        <i class="fas fa-server"></i>
+                                    </button>
+                       </nav>
                                 </td>
                             </tr>
 

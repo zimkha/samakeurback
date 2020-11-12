@@ -52,23 +52,35 @@
 
                 <div class="mt-3">
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered table-hover table-sm"  id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr align="center">
                                     <th>Nom</th>
                                     <th>Objet</th>
                                     <th>Email</th>
-                                    <th>Téléphone</th>
-                                    <th>Message</th>
+                                    <th>Action</th>
+                                    <!-- <th>Téléphone</th>
+                                    <th>Message</th> -->
                                 </tr>
                             </thead>
                             <tbody>
                             <tr align="center" ng-repeat="item in messagesends">
-                                <td>@{{ item.nom }}/td>
+
+                                <td>@{{ item.nom }}</td>
                                 <td>@{{ item.objet }}</td>
                                 <td>@{{ item.email }}</td>
-                                <td>@{{ item.telephone }}</td>
-                                <td>@{{ item.message }}</td>
+
+                                <td class="text-center">
+                                    <a href="#!/detail-contact/@{{ item.id }}" title="detail" class="btn btn-sm btn-primary btn-circle">
+                                        <i class="fas fa-info"></i>
+                                    </a>
+
+
+                                    <button  title="Supprimer" ng-click="deleteMessage(item.id)" class="btn btn-danger btn-sm btn-circle">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+
+                                </td>
                             </tr>
 
                             </tbody>
@@ -79,10 +91,10 @@
 
 
                 <!-- PAGINATION -->
-               {{-- <div class="row mt-10">
+               <div class="row mt-10">
                     <div class="col-md-4">
                         <span>Affichage par</span>
-                        <select class="form-control-sm" ng-model="paginationprojet.entryLimit" ng-change="pageChanged('projet')">
+                        <select class="form-control-sm" ng-model="paginationprojet.entryLimit" ng-change="pageChanged('messagesend')">
                             <option value="10" selected>10</option>
                             <option value="25">25</option>
                             <option value="50">50</option>
@@ -91,10 +103,10 @@
                     </div>
                     <div class="col-md-8 float-right">
                         <nav aria-label="Page navigation">
-                            <ul class="uk-pagination float-right" uib-pagination total-items="paginationprojet.totalItems" ng-model="paginationprojet.currentPage" max-size="paginationprojet.maxSize" items-per-page="paginationprojet.entryLimit" ng-change="pageChanged('projet')" previous-text="‹" next-text="›" first-text="«" last-text="»" boundary-link-numbers="true" rotate="false"></ul>
+                            <ul class="uk-pagination float-right" uib-pagination total-items="paginationmessagesend.totalItems" ng-model="paginationmessagesend.currentPage" max-size="paginationmessagesend.maxSize" items-per-page="paginationmessagesend.entryLimit" ng-change="pageChanged('messagesend')" previous-text="‹" next-text="›" first-text="«" last-text="»" boundary-link-numbers="true" rotate="false"></ul>
                         </nav>
                     </div>
-                </div>--}}
+                </div>
                 <!-- /PAGINATION -->
             </div>
         </div>
@@ -104,3 +116,10 @@
     <br>
 
 </div>
+<script type="text/javascript">
+$(document).ready(function($) {
+    $(".table-row").click(function() {
+        window.document.location = $(this).data("href");
+    });
+});
+</script>

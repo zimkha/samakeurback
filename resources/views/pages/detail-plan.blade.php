@@ -128,7 +128,7 @@
                                         </thead>
 
                                         <tbody>
-                                        <tr align="center" ng-repeat="item in projets" ng-if="item.active==1 && item.etat==1">
+                                        <tr align="center" ng-repeat="item in planview.plan_projets" ng-if="item.active==1 && item.etat==1">
                                             <td>@{{ item.id }}</td>
                                             <td>@{{ item.created_at_fr }}</td>
                                             <td>@{{ item.user.prenom }} -- @{{ item.nom }}</td>
@@ -164,7 +164,7 @@
                                         </thead>
 
                                         <tbody>
-                                        <tr align="center" ng-repeat="item in projets" ng-if="item.etat==2">
+                                        <tr align="center" ng-repeat="item in planview.plan_projetss" ng-if="item.etat==2">
                                             <td>@{{ item.name }}</td>
                                             <td>@{{ item.created_at_fr }}</td>
                                             <td>@{{ item.user.prenom }}  @{{ item.user.nom }}</td>

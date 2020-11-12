@@ -13,7 +13,7 @@
 
     <!-- Custom styles for this template-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/sb-admin-2.min.css') }}">
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vertical-menu.css') }}">
     <!-- BEGIN Page Level CSS-->
     {{--<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vertical-menu.css') }}">--}}
 
@@ -21,7 +21,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/iziToast/dist/css/iziToast.min.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 
-{{--<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/animate.css') }}">--}}
+
 
 
    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/pages/project.css') }}">--}}

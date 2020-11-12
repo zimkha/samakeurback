@@ -6,7 +6,9 @@
         <div class="col-lg-12">
 
             Detail Projet: code-projet: <strong><u><span class="badge badge-info">@{{ projetview.name }}</span></u></strong>
+           
             <div class="card">
+           
                 <div class="card-body">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
@@ -18,8 +20,14 @@
                         <li class="nav-item">
                             <a class="nav-link" id="contact-tab" data-toggle="tab" target="_self" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Remarques Associés</a>
                         </li>
+                        <li>
+                        <div class="float-right pt-0 mx-1 text-right">
+                        <button class="btn btn-primary btn-circle mb-2" ng-click="activerProjet(projetview.id)" title="Valider le projet après paiment"><i class="fa fa-server"></i></button>
+                    </div>
+                    </li>
                     </ul>
                 </div>
+
 
 
                 <div class="tab-content" id="myTabContent">

@@ -3,33 +3,34 @@
 namespace App\GraphQL\Type;
 
 use GraphQL;
-
+use App\Contact;
 use Carbon\Carbon;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Type as GraphQLType;
-
-class ContratExecutionType extends GraphQLType
+class ContactType extends GraphQLType
 {
     protected $attributes = [
-        'name' => 'Contratexecution',
+        'name' => 'Contact',
     ];
 
     public function fields(): array
     {
         return [
 
-            'id'                     => [ 'type' => Type::id()],
-            'chantier_id'            => [ 'type' => Type::int()],
-            'etat'                   => [ 'type' => Type::int()],
-            'fichier'                => [ 'type' => Type::string(),],
-            'chantier'               => [ 'type' => GraphQL::type('Chantier')],
+            'id'                     => ['type' => Type::id()],
+            'email'                 => [ 'type' => Type::string()],
             'created_at'             => [ 'type' => Type::string()],
             'created_at_fr'          => [ 'type' => Type::string()],
             'updated_at'             => [ 'type' => Type::string()],
             'updated_at_fr'          => [ 'type' => Type::string()],
+            'deleted_at'             => [ 'type' => Type::string()],
 
+
+                     
         ];
     }
+
+  
     protected function resolveCreatedAtField($root, $args)
     {
         if (!isset($root['created_at']))
@@ -42,6 +43,7 @@ class ContratExecutionType extends GraphQLType
         }
         return $date_at;
     }
+   
     protected function resolveUpdatedAtField($root, $args)
     {
         if (!isset($root['updated_at']))
@@ -67,5 +69,5 @@ class ContratExecutionType extends GraphQLType
         return Carbon::parse($created_at)->format('d/m/Y H:i');
     }
 
-
+  
 }

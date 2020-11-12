@@ -504,17 +504,16 @@
           15 => 'App\\GraphQL\\Query\\JoinedQuery',
           16 => 'App\\GraphQL\\Query\\PositionQuery',
           17 => 'App\\GraphQL\\Query\\MessageSendQuery',
-          18 => 'App\\GraphQL\\Query\\PostQuery',
-          19 => 'App\\GraphQL\\Query\\PlanChantierQuery',
-          20 => 'App\\GraphQL\\Query\\PlanChantierPaginatedQuery',
-          21 => 'App\\GraphQL\\Query\\ChantierQuery',
-          22 => 'App\\GraphQL\\Query\\ChantierPaginatedQuery',
-          23 => 'App\\GraphQL\\Query\\ContratExecutionQuery',
-          24 => 'App\\GraphQL\\Query\\DeviseEstimeQuery',
-          25 => 'App\\GraphQL\\Query\\DeviseFinanceQuery',
-          26 => 'App\\GraphQL\\Query\\PayedQuery',
-          27 => 'App\\GraphQL\\Query\\PlanningFondQuery',
-          28 => 'App\\GraphQL\\Query\\PlanningPrevisionnelQuery',
+          18 => 'App\\GraphQL\\Query\\MessageSendPaginatedQuery',
+          19 => 'App\\GraphQL\\Query\\PostQuery',
+          20 => 'App\\GraphQL\\Query\\ChantierQuery',
+          21 => 'App\\GraphQL\\Query\\ChantierPaginatedQuery',
+          22 => 'App\\GraphQL\\Query\\ContratExecutionQuery',
+          23 => 'App\\GraphQL\\Query\\DeviseEstimeQuery',
+          24 => 'App\\GraphQL\\Query\\DeviseFinanceQuery',
+          25 => 'App\\GraphQL\\Query\\PayedQuery',
+          26 => 'App\\GraphQL\\Query\\PlanningFondQuery',
+          27 => 'App\\GraphQL\\Query\\PlanningPrevisionnelQuery',
         ),
         'mutation' => 
         array (
@@ -550,17 +549,16 @@
       15 => 'App\\GraphQL\\Type\\JoinedType',
       16 => 'App\\GraphQL\\Type\\PositionType',
       17 => 'App\\GraphQL\\Type\\MessageSendType',
-      18 => 'App\\GraphQL\\Type\\PostType',
-      19 => 'App\\GraphQL\\Type\\PlanChantierType',
-      20 => 'App\\GraphQL\\Type\\PlanChantierPaginatedtype',
-      21 => 'App\\GraphQL\\Type\\ChantierType',
-      22 => 'App\\GraphQL\\Type\\ChantierPaginatedType',
-      23 => 'App\\GraphQL\\Type\\ContratExecutiontype',
-      24 => 'App\\GraphQL\\Type\\DeviseEstimeType',
-      25 => 'App\\GraphQL\\Type\\DeviseFinanceType',
-      26 => 'App\\GraphQL\\Type\\PayedType',
-      27 => 'App\\GraphQL\\Type\\PlanningFondType',
-      28 => 'App\\GraphQL\\Type\\PlanningPrevisionnelType',
+      18 => 'App\\GraphQL\\Type\\MessageSendPaginatedType',
+      19 => 'App\\GraphQL\\Type\\PostType',
+      20 => 'App\\GraphQL\\Type\\ChantierType',
+      21 => 'App\\GraphQL\\Type\\ChantierPaginatedType',
+      22 => 'App\\GraphQL\\Type\\ContratExecutiontype',
+      23 => 'App\\GraphQL\\Type\\DeviseEstimeType',
+      24 => 'App\\GraphQL\\Type\\DeviseFinanceType',
+      25 => 'App\\GraphQL\\Type\\PayedType',
+      26 => 'App\\GraphQL\\Type\\PlanningFondType',
+      27 => 'App\\GraphQL\\Type\\PlanningPrevisionnelType',
     ),
     'lazyload_types' => false,
     'error_formatter' => 
@@ -697,11 +695,11 @@
       'smtp' => 
       array (
         'transport' => 'smtp',
-        'host' => 'smtp.gmail.com',
-        'port' => '587',
+        'host' => 'mail.samakeur.sn',
+        'port' => '995',
         'encryption' => 'tls',
-        'username' => 'zimkhandiaye@gmail.com',
-        'password' => 'lilakamara',
+        'username' => 'admin@samakeur.sn',
+        'password' => 'Samakeursn',
         'timeout' => NULL,
       ),
       'ses' => 
@@ -731,10 +729,19 @@
         'transport' => 'array',
       ),
     ),
+    'stream' => 
+    array (
+      'ssl' => 
+      array (
+        'allow_self_signed' => true,
+        'verify_peer' => false,
+        'verify_peer_name' => false,
+      ),
+    ),
     'from' => 
     array (
-      'address' => 'zimkhandiaye@gmail.com',
-      'name' => 'Example',
+      'address' => 'admin@samakeur.sn',
+      'name' => 'SAMAKEUR',
     ),
     'markdown' => 
     array (

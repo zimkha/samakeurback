@@ -604,7 +604,6 @@ class ProjetController extends Controller
                     $errors = "Veuillez renseigner un montant valide";
                     throw new \Exception($errors);
 
-
                 }
                 $id = (int)$request->projet;
                 $item = Projet::find($id);
@@ -1131,6 +1130,17 @@ class ProjetController extends Controller
     {
         $projets = DB::table('projets')->simplePaginate(2);
         dd(Projet::paginate(10, ['*'], 'page', 1));
+    }
+
+    public function getElementsByUser($id)
+    {
+    
+        return response()->json(
+           array(
+               "success" => true,
+               "projets" => Projet::where('user_id', $id)->get()  
+           )
+        );
     }
 
 }

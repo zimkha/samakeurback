@@ -108,6 +108,21 @@ app.factory('Init',function ($http, $q)
                 });
                 return deferred.promise;
             },
+            validateProjet:function(idPr)
+            {
+                var deferred=$q.defer();
+                $http({
+                    method: 'GET',
+                    url: BASE_URL + 'payeprojet/' + idPr
+                }).then(function successCallback(response) {
+                    factory.data=response.data;
+                    deferred.resolve(factory.data);
+                }, function errorCallback(error) {
+                    console.log('erreur serveur', error);
+                    deferred.reject(msg_erreur);
+                });
+                return deferred.promise;
+            },
             getElementPaginated:function (element,listeattributs)
             {
                 var deferred=$q.defer();
@@ -440,6 +455,9 @@ app.config(function($routeProvider) {
         .when("/contact", {
             templateUrl : "page/contact",
         })
+        .when("/detail-contact/:idtemId", {
+            templateUrl : "page/detail-contact",
+        })
         .when("/pub", {
             templateUrl : "page/pub",
         })
@@ -606,6 +624,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
         entryLimit: 10,
         totalItems: 0
     };
+
     $scope.paginationdepense = {
         currentPage: 1,
         maxSize: 10,
@@ -627,6 +646,13 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
 
     $scope.paginationuser = {
 
+        currentPage: 1,
+        maxSize: 10,
+        entryLimit: 10,
+        totalItems: 0
+    };
+
+    $scope.paginationmessagesend = {
         currentPage: 1,
         maxSize: 10,
         entryLimit: 10,
@@ -831,7 +857,7 @@ $scope.getResultat = function()
         });
 
     };
-    $scope.dataDashboard = []; 
+    $scope.dataDashboard = [];
 $scope.getAllDashboard = function()
 {
     $.ajax({
@@ -888,6 +914,35 @@ $scope.getAllDashboard = function()
                 // blockUI_stop_all('#section_listeclients');
                 toastr.error(msg);
             });
+        }
+        else if(currentpage.indexOf('messagesends')!==-1)
+        {
+
+            rewriteelement = 'messagesendspaginated(page:'+ $scope.paginationmessagesend.currentPage +',count:'+ $scope.paginationmessagesend.entryLimit
+
+                + ($('#searchtexte_client').val() ? (',' + $('#searchoption_client').val() + ':"' + $('#searchtexte_client').val() + '"') : "" )
+                + ($('#typeclient_listclient').val() ? ',type_client_id:' + $('#typeclient_listclient').val() : "" )
+                + ($('#zone_listclient').val() ? ',zone_livraison_id:' + $('#zone_listclient').val() : "" )
+                +')';
+
+                Init.getElementPaginated(rewriteelement, listofrequests_assoc["messagesends"]).then(function (data)
+                {
+                    // blockUI_stop_all('#section_listeclients');
+                    console.log(data);
+                    // pagination controls
+                    $scope.paginationmessagesend = {
+                        currentPage: data.metadata.current_page,
+                        maxSize: 10,
+                        entryLimit: $scope.paginationmessagesend.entryLimit,
+                        totalItems: data.metadata.total
+                    };
+
+                    $scope.messagesends = data.data;
+                },function (msg)
+                {
+
+                    toastr.error(msg);
+                });
         }
         else if ( currentpage.indexOf('client')!==-1 )
         {
@@ -1032,16 +1087,6 @@ $scope.getAllDashboard = function()
                     {
                         $scope.OneBuffetAlReadySelected = false;
                         $scope.consommation_buffet_id = consommation_id;
-                        /*$("[id^=consommation_menu]").each(function (keyUn,valueUn)
-                        {
-                            if(consommation_id!=Number($(this).attr('data-consommation-id')))
-                            {
-                                console.log('checked', $(this).prop('checked'));
-                                $(this).prop('checked', false);
-                                console.log('checked', $(this).prop('checked'));
-
-                            }
-                        })*/;
                         $scope.menu_consommations.push(consommation_id);
                     }
                 });
@@ -1056,7 +1101,24 @@ $scope.getAllDashboard = function()
         console.log('arrive menu', $scope.menu_consommations);
     };
 
+   $scope.elementsProjets = [];
 
+   $scope.elementProjets = [];
+    $scope.getElementsProjets = function(idUser)
+    {
+        console.log("get eleme")
+        $.ajax({
+            url: BASE_URL+ 'getelementsByUser/' + idUser,
+            method: "GET",
+            success: function(data)
+            {
+               $scope.elementProjets = data;
+               console.log("Les elements recuperes",$scope.elementProjets)
+            }, error: function (data) {
+                console.log(data)
+            }
+          });
+    }
 
     // Permet d'ajouter une permission à la liste des permissions d'un role
     $scope.role_permissions = [];
@@ -1137,6 +1199,7 @@ $scope.getAllDashboard = function()
         $scope.pageCurrent = null;
         $scope.clientview = null;
         $scope.userview = null;
+      $scope.messagesendview = null;
 
 
         // for pagination
@@ -1195,7 +1258,7 @@ $scope.getAllDashboard = function()
                        Init.getStatElement('plan', idElmtplan);
                    },1000);*/
 
-                   $scope.getelements('users');
+
                    $scope.pageChanged('projet');
 
                    var req = "plans";
@@ -1204,6 +1267,7 @@ $scope.getAllDashboard = function()
                    Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
                    {
                        $scope.planview = data[0];
+                      $scope.getelements('users');
                        $scope.pageChanged('projet');
                        $scope.getelements('joineds');
 
@@ -1224,7 +1288,26 @@ $scope.getAllDashboard = function()
          }
          else if(angular.lowercase(current.templateUrl).indexOf('contact')!==-1)
          {
-             $scope.getelements('messagesends');
+           //console.log("angular je suis la ",(angular.lowercase(current.templateUrl)));
+           $scope.messagesendview = null;
+           if(current.params.itemId)
+           {
+               var req = "messagesends";
+               $scope.messagesendview = {};
+               rewriteReq = req + "(id:" + current.params.itemId + ")";
+               Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
+               {
+                   $scope.messagesendview = data[0];
+                   console.log("$scope.messagesendview 1 =>",$scope.messagesendview)
+               },function (msg)
+               {
+                   toastr.error(msg);
+               });
+           }
+           else {
+              $scope.pageChanged('messagesends');
+           }
+
          }
          else if(angular.lowercase(current.templateUrl).indexOf('pub')!==-1)
          {
@@ -1284,10 +1367,10 @@ $scope.getAllDashboard = function()
                 deferred.reject(msg_erreur);
             });
             // console.log(, mydata);
-           
+
         }
-           
-         
+
+
 
          else if(angular.lowercase(current.templateUrl).indexOf('client')!==-1)
          {
@@ -1357,29 +1440,54 @@ $scope.getAllDashboard = function()
         //     }
          //}
     });
+    $scope.deleteMessage = function(itemId)
+    {
+
+        $.ajax({
+            url: BASE_URL + 'contact/' + itemId ,
+            method : 'DELETE',
+            success: function(data)
+            {
+
+                iziToast.success({
+                    title: "Element supprimer",
+                    message: 'succés',
+                    position: 'topRight'
+                });
+
+                 $scope.getelements('messagesends');
+            }, error: function (data) {
+                iziToast.error({
+                    title: "",
+                    message: '<span class="h4">' + data.errors_debug + '</span>',
+                    position: 'topRight'
+                });
+            }
+          });
+    }
 
   $scope.deteleLiaison = function(plan_id, projet_id)
   {
     console.log("je suis la mes gars", plan_id, projet_id);
     $.ajax({
         url: BASE_URL + 'rompre_liaison/' + projet_id + '/' + plan_id,
-        method : 'GET', 
+        method : 'GET',
         success: function(data)
         {
-           
+
             iziToast.success({
                 title: "Liaison supprimer",
                 message: 'succés',
                 position: 'topRight'
             });
-            
+
              $scope.pageChanged('projet');
         }, error: function (data) {
             iziToast.error({
                 title: "",
                 message: '<span class="h4">' + data.errors_debug + '</span>',
                 position: 'topRight'
-            });  
+            });
         }
       });
 
@@ -2011,7 +2119,7 @@ $scope.getAllDashboard = function()
 
                         getObj = data['data'][type + 's'][0];
                     }
-                    
+
 
 
                     if (type.indexOf('typeclient')!==-1)
@@ -2247,7 +2355,7 @@ $scope.getAllDashboard = function()
 $scope.index_plan = 0;
 $scope.index_niveau = "";
     $scope.actionSurPlan = function (action, selectedItem = null) {
-        
+
         if (action == 'add')
         {
             $scope.index_plan = $scope.index_plan + 1;
@@ -2314,7 +2422,7 @@ $scope.index_niveau = "";
                 });
                 return false;
             }
-              
+
                if($scope.produitsInTable.length > 1)
                {
                 $scope.index_niveau = "R +"+$scope.index_plan
@@ -2826,9 +2934,46 @@ $scope.index_niveau = "";
         window.location.reload();
     };
 
+
     $scope.idProjetUpdate = null;
 
     $scope.assistedListe = false;
+    $scope.projet_a_Valide = {'id':'', 'title':''};
+    $scope.showModalValidated = function(event, idPrj,title = null)
+    {
+        $scope.projet_a_Valide.id = idPrj;
+        $scope.projet_a_Valide.title = title;
+        $scope.emptyForm('projte_a_valider');
+        $("#modal_projet_valider").modal('show');
+    };
+    $scope.projet_a_Valide = function (e, idItem)
+    {
+        var form = $('#modal_projet_valider');
+        var send_data = {'id':idItem};
+        console.log("Ok les donnees" , send_data);
+
+                $http({
+                    method: 'GET',
+                    url: BASE_URL + 'payeprojet/' + idItem,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+
+                }).then(function successCallback(response) {
+                    iziToast.success({
+                        title: ('PROJET VALIDER'),
+                        message: "succès",
+                        position: 'topRight'
+                    });
+                    $("#modal_projet_valider").modal('hide');
+                }, function errorCallback(error) {
+                    iziToast.error({
+                        title: "",
+                        message: '<span class="h4">' + error + '</span>',
+                        position: 'topRight'
+                    });
+                });
+    }
     $scope.showModalUpdate=function (type,itemId, forceChangeForm=false)
     {
         reqwrite = type + "s" + "(id:"+ itemId + ")";
@@ -2842,10 +2987,12 @@ $scope.index_niveau = "";
 
             // console.log('item ', type, item);
 
-
+            $scope.testModal = function(id)
+            {
+                console.log("id : ", id);
+            }
             $scope.updatetype = type;
             $scope.updateelement = item;
-
 
             $scope.showModalAdd(type, true);
 
@@ -3548,6 +3695,18 @@ $scope.index_niveau = "";
                                     }
                                 });
                             }
+                            else if (type.indexOf('contact')!==-1)
+                            {
+                                $.each($scope.messagesends, function (keyItem, oneItem)
+                                {
+                                    if (oneItem.id===itemId)
+                                    {
+                                        $scope.messagesends.splice(keyItem, 1);
+                                        return false;
+                                    }
+                                });
+                                // $scope.getelements("messagesends");
+                            }
                             else if (type.indexOf('user')!==-1)
                             {
                                 $.each($scope.users, function (keyItem, oneItem)
@@ -3609,6 +3768,7 @@ $scope.index_niveau = "";
 
 
 // Vérification de l'extension des elements uploadés
+
 function isValide(fichier)
 {
     var Allowedextensionsimg=new Array("jpg","JPG","jpeg","JPEG","gif","GIF","png","PNG");
@@ -3658,5 +3818,3 @@ function reCompile(element)
     });
     console.log('arrive dans la liaison');
 }
-
-
