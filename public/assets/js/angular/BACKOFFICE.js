@@ -1,10 +1,9 @@
 var app=angular.module('BackEnd',[ 'ngRoute' , 'ngSanitize' , 'ngLoadScript', 'ui.bootstrap' , 'angular.filter']);
 
-// var BASE_URL = 'http://samakeur.sn/back/';
-// en ligne
-// var BASE_URL='//'+location.host+'/admin/';
-var BASE_URL = 'http://localhost/samakeurback/public/';
+//var BASE_URL = 'http://samakeur.sn/back/';
 
+// var BASE_URL='//'+location.host+'/admin/';
+var BASE_URL = 'http://localhost/samakeurback/public/'
 var imgupload = BASE_URL + '/assets/images/upload.jpg';
 var msg_erreur = 'Veuillez contacter le support technique';
 
@@ -42,23 +41,23 @@ app.filter('changeDatePart', [
         };
     }]);
 
-$("#formulaire").submit(function(e){
-   var form = $(this);
-   var url = form.attr('action');
-    $.ajax({
-        url: BASE_URL+ 'medoc/test/',
-        method: "POST",
-        data:{
-        date_donne:date_donne,
-        },
-        success: function(data)
-        {
-            console.log(data);
-        }, error: function (data ) {
-            console.log(data)
-        }
-    });
-});
+// $("#formulaire").submit(function(e){
+//   var form = $(this);
+//   var url = form.attr('action');
+//     $.ajax({
+//         url: BASE_URL+ 'medoc/test/',
+//         method: "POST",
+//         data:{
+//         date_donne:date_donne,
+//         },
+//         success: function(data)
+//         {
+//             console.log(data);
+//         }, error: function (data ) {
+//             console.log(data)
+//         }
+//     });
+// });
 app.factory('Init',function ($http, $q)
 {
     var factory=
@@ -99,21 +98,6 @@ app.factory('Init',function ($http, $q)
                 $http({
                     method: 'GET',
                     url: BASE_URL + 'getResultat'
-                }).then(function successCallback(response) {
-                    factory.data=response.data;
-                    deferred.resolve(factory.data);
-                }, function errorCallback(error) {
-                    console.log('erreur serveur', error);
-                    deferred.reject(msg_erreur);
-                });
-                return deferred.promise;
-            },
-            validateProjet:function(idPr)
-            {
-                var deferred=$q.defer();
-                $http({
-                    method: 'GET',
-                    url: BASE_URL + 'payeprojet/' + idPr
                 }).then(function successCallback(response) {
                     factory.data=response.data;
                     deferred.resolve(factory.data);
@@ -455,9 +439,6 @@ app.config(function($routeProvider) {
         .when("/contact", {
             templateUrl : "page/contact",
         })
-        .when("/detail-contact/:idtemId", {
-            templateUrl : "page/detail-contact",
-        })
         .when("/pub", {
             templateUrl : "page/pub",
         })
@@ -496,7 +477,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
             "niveauprojets"                 :  ["id,sdb,piece,bureau,toillette,chambre,salon,cuisine,niveau_name",""],
 
             "projets"                       :  [
-                "id,adresse_terrain,name,etat,active,a_valider,psc,grg,text_projet,created_at_fr,created_at,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_sdb,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adresse_complet,code_postal}",
+                "id,plan_active,adresse_terrain,name,etat,active,a_valider,text_projet,created_at_fr,created_at,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_sdb,nb_cuisine,nb_toillette,nb_etage,user_id,user{name,email,nom,prenom,telephone,adresse_complet,code_postal}",
                 ",niveau_projets{id,piece,bureau,toillette,chambre,sdb,niveau_name,salon,cuisine},positions{id,position,nom_position,projet_id},remarques{id,demande_text,projet_id},plan_projets{id,plan_id,plan{id,code,created_at_fr,superficie,longeur,largeur,nb_pieces,nb_salon,nb_chambre,nb_cuisine,nb_toillette,nb_etage,unite_mesure_id,unite_mesure{id,name},fichier,niveau_plans{id,piece,niveau,bureau,toillette,chambre,salon,cuisine},joineds{id,fichier,description}}}"
             ],
 
@@ -526,9 +507,7 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
             "messagesends"  : ["id,objet,message,telephone,email,nom",""],
 
 
-            "posts"  : ["id,description,fichier",""],
-
-            "chantiers" : ["id,fichier,created_at_fr,user{id,nom,prenom,email},devisefinance{id}",""]
+            "posts"  : ["id,description,fichier",""]
 
 
         };
@@ -624,7 +603,6 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
         entryLimit: 10,
         totalItems: 0
     };
-
     $scope.paginationdepense = {
         currentPage: 1,
         maxSize: 10,
@@ -646,13 +624,6 @@ app.controller('BackEndCtl',function (Init,$location,$scope,$filter, $log,$q,$ro
 
     $scope.paginationuser = {
 
-        currentPage: 1,
-        maxSize: 10,
-        entryLimit: 10,
-        totalItems: 0
-    };
-
-    $scope.paginationmessagesend = {
         currentPage: 1,
         maxSize: 10,
         entryLimit: 10,
@@ -915,14 +886,14 @@ $scope.getAllDashboard = function()
                 toastr.error(msg);
             });
         }
-        else if(currentpage.indexOf('messagesends')!==-1)
+          else if(currentpage.indexOf('messagesends')!==-1)
         {
 
             rewriteelement = 'messagesendspaginated(page:'+ $scope.paginationmessagesend.currentPage +',count:'+ $scope.paginationmessagesend.entryLimit
 
-                + ($('#searchtexte_client').val() ? (',' + $('#searchoption_client').val() + ':"' + $('#searchtexte_client').val() + '"') : "" )
-                + ($('#typeclient_listclient').val() ? ',type_client_id:' + $('#typeclient_listclient').val() : "" )
-                + ($('#zone_listclient').val() ? ',zone_livraison_id:' + $('#zone_listclient').val() : "" )
+
+                 + ($scope.messagesendview ? ',messagesend_id:' + $scope.messagesendview.id : "" )
+
                 +')';
 
                 Init.getElementPaginated(rewriteelement, listofrequests_assoc["messagesends"]).then(function (data)
@@ -974,12 +945,11 @@ $scope.getAllDashboard = function()
         }
         else if ( currentpage.indexOf('projet')!==-1 )
         {
-            console.log("icic search $('#searchoption_projet').val() => ", $('#searchoption_projet').val())
+            console.log("icic search $('#searchoption_projet').val() =>$scope.client_id ",$scope.client_id, $('#searchoption_projet').val())
             rewriteelement = 'projetspaginated(page:'+ $scope.paginationprojet.currentPage +',count:'+ $scope.paginationprojet.entryLimit
             + ($scope.projetview ? ',projet_id:' + $scope.projetview.id : "" )
-          //  + ($scope.planview ? ',plan_id:' + $scope.planview.id : "" )
+            + ($scope.client_id != null ? ',user_id:' + $scope.client_id : "")
             + ($scope.clientview ? ',user_id:' + $scope.clientview.id : "" )
-           // + ($scope.client_id != 0 ? (',' + 'user_id:' + $scope.client_id + '') : "")
             + ($scope.radioBtnComposition ? ',etat:' + $scope.radioBtnComposition : "")
             + ($('#searchtexte_projet').val() ? (',' + $('#searchoption_projet').val() + ':"' + $('#searchtexte_projet').val() + '"') : "" )
             + ($('#projet_user').val() ? ',user_id:' + $('#projet_user').val() : "" )
@@ -989,6 +959,7 @@ $scope.getAllDashboard = function()
                 +')';
             Init.getElementPaginated(rewriteelement, listofrequests_assoc["projets"][0]).then(function (data)
             {
+
                 $scope.paginationprojet = {
                     currentPage: data.metadata.current_page,
                     maxSize: 10,
@@ -997,6 +968,8 @@ $scope.getAllDashboard = function()
                 };
 
                 $scope.projets = data.data;
+
+                 console.log("$scope.client_id ",data.data)
             },function (msg)
             {
 
@@ -1061,6 +1034,25 @@ $scope.getAllDashboard = function()
         }
     };
 
+    $scope.client_id = null;
+    $scope.choisirMode = function (type) {
+        $scope.pageChanged('projet')
+        if (type == "client")
+        {
+            $('#projet_lier_plan').attr("disabled", false);
+            $scope.client_id = parseInt($('#client_lier_plan').val()) ;
+
+        setTimeout(function () {
+
+            $scope.pageChanged('projet')
+
+            console.log("ici pour voir  client id", $scope.client_id)
+        },700);
+
+
+        }
+    }
+
 
     $scope.OneBuffetAlReadySelected = true;
     // Permet d'ajouter une reservation à la liste des reservation d'une facture
@@ -1087,6 +1079,16 @@ $scope.getAllDashboard = function()
                     {
                         $scope.OneBuffetAlReadySelected = false;
                         $scope.consommation_buffet_id = consommation_id;
+                        /*$("[id^=consommation_menu]").each(function (keyUn,valueUn)
+                        {
+                            if(consommation_id!=Number($(this).attr('data-consommation-id')))
+                            {
+                                console.log('checked', $(this).prop('checked'));
+                                $(this).prop('checked', false);
+                                console.log('checked', $(this).prop('checked'));
+
+                            }
+                        })*/;
                         $scope.menu_consommations.push(consommation_id);
                     }
                 });
@@ -1101,24 +1103,7 @@ $scope.getAllDashboard = function()
         console.log('arrive menu', $scope.menu_consommations);
     };
 
-   $scope.elementsProjets = [];
 
-   $scope.elementProjets = [];
-    $scope.getElementsProjets = function(idUser)
-    {
-        console.log("get eleme")
-        $.ajax({
-            url: BASE_URL+ 'getelementsByUser/' + idUser,
-            method: "GET",
-            success: function(data)
-            {
-               $scope.elementProjets = data;
-               console.log("Les elements recuperes",$scope.elementProjets)
-            }, error: function (data) {
-                console.log(data)
-            }
-          });
-    }
 
     // Permet d'ajouter une permission à la liste des permissions d'un role
     $scope.role_permissions = [];
@@ -1191,6 +1176,7 @@ $scope.getAllDashboard = function()
         $scope.currenttemplateurl = current.templateUrl;
         /******* Réintialisation de certaines valeurs *******/
         $scope.planview = null;
+        $scope.messagesendview = null;
         $scope.projetview = null;
 
 
@@ -1199,7 +1185,6 @@ $scope.getAllDashboard = function()
         $scope.pageCurrent = null;
         $scope.clientview = null;
         $scope.userview = null;
-      $scope.messagesendview = null;
 
 
         // for pagination
@@ -1238,7 +1223,12 @@ $scope.getAllDashboard = function()
             totalItems: 0
         };
 
-
+          $scope.paginationmessagesend = {
+            currentPage: 1,
+            maxSize: 10,
+            entryLimit: 10,
+            totalItems: 0
+        };
         $scope.linknav = $location.path();
         $scope.getelements("roles");
         $scope.getelements("permissions");
@@ -1258,7 +1248,7 @@ $scope.getAllDashboard = function()
                        Init.getStatElement('plan', idElmtplan);
                    },1000);*/
 
-
+                   $scope.getelements('users');
                    $scope.pageChanged('projet');
 
                    var req = "plans";
@@ -1267,7 +1257,6 @@ $scope.getAllDashboard = function()
                    Init.getElement(rewriteReq, listofrequests_assoc[req]).then(function (data)
                    {
                        $scope.planview = data[0];
-                      $scope.getelements('users');
                        $scope.pageChanged('projet');
                        $scope.getelements('joineds');
 
@@ -1309,6 +1298,7 @@ $scope.getAllDashboard = function()
            }
 
          }
+
          else if(angular.lowercase(current.templateUrl).indexOf('pub')!==-1)
          {
              $scope.getelements('posts');
@@ -1319,6 +1309,9 @@ $scope.getAllDashboard = function()
              $scope.getelements('remarques');
              $scope.pageChanged('user');
          }
+
+
+
          else if(angular.lowercase(current.templateUrl).indexOf('projet')!==-1)
          {
             $scope.projetview = null;
@@ -1368,7 +1361,7 @@ $scope.getAllDashboard = function()
             });
             // console.log(, mydata);
 
-        }
+         }
 
 
 
@@ -1440,7 +1433,7 @@ $scope.getAllDashboard = function()
         //     }
          //}
     });
-    $scope.deleteMessage = function(itemId)
+      $scope.deleteMessage = function(itemId)
     {
 
         $.ajax({
@@ -2097,8 +2090,8 @@ $scope.getAllDashboard = function()
             }
         }
 
-        // if (form.validate() && continuer)
-        // {
+        if (form.validate() && continuer)
+        {
 
            // form.parent().parent().blockUI_start();
             Init.saveElementAjax(type, send_data).then(function(data)
@@ -2339,7 +2332,7 @@ $scope.getAllDashboard = function()
                 });
                 console.log('Erreur serveur ici = ' + msg);
             });
-      //  }
+        }
     };
 
     $scope.viderTab = function () {
@@ -2353,9 +2346,7 @@ $scope.getAllDashboard = function()
         console.log("$scope.produitsInTable", $scope.produitsInTable);
     });
 $scope.index_plan = 0;
-$scope.index_niveau = "";
     $scope.actionSurPlan = function (action, selectedItem = null) {
-
         if (action == 'add')
         {
             $scope.index_plan = $scope.index_plan + 1;
@@ -2423,16 +2414,10 @@ $scope.index_niveau = "";
                 return false;
             }
 
-               if($scope.produitsInTable.length > 1)
-               {
-                $scope.index_niveau = "R +"+$scope.index_plan
-               }
-               else if($scope.produitsInTable.length === 0 || $scope.produitsInTable.length === 1)
-               {
-                $scope.index_niveau = "Rez de chaussez"
-               }
             $scope.produitsInTable.unshift({
-                "niveau":   $scope.index_niveau,
+               // "niveau": "R +" + niveau,
+                "niveau":  "R +" + $scope.index_plan,
+              //  "piece": piece_plan,
                 "chambre": chambre_plan,
                 "sdb": chambre_sdb_plan,
                 "bureau": bureau_plan,
@@ -2469,7 +2454,6 @@ $scope.index_niveau = "";
     };
     // fin plan
     $scope.Ele = 0;
-    $scope.index_niveau = "";
     $scope.actionSurProjet = function (action, selectedItem = null) {
         if (action == 'add')
         {
@@ -2542,17 +2526,9 @@ $scope.index_niveau = "";
                  return false;
              }
 
-             if($scope.produitsInTable.length > 1)
-             {
-              $scope.index_niveau = "R +"+$scope.Ele
-             }
-             else if($scope.produitsInTable.length === 0 || $scope.produitsInTable.length === 1)
-             {
-              $scope.index_niveau = "Rez de chaussez"
-             }
-
             $scope.produitsInTable.unshift({
-                "niveau":$scope.index_niveau,
+                "niveau": "R +" + niveau,
+             //   "piece": piece_projet,
                 "chambre": chambre_projet,
                 "sdb": chambre_sdb_projet,
                 "bureau": bureau_projet,
@@ -2564,6 +2540,7 @@ $scope.index_niveau = "";
             console.log("this.produitsInTable",$scope.produitsInTable)
 
             $("#niveau_projet").val('');
+          //  $("#piece_projet").val('');
             $("#chambre_projet").val('');
             $("#chambre_sdb_projet").val('');
             $("#salon_projet").val('');
@@ -2934,46 +2911,9 @@ $scope.index_niveau = "";
         window.location.reload();
     };
 
-
     $scope.idProjetUpdate = null;
 
     $scope.assistedListe = false;
-    $scope.projet_a_Valide = {'id':'', 'title':''};
-    $scope.showModalValidated = function(event, idPrj,title = null)
-    {
-        $scope.projet_a_Valide.id = idPrj;
-        $scope.projet_a_Valide.title = title;
-        $scope.emptyForm('projte_a_valider');
-        $("#modal_projet_valider").modal('show');
-    };
-    $scope.projet_a_Valide = function (e, idItem)
-    {
-        var form = $('#modal_projet_valider');
-        var send_data = {'id':idItem};
-        console.log("Ok les donnees" , send_data);
-
-                $http({
-                    method: 'GET',
-                    url: BASE_URL + 'payeprojet/' + idItem,
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-
-                }).then(function successCallback(response) {
-                    iziToast.success({
-                        title: ('PROJET VALIDER'),
-                        message: "succès",
-                        position: 'topRight'
-                    });
-                    $("#modal_projet_valider").modal('hide');
-                }, function errorCallback(error) {
-                    iziToast.error({
-                        title: "",
-                        message: '<span class="h4">' + error + '</span>',
-                        position: 'topRight'
-                    });
-                });
-    }
     $scope.showModalUpdate=function (type,itemId, forceChangeForm=false)
     {
         reqwrite = type + "s" + "(id:"+ itemId + ")";
@@ -2987,12 +2927,10 @@ $scope.index_niveau = "";
 
             // console.log('item ', type, item);
 
-            $scope.testModal = function(id)
-            {
-                console.log("id : ", id);
-            }
+
             $scope.updatetype = type;
             $scope.updateelement = item;
+
 
             $scope.showModalAdd(type, true);
 
@@ -3695,18 +3633,6 @@ $scope.index_niveau = "";
                                     }
                                 });
                             }
-                            else if (type.indexOf('contact')!==-1)
-                            {
-                                $.each($scope.messagesends, function (keyItem, oneItem)
-                                {
-                                    if (oneItem.id===itemId)
-                                    {
-                                        $scope.messagesends.splice(keyItem, 1);
-                                        return false;
-                                    }
-                                });
-                                // $scope.getelements("messagesends");
-                            }
                             else if (type.indexOf('user')!==-1)
                             {
                                 $.each($scope.users, function (keyItem, oneItem)
@@ -3768,7 +3694,6 @@ $scope.index_niveau = "";
 
 
 // Vérification de l'extension des elements uploadés
-
 function isValide(fichier)
 {
     var Allowedextensionsimg=new Array("jpg","JPG","jpeg","JPEG","gif","GIF","png","PNG");

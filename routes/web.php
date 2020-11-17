@@ -30,7 +30,6 @@ Route::post('/plan', 'PlanController@save');
 Route::post('/remarque', 'RemarqueController@save');
 Route::post('/resave', 'UserController@resave');
 Route::post('/statut', 'UserController@statut');
-Route::post('/active_plan', 'ProjetController@active_plan');
 Route::post('/password-create', 'UserController@resetpassword');
 Route::post('/contact-send', 'UserController@sendMessage');
 Route::post('/contrat', 'ContratController@save');
@@ -41,8 +40,9 @@ Route::post('/pub', 'PostController@save');
 Route::post('/user-nci', 'UserController@saveNci');
 Route::get('/payment', 'ProjetController@payment');
 Route::post('/activer-projet', 'ProjetController@activeProjet');
-Route::get('/payeprojet/{id}', 'ProjetController@payeProjet');
-Route::get('/getResultat', 'ProjetController@getResult');
+Route::post('/make-montant', 'ProjetController@makeMontant');
+
+
 
 // les actions de suppressions
 Route::delete('/projet/{id}', 'ProjetController@delete');
@@ -64,11 +64,12 @@ Route::get('/plan/pdf/{id}', 'PdfController@pdf_plan');
 Route::get('/contrat/{id}', 'ProjetController@makeContrat');
 Route::get('/a_valider', 'ProjetController@avalider');
 Route::get('/paypal/{id}', 'ProjetController@payment');
-Route::post('/make-montant', 'ProjetController@makeMontant');
-
+Route::get('/active_plan/{id}', 'ProjetController@active_plan');
+Route::get('/payeprojet/{id}', 'ProjetController@payeProjet');
+Route::get('/getResultat', 'ProjetController@getResult');
 Route::get('/success', 'ProjetController@paypalSuccess')->name('payment-execute');
 
-
+Route::get('/plan_projet_active/{id}', 'ProjetController@active_plan_projet');
 
 // les routes de teste
 

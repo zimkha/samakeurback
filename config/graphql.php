@@ -177,7 +177,7 @@ return [
         \App\GraphQL\Type\PostType::class,
         \App\GraphQL\Type\ChantierType::class,
         \App\GraphQL\Type\ChantierPaginatedType::class,
-        \App\GraphQL\Type\ContratExecutiontype::class,
+        \App\GraphQL\Type\ContratExecutionType::class,
         \App\GraphQL\Type\DeviseEstimeType::class,
         \App\GraphQL\Type\DeviseFinanceType::class,
         \App\GraphQL\Type\PayedType::class,

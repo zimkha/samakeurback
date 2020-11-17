@@ -85,7 +85,7 @@ class Projet extends Model
         $item = Projet::find($id);
         $nb_attribut = 0;
         if (isset($item)) {
-            // le plan Existe 
+            // le plan Existe
            $nb =  DB::select(DB::raw("
            select sum(np.$attribut) as nbr from niveau_projets np where np.projet_id = '$id'
         "));
@@ -110,8 +110,8 @@ class Projet extends Model
         }
         else $nume = 0;
         $nume = $nume + 1;
-        
-        if ($nume >= 1  && $nume <= 9) 
+
+        if ($nume >= 1  && $nume <= 9)
         {
           $code = $code ."000".$nume;
         }
@@ -122,5 +122,21 @@ class Projet extends Model
         return $code;
 
     }
-    
+
+    public static function plan_active($id)
+    {
+      $isActive = false;
+      $item = Projet::find($id);
+      if(isset($item))
+      {
+          $plan_active = PlanProjet::where('projet_id', $item->id)->where('active', true)->count();
+
+          if($plan_active != 0)
+          {
+            $isActive = true;
+          }
+      }
+      return $isActive;
+    }
+
 }

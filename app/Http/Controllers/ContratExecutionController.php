@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Chantier;
 use App\User;
 use PDF;
-class ContratExecutionCOntroller extends Controller
+class ContratExecutionController extends Controller
 {
     protected  $queryName = "contratexecutions";
 
@@ -276,39 +276,5 @@ class ContratExecutionCOntroller extends Controller
         });
     }
 
-     public function getPdf($id)
-     {
-        try {
-            $errors = null;
-             if(!isset($id))  $errors = "Impossible d'exécuter cette operation, données manquantes";
-             else
-             { 
-                 $item = ContratExecution::where('chantier_id', $id)->get()->first();
-                 if(isset($item))
-                 {
-                  $message = null;
-                  if($item->etat == 1) $message = "Lu et approuvu par le client";
-                    $chantier = Chantier::find($id);
-                    $client   = $chantier->user();
-                    $pdf      = PDF::loadview('pdf.contrat_execution', 
-                                            [
-                                                "item"       => $item,
-                                                "chantier"   => $chantier,
-                                                "message"    => $message,
-                                                "client"     => $client,
-                                                
-                                            ]);
-                    return  $pdf->setPaper('orientation')->stream();
-                 }
-                 else $errors = "Le chantier n'a pas encore de contrat d'execution";
-                     
-             }
-             throw new \Exception($errors);
-        } catch (\Exception $e) {
-            return response()->json(array(
-                'errors'          => config('app.debug') ? $e->getMessage() : Outil::getMsgError(),
-                'errors_debug'    => [$e->getMessage()],
-            ));
-        }
-     }   
+      
 }

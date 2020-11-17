@@ -95,6 +95,17 @@
 
                                         </div>
 
+                                        <div class=" col-md-3 col-sm-12 mt-10">
+                                            <div class="border-danger">
+                                                <h6> Fichier du plan </h6>
+                                                <a href="@{{link}}/@{{ planview.fichier }}">
+                                                <span class="fa fa-file-pdf"></span>
+                                                </a>
+
+                                            </div>
+
+                                        </div>
+
 
                                     </div>
 

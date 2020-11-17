@@ -36,7 +36,7 @@ class ProjetType extends GraphQLType
             'remarques'              => ['type' => Type::listOf(GraphQL::type('Remarque')), 'description' => ''],
             'plan_projets'           => ['type' => Type::listOf(GraphQL::type('Planprojet')), 'description' => ''],
             'positions'              => ['type' => Type::listOf(GraphQL::type('Position')), 'description' => ''],
-             
+
             'electricite'            => ['type' => Type::boolean()],
             'acces_voirie'           => ['type' => Type::boolean()],
             'assainissement'         => ['type' => Type::boolean()],
@@ -63,6 +63,8 @@ class ProjetType extends GraphQLType
             'nb_etage'               => ['type' => Type::int()],
             'nb_sdb'                 => ['type' => Type::int()],
             'a_valider'              => ['type' => Type::int()],
+            'plan_active'            => ['type' => Type::boolean()],
+
 
             'created_at'             => ['type'  => Type::string()],
             'created_at_fr'          => ['type'  => Type::string()],
@@ -71,27 +73,40 @@ class ProjetType extends GraphQLType
             'deleted_at'             => ['type'  => Type::string()],
             'grg'                    => ['type'  => Type::string()],
             'psc'                    => ['type'  => Type::string()],
-           
+
         ];
+    }
+
+    public function resolvePlanActiveField($root, $args)
+    {
+     if(!isset($root['id']))
+      {
+          $projet_id = $root->id;
+      }
+       else
+      {
+          $projet_id = $root['id'];
+      }
+      return $res = Projet::plan_active($projet_id);
     }
     public function resolvePscField($root, $args)
     {
         if(!isset($root['id']))
         {
-            $projet_id = $root->id;  
+            $projet_id = $root->id;
         }
          else
         {
             $projet_id = $root['id'];
         }
         return $res = Projet::get_piscine($projet_id);
-        
+
     }
      public function resolveGrgField($root, $args)
     {
         if(!isset($root['id']))
         {
-            $projet_id = $root->id;  
+            $projet_id = $root->id;
         }
          else
         {
@@ -104,7 +119,7 @@ class ProjetType extends GraphQLType
         if (!isset($root['id']))
         {
             $projet_id = $root->id;
-        
+
         }
         else
         {
@@ -118,14 +133,14 @@ class ProjetType extends GraphQLType
           {
               $response =  $response;
           }
-          return $response; 
+          return $response;
     }
     public function resolveNbPiecesField($root, $args)
     {
         if (!isset($root['id']))
         {
             $projet_id = $root->id;
-        
+
 }        else
         {
             $projet_id = $root['id'];
@@ -146,7 +161,7 @@ class ProjetType extends GraphQLType
         }
         $attribut = "chambre";
         $nbr =  Projet::nb_attribut($projet_id, $attribut);
-        return $nbr; 
+        return $nbr;
     }
     public function resolveNbSdbField($root, $args)
     {
@@ -160,7 +175,7 @@ class ProjetType extends GraphQLType
         }
         $attribut = "sdb";
         $nbr =  Projet::nb_attribut($projet_id, $attribut);
-        return $nbr; 
+        return $nbr;
     }
     public function resolveNbBureauField($root, $args)
     {
@@ -174,7 +189,7 @@ class ProjetType extends GraphQLType
         }
         $attribut = "bureau";
         $nbr =  Projet::nb_attribut($projet_id, $attribut);
-        return $nbr; 
+        return $nbr;
     }
 
     public function resolveNbSalonField($root, $args)
@@ -189,7 +204,7 @@ class ProjetType extends GraphQLType
         }
         $attribut = "salon";
         $nbr =  Projet::nb_attribut($projet_id, $attribut);
-        return $nbr; 
+        return $nbr;
     }
 
     public function resolveNbCuisineField($root, $args)
@@ -204,7 +219,7 @@ class ProjetType extends GraphQLType
         }
         $attribut = "cuisine";
         $nbr =  Projet::nb_attribut($projet_id, $attribut);
-        return $nbr; 
+        return $nbr;
     }
     public function resolveNbToilletteField($root, $args)
     {
@@ -218,7 +233,7 @@ class ProjetType extends GraphQLType
         }
         $attribut = "toillette";
         $nbr =  Projet::nb_attribut($projet_id, $attribut);
-        return $nbr; 
+        return $nbr;
     }
     public function resolveNbEtageField($root, $args)
     {
@@ -231,7 +246,7 @@ class ProjetType extends GraphQLType
             $projet_id = $root['id'];
         }
         return  NiveauProjet::where('projet_id', $projet_id)->count();
-        
+
     }
     protected function resolveCreatedAtField($root, $args)
     {

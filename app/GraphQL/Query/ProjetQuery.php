@@ -22,7 +22,7 @@ class ProjetQuery extends Query
         return Type::listOf(GraphQL::type('Projet'));
     }
 
-    public function args(): array 
+    public function args(): array
     {
         return
         [
@@ -31,7 +31,7 @@ class ProjetQuery extends Query
             'text_projet'            => ['type'  => Type::string()],
             'adresse_terrain'        => ['type'  => Type::string()],
             'sdb'                    => ['type' => Type::int()],
-            
+
 
             'name'                   => ['type'  => Type::string()],
             'fichier'                => ['type'  => Type::string()],
@@ -66,9 +66,10 @@ class ProjetQuery extends Query
             'garage'                 => ['type' => Type::boolean()],
 
             'eaux_pluviable'         => ['type' => Type::boolean()],
-          
-          
-          
+            
+
+
+
             'created_at'             => ['type'  => Type::string()],
             'created_at_start'       => ['type'  => Type::string()],
             'created_at_end'         => ['type'  => Type::string()],
@@ -77,12 +78,12 @@ class ProjetQuery extends Query
             'updated_at_fr'          => ['type'  => Type::string()],
             'deleted_at'             => ['type'  => Type::string()],
 
-           
+
         ];
-        
+
     }
 
-    
+
     public function resolve($root, $args)
     {
        $query = Projet::with('niveau_projets');
@@ -160,7 +161,7 @@ class ProjetQuery extends Query
        $query = $query->get();
        return $query->map(function (Projet $item)
        {
-           return 
+           return
            [
             'id'                     => $item->id,
             'user_id'                => $item->user_id,
@@ -181,19 +182,19 @@ class ProjetQuery extends Query
             'remarques'              => $item->remarques,
             'sdb'                    => $item->sdb,
             'assainissement'         => $item->assainissement,
-            'electricte'             => $item->electricte, 
-            'eaux_pluvial'           => $item->eaux_pluvial,    
-            'bornes_visible'         => $item->bornes_visible,    
-            'necessite_bornage'      => $item->necessite_bornage,    
-            'courant_faible'         => $item->courant_faible,    
-            'acces_voirie'           => $item->acces_voirie,    
-            'geometre'               => $item->geometre,    
+            'electricte'             => $item->electricte,
+            'eaux_pluvial'           => $item->eaux_pluvial,
+            'bornes_visible'         => $item->bornes_visible,
+            'necessite_bornage'      => $item->necessite_bornage,
+            'courant_faible'         => $item->courant_faible,
+            'acces_voirie'           => $item->acces_voirie,
+            'geometre'               => $item->geometre,
             'garage'                 => $item->garage,
             'piscine'                => $item->piscine,
             'contrat'                => $item->contrat,
             'positions'              => $item->positions,
             'montant'                => $item->montant,
-   
+
         ];
       });
     }

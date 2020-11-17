@@ -33,11 +33,11 @@ use Illuminate\Support\Arr;
 class ProjetController extends Controller
 {
     protected $queryName = "projets";
-   
+
     public function save(Request $request)
     {
 
-       
+
         try
         {
             return DB::transaction(function () use($request) {
@@ -127,8 +127,8 @@ class ProjetController extends Controller
                 }
                 else
                 $item->piscine = 0;
-               
-               
+
+
 
                 $errors = Outil::validation($request, $array);
 
@@ -185,7 +185,7 @@ class ProjetController extends Controller
                 if (!isset($errors) && $request->hasFile('fichier'))
                 {
                     $fichier = $_FILES['fichier']['name'];
-                   
+
                     $fichier_tmp = $_FILES['fichier']['tmp_name'];
                     $k = rand(100, 9999);
                     $ext = explode('.',$fichier);
@@ -197,9 +197,9 @@ class ProjetController extends Controller
                 }
 
                 $tab_position = array();
-                
-               
-                    
+
+
+
                     $positions = json_decode($request->positions, true);
                     //  dd($positions);
                     foreach($positions as $position)
@@ -209,26 +209,26 @@ class ProjetController extends Controller
                             $errors = "Veuillez faire un choix entre Mitoyen et Rue pour la position ". $position['position'];
                             throw new \Exception($errors);
                         }
-                       
+
                         if(is_numeric($position['ref']))
                         {
                              $pt_ref               = new Position();
                              $pt_ref->position     = $position['ref'];
                              $pt_ref->nom_position = $position['position'];
-                             array_push($tab_position , $pt_ref);   
+                             array_push($tab_position , $pt_ref);
                         }
-                      
+
                     }
-                
+
                 if(isset($request->tab_projet) && $request->tab_projet != null)
                 {
                     $data = json_decode($request->tab_projet, true);
-                
+
                     foreach ($data as  $key) {
-                       
+
                         $n = $n + 1;
                         $niveau = new NiveauProjet();
-                        
+
                         if (!isset($key['chambre']) || (int)$key['chambre'] < 0) {
                             $errors = "Veuillez renseigner le nombre de chambre de ce niveau ligne n°". $n;
                           }
@@ -244,20 +244,20 @@ class ProjetController extends Controller
                          if (!isset($key['toillette']) || (int)$key['toillette'] < 0) {
                             $errors = "Veuillez renseigner le nombre de toillette de ce niveau ligne n°". $n;
                          }
-               
+
                          if (isset($errors))
                          {
                              throw new \Exception($errors);
                          }
-                        
+
                             $chambre   = (int)$key['chambre'];
                             $salon     = (int)$key['salon'];
                             $sdb        = (int)$key['sdb'];
                             $cuisine    = (int)$key['cuisine'];
                             $bureau    = (int)$key['bureau'];
                             $toillette  = (int)$key['toillette'];
-                         
-                           
+
+
                         if($n == 1)
                         {
                             $niveau->niveau_name = "Rez de Chaussée";
@@ -269,7 +269,7 @@ class ProjetController extends Controller
                             }
                        if(is_numeric($key['chambre']) && $key['chambre'] >= 0)
                        {
-                          $niveau->chambre            =  $chambre;   
+                          $niveau->chambre            =  $chambre;
                        }
                        else
                        {
@@ -277,7 +277,7 @@ class ProjetController extends Controller
                        }
                         if(is_numeric($key['salon']) && $key['salon'] >= 0)
                        {
-                         $niveau->salon              =$salon;   
+                         $niveau->salon              =$salon;
                        }
                         else
                        {
@@ -293,7 +293,7 @@ class ProjetController extends Controller
                        }
                         if(is_numeric($key['cuisine']) && $key['cuisine'] >= 0)
                        {
-                          $niveau->cuisine            =$cuisine; 
+                          $niveau->cuisine            =$cuisine;
                        }
                         else
                        {
@@ -301,7 +301,7 @@ class ProjetController extends Controller
                        }
                         if(is_numeric($key['toillette']) && $key['toillette'] >= 0)
                        {
-                           $niveau->toillette          = $toillette;  
+                           $niveau->toillette          = $toillette;
                        }
                         else
                        {
@@ -309,33 +309,33 @@ class ProjetController extends Controller
                        }
                         if(is_numeric($key['sdb']) && $key['sdb'] >= 0)
                        {
-                           $niveau->sdb                = $sdb;   
+                           $niveau->sdb                = $sdb;
                        }
                         else
                        {
                            $errors = "saisir une valeur pour le salle de bain ligne numero " +$n;
                        }
-                      
+
                        if(isset($errors))
                          {
-                           
+
                             throw new \Exception($errors);
                          }
-                       
+
                         array_push($array_level, $niveau);
-                       
-                        
+
+
                     }
-                    
+
                 }
-                
-               
+
+
 
 
 
                 if (!isset($errors))
                 {
-                   
+
                     $item->active = false;
                     $item->etat = 0;
                     $item->save();
@@ -529,19 +529,25 @@ class ProjetController extends Controller
         }
     }
 
-    public function active_plan(Request $request)
+public function active_plan_projet($id)
+{
+
+  $isActive =  Projet::plan_active($id);
+  dd($isActive);
+}
+    public function active_plan($itemId)
     {
         try
         {
 
             $errors = null;
             $data = 0;
-            $item = PlanProjet::find($request->plan_projet);
+            $item = PlanProjet::find($itemId);
             if(isset($item))
             {
                 $projet = Projet::find($item->projet_id);
 
-             
+
                 if(isset($projet))
                 {
 
@@ -549,7 +555,7 @@ class ProjetController extends Controller
 
                     if(isset($plan_active) && count($plan_active) > 0)
                     {
-                    
+
                         foreach($plan_active as $key)
                         {
 
@@ -649,13 +655,13 @@ class ProjetController extends Controller
     }
     public function makeContrat($id)
     {
-      
+
         try
         {
                 $item = Projet::find($id);
                 $message = null;
-                
-                
+
+
                 if(isset($item))
                 {
                     if($item->contrat== 1)
@@ -689,7 +695,7 @@ class ProjetController extends Controller
                         "toillette" => $nb_toillette,
                         "garage"    => $item->garage,
                         "piscine"   => $item->piscine,
-                      
+
                     ]);
 // dd($array_info);
 
@@ -699,55 +705,55 @@ class ProjetController extends Controller
                             throw new \Exception($errors);
                         }
                        $positions = $item->positions;
-                     
+
                     //   dd($positions);
                        $pos_nor = null;
                        $pos_sud = null;
                        $pos_est = null;
                        $pos_ouest = null;
-                       
+
                      if($positions!= null)
                      {
                           foreach($positions as $pos)
                               {
-                                  
+
                                         if($pos->nom_position == "Nord")
                                          {
                                               $pos_nor = $pos->position;
                                          }
-                                    
+
                                        if($pos->nom_position == "Sud")
                                         {
                                             $pos_sud = $pos->position;
                                         }
-                                  
+
                                          if($pos->nom_position == "Est")
                                          {
                                               $pos_nest = $pos->position;
                                          }
-                                  
+
                                        if($pos->nom_position == "Ouest")
                                         {
                                              $pos_ouest = $pos->position;
                                         }
                               }
                      }
-                     
-                    $pdf        = PDF::loadView('pdf.contrat', 
+
+                    $pdf        = PDF::loadView('pdf.contrat',
                     [
                       'projet'  => $item,
                      'created_at' => $created_at,
-                     'client' => $client, 
+                     'client' => $client,
                      'niveaux' => $niveaux,
                      'message' => $message,
                      'positions' => $positions,
                      'Nord'      => $pos_nor,
                      'Sud'       => $pos_sud,
                      'Est'       => $pos_est,
-                     'Ouest'     => $pos_ouest,    
+                     'Ouest'     => $pos_ouest,
                      'tableau' => $array_info]);
                       return  $pdf->setPaper('orientation')->stream();
-                    
+
                 }
                 else
                 {
@@ -860,7 +866,7 @@ class ProjetController extends Controller
     {
         $errors = null;
         try{
-           
+
             $config = [
                 "id"  => "ARRvds_Lfxr0QvzpeuvXO9ZA2Doeazna-nCVvUbcnWKrRo0O29XmO2BnKBtjx5b1lmE2uCs7U26wmQWU",
                  "secrete" => "EOaBCqI9BNIlSHM35yv5U8M0L__zbX-uKtvDhjmKd1-a41mKdAEFIBkcYn3YwbX1f_FBrCPmWQ8WB_ob"
@@ -890,7 +896,7 @@ class ProjetController extends Controller
                 else{
                     throw new \Exception("erreur sur les données du projet");
                 }
-    
+
                 $montant_ = $projet->montant;
                 $montant_ = $montant_ / 655;
                 $montant_ = number_format($montant_,2,'.',' ');
@@ -904,7 +910,7 @@ class ProjetController extends Controller
                 $list->addItem($item);
                 $details =  (new \PayPal\Api\Details())
                       ->setSubTotal( $montant_);
-                
+
                 $amount = (new \PayPal\Api\Amount())
                   ->setTotal( $montant_)
                   ->setCurrency("EUR")
@@ -1047,7 +1053,7 @@ class ProjetController extends Controller
 
     public function getResult()
     {
-       
+
         try{
                 $errors = null;
                 $tab_resultat = array();
@@ -1058,7 +1064,7 @@ class ProjetController extends Controller
                 $three =  Projet::where('etat', 2)->count();
                 $projets = array();
                 $items = Projet::where('etat', 0)->limit(5)->get();
-               
+
                 array_push($tab_resultat, [
                     "total"=> $one,
                     "en_attente"=> $prime,
@@ -1112,10 +1118,10 @@ class ProjetController extends Controller
                 $retour = array(
                     'data'          => $data,
                 );
-                return response()->json($retour);   
+                return response()->json($retour);
             }
             throw new \Exception($errors);
-           
+
         }
         catch(\Exception $e)
         {
@@ -1134,14 +1140,13 @@ class ProjetController extends Controller
 
     public function getElementsByUser($id)
     {
-    
+
         return response()->json(
            array(
                "success" => true,
-               "projets" => Projet::where('user_id', $id)->get()  
+               "projets" => Projet::where('user_id', $id)->get()
            )
         );
     }
 
 }
-

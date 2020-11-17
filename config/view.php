@@ -21,7 +21,6 @@ return [
         'plans'           => 'uploads/plans',
         'projets'         => 'uploads/projets',
         'remarques'       => 'uploads/remarques',
-        'projets'         => 'uploads/projets',
         'fichierplans'    => 'uploads/fichierplans',
         'posts'           => 'uploads/posts',
         'piecejointes'    => 'uploads/piecejointes'
