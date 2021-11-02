@@ -28,6 +28,7 @@ class Notifications extends Mailable
      */
     public function build()
     {
-        return $this->subject("Une demande de projet a été enregistré. Veuillez consulter vos mails")->view('mails.SendCreateProjetConfirm');
+        return $this->from()->markdown()
+        ->subject("Une demande de projet a été enregistré. Veuillez consulter vos mails")->view('mails.SendCreateProjetConfirm');
     }
 }

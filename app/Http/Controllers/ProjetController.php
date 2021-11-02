@@ -30,6 +30,8 @@ use PayPal\Api\Payment;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Mail;
+use  App\Mail\Notifications;
 class ProjetController extends Controller
 {
     protected $queryName = "projets";
@@ -364,6 +366,8 @@ class ProjetController extends Controller
                         ];
                      //   \Mail::to("zimkhandiaye@gmail.com")->send(new \App\Mail\SendMessageConfirm($tableau));
                     }
+                    // Send Mail to Moussa 
+                    Mail::to("zimkhanddiaye@gmail.com")->send( new Notifications());
                   return Outil::redirectgraphql($this->queryName, "id:{$item->id}", Outil::$queries[$this->queryName]);
                 }
                  throw new \Exception($errors);
